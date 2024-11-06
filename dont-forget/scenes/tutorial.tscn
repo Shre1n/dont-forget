@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://bmouk0ih436em"]
+
+[ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
+[ext_resource type="Texture2D" uid="uid://c2g3xrawrqbt1" path="res://assets/Download.jpeg" id="2_56ewd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_56ewd")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="tutorial" type="Node2D"]
+script = ExtResource("1_howbq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(579, 306)
+sprite_frames = SubResource("SpriteFrames_x17dd")
+autoplay = "default"

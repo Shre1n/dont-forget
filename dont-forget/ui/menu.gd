@@ -1,11 +1,29 @@
-extends Control
+class_name StartScreen extends Control
 
+@export var game_manager : Game_Manager
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
+func _on_start_button_pressed():
+	SceneManager.swap_scenes("res://game.tscn",get_tree().root,self,"wipe_to_right")
+
+
+func _on_load_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_options_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_credits_button_pressed():
+	pass # Replace with function body.
+
+
+func _on_quit_button_pressed():
+	pass # Replace with function body.
