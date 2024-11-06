@@ -18,7 +18,7 @@ func _on_load_button_pressed():
 
 
 func _on_options_button_pressed():
-	pass # Replace with function body.
+	get_node("Options").show()
 
 
 func _on_credits_button_pressed():

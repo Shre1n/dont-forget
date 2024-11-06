@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqm7cwb02ir77"]
+[gd_scene load_steps=3 format=3 uid="uid://cqm7cwb02ir77"]
 
 [ext_resource type="Script" path="res://ui/menu.gd" id="1_myn0o"]
+[ext_resource type="PackedScene" uid="uid://cspyht3ytgvhx" path="res://ui/options.tscn" id="2_mc7cj"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -83,6 +84,9 @@ size_flags_vertical = 3
 tooltip_text = "Beenden"
 theme_override_font_sizes/font_size = 20
 text = "Beenden"
+
+[node name="Options" parent="." instance=ExtResource("2_mc7cj")]
+layout_mode = 1
 
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Start_Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Load_Button" to="." method="_on_load_button_pressed"]
