@@ -80,7 +80,7 @@ layout_mode = 2
 layout_mode = 2
 dragger_visibility = 2
 
-[node name="OptionButton" type="OptionButton" parent="Panel/Panel/VBoxContainer/HSplitContainer2"]
+[node name="Resulutions" type="OptionButton" parent="Panel/Panel/VBoxContainer/HSplitContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -120,5 +120,6 @@ text = "Schließen"
 
 [connection signal="value_changed" from="Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume" to="." method="_on_volume_value_changed"]
 [connection signal="toggled" from="Panel/Panel/VBoxContainer/HSplitContainer/Mute" to="." method="_on_mute_toggled"]
+[connection signal="item_selected" from="Panel/Panel/VBoxContainer/HSplitContainer2/Resulutions" to="." method="_on_resulutions_item_selected"]
 [connection signal="toggled" from="Panel/Panel/VBoxContainer/HSplitContainer2/Fullscreen" to="." method="_on_fullscreen_toggled"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/HSplitContainer3/Close_Btn" to="." method="_on_close_btn_pressed"]
