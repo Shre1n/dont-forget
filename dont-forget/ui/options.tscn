@@ -65,6 +65,7 @@ text = "Gesamtlautstärke"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+value = 100.0
 
 [node name="Mute" type="CheckButton" parent="Panel/Panel/VBoxContainer/HSplitContainer"]
 layout_mode = 2
@@ -92,7 +93,7 @@ popup/item_1/id = 1
 popup/item_2/text = "1280x720"
 popup/item_2/id = 2
 
-[node name="CheckButton2" type="CheckButton" parent="Panel/Panel/VBoxContainer/HSplitContainer2"]
+[node name="Fullscreen" type="CheckButton" parent="Panel/Panel/VBoxContainer/HSplitContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_font_sizes/font_size = 20
@@ -117,4 +118,7 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 20
 text = "Schließen"
 
+[connection signal="value_changed" from="Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume" to="." method="_on_volume_value_changed"]
+[connection signal="toggled" from="Panel/Panel/VBoxContainer/HSplitContainer/Mute" to="." method="_on_mute_toggled"]
+[connection signal="toggled" from="Panel/Panel/VBoxContainer/HSplitContainer2/Fullscreen" to="." method="_on_fullscreen_toggled"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/HSplitContainer3/Close_Btn" to="." method="_on_close_btn_pressed"]
