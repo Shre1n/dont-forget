@@ -1,14 +1,31 @@
 class_name Game_Manager extends Node2D
 
+signal toggle_game_paused(is_paused : bool)
+
 @onready var level_holder: Node2D = $Level_Folder
 
 var current_level:Level
+var options_open = false
+var game_paused : bool = false:
+	get:
+		return game_paused
+	set(value):
+		game_paused = value
+		get_tree().paused = game_paused
+		emit_signal("toggle_game_paused", game_paused)
 
 func _ready():
 	SceneManager.load_complete.connect(_on_level_loaded)
 	SceneManager.load_start.connect(_on_load_start)
 	SceneManager.scene_added.connect(_on_level_added)
 	current_level = level_holder.get_child(0) as Level
+
+func _input(event : InputEvent):
+	if(event.is_action_pressed("ui_cancel")):
+		if(options_open):
+			options_closed()
+		else:
+			game_paused = !game_paused
 
 func _on_level_loaded(level) -> void:
 	if level is Level:
@@ -25,3 +42,11 @@ func _on_load_start(_loading_screen):
 
 func _process(delta):
 	pass
+
+func options_opend():
+	options_open = true
+	get_node("Pause_Menu/Options").show()
+
+func options_closed():
+	options_open = false
+	get_node("Pause_Menu/Options").hide()

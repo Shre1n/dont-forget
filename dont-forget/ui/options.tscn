@@ -65,11 +65,13 @@ text = "Gesamtlautstärke"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Verschiebe um die Gesamt Lautstärke anzupassen"
 value = 100.0
 
 [node name="Mute" type="CheckButton" parent="Panel/Panel/VBoxContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 8
+tooltip_text = "Stummstellen des Spiels"
 theme_override_font_sizes/font_size = 20
 text = "Mute"
 
@@ -84,6 +86,7 @@ dragger_visibility = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+tooltip_text = "Bildschirmauflösung anpassen"
 theme_override_font_sizes/font_size = 20
 selected = 2
 item_count = 3
@@ -96,6 +99,7 @@ popup/item_2/id = 2
 [node name="Fullscreen" type="CheckButton" parent="Panel/Panel/VBoxContainer/HSplitContainer2"]
 layout_mode = 2
 size_flags_vertical = 4
+tooltip_text = "Vollbild an/ausschalten"
 theme_override_font_sizes/font_size = 20
 text = "Vollbild"
 
@@ -109,12 +113,14 @@ size_flags_vertical = 3
 [node name="Button" type="Button" parent="Panel/Panel/VBoxContainer/HSplitContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Setzt die Einstellungen zurück auf den Standart"
 theme_override_font_sizes/font_size = 20
 text = "Zurücksezten"
 
 [node name="Close_Btn" type="Button" parent="Panel/Panel/VBoxContainer/HSplitContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
+tooltip_text = "Schließt die Einstellungen"
 theme_override_font_sizes/font_size = 20
 text = "Schließen"
 
