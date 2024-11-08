@@ -9,7 +9,10 @@ func _process(delta):
 	pass
 
 func _on_close_btn_pressed():
-	game_manager.options_closed()
+	if (game_manager != null):
+		game_manager.options_closed()
+		return
+	hide()
 
 func _on_volume_value_changed(value):
 	AudioServer.set_bus_volume_db(0, value)
