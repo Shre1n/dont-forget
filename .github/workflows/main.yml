@@ -38,7 +38,7 @@ jobs:
             godot --headless --path /github/workspace --script res://addons/gut/gut_cmdln.gd --run_all --testdir=res://Test/Unit --verbose --output-file=res://Test/Unit/test_results.txt
             
         - name: Upload Tests Results
-          uses: actions/upload-artifacts@v3
+          uses: actions/upload-artifact@v3
           with:
             name: test-results
             path: Test/Unit/test_results.txt
