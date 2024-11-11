@@ -7,6 +7,11 @@ on:
     branches:
       - "development"
       - "!main"
+  paths-ignore:
+    - '**.yml'
+    - '**.jpg'
+    - '**.png'
+    - '**.md'
 
 jobs:
     install_dependencies:
@@ -53,3 +58,6 @@ jobs:
           - name: Display Failed Tests
             if: failure()
             run: cat Test/Unit/test_results.txt
+
+          - name: PWD
+            run: echo $PWD
