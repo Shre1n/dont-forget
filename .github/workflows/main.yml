@@ -3,6 +3,11 @@ on:
     branches:
       - "**"
       - "!main"
+    paths-ignore:
+      - '**.yml'
+      - '**.jpg'
+      - '**.png'
+      - '**.md'
   pull_request:
     branches:
       - "development"
