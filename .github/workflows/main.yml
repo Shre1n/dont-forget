@@ -1,1 +1,51 @@
-### CI
+on:
+  push:
+    branches:
+      - "*"
+      - "!main"
+  pull_request:
+    branches:
+      - "development"
+      - "!main"
+
+jobs:
+    build:
+      runs-on: ubuntu-20.04
+    
+      container:
+        image: barichello/godot-ci:4.3
+      
+      steps:
+        - name: Checkout repository
+          uses: actions/checkout@v4
+      
+        - name: Verify Godot Installation
+          run: |
+            godot --version
+    
+    
+    unitTests:
+        runs-on: ubuntu-20.04
+        needs: build
+        
+        container:
+          image: barichello/godot-ci:4.3
+        
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v4
+          
+          - name: Run Unit Tests
+            run: |
+              godot --headless --path /github/workspace --script res://addons/gut/gut_cmdln.gd --run_all --testdir=res://Test/Unit --verbose --output-file=res://Test/Unit/test_results.txt
+              
+          - name: Upload Tests Results
+            uses: actions/upload-artifact@v3
+            with:
+              name: test-results
+              path: Test/Unit/test_results.txt
+          
+          - name: Display Failed Tests
+            if: failure()
+            run: cat Test/Unit/test_results.txt
+      
