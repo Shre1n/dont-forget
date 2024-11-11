@@ -47,4 +47,10 @@ jobs:
           - name: Display Failed Tests
             if: failure()
             run: cat Test/Unit/test_results.txt
+
+          - name: Check Current Working Directory
+            run: pwd
+
+          - name: List Files in Project Directory
+            run: ls -la
       
