@@ -3,20 +3,10 @@ on:
     branches:
       - "**"
       - "!main"
-    paths-ignore:
-      - '**.yml'
-      - '**.jpg'
-      - '**.png'
-      - '**.md'
   pull_request:
     branches:
       - "development"
       - "!main"
-  paths-ignore:
-    - '**.yml'
-    - '**.jpg'
-    - '**.png'
-    - '**.md'
 
 jobs:
     install_dependencies:
