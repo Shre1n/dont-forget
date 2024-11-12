@@ -14,6 +14,11 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-22.04
+
+    container:
+      image: barichello/godot-ci:4.3
+
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -25,4 +30,4 @@ jobs:
 
       - name: Run GDScript Linter
         run: |
-          python3 ./parser.py $(find . -name "*.gd")
+          godot --s ./addons/gut/gut_cmdln.gd --linter --path $(pwd) $(find . -name "*.gd")
