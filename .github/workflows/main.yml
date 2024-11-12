@@ -29,8 +29,7 @@ jobs:
 
         - name: Import assets and classes
           run: |
-            godot --headless --path $(pwd) --import res://Test/Unit/
-      
+            godot --headless --path $(pwd) --import res://Test/Unit --verbose
 
     unitTests:
         runs-on: ubuntu-20.04
