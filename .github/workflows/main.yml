@@ -12,6 +12,7 @@ on:
       - "development"
 
 jobs:
+    if: github.event_name != 'push'
     install_dependencies:
       runs-on: ubuntu-20.04
 
@@ -35,7 +36,7 @@ jobs:
           
           - name: Run Unit Tests
             run: |
-              godot -s addons/gut/gut_cmdln.gd -d --path dont-forget/dont-forget -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_
+              godot -s addons/gut/gut_cmdln.gd -d --path dont-forget -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_
 
           - name: Upload Tests Results
             uses: actions/upload-artifact@v3
