@@ -12,7 +12,6 @@ on:
       - "development"
 
 jobs:
-    if: github.event_name != 'push'
     install_dependencies:
       runs-on: ubuntu-20.04
 
