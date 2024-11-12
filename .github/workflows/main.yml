@@ -1,3 +1,5 @@
+GODOT_VERSION: "4.3"
+
 on:
   push:
     branches:
@@ -18,17 +20,21 @@ jobs:
 
         - name: Download Godot 4.3
           run: |
-            GODOT_VERSION="4.3"
-          
-          
             wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip -O godot.zip
             unzip godot.zip -d godot
-            chmod +x godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
-            echo "$(pwd)/godot" >> $GITHUB_PATH
 
-        - name: Verify Godot Installation
+        - name: Make Godot Executable
           run: |
-            godot --version
+            chmod +x godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
+
+        - name: Add Godot to PATH
+          run: |
+            export PATH=$PATH:$(pwd)/godot
+            echo "$(pwd)/godot" >> $GITHUB_PATH
+            
+
+        - name: Check Godot version
+          run: godot --version
 
         - name: Install GUT (Godot Unit Testing)
           run: |
