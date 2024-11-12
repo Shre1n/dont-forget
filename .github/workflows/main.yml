@@ -12,41 +12,27 @@ on:
       - "development"
 
 jobs:
-    install_dependencies:
-      runs-on: ubuntu-20.04
+  godot-test:
+    runs-on: ubuntu-latest
 
-      container:
-        image: barichello/godot-ci:4.3
-      
-      steps:
-        - name: Check Godot version
-          run: godot --version
+    steps:
+      # Schritt 1: Checkout des Repositories
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    unitTests:
-        runs-on: ubuntu-20.04
-        needs: install_dependencies
-        
-        container:
-          image: barichello/godot-ci:4.3
-        
-        steps:
-          - name: Checkout repository
-            uses: actions/checkout@v4
+      # Schritt 2: Set up Godot
+      - name: Set up Godot
+        uses: firebelley/setup-godot@v1
+        with:
+          godot_version: '4.3'  # Stelle sicher, dass du die richtige Version verwendest
 
-          - name: Headless
-            run: |
-              godot -e --path dont-forget --headless
-          
-          - name: Run Unit Tests
-            run: |
-              godot -s addons/gut/gut_cmdln.gd --no-gui -d --path dont-forget -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_
+      # Schritt 3: Installiere Abhängigkeiten (falls nötig)
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y mono-runtime  # Falls Mono für GUT benötigt wird
 
-          - name: Upload Tests Results
-            uses: actions/upload-artifact@v3
-            with:
-              name: test-results
-              path: Test/Unit/test_results.txt
-          
-          - name: Display Failed Tests
-            if: failure()
-            run: cat Test/Unit/test_results.txt
+      # Schritt 4: Run Godot Unit Tests with GUT
+      - name: Run Godot Unit Tests with GUT
+        run: |
+          godot -s res://Test/Unit/run_tests.gd  # Das Skript, das deine Tests ausführt
