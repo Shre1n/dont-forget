@@ -25,9 +25,8 @@ jobs:
 
       - name: Headless
         run: |
-          godot -e --path $PWD --quit --headless
-          echo $PWD
+          godot -e --path dont-forget --quit --headless
 
       - name: Run GDScript Linter
         run: |
-          godot --headless --script ./addons/gut/gut_cmdln.gd --linter --path $(pwd) $(find . -name "*.gd")
+          godot --headless --script ./addons/gut/gut_cmdln.gd --linter --path dont-forget $(find . -name "*.gd")
