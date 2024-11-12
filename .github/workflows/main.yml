@@ -12,30 +12,28 @@ on:
       - "development"
 
 jobs:
-  godot-test:
-    runs-on: ubuntu-latest
+    install_dependencies:
+      runs-on: ubuntu-20.04
 
-    steps:
-      # Schritt 1: Checkout des Repositories
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      container:
+        image: barichello/godot-ci:4.3
 
-      # Schritt 2: Installiere Godot
-      - name: Install Godot
-        run: |
-          # Lade die neueste Godot-Version herunter
-          GODOT_VERSION="4.2.1"  # Setze hier die gewünschte Version von Godot
-          wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip -O godot
-          chmod +x godot
-          sudo mv godot /usr/local/bin/
+      steps:
+        - name: Check Godot version
+          run: godot --version
 
-      # Schritt 3: Installiere Abhängigkeiten (falls nötig)
-      - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y mono-runtime  # Falls Mono für GUT benötigt wird
+    unitTests:
+        runs-on: ubuntu-20.04
+        needs: install_dependencies
 
-      # Schritt 4: Führe Godot Unit Tests mit GUT aus
-      - name: Run Godot Unit Tests with GUT
-        run: |
-          godot -s res://Test/Unit/run_tests.gd  # Das Skript, das deine Tests ausführt
+        container:
+          image: barichello/godot-ci:4.3
+
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v4
+
+
+          - name: Run Unit Tests
+            run: |
+              godot -s dont-forget/addons/gut/gut_cmdln.gd -d --path dont-forget -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_
