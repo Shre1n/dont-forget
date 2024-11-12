@@ -19,10 +19,6 @@ jobs:
         - name: Check Godot version
           run: godot --version
 
-        - name: Install GUT (Godot Unit Testing)
-          run: |
-            git clone https://github.com/bitwes/GutTests.git
-
     unitTests:
         runs-on: ubuntu-20.04
         needs: install_dependencies
@@ -36,7 +32,7 @@ jobs:
           
           - name: Run Unit Tests
             run: |
-              gut run
+              godot -s addons/gut/gut_cmdln.gd -d --path $PWD -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_
 
           - name: Upload Tests Results
             uses: actions/upload-artifact@v3
