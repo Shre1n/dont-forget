@@ -24,7 +24,7 @@ jobs:
       - name: Install Godot
         run: |
           # Lade die neueste Godot-Version herunter
-          GODOT_VERSION="4.x"  # Setze hier die gewünschte Version von Godot
+          GODOT_VERSION="4.2.1"  # Setze hier die gewünschte Version von Godot
           wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip -O godot
           chmod +x godot
           sudo mv godot /usr/local/bin/
