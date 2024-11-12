@@ -36,5 +36,4 @@ jobs:
 
           - name: Run Unit Tests
             run: |
-              godot --rendering-driver opengl3
-              godot -s dont-forget/addons/gut/gut_cmdln.gd -d --path dont-forget -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_
+              godot --headless -s dont-forget/addons/gut/gut_cmdln.gd --no-gui -d --path dont-forget -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_
