@@ -15,9 +15,14 @@ jobs:
   lint:
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Run linter
-        uses: golangci/golangci-lint-action@v2
-        with:
-          version: v1.59
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Install GDScript Linter
+        run: |
+          sudo apt-get install python3
+          sudo pip3 install lark-parser
+
+      - name: Run GDScript Linter
+        run: |
+          python3 ./parser.py $(find . -name "*.gd")
