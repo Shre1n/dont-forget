@@ -32,10 +32,14 @@ jobs:
         steps:
           - name: Checkout repository
             uses: actions/checkout@v4
+
+          - name: Headless
+            run: |
+              godot -e --path dont-forget --quit --headless
           
           - name: Run Unit Tests
             run: |
-              godot -s addons/gut/gut_cmdln.gd -d --path dont-forget -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_
+              godot -s addons/gut/gut_cmdln.gd --headless -d --path dont-forget -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_
 
           - name: Upload Tests Results
             uses: actions/upload-artifact@v3
