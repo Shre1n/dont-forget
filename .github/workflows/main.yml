@@ -32,10 +32,6 @@ jobs:
           run: |
             git clone https://github.com/bitwes/GutTests.git
 
-        - name: Import assets and classes
-          run: |
-            godot --headless --path $(pwd) --import Test/Unit --verbose
-
     unitTests:
         runs-on: ubuntu-20.04
         needs: install_dependencies
