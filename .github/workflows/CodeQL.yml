@@ -23,11 +23,6 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Install GDScript Linter
-        run: |
-          sudo apt-get install python3
-          sudo pip3 install lark-parser
-
       - name: Run GDScript Linter
         run: |
-          godot --s ./addons/gut/gut_cmdln.gd --linter --path $(pwd) $(find . -name "*.gd")
+          godot --script ./addons/gut/gut_cmdln.gd --linter --path $(pwd) $(find . -name "*.gd")
