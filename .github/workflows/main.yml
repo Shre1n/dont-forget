@@ -20,9 +20,9 @@ jobs:
           run: |
             GODOT_VERSION="4.3"
           
-            wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_x11.64.zip -O godot.zip
+            wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip -O godot.zip
             unzip godot.zip -d godot
-            chmod +x godot/Godot_v${GODOT_VERSION}-stable_x11.64
+            chmod +x godot/Godot_v${GODOT_VERSION}-stable_linux.x86_64
             echo "$(pwd)/godot" >> $GITHUB_PATH
       
         - name: Verify Godot Installation
