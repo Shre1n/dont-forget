@@ -29,10 +29,17 @@ jobs:
         steps:
           - name: Checkout repository
             uses: actions/checkout@v4
+
+          - name: Set up virtual display with Xvfb
+            run: |
+              sudo apt-get update
+              sudo apt-get install -y xvfb
+              export DISPLAY=:99
+          
           
           - name: Run Unit Tests
             run: |
-              godot --headless -s addons/gut/gut_cmdln.gd -d --path $PWD -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_
+              xvfb-run godot -s addons/gut/gut_cmdln.gd -d --path $PWD -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_
 
           - name: Upload Tests Results
             uses: actions/upload-artifact@v3
