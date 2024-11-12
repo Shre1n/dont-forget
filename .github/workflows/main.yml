@@ -18,11 +18,6 @@ jobs:
       steps:
         - name: Checkout repository
           uses: actions/checkout@v4
-
-        - name: Display current working directory
-          run: |
-            echo "Current working directory: $(pwd)"
-            echo "GITHUB_WORKSPACE: $GITHUB_WORKSPACE"
       
         - name: Verify Godot Installation
           run: |
