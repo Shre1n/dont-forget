@@ -1,32 +1,70 @@
-name: CodeQL
+image: barichello/godot-ci:3.1.1
 
-on:
-  push:
-    branches:
-      - "**"
-      - "!main"
-  pull_request:
-    branches:
-      - "development"
-      - "!main"
+stages:
+  - export
+  - deploy
+  - tests
 
+before_script:
+  - mkdir -v -p build/linux
+  - mkdir -v -p build/windows
+  - mkdir -v -p build/mac
+  - mkdir -v -p build/web
 
-jobs:
-  lint:
-    runs-on: ubuntu-22.04
+unitTests:
+  stage: tests
+  script:
+    - cd Godot/Project
+    - godot -s addons/gut/gut_cmdln.gd -d --path $PWD -ginclude_subdirs -gdir=res://Tests -gexit -gprefix=test_
 
-    container:
-      image: barichello/godot-ci:4.3
+linux:
+  stage: export
+  script:
+    - cd Godot/Project
+    - godot -v --export "Linux/X11" ../../build/linux/$EXPORT_NAME.x86_64
+    - test -e ../../build/linux/$EXPORT_NAME.x86_64
+  artifacts:
+    name: $EXPORT_NAME-$CI_JOB_NAME
+    paths:
+      - build/linux
+  only:
+    - release
 
+windows:
+  stage: export
+  script:
+    - cd Godot/Project
+    - godot -v --export "Windows Desktop" ../../build/windows/$EXPORT_NAME.exe
+    - test -e ../../build/windows/$EXPORT_NAME.exe
+  artifacts:
+    name: $EXPORT_NAME-$CI_JOB_NAME
+    paths:
+      - build/windows
+  only:
+    - release
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+mac:
+  stage: export
+  script:
+    - cd Godot/Project
+    - godot -v --export "Mac OSX" ../../build/mac/$EXPORT_NAME.zip
+    - test -e ../../build/mac/$EXPORT_NAME.zip
+  artifacts:
+    name: $EXPORT_NAME-$CI_JOB_NAME
+    paths:
+      - build/mac
+  only:
+    - release
 
-      - name: Headless
-        run: |
-          godot -e --path dont-forget --quit --headless
-
-      - name: Run GDScript Linter
-        run: |
-          godot --headless --script ./addons/gut/gut_cmdln.gd --linter --path dont-forget $(find . -name "*.gd")
+web:
+  stage: export
+  script:
+    - cd Godot/Project
+    - godot -v --export "HTML5" ../../build/web/index.html
+    - test -e ../../build/web/index.html
+  artifacts:
+    name: $EXPORT_NAME-$CI_JOB_NAME
+    paths:
+      - build/web
+  only:
+    - release
