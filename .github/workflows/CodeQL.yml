@@ -1,0 +1,23 @@
+name: CodeQL
+
+on:
+  push:
+    branches:
+      - "**"
+      - "!main"
+  pull_request:
+    branches:
+      - "development"
+      - "!main"
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Run linter
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.59
