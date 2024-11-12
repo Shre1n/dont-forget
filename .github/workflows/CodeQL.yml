@@ -26,6 +26,7 @@ jobs:
       - name: Headless
         run: |
           godot -e --path $PWD --quit --headless
+          echo $PWD
 
       - name: Run GDScript Linter
         run: |
