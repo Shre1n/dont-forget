@@ -20,11 +20,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Schritt 2: Set up Godot
-      - name: Set up Godot
-        uses: firebelley/setup-godot@v1
-        with:
-          godot_version: '4.3'  # Stelle sicher, dass du die richtige Version verwendest
+      # Schritt 2: Installiere Godot
+      - name: Install Godot
+        run: |
+          # Lade die neueste Godot-Version herunter
+          GODOT_VERSION="4.3"  # Setze hier die gewünschte Version von Godot
+          wget https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}-stable_linux.x86_64.zip -O godot
+          chmod +x godot
+          sudo mv godot /usr/local/bin/
 
       # Schritt 3: Installiere Abhängigkeiten (falls nötig)
       - name: Install dependencies
@@ -32,7 +35,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y mono-runtime  # Falls Mono für GUT benötigt wird
 
-      # Schritt 4: Run Godot Unit Tests with GUT
+      # Schritt 4: Führe Godot Unit Tests mit GUT aus
       - name: Run Godot Unit Tests with GUT
         run: |
           godot -s res://Test/Unit/run_tests.gd  # Das Skript, das deine Tests ausführt
