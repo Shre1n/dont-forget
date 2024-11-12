@@ -23,8 +23,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Headless
+        run: |
+          godot -e --path $PWD --quit --headless
+
       - name: Run GDScript Linter
         run: |
-          export DISPLAY=:99
-          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
-          godot --script ./addons/gut/gut_cmdln.gd --linter --path $(pwd) $(find . -name "*.gd")
+          godot --headless --script ./addons/gut/gut_cmdln.gd --linter --path $(pwd) $(find . -name "*.gd")
