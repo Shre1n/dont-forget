@@ -28,7 +28,6 @@ jobs:
           godot --headless --import --path dont-forget
 
       - name: Run GDScript Linter
-        uses: actions/upload-artifact@v3
         run: |
           sudo apt-get install python3
           sudo pip3 install lark-parser
