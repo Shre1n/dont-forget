@@ -3,7 +3,7 @@ name: CodeQL
 on:
   push:
     branches:
-      - "features/pipelines"
+      - "**"
       - "!main"
   pull_request:
     branches:
