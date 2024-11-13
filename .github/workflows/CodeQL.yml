@@ -28,5 +28,17 @@ jobs:
           godot --headless --import --path dont-forget
 
       - name: Run GDScript Linter
+        uses: actions/upload-artifact@v3
         run: |
-          godot --headless --path dont-forget --script addons/gut/gut_cmdln.gd --linter $(find . -name "*.gd") > CodeQl.txt
+          sudo apt-get install python3
+          sudo pip3 install lark-parser
+
+      - name: Run GDLinter
+        run: |
+          find dont-forget -name "*.gd" -print0 | xargs -0 python3 ./parser.py > Godot_CodeQL.log
+
+      - name:
+        uses: actions/upload-artifact@v3
+        with:
+          name: Godot QL
+          path: Godot CodeQL.log
