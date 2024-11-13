@@ -68,10 +68,22 @@ animations = [{
 "texture": ExtResource("9_wh8wi")
 }, {
 "duration": 1.0,
+"texture": ExtResource("9_wh8wi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_o6hrc")
+}, {
+"duration": 1.0,
 "texture": ExtResource("10_o6hrc")
 }, {
 "duration": 1.0,
 "texture": ExtResource("11_53p0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_53p0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5p25n")
 }, {
 "duration": 1.0,
 "texture": ExtResource("12_5p25n")
@@ -87,7 +99,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 16.0
 }]
 
 [node name="Character" type="CharacterBody2D"]
@@ -99,8 +111,9 @@ shape = SubResource("CapsuleShape2D_gevhk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.13, 0.13)
 sprite_frames = SubResource("SpriteFrames_xhvvv")
-animation = &"idle"
-autoplay = "idle"
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.827916
 
 [node name="Jump_Timer" type="Timer" parent="."]
 wait_time = 0.1
