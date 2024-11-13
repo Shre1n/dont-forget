@@ -1,9 +1,26 @@
-[gd_scene load_steps=19 format=3 uid="uid://cqm7cwb02ir77"]
+[gd_scene load_steps=21 format=3 uid="uid://cqm7cwb02ir77"]
 
 [ext_resource type="Script" path="res://ui/menu.gd" id="1_myn0o"]
 [ext_resource type="Texture2D" uid="uid://b7rh0pu1dmj12" path="res://ui/background/mc_background.png" id="2_f547t"]
 [ext_resource type="PackedScene" uid="uid://cspyht3ytgvhx" path="res://ui/options.tscn" id="2_mc7cj"]
+[ext_resource type="Texture2D" uid="uid://ddeipc8fvbhe0" path="res://ui/background/leaf.png" id="2_x4tpf"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="3_1jn53"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5gvid"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(600, 300, 0)
+angle_min = 1.07288e-05
+angle_max = 267.1
+spread = 0.0
+initial_velocity_max = 1000.0
+gravity = Vector3(800, 250, 0)
+tangential_accel_min = -100.0
+tangential_accel_max = -2.23517e-06
+damping_max = 100.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h41q2"]
 bg_color = Color(0.258824, 0.145098, 0.654902, 1)
@@ -145,6 +162,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Leaf" type="GPUParticles2D" parent="Panel"]
+position = Vector2(538, 434)
+amount_ratio = 0.4905
+process_material = SubResource("ParticleProcessMaterial_5gvid")
+texture = ExtResource("2_x4tpf")
+lifetime = 5.0
+randomness = 0.44
 
 [node name="TextureRect" type="TextureRect" parent="Panel"]
 layout_mode = 1
