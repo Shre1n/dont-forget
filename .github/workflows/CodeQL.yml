@@ -34,7 +34,7 @@ jobs:
 
       - name: Install gdlint
         run: |
-          python -m pip install --upgrade pip --root-user-action
+          python -m pip install --upgrade pip --root-user-action=install
           python -m pip install gdlint
 
       - name: Run gdlint
