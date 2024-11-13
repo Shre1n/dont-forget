@@ -534,8 +534,9 @@ _data = {
 }
 
 [node name="LoadingScreen" type="Node2D"]
-scale = Vector2(5.33694, 5.00403)
+scale = Vector2(8.01694, 7.48403)
 script = ExtResource("1_u0qt2")
+metadata/_edit_group_ = true
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
