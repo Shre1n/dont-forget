@@ -9,7 +9,7 @@ extends Control
 #Standartwerte
 const basic_volume = 100
 const basic_mute = false
-const basic_res = Vector2i(1280,720)
+const basic_res = Vector2i(1920,1080)
 const basic_fullscreen = false
 
 func _ready():
@@ -66,4 +66,4 @@ func reset_settings():
 	fullscreen_toggler.set_pressed(basic_fullscreen) 
 	
 	DisplayServer.window_set_size(basic_res)
-	resulutions_selector.selected = 2 
+	resulutions_selector.selected = 0 
