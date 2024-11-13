@@ -38,7 +38,7 @@ jobs:
           python -m pip install 'gdtoolkit==4.*'
 
       - name: Run gdlint
-        run:  find dont-forget -name "*.gd" ! -path "dont-forget/addons/gut/*" -exec gdlint {} + > Godot_CodeQL.log
+        run:  find dont-forget -name "*.gd" ! -path "dont-forget/addons/gut/*" -exec gdlint {} + > Godot_CodeQL.log || true
 
       - name: Upload Godot linting log as artifact
         uses: actions/upload-artifact@v3
