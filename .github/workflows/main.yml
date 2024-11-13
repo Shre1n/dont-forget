@@ -34,7 +34,7 @@ jobs:
           godot --headless --path dont-forget -s addons/gut/gut_cmdln.gd -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_ > test_results.log
 
       - name:
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: test_results.log

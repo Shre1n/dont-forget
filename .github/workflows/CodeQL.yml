@@ -41,7 +41,7 @@ jobs:
         run:  find dont-forget -name "*.gd" ! -path "dont-forget/addons/*" -exec gdlint {} + > Godot_CodeQL.log 2>&1 || true
 
       - name: Upload Godot linting log as artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: Godot QL
           path: Godot_CodeQL.log
