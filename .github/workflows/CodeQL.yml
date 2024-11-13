@@ -13,7 +13,6 @@ on:
 
 jobs:
   lint:
-    if: github.event_name != 'push'
     runs-on: ubuntu-22.04
 
     container:
@@ -24,10 +23,10 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Headless
+      - name: Build Godot Project
         run: |
-          godot -e --path dont-forget --quit --headless
+          godot --headless --import --path dont-forget
 
       - name: Run GDScript Linter
         run: |
-          godot --headless --script addons/gut/gut_cmdln.gd --linter --path dont-forget $(find . -name "*.gd")
+          godot --headless --path dont-forget --script addons/gut/gut_cmdln.gd --linter $(find . -name "*.gd") > CodeQl.txt
