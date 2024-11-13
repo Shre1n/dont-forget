@@ -3,7 +3,7 @@ name: CodeQL
 on:
   push:
     branches:
-      - "**"
+      - "features/pipelines"
       - "!main"
   pull_request:
     branches:
@@ -27,20 +27,21 @@ jobs:
         run: |
           godot --headless --import --path dont-forget
 
-      - name: Run GDScript Linter
-        run: |
-          apt-get update
-          apt-get install python3-pip
-          pip -v
-          
-          pip3 install lark-parser
+      - name: Set up Python
+          uses: actions/setup-python@v4
+          with:
+            python-version: '3.9'
 
-      - name: Run GDLinter
+      - name: Install gdlint
         run: |
-          find dont-forget -name "*.gd" -print0 | xargs -0 python3 ./parser.py > Godot_CodeQL.log
+          python -m pip install --upgrade pip
+          pip install gdlint
+
+      - name: Run gdlint
+        run: gdlint . --check > Godot_CodeQL.log
 
       - name:
         uses: actions/upload-artifact@v3
         with:
           name: Godot QL
-          path: Godot CodeQL.log
+          path: Godot_CodeQL.log
