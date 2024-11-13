@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cspyht3ytgvhx"]
+[gd_scene load_steps=3 format=3 uid="uid://cspyht3ytgvhx"]
 
 [ext_resource type="Script" path="res://ui/options.gd" id="1_sxokr"]
+
+[sub_resource type="Theme" id="Theme_42qfs"]
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -65,7 +67,7 @@ text = "Gesamtlautstärke"
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-tooltip_text = "Verschiebe um die Gesamt Lautstärke anzupassen"
+tooltip_text = "Verschiebe um die Gesamtlautstärke anzupassen"
 value = 100.0
 
 [node name="Mute" type="CheckButton" parent="Panel/Panel/VBoxContainer/HSplitContainer"]
@@ -110,22 +112,24 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Button" type="Button" parent="Panel/Panel/VBoxContainer/HSplitContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-tooltip_text = "Setzt die Einstellungen zurück auf den Standart"
-theme_override_font_sizes/font_size = 20
-text = "Zurücksezten"
-
 [node name="Close_Btn" type="Button" parent="Panel/Panel/VBoxContainer/HSplitContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
 tooltip_text = "Schließt die Einstellungen"
 theme_override_font_sizes/font_size = 20
-text = "Schließen"
+text = "Zurück"
+
+[node name="Reset_Btn" type="Button" parent="Panel/Panel/VBoxContainer/HSplitContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+tooltip_text = "Setzt die Einstellungen zurück auf den Standart"
+theme = SubResource("Theme_42qfs")
+theme_override_font_sizes/font_size = 20
+text = "Werkseinstellungen"
 
 [connection signal="value_changed" from="Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume" to="." method="_on_volume_value_changed"]
 [connection signal="toggled" from="Panel/Panel/VBoxContainer/HSplitContainer/Mute" to="." method="_on_mute_toggled"]
 [connection signal="item_selected" from="Panel/Panel/VBoxContainer/HSplitContainer2/Resulutions" to="." method="_on_resulutions_item_selected"]
 [connection signal="toggled" from="Panel/Panel/VBoxContainer/HSplitContainer2/Fullscreen" to="." method="_on_fullscreen_toggled"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/HSplitContainer3/Close_Btn" to="." method="_on_close_btn_pressed"]
+[connection signal="pressed" from="Panel/Panel/VBoxContainer/HSplitContainer3/Reset_Btn" to="." method="_on_reset_btn_pressed"]
