@@ -29,7 +29,10 @@ jobs:
 
       - name: Run GDScript Linter
         run: |
-          apt-get install python3
+          apt-get update
+          apt-get install python3-pip
+          pip -v
+          
           pip3 install lark-parser
 
       - name: Run GDLinter
