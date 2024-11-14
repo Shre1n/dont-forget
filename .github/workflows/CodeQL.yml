@@ -56,9 +56,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: Build Godot Project
+        run: |
+          godot --headless --import --path dont-forget
+
       - name: Verify Godot Project loads correctly
         run: |
-          godot --headless --path dont-forget -d -e > Godot_Project_CLI.log
+          godot --headless --path dont-forget -d -e > Godot_Project_CLI.log 2>&1
 
       - name: Upload Godot linting log as artifact
         uses: actions/upload-artifact@v4
