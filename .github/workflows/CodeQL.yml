@@ -62,7 +62,7 @@ jobs:
 
       - name: Verify Godot Project loads correctly
         run: |
-          godot -e > Godot_Project_CLI.log 2>&1
+          godot -e --path dont-forget --headless > Godot_Project_CLI.log 2>&1 || (cat Godot_Project_CLI.log && exit 1)
 
       - name: Upload Godot linting log as artifact
         uses: actions/upload-artifact@v4
