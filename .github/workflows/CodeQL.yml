@@ -61,8 +61,8 @@ jobs:
           godot --headless --import --path dont-forget
 
       - name: Build headless Server
-          run: |
-            godot -s -w dont-forget
+        run: |
+          godot -s -w dont-forget
 
       - name: Verify Godot Project loads correctly
         run: |
