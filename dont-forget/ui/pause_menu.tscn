@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpylfpo14s0l2"]
+
+[ext_resource type="Script" path="res://ui/pause_menu.gd" id="1_u5ic6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_np6pk"]
+bg_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="Pause_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u5ic6")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -360.0
+offset_top = -360.0
+offset_right = 360.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_np6pk")
+
+[node name="Control2" type="Control" parent="Control/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -287.25
+offset_top = -275.25
+offset_right = 287.25
+offset_bottom = 275.25
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 6
+
+[node name="Pause" type="Label" parent="Control/Panel/Control2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 90
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="Resume" type="Button" parent="Control/Panel/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(574.5, 81)
+layout_mode = 2
+tooltip_text = "Zurück zum Spiel"
+theme_override_font_sizes/font_size = 30
+text = "Weiter Spielen"
+
+[node name="Load" type="Button" parent="Control/Panel/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(574.5, 81)
+layout_mode = 2
+tooltip_text = "Letzten Speicherstand laden"
+theme_override_font_sizes/font_size = 30
+text = "Laden"
+
+[node name="Options" type="Button" parent="Control/Panel/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(574.5, 81)
+layout_mode = 2
+tooltip_text = "Öffnet die Einstellungen"
+theme_override_font_sizes/font_size = 30
+text = "Optionen"
+
+[node name="Quit" type="Button" parent="Control/Panel/Control2/VBoxContainer"]
+custom_minimum_size = Vector2(574.5, 81)
+layout_mode = 2
+tooltip_text = "Beendet das Spiel"
+theme_override_font_sizes/font_size = 30
+text = "Beenden"
+
+[connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
