@@ -46,24 +46,24 @@ jobs:
           name: Godot QL
           path: Godot_CodeQL.log
 
-    cli:
-      runs-on: ubuntu-22.04
+  cli:
+    runs-on: ubuntu-22.04
 
-      container:
-        image: barichello/godot-ci:4.3
+    container:
+      image: barichello/godot-ci:4.3
 
-      steps:
-        - name: Checkout Repository
-          uses: actions/checkout@v3
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-        - name: Verify Godot Project loads correctly
-          run: |
-            godot --headless --path dont-forget -d -e > Godot_Project_CLI.log
+      - name: Verify Godot Project loads correctly
+        run: |
+          godot --headless --path dont-forget -d -e > Godot_Project_CLI.log
 
-        - name: Upload Godot linting log as artifact
-          uses: actions/upload-artifact@v4
-          with:
-            name: Godot CLI
-            path: Godot_Project_CLI.log
+      - name: Upload Godot linting log as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Godot CLI
+          path: Godot_Project_CLI.log
 
 
