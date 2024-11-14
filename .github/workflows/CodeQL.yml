@@ -62,7 +62,7 @@ jobs:
 
       - name: Verify Godot Project loads correctly
         run: |
-          godot --headless dont-forget --export-release windows windows_dont_forget Godot_Project_CLI.log 2>&1
+          godot --headless --path dont-forget --export-release windows windows_dont_forget Godot_Project_CLI.log 2>&1
 
       - name: Upload Godot linting log as artifact
         uses: actions/upload-artifact@v4
