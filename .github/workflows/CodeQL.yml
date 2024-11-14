@@ -60,9 +60,13 @@ jobs:
         run: |
           godot --headless --import --path dont-forget
 
+      - name: Build headless Server
+          run: |
+            godot -s -w dont-forget
+
       - name: Verify Godot Project loads correctly
         run: |
-          godot --headless --path dont-forget -d -e > Godot_Project_CLI.log 2>&1
+          godot -e > Godot_Project_CLI.log 2>&1
 
       - name: Upload Godot linting log as artifact
         uses: actions/upload-artifact@v4
