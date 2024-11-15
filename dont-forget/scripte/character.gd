@@ -17,9 +17,9 @@ func _physics_process(delta):
 	if is_on_floor():
 		JumpAvailability = true
 		if velocity.x == 0:
-			animated_sprite.play("idle")
+			animated_sprite.play("idle2.0")
 		else:
-			animated_sprite.play("walk")
+			animated_sprite.play("walk2.0")
 	else:
 		if JumpAvailability and JumpTimer.is_stopped():
 			JumpTimer.start()
