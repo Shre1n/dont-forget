@@ -2,14 +2,16 @@ class_name Player
 extends CharacterBody2D
 
 const SPEED = 400.0
-const JUMP_VELOCITY = -450.0
+const JUMP_VELOCITY = -850.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var JumpAvailability : bool
 var animated_sprite : AnimatedSprite2D
 @onready var JumpTimer : Timer = $Jump_Timer
+@export var input_enabled:bool = true
 
 func _ready():
+	new_spawn_position()
 	animated_sprite = $AnimatedSprite2D
 	animated_sprite.play("idle")
 
@@ -45,3 +47,15 @@ func _physics_process(delta):
 
 func _on_jump_timer_timeout():
 	JumpAvailability = false
+
+func new_spawn_position():
+	if Global.new_position != null:
+		position = Global.new_position
+
+func disable():
+	input_enabled = false
+	#animation_player.play("idle")
+	
+func enable():
+	input_enabled = true
+	visible = true

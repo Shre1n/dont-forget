@@ -30,7 +30,19 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_v0m88")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_e5323")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ikxlm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_i2w0f")
+}],
 "loop": true,
 "name": &"fall",
 "speed": 5.0
@@ -40,11 +52,14 @@ animations = [{
 "texture": ExtResource("3_vrlcv")
 }, {
 "duration": 1.0,
+"texture": ExtResource("3_vrlcv")
+}, {
+"duration": 1.0,
 "texture": ExtResource("4_xju4u")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -111,9 +126,8 @@ shape = SubResource("CapsuleShape2D_gevhk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.13, 0.13)
 sprite_frames = SubResource("SpriteFrames_xhvvv")
-animation = &"walk"
+animation = &"idle"
 autoplay = "walk"
-frame_progress = 0.827916
 
 [node name="Jump_Timer" type="Timer" parent="."]
 wait_time = 0.1
