@@ -1,14 +1,22 @@
-[gd_scene load_steps=31 format=3 uid="uid://diqm35oue5hsl"]
+[gd_scene load_steps=39 format=3 uid="uid://diqm35oue5hsl"]
 
 [ext_resource type="Script" path="res://scripte/character.gd" id="1_gaw86"]
 [ext_resource type="Texture2D" uid="uid://c2g3xrawrqbt1" path="res://assets/Download.jpeg" id="2_aiptg"]
+[ext_resource type="Texture2D" uid="uid://b6q74e1gciskk" path="res://assets/fight/1.png" id="3_luolo"]
 [ext_resource type="Texture2D" uid="uid://de40om8v40nl3" path="res://assets/Idle/1.png" id="3_stdp2"]
 [ext_resource type="Texture2D" uid="uid://camdyo63pbvc3" path="res://assets/Idle/2.png" id="4_i541u"]
+[ext_resource type="Texture2D" uid="uid://bkjx75ljnpy3" path="res://assets/fight/2.png" id="4_ognpm"]
+[ext_resource type="Texture2D" uid="uid://bt723lsq1gkw8" path="res://assets/fight/3.png" id="5_ai3dy"]
 [ext_resource type="Texture2D" uid="uid://vljoe56syh4o" path="res://assets/jump/1.png" id="5_v0m88"]
 [ext_resource type="Texture2D" uid="uid://cnpkp6od8hym8" path="res://assets/jump/2.png" id="6_e5323"]
+[ext_resource type="Texture2D" uid="uid://642xgafgegr4" path="res://assets/fight/4.png" id="6_wvsum"]
+[ext_resource type="Texture2D" uid="uid://sgibng2nq44j" path="res://assets/fight/5.png" id="7_1v3np"]
 [ext_resource type="Texture2D" uid="uid://d02qbpr8674f1" path="res://assets/jump/3.png" id="7_ikxlm"]
+[ext_resource type="Texture2D" uid="uid://dx6a10m4ioxqc" path="res://assets/fight/6.png" id="8_baq1l"]
 [ext_resource type="Texture2D" uid="uid://dx4i8jfjdrmaa" path="res://assets/jump/4.png" id="8_i2w0f"]
+[ext_resource type="Texture2D" uid="uid://i6nxrmtnqol" path="res://assets/fight/7.png" id="9_0vsuo"]
 [ext_resource type="Texture2D" uid="uid://d283gfs8ghb5w" path="res://assets/run/1.png" id="9_ik30i"]
+[ext_resource type="Texture2D" uid="uid://dw1mmij7bgt52" path="res://assets/fight/8.png" id="10_4dwdh"]
 [ext_resource type="Texture2D" uid="uid://d05lkcreanw75" path="res://assets/run/2.png" id="10_rjre6"]
 [ext_resource type="Texture2D" uid="uid://ce70ajker56s2" path="res://assets/run/3.png" id="11_ot434"]
 [ext_resource type="Texture2D" uid="uid://c824ew21hm8xt" path="res://assets/run/4.png" id="12_pd3hq"]
@@ -74,7 +82,31 @@ animations = [{
 "name": &"fall",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_luolo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ognpm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ai3dy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wvsum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1v3np")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_baq1l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0vsuo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4dwdh")
+}],
 "loop": true,
 "name": &"fight2.0",
 "speed": 5.0
@@ -209,7 +241,7 @@ shape = SubResource("CapsuleShape2D_gevhk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.13, 0.13)
 sprite_frames = SubResource("SpriteFrames_xhvvv")
-animation = &"idle2.0"
+animation = &"fall"
 autoplay = "jump2.0"
 
 [node name="Jump_Timer" type="Timer" parent="."]

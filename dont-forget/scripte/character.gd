@@ -11,7 +11,7 @@ var animated_sprite : AnimatedSprite2D
 
 func _ready():
 	animated_sprite = $AnimatedSprite2D
-	animated_sprite.play("idle")
+	animated_sprite.play("idle2.0")
 
 func _physics_process(delta):
 	if is_on_floor():
@@ -31,7 +31,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_accept") and JumpAvailability:
 		velocity.y = JUMP_VELOCITY
 		JumpAvailability = false
-		animated_sprite.play("jump")   # jump animation
+		animated_sprite.play("jump2.0")   # jump animation
 		
 	# Get the input direction and handle the movement/deceleration.
 	var direction = Input.get_axis("ui_left", "ui_right")
