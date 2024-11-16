@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://ligru8g3oh5j"]
+
+[ext_resource type="Script" path="res://scenes/dummie.gd" id="1_oh5b8"]
+[ext_resource type="Texture2D" uid="uid://de40om8v40nl3" path="res://assets/idle/1.png" id="2_2yg53"]
+[ext_resource type="Script" path="res://scenes/damage_area.gd" id="2_i17sn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ly3xm"]
+size = Vector2(50, 110.5)
+
+[node name="Dummie" type="Node2D"]
+script = ExtResource("1_oh5b8")
+
+[node name="Damage_Area" type="Area2D" parent="."]
+script = ExtResource("2_i17sn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage_Area"]
+position = Vector2(0, -55.75)
+shape = SubResource("RectangleShape2D_ly3xm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5, -77)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_2yg53")
