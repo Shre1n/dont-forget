@@ -727,6 +727,7 @@ metadata/_edit_group_ = true
 
 [node name="Damage_Area" parent="CollisionShape2D2" instance=ExtResource("24_i5vbm")]
 monitoring = false
+enemy = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D2/Damage_Area"]
 shape = SubResource("CapsuleShape2D_gevhk")
@@ -744,6 +745,7 @@ speed_scale = 0.7
 position = Vector2(63, 37)
 rotation = -4.26635
 scale = Vector2(2.30676, 5.67055)
+enemy = false
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area"]
