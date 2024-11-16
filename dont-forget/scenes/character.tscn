@@ -176,6 +176,18 @@ tracks/11/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Attack_Area:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_jxbxv"]
 resource_name = "fall"
@@ -183,6 +195,7 @@ resource_name = "fall"
 [sub_resource type="Animation" id="Animation_lshrm"]
 resource_name = "fight"
 length = 1.6
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -286,10 +299,10 @@ tracks/8/path = NodePath("Attack_Area:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0.4, 0.433333, 0.5, 0.566667, 0.6, 0.633333, 0.7, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.4, 0.433333, 0.5, 0.566667, 0.6, 0.633333, 0.7, 0.8, 1, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-17, -32), Vector2(-22, 28), Vector2(18, 20), Vector2(30, 27.3333), Vector2(41, 23), Vector2(57, 21), Vector2(80, 14), Vector2(66, -21), Vector2(-34, -30)]
+"values": [Vector2(401, -399), Vector2(-17, -32), Vector2(-22, 28), Vector2(18, 20), Vector2(30, 27.3333), Vector2(41, 23), Vector2(57, 21), Vector2(80, 14), Vector2(66, -21), Vector2(-34, -30), Vector2(401, -399)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -310,10 +323,10 @@ tracks/10/path = NodePath("Attack_Area:scale")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0.4, 0.433333, 0.5, 0.566667, 0.6, 0.633333, 0.7, 0.8, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.366667, 0.4, 0.433333, 0.5, 0.566667, 0.6, 0.633333, 0.7, 0.8, 1, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(2.30676, 5.67055), Vector2(3.80297, 4.75074), Vector2(3.77173, 4.87118), Vector2(2.79508, 5.4041), Vector2(2.30676, 5.67055), Vector2(2.30676, 6.52679), Vector2(2.30676, 8.23926), Vector2(2.90553, 5.67055), Vector2(2.30676, 5.67055)]
+"values": [Vector2(0.041, 0.1), Vector2(0.041, 0.1), Vector2(2.30676, 5.67055), Vector2(3.80297, 4.75074), Vector2(3.77173, 4.87118), Vector2(2.79508, 5.4041), Vector2(2.30676, 5.67055), Vector2(2.30676, 6.52679), Vector2(2.30676, 8.23926), Vector2(2.90553, 5.67055), Vector2(2.30676, 5.67055), Vector2(0.041, 0.1)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -322,6 +335,18 @@ tracks/11/path = NodePath("Attack_Area:monitorable")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
+"times": PackedFloat32Array(0.4, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Attack_Area:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
 "times": PackedFloat32Array(0.4, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,

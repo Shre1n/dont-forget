@@ -1,14 +1,15 @@
 extends Node2D
 
+@onready var animation_player = $AnimationPlayer
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+	animation_player.play("idle")
+	animation_player.connect("animation_finished", self._on_animation_finished)
 
 func take_damage(damage):
+	animation_player.play("damage")
 	print(damage)
+
+func _on_animation_finished(anim_name):
+	if anim_name == "damage":
+		animation_player.play("idle")
