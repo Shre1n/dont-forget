@@ -1,9 +1,11 @@
 class_name Character
 extends CharacterBody2D
 
+signal healthChanged(amount)
+
 @export var speed = 400.0
 @export var jump_height = -450.0
-@export var orientation_left = false
+@export var life = 100
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var JumpAvailability : bool
@@ -11,6 +13,7 @@ var animated_sprite : AnimatedSprite2D
 @onready var JumpTimer : Timer = $Jump_Timer
 @onready var animation_player = $AnimationPlayer
 
+@export var orientation_left = false
 @export var attacking = false
 
 func _ready():
@@ -25,10 +28,12 @@ func _process(delta):
 
 func _physics_process(delta):
 	if !attacking:
-		if Input.is_action_just_pressed("left") and !orientation_left:
+		var test = Input.get_axis("left", "right")
+		#if Input.is_action_just_pressed("left") and !orientation_left:
+		if test < 0 and !orientation_left:
 			$".".scale.x = abs($".".scale.x) * -1
 			orientation_left = true
-		if Input.is_action_just_pressed("right") and orientation_left:
+		if test > 0 and orientation_left:
 			$".".scale.x = abs($".".scale.x) * -1
 			orientation_left = false
 	
@@ -77,3 +82,13 @@ func update_animation():
 
 func _on_jump_timer_timeout():
 	JumpAvailability = false
+
+func take_damage(damage):
+	life -= damage
+	#if life > 0:
+		#emit_signal("healthChanged", life)
+	#else: 
+		#emit_signal("healthChanged", 0)
+
+	#if life <= 0:
+		#ResetPlayer()
