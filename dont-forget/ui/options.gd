@@ -18,6 +18,9 @@ func _ready():
 	user_prefs = UserPreferences.load_or_create()
 	if	volume_slider:
 		volume_slider.value = user_prefs.volume
+	if	mute_toggler:
+		mute_toggler.set_pressed(user_prefs.check_mute)
+		_on_mute_toggled(user_prefs.check_mute)
 	hide()
 
 func _process(delta):
@@ -43,6 +46,9 @@ func _on_mute_toggled(toggled_on):
 	else:
 		volume_slider.editable = true
 		volume_slider.tooltip_text = "Verschiebe um die Gesamtlautstärke anzupassen"
+	if user_prefs:
+		user_prefs.check_mute = toggled_on
+		user_prefs.save()
 
 func _on_fullscreen_toggled(toggled_on):
 	if toggled_on:
