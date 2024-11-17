@@ -138,7 +138,7 @@ tracks/8/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(63, 37)]
+"values": [Vector2(-221, -123)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -162,7 +162,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(2.30676, 5.67055)]
+"values": [Vector2(0.041, 0.1)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -186,7 +186,7 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_jxbxv"]
@@ -299,10 +299,10 @@ tracks/8/path = NodePath("Attack_Area:position")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.433333, 0.5, 0.566667, 0.6, 0.633333, 0.7, 0.8, 1, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.366667, 0.4, 0.433333, 0.5, 0.566667, 0.6, 0.633333, 0.7, 0.8, 1, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(401, -399), Vector2(-17, -32), Vector2(-22, 28), Vector2(18, 20), Vector2(30, 27.3333), Vector2(41, 23), Vector2(57, 21), Vector2(80, 14), Vector2(66, -21), Vector2(-34, -30), Vector2(401, -399)]
+"values": [Vector2(-380, -258), Vector2(-77, -35), Vector2(-17, -32), Vector2(-22, 28), Vector2(18, 20), Vector2(30, 27.3333), Vector2(41, 23), Vector2(57, 21), Vector2(80, 14), Vector2(66, -21), Vector2(-34, -30), Vector2(401, -399)]
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -335,7 +335,7 @@ tracks/11/path = NodePath("Attack_Area:monitorable")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0.4, 1),
+"times": PackedFloat32Array(0.366667, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -767,9 +767,10 @@ frame = 1
 speed_scale = 0.7
 
 [node name="Attack_Area" parent="." instance=ExtResource("24_u5kue")]
-position = Vector2(63, 37)
+visible = false
+position = Vector2(-221, -123)
 rotation = -4.26635
-scale = Vector2(2.30676, 5.67055)
+scale = Vector2(0.041, 0.1)
 enemy = false
 metadata/_edit_group_ = true
 
