@@ -3,8 +3,6 @@ extends Control
 @export var game_manager : Game_Manager
 @onready var volume_slider = $Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume
 @onready var mute_toggler = $Panel/Panel/VBoxContainer/HSplitContainer/Mute
-@onready var resulutions_selector = $Panel/Panel/VBoxContainer/HSplitContainer2/Resulutions
-@onready var fullscreen_toggler = $Panel/Panel/VBoxContainer/HSplitContainer2/Fullscreen
 
 #Standartwerte
 const basic_volume = 100
@@ -12,7 +10,15 @@ const basic_mute = false
 const basic_res = Vector2i(1920,1080)
 const basic_fullscreen = false
 
+var user_prefs: UserPreferences
+
 func _ready():
+	user_prefs = UserPreferences.load_or_create()
+	if	volume_slider:
+		volume_slider.value = user_prefs.volume
+	if	mute_toggler:
+		mute_toggler.set_pressed(user_prefs.check_mute)
+		_on_mute_toggled(user_prefs.check_mute)
 	hide()
 
 func _process(delta):
@@ -26,6 +32,9 @@ func _on_close_btn_pressed():
 
 func _on_volume_value_changed(value):
 	AudioServer.set_bus_volume_db(0, value)
+	if user_prefs:
+		user_prefs.volume = value
+		user_prefs.save()
 
 func _on_mute_toggled(toggled_on):
 	AudioServer.set_bus_mute(0, toggled_on)
@@ -35,21 +44,9 @@ func _on_mute_toggled(toggled_on):
 	else:
 		volume_slider.editable = true
 		volume_slider.tooltip_text = "Verschiebe um die Gesamtlautstärke anzupassen"
-
-func _on_fullscreen_toggled(toggled_on):
-	if toggled_on:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
-	else:
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-
-func _on_resulutions_item_selected(index):
-	match index:
-		0:
-			DisplayServer.window_set_size(Vector2i(1920,1080))
-		1:
-			DisplayServer.window_set_size(Vector2i(1600,900))
-		2:
-			DisplayServer.window_set_size(Vector2i(1280,720))
+	if user_prefs:
+		user_prefs.check_mute = toggled_on
+		user_prefs.save()
 
 
 func _on_reset_btn_pressed():
@@ -61,9 +58,3 @@ func reset_settings():
 	
 	AudioServer.set_bus_mute(0, basic_mute)
 	mute_toggler.set_pressed(basic_mute)
-	
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if basic_fullscreen else DisplayServer.WINDOW_MODE_WINDOWED)
-	fullscreen_toggler.set_pressed(basic_fullscreen) 
-	
-	DisplayServer.window_set_size(basic_res)
-	resulutions_selector.selected = 0 
