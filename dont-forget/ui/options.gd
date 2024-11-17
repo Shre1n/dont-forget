@@ -12,7 +12,12 @@ const basic_mute = false
 const basic_res = Vector2i(1920,1080)
 const basic_fullscreen = false
 
+var user_prefs: UserPreferences
+
 func _ready():
+	user_prefs = UserPreferences.load_or_create()
+	if	volume_slider:
+		volume_slider.value = user_prefs.volume
 	hide()
 
 func _process(delta):
@@ -26,6 +31,9 @@ func _on_close_btn_pressed():
 
 func _on_volume_value_changed(value):
 	AudioServer.set_bus_volume_db(0, value)
+	if user_prefs:
+		user_prefs.volume = value
+		user_prefs.save()
 
 func _on_mute_toggled(toggled_on):
 	AudioServer.set_bus_mute(0, toggled_on)
