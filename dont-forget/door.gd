@@ -23,7 +23,10 @@ func _on_body_entered(body: Node2D) -> void:
 	if not body is Player:
 		return
 	if menu:
-		SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
+		var game_manager = find_game_manager()
+		print(get_tree().root)
+		print(get_tree().root.get_child(0))
+		SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,game_manager,"transition_type")
 	else:
 		player_entered_door.emit(self)
 		Global.new_position = new_position
@@ -36,4 +39,9 @@ func _on_body_entered(body: Node2D) -> void:
 		SceneManager.swap_scenes(path_to_new_scene,gameplay_node.level_holder,unload,transition_type)
 		queue_free()
 
-		
+func find_game_manager():
+	var root = get_tree().root  # Root-Node des Scene Trees
+	for child in root.get_children():
+		if child.name == "Game_Manager":
+			return child
+	return null
