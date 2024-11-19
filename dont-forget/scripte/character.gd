@@ -6,12 +6,25 @@ const JUMP_VELOCITY = -450.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var JumpAvailability : bool
-var animated_sprite : AnimatedSprite2D
+@onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var JumpTimer : Timer = $Jump_Timer
 
+@export var life_time:float = 10.0
+@export var max_time: float = 10.0
+var timer: Timer
+
 func _ready():
-	animated_sprite = $AnimatedSprite2D
-	animated_sprite.play("idle")
+	if animated_sprite == null:
+		print("Error: AnimatedSprite2D not found!")
+	else:
+		animated_sprite.play("idle")
+	
+	timer = Timer.new()
+	timer.wait_time = 1.0
+	timer.one_shot = false
+	timer.connect("timeout",Callable(self, "_on_life_timer_timeout"))
+	add_child(timer)
+	timer.start()
 
 func _physics_process(delta):
 	if is_on_floor():
@@ -45,3 +58,15 @@ func _physics_process(delta):
 
 func _on_jump_timer_timeout():
 	JumpAvailability = false
+
+func _on_life_timer_timeout():
+	life_time -= 1.0
+	if life_time <= 0:
+		die()
+
+func is_dead() -> bool:
+	return life_time <= 0
+
+func die():
+	animated_sprite.play("death")
+	#get_tree().change_scene_to_file("res://scenes/village.tscn")

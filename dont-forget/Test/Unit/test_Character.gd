@@ -1,7 +1,7 @@
 extends GutTest
 
 #Change to Actual Szene 
-var Character = load("res://character.gd");
+var Character = load("res://scripte/character.gd");
 var Slime = load("res://slime.gd");
 var Item = load("res://item.gd");
 var Drop = load("res://drop.gd");
@@ -13,7 +13,7 @@ var _drop;
 
 # Instanziate Nodes before each test
 func before_each():
-	_character = Character.new();
+	_character = Player.new();
 	
 # Run following Code after each test
 func after_each(): 
@@ -28,6 +28,20 @@ func test_take_damage():
 	var result = _character.take_damage(10);
 	
 	assert_eq(_character.hp, 90 , "HP should be 90");
+
+# Test if Chracter dies after Time runs out
+func test_character_loses_time_and_dies():
+	_character.life_time = 1.0
+	_character.max_time = 10.0
+	var init_scene = get_tree().current_scene.name
+	
+	_character._ready()
+	
+	await get_tree().create_timer(1.1).timeout
+	_character._on_life_timer_timeout()
+	
+	assert_eq(_character.time, 0.0, "Timer should be 0 after running out")
+	assert_true(_character.is_dead())
 
 # Test boundary for Character Health to not be Zero
 func test_taken_damage_not_below_zero():

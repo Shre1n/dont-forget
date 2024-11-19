@@ -111,9 +111,8 @@ shape = SubResource("CapsuleShape2D_gevhk")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.13, 0.13)
 sprite_frames = SubResource("SpriteFrames_xhvvv")
-animation = &"walk"
+animation = &"idle"
 autoplay = "walk"
-frame_progress = 0.827916
 
 [node name="Jump_Timer" type="Timer" parent="."]
 wait_time = 0.1
