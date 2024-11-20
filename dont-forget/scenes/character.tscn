@@ -1,15 +1,19 @@
-[gd_scene load_steps=49 format=3 uid="uid://diqm35oue5hsl"]
+[gd_scene load_steps=54 format=3 uid="uid://diqm35oue5hsl"]
 
 [ext_resource type="Script" path="res://scripte/character.gd" id="1_gaw86"]
 [ext_resource type="Texture2D" uid="uid://c2g3xrawrqbt1" path="res://assets/Download.jpeg" id="2_aiptg"]
+[ext_resource type="Texture2D" uid="uid://b4vvbedrqye3e" path="res://assets/dead/1.png" id="3_1nauj"]
 [ext_resource type="Texture2D" uid="uid://b6q74e1gciskk" path="res://assets/fight/1.png" id="3_luolo"]
 [ext_resource type="Texture2D" uid="uid://de40om8v40nl3" path="res://assets/idle/1.png" id="3_stdp2"]
 [ext_resource type="Texture2D" uid="uid://camdyo63pbvc3" path="res://assets/idle/2.png" id="4_i541u"]
+[ext_resource type="Texture2D" uid="uid://bqtr367m1nyfl" path="res://assets/dead/2.png" id="4_o2c1e"]
 [ext_resource type="Texture2D" uid="uid://bkjx75ljnpy3" path="res://assets/fight/2.png" id="4_ognpm"]
 [ext_resource type="Texture2D" uid="uid://bt723lsq1gkw8" path="res://assets/fight/3.png" id="5_ai3dy"]
+[ext_resource type="Texture2D" uid="uid://36qku3c4lb24" path="res://assets/dead/3.png" id="5_f37iy"]
 [ext_resource type="Texture2D" uid="uid://vljoe56syh4o" path="res://assets/jump/1.png" id="5_v0m88"]
 [ext_resource type="Texture2D" uid="uid://cnpkp6od8hym8" path="res://assets/jump/2.png" id="6_e5323"]
 [ext_resource type="Texture2D" uid="uid://642xgafgegr4" path="res://assets/fight/4.png" id="6_wvsum"]
+[ext_resource type="Texture2D" uid="uid://bcyuroxurw3hi" path="res://assets/dead/4.png" id="6_xeyef"]
 [ext_resource type="Texture2D" uid="uid://sgibng2nq44j" path="res://assets/fight/5.png" id="7_1v3np"]
 [ext_resource type="Texture2D" uid="uid://d02qbpr8674f1" path="res://assets/jump/3.png" id="7_ikxlm"]
 [ext_resource type="Texture2D" uid="uid://dx6a10m4ioxqc" path="res://assets/fight/6.png" id="8_baq1l"]
@@ -23,8 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://dj372g4hbi8ug" path="res://assets/run/5.png" id="13_hxmp5"]
 [ext_resource type="Texture2D" uid="uid://cr28p1d83gavs" path="res://assets/run/6.png" id="14_cqljg"]
 [ext_resource type="Texture2D" uid="uid://o5pa0o30ep1k" path="res://assets/run/7.png" id="15_js2sq"]
-[ext_resource type="PackedScene" uid="uid://r5jv0cjr1o0o" path="res://scenes/damage_area.tscn" id="24_i5vbm"]
-[ext_resource type="PackedScene" uid="uid://wpa0njqj6cqk" path="res://scenes/attack_area.tscn" id="24_u5kue"]
+[ext_resource type="PackedScene" uid="uid://bexxy2dlp8jbk" path="res://scenes/damage_area.tscn" id="24_i5vbm"]
+[ext_resource type="PackedScene" uid="uid://dqv7wh0455h04" path="res://scenes/attack_area.tscn" id="24_u5kue"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gevhk"]
 radius = 36.2338
@@ -533,9 +537,37 @@ tracks/3/keys = {
 "values": [Vector2(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_ir2i7"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -31)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1iwtg"]
 _data = {
 "RESET": SubResource("Animation_h22mf"),
+"death": SubResource("Animation_ir2i7"),
 "fall": SubResource("Animation_jxbxv"),
 "fight": SubResource("Animation_lshrm"),
 "idle": SubResource("Animation_4n2gy"),
@@ -584,6 +616,35 @@ load_path = "res://.godot/imported/7.png-bfc2113d42142db176754ffadb064978.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xhvvv"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_1nauj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_o2c1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f37iy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xeyef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xeyef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xeyef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xeyef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xeyef")
+}],
+"loop": true,
+"name": &"death",
+"speed": 7.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_aiptg")
@@ -767,7 +828,6 @@ shape = SubResource("CapsuleShape2D_gevhk")
 metadata/_edit_group_ = true
 
 [node name="Damage_Area" parent="CollisionShape2D2" instance=ExtResource("24_i5vbm")]
-monitoring = false
 enemy = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CollisionShape2D2/Damage_Area"]
@@ -779,7 +839,6 @@ scale = Vector2(0.13, 0.13)
 sprite_frames = SubResource("SpriteFrames_xhvvv")
 animation = &"idle2.0"
 autoplay = "idle2.0"
-frame = 1
 speed_scale = 0.7
 
 [node name="Attack_Area" parent="." instance=ExtResource("24_u5kue")]
@@ -787,6 +846,7 @@ visible = false
 position = Vector2(-221, -123)
 rotation = -4.26635
 scale = Vector2(0.041, 0.1)
+monitorable = false
 enemy = false
 metadata/_edit_group_ = true
 
@@ -805,4 +865,5 @@ visible = false
 position = Vector2(8, 148)
 texture = ExtResource("2_aiptg")
 
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]

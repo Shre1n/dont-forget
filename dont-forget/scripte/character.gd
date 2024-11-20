@@ -2,7 +2,11 @@ class_name Character
 extends CharacterBody2D
 
 signal healthChanged(amount)
-#signal lifeChange(amount)
+signal lifeChange(amount)
+#Zurück zum Menü
+signal going_back
+#Zurück zum Dorf
+#signal going_back(path)
 
 @export var speed = 400.0
 @export var jump_height = -450.0
@@ -14,14 +18,17 @@ var JumpAvailability : bool
 @onready var JumpTimer : Timer = $Jump_Timer
 @export var input_enabled:bool = true
 @onready var animation_player = $AnimationPlayer
+@onready var game_manager = find_game_manager()
 
 @export var orientation_left = false
 @export var attacking = false
+@export var alive = true
 
 
 func _ready():
 	new_spawn_position()
 	animation_player.play("idle")
+	game_manager.connect("death", Callable(self, "die"))
 
 
 func _process(delta):
@@ -30,15 +37,16 @@ func _process(delta):
 		update_animation()
 
 func _physics_process(delta):
-	if !attacking:
-		var test = Input.get_axis("left", "right")
-		#if Input.is_action_just_pressed("left") and !orientation_left:
-		if test < 0 and !orientation_left:
-			$".".scale.x = abs($".".scale.x) * -1
-			orientation_left = true
-		if test > 0 and orientation_left:
-			$".".scale.x = abs($".".scale.x) * -1
-			orientation_left = false
+	if alive:
+		if !attacking:
+			var test = Input.get_axis("left", "right")
+			#if Input.is_action_just_pressed("left") and !orientation_left:
+			if test < 0 and !orientation_left:
+				$".".scale.x = abs($".".scale.x) * -1
+				orientation_left = true
+			if test > 0 and orientation_left:
+				$".".scale.x = abs($".".scale.x) * -1
+				orientation_left = false
 
 	if is_on_floor():
 		JumpAvailability = true
@@ -70,22 +78,24 @@ func attack():
 	animation_player.play("fight")
 
 func update_animation():
-	if !attacking:
-		if velocity.x != 0:
-			animation_player.play("walk")
-		else:
-			animation_player.play("idle")
+	if alive:
+		if !attacking:
+			if velocity.x != 0:
+				animation_player.play("walk")
+			else:
+				animation_player.play("idle")
 
-		if velocity.y < 0:
-			animation_player.play("jump")
-		if velocity.y > 0:
-			animation_player.play("idle") #später fall
+			if velocity.y < 0:
+				animation_player.play("jump")
+			if velocity.y > 0:
+				animation_player.play("idle") #später fall
 
 func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func take_damage(damage):
-	#emit_signal("lifeChange", damage)
+	emit_signal("lifeChange", -damage)
+	#print(1)
 	pass
 
 func new_spawn_position():
@@ -100,16 +110,24 @@ func enable():
 	input_enabled = true
 	visible = true
 
-#func _on_life_timer_timeout():
-	#life_time -= 1.0
-	#if life_time <= 0:
-		#die()
-#
-#func is_dead() -> bool:
-	#return life_time <= 0
-	
+
+func find_game_manager():
+	var root = get_tree().root  # Root-Node des Scene Trees
+	for child in root.get_children():
+		if child.name == "Game_Manager":
+			return child
+	return null
 
 
 func die():
-	animated_sprite.play("death")
-	#get_tree().change_scene_to_file("res://scenes/village.tscn")
+	alive = false
+	animation_player.play("death")
+
+func _on_animation_player_animation_finished(anim_name):
+	if anim_name == "death":
+		print("test")
+		#Zum Menu zurück
+		emit_signal("going_back")
+		#Zum Village zurück
+		#var path = "res://scenes/village.tscn"
+		#emit_signal("going_back", path)

@@ -14,9 +14,7 @@ func _ready():
 func _on_area_entered(hitbox: Attack_Area):
 	if hitbox == null:
 		return
-	
 	if enemy == hitbox.enemy:
 		return
 	if owner.has_method("take_damage"):
-		print("übergabe")
 		owner.take_damage(hitbox.damage)

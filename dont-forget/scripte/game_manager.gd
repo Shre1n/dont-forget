@@ -1,15 +1,18 @@
 class_name Game_Manager extends Node2D
 
 signal toggle_game_paused(is_paused : bool)
-signal life_timer_update(amount:float)
+signal death
 
+	#SceneManager.swap_scenes("res://scenes/village.tscn",get_tree().root,self,"transition_type")
+	#SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
 
 @onready var level_holder: Node2D = $Level_Folder
 @onready var life: Timer = $Life_Timer
 @export var life_time:float = 10.0
-@export var max_time: float = 10.0
+@export var max_time: float = 100.0
 
 var current_level:Level
+var current_character
 var options_open = false
 var game_paused : bool = false:
 	get:
@@ -24,7 +27,18 @@ func _ready():
 	SceneManager.load_start.connect(_on_load_start)
 	SceneManager.scene_added.connect(_on_level_added)
 	current_level = level_holder.get_child(0) as Level
-	self.life_timer_update.connect(lifeChange)
+	current_character = find_character(current_level)
+	current_character.connect("lifeChange", Callable(self, "life_timer_update"))
+	#Zum Menü zurück
+	current_character.connect("going_back", Callable(self, "scene_change"))
+	#Zum Village zurück (braucht signal mit path)
+	#current_character.connect("going_back", Callable(self, "scene_change"))
+
+func find_character(level):
+	for child in level.get_children():
+		if child.name == "Character":
+			return child
+	return null
 
 func _input(event : InputEvent):
 	if(event.is_action_pressed("menu")):
@@ -36,6 +50,13 @@ func _input(event : InputEvent):
 func _on_level_loaded(level) -> void:
 	if level is Level:
 		current_level = level
+	#Signale zum Character neu verbinden nach einem Scene wechsel
+		current_character = find_character(current_level)
+		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
+		#Zum Menü zurück
+		current_character.connect("going_back", Callable(self, "scene_change"))
+		#Zum Village zurück (braucht signal mit path)
+		#current_character.connect("going_back", Callable(self, "scene_change"))
 
 func _on_level_added(_level,_loading_screen) -> void:
 	if _loading_screen != null:
@@ -59,11 +80,24 @@ func options_closed():
 
 
 func _on_life_timer_timeout() -> void:
-	SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
+	emit_signal("death")
+	#SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
+
 
 func life_timer_update(amount):
-	if	life.get_wait_time() + amount <= max_time:
-		life.set_wait_time(life.get_wait_time() +  amount)
+	if life.time_left + amount <= 0:
+		life.stop()
+		emit_signal("death")
+	elif	life.time_left + amount <= max_time:
+		life.start(life.time_left + amount)
 	else:
-		life.set_wait_time(max_time)
-	
+		life.start(max_time)
+	print(life.time_left)
+
+#Zum Menü zurück
+func scene_change():
+	SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
+
+#Zum Village zurück
+#func scene_change(path):
+	#SceneManager.swap_scenes(path,level_holder,current_level,"transition_type")
