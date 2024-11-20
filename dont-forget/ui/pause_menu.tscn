@@ -1,13 +1,66 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpylfpo14s0l2"]
+[gd_scene load_steps=10 format=3 uid="uid://cpylfpo14s0l2"]
 
 [ext_resource type="Script" path="res://ui/pause_menu.gd" id="1_u5ic6"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_np6pk"]
-bg_color = Color(0, 0, 0, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uqmj"]
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="Theme" id="Theme_gag6b"]
+Button/styles/normal = SubResource("StyleBoxFlat_2uqmj")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clf7b"]
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="Theme" id="Theme_mo0li"]
+Button/styles/normal = SubResource("StyleBoxFlat_clf7b")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oid7b"]
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="Theme" id="Theme_2h7i5"]
+Button/styles/normal = SubResource("StyleBoxFlat_oid7b")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rj3rd"]
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="Theme" id="Theme_3v6wt"]
+Button/styles/normal = SubResource("StyleBoxFlat_rj3rd")
 
 [node name="Pause_Menu" type="Control"]
 layout_mode = 3
@@ -41,7 +94,6 @@ offset_right = 360.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_np6pk")
 
 [node name="Control2" type="Control" parent="Control/Panel"]
 layout_mode = 1
@@ -76,30 +128,35 @@ horizontal_alignment = 1
 [node name="Resume" type="Button" parent="Control/Panel/Control2/VBoxContainer"]
 custom_minimum_size = Vector2(574.5, 81)
 layout_mode = 2
-tooltip_text = "Zurück zum Spiel"
+tooltip_text = "Continue the Game"
+theme = SubResource("Theme_gag6b")
 theme_override_font_sizes/font_size = 30
-text = "Weiter Spielen"
+text = "Continue"
 
 [node name="Load" type="Button" parent="Control/Panel/Control2/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(574.5, 81)
 layout_mode = 2
-tooltip_text = "Letzten Speicherstand laden"
+tooltip_text = "Load last save point"
+theme = SubResource("Theme_mo0li")
 theme_override_font_sizes/font_size = 30
-text = "Laden"
+text = "Load"
 
 [node name="Options" type="Button" parent="Control/Panel/Control2/VBoxContainer"]
 custom_minimum_size = Vector2(574.5, 81)
 layout_mode = 2
-tooltip_text = "Öffnet die Einstellungen"
+tooltip_text = "Display Options"
+theme = SubResource("Theme_2h7i5")
 theme_override_font_sizes/font_size = 30
-text = "Optionen"
+text = "Options"
 
 [node name="Quit" type="Button" parent="Control/Panel/Control2/VBoxContainer"]
 custom_minimum_size = Vector2(574.5, 81)
 layout_mode = 2
-tooltip_text = "Beendet das Spiel"
+tooltip_text = "Quit the Game"
+theme = SubResource("Theme_3v6wt")
 theme_override_font_sizes/font_size = 30
-text = "Beenden"
+text = "Quit"
 
 [connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Options" to="." method="_on_options_pressed"]

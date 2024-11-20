@@ -25,7 +25,7 @@ func _ready():
 	current_level = level_holder.get_child(0) as Level
 
 func _input(event : InputEvent):
-	if(event.is_action_pressed("ui_cancel")):
+	if(event.is_action_pressed("menu")):
 		if(options_open):
 			options_closed()
 		else:

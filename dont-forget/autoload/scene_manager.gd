@@ -18,6 +18,9 @@ var _scene_to_unload:Node
 var _loading_in_progress:bool = false
 
 func _ready() -> void:
+	var screen_size = DisplayServer.screen_get_size()
+	DisplayServer.window_set_size(screen_size)
+	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	_content_invalid.connect(_on_content_invalid)
 	_content_failed_to_load.connect(_on_content_failed_to_load)
 	_content_finished_loading.connect(_on_content_finished_loading)

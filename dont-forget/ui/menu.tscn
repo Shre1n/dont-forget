@@ -247,7 +247,7 @@ theme_override_constants/separation = 6
 [node name="Start_Button" type="Button" parent="Panel/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Starts a new game
+tooltip_text = "Start a new game
 "
 theme = SubResource("Theme_ufe8x")
 theme_override_fonts/font = ExtResource("3_1jn53")
@@ -258,7 +258,7 @@ text = "New Game"
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Loads the last save"
+tooltip_text = "Load your last save"
 theme = SubResource("Theme_6byat")
 theme_override_fonts/font = ExtResource("3_1jn53")
 theme_override_font_sizes/font_size = 30
@@ -267,7 +267,7 @@ text = "Load the Game "
 [node name="Options_Button" type="Button" parent="Panel/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Opens the settings
+tooltip_text = "Open settings
 "
 theme = SubResource("Theme_3xqs5")
 theme_override_fonts/font = ExtResource("3_1jn53")
@@ -287,7 +287,7 @@ text = "Credits"
 [node name="Quit_Button" type="Button" parent="Panel/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Quit the Game"
+tooltip_text = "Quit the game"
 theme = SubResource("Theme_eydse")
 theme_override_fonts/font = ExtResource("3_1jn53")
 theme_override_font_sizes/font_size = 30

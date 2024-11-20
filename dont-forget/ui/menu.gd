@@ -1,6 +1,6 @@
 class_name StartScreen extends Control
 
-@export var game_manager : Game_Manager
+#@export var game_manager : Game_Manager
 
 var options_open: bool = false
 
@@ -10,7 +10,7 @@ func _input(event : InputEvent):
 		get_node("Options").hide()
 
 func _ready():
-	pass # Replace with function body.
+	print(position)
 
 func _process(delta):
 	pass

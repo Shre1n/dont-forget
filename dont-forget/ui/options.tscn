@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cspyht3ytgvhx"]
+[gd_scene load_steps=15 format=3 uid="uid://cspyht3ytgvhx"]
 
 [ext_resource type="Script" path="res://ui/options.gd" id="1_sxokr"]
 
@@ -36,41 +36,6 @@ shadow_size = 3
 
 [sub_resource type="Theme" id="Theme_dmn8s"]
 CheckButton/styles/normal = SubResource("StyleBoxFlat_tstbd")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ljei6"]
-bg_color = Color(0.305882, 0.207843, 0.494118, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 3
-
-[sub_resource type="Theme" id="Theme_21mhy"]
-OptionButton/styles/normal = SubResource("StyleBoxFlat_ljei6")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hdgqd"]
-draw_center = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0y16e"]
-bg_color = Color(0.305882, 0.207843, 0.494118, 1)
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 3
-
-[sub_resource type="Theme" id="Theme_341h3"]
-CheckButton/styles/disabled = SubResource("StyleBoxFlat_hdgqd")
-CheckButton/styles/normal = SubResource("StyleBoxFlat_0y16e")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7cf1"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
@@ -183,38 +148,6 @@ theme_override_font_sizes/font_size = 30
 keep_pressed_outside = true
 text = "Mute"
 
-[node name="HSeparator" type="HSeparator" parent="Panel/Panel/VBoxContainer"]
-layout_mode = 2
-
-[node name="HSplitContainer2" type="HSplitContainer" parent="Panel/Panel/VBoxContainer"]
-layout_mode = 2
-dragger_visibility = 2
-
-[node name="Resulutions" type="OptionButton" parent="Panel/Panel/VBoxContainer/HSplitContainer2"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-tooltip_text = "Bildschirmauflösung anpassen"
-theme = SubResource("Theme_21mhy")
-theme_override_font_sizes/font_size = 30
-keep_pressed_outside = true
-selected = 0
-item_count = 3
-popup/item_0/text = "1920x1080"
-popup/item_1/text = "1600x900"
-popup/item_1/id = 1
-popup/item_2/text = "1280x720"
-popup/item_2/id = 2
-
-[node name="Fullscreen" type="CheckButton" parent="Panel/Panel/VBoxContainer/HSplitContainer2"]
-layout_mode = 2
-size_flags_vertical = 4
-tooltip_text = "Switch full screen on/off"
-theme = SubResource("Theme_341h3")
-theme_override_font_sizes/font_size = 30
-keep_pressed_outside = true
-text = "Full screen"
-
 [node name="HSeparator2" type="HSeparator" parent="Panel/Panel/VBoxContainer"]
 layout_mode = 2
 
@@ -243,7 +176,5 @@ text = "Factory settings"
 
 [connection signal="value_changed" from="Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume" to="." method="_on_volume_value_changed"]
 [connection signal="toggled" from="Panel/Panel/VBoxContainer/HSplitContainer/Mute" to="." method="_on_mute_toggled"]
-[connection signal="item_selected" from="Panel/Panel/VBoxContainer/HSplitContainer2/Resulutions" to="." method="_on_resulutions_item_selected"]
-[connection signal="toggled" from="Panel/Panel/VBoxContainer/HSplitContainer2/Fullscreen" to="." method="_on_fullscreen_toggled"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/HSplitContainer3/Close_Btn" to="." method="_on_close_btn_pressed"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/HSplitContainer3/Reset_Btn" to="." method="_on_reset_btn_pressed"]

@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmouk0ih436em"]
+[gd_scene load_steps=8 format=3 uid="uid://bmouk0ih436em"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="Texture2D" uid="uid://c2g3xrawrqbt1" path="res://assets/Download.jpeg" id="2_56ewd"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
+[ext_resource type="PackedScene" uid="uid://dutapi4qgn8vn" path="res://scenes/door.tscn" id="4_ds0gg"]
+[ext_resource type="PackedScene" uid="uid://bq3y1ib7x1pye" path="res://scenes/dummie.tscn" id="4_x8ja8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = [{
@@ -28,8 +30,19 @@ sprite_frames = SubResource("SpriteFrames_x17dd")
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(962, 538)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Boden" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boden"]
 position = Vector2(932, 892)
 shape = SubResource("WorldBoundaryShape2D_uvql2")
+
+[node name="Door" parent="." instance=ExtResource("4_ds0gg")]
+position = Vector2(4015, 852)
+rotation = 0.765158
+scale = Vector2(6.32718, 465.344)
+transition_type = "fade_to_white"
+path_to_new_scene = "res://ui/menu.tscn"
+menu = true
+
+[node name="Dummie" parent="." instance=ExtResource("4_x8ja8")]
+position = Vector2(186, 894)
