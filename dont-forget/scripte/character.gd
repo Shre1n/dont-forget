@@ -18,19 +18,7 @@ var JumpAvailability : bool
 @export var attacking = false
 
 
-var timer: Timer
-
 func _ready():
-	if animated_sprite == null:
-		print("Error: AnimatedSprite2D not found!")
-	else:
-		animated_sprite.play("idle")
-
-	timer.wait_time = 1.0
-	timer.one_shot = false
-	timer.connect("timeout",Callable(self, "_on_life_timer_timeout"))
-	add_child(timer)
-	timer.start()
 	new_spawn_position()
 	animation_player.play("idle")
 
@@ -117,13 +105,15 @@ func enable():
 	input_enabled = true
 	visible = true
 
-func _on_life_timer_timeout():
-	life_time -= 1.0
-	if life_time <= 0:
-		die()
+#func _on_life_timer_timeout():
+	#life_time -= 1.0
+	#if life_time <= 0:
+		#die()
+#
+#func is_dead() -> bool:
+	#return life_time <= 0
+	
 
-func is_dead() -> bool:
-	return life_time <= 0
 
 func die():
 	animated_sprite.play("death")

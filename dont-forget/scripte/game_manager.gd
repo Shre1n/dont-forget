@@ -1,6 +1,7 @@
 class_name Game_Manager extends Node2D
 
 signal toggle_game_paused(is_paused : bool)
+signal life_timer_update(amount:float)
 
 
 @onready var level_holder: Node2D = $Level_Folder
@@ -57,4 +58,11 @@ func options_closed():
 
 
 func _on_life_timer_timeout() -> void:
-	pass # Replace with function body.
+	SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
+
+func life_timer_update(amount):
+	if	life.get_wait_time() + amount <= max_time:
+		life.set_wait_time(life.get_wait_time() +  amount)
+	else:
+		life.set_wait_time(max_time)
+	
