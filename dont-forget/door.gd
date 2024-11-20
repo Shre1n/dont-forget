@@ -20,7 +20,7 @@ func evaluate_direction():
 			#new_direction = 0  
 
 func _on_body_entered(body: Node2D) -> void:
-	if not body is Player:
+	if not body is Character:
 		return
 	if menu:
 		var game_manager = find_game_manager()
