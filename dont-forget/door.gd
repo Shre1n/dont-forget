@@ -24,8 +24,6 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	if menu:
 		var game_manager = find_game_manager()
-		print(get_tree().root)
-		print(get_tree().root.get_child(0))
 		SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,game_manager,"transition_type")
 	else:
 		player_entered_door.emit(self)
