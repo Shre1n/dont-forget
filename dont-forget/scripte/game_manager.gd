@@ -2,7 +2,11 @@ class_name Game_Manager extends Node2D
 
 signal toggle_game_paused(is_paused : bool)
 
+
 @onready var level_holder: Node2D = $Level_Folder
+@onready var life: Timer = $Life_Timer
+@export var life_time:float = 10.0
+@export var max_time: float = 10.0
 
 var current_level:Level
 var options_open = false
@@ -50,3 +54,7 @@ func options_opend():
 func options_closed():
 	options_open = false
 	get_node("Pause_Menu/Options").hide()
+
+
+func _on_life_timer_timeout() -> void:
+	pass # Replace with function body.

@@ -26,3 +26,7 @@ game_manager = NodePath("../..")
 process_mode = 3
 visible = false
 game_manager = NodePath("../..")
+
+[node name="Life_Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Life_Timer" to="." method="_on_life_timer_timeout"]

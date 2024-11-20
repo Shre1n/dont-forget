@@ -9,8 +9,7 @@ var JumpAvailability : bool
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var JumpTimer : Timer = $Jump_Timer
 
-@export var life_time:float = 10.0
-@export var max_time: float = 10.0
+
 var timer: Timer
 
 func _ready():
