@@ -839,6 +839,7 @@ scale = Vector2(0.13, 0.13)
 sprite_frames = SubResource("SpriteFrames_xhvvv")
 animation = &"idle2.0"
 autoplay = "idle2.0"
+frame = 1
 speed_scale = 0.7
 
 [node name="Attack_Area" parent="." instance=ExtResource("24_u5kue")]

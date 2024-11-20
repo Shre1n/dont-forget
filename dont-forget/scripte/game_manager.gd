@@ -11,6 +11,8 @@ signal death
 @export var life_time:float = 10.0
 @export var max_time: float = 100.0
 
+@onready var canvaslayer = $Pause_Menu
+
 var current_level:Level
 var current_character
 var options_open = false
