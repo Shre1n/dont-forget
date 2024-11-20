@@ -2,6 +2,7 @@ class_name Character
 extends CharacterBody2D
 
 signal healthChanged(amount)
+#signal lifeChange(amount)
 
 @export var speed = 400.0
 @export var jump_height = -450.0
@@ -84,14 +85,8 @@ func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func take_damage(damage):
-	life -= damage
-	#if life > 0:
-		#emit_signal("healthChanged", life)
-	#else:
-		#emit_signal("healthChanged", 0)
-
-	#if life <= 0:
-		#ResetPlayer()
+	#emit_signal("lifeChange", damage)
+	pass
 
 func new_spawn_position():
 	if Global.new_position != null:

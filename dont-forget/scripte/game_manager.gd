@@ -24,6 +24,7 @@ func _ready():
 	SceneManager.load_start.connect(_on_load_start)
 	SceneManager.scene_added.connect(_on_level_added)
 	current_level = level_holder.get_child(0) as Level
+	self.life_timer_update.connect(lifeChange)
 
 func _input(event : InputEvent):
 	if(event.is_action_pressed("menu")):
