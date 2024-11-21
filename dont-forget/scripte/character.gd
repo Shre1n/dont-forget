@@ -59,16 +59,18 @@ func _physics_process(delta):
 
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and JumpAvailability:
-		velocity.y = jump_height
-		JumpAvailability = false
+	if alive:
+		if Input.is_action_just_pressed("jump") and JumpAvailability:
+			velocity.y = jump_height
+			JumpAvailability = false
 
 	# Get the input direction and handle the movement/deceleration.
-	var direction = Input.get_axis("left", "right")
-	if direction != 0:
-		velocity.x = direction * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+	if alive:
+		var direction = Input.get_axis("left", "right")
+		if direction != 0:
+			velocity.x = direction * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
 
 	update_animation()
 	move_and_slide()
@@ -125,8 +127,10 @@ func find_game_manager():
 
 
 func die():
+	velocity = Vector2.ZERO
 	alive = false
 	animation_player.play("death")
+	await (animation_player.animation_finished)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "death":
