@@ -10,10 +10,8 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nojtj"]
 bg_color = Color(0.866667, 0.690196, 0.262745, 1)
-corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fjsea"]
 
@@ -65,9 +63,9 @@ show_percentage = false
 
 [node name="TextureRect" type="TextureRect" parent="Pause_Menu/UI"]
 layout_mode = 0
-offset_left = 12.0
+offset_left = 16.0
 offset_top = 15.0
-offset_right = 744.0
+offset_right = 800.0
 offset_bottom = 59.0
 texture = ExtResource("4_03et5")
 expand_mode = 2
@@ -95,11 +93,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 16
 label_settings = SubResource("LabelSettings_gbgn7")
 horizontal_alignment = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Pause_Menu/UI"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="Pause_Menu" parent="Pause_Menu" node_paths=PackedStringArray("game_manager") instance=ExtResource("3_5oodd")]
 process_mode = 3
