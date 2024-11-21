@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnu6va4x16qlb"]
+
+[ext_resource type="Script" path="res://scenes/damage_area.gd" id="1_k5f7m"]
+
+[node name="Damage_Area" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+monitorable = false
+script = ExtResource("1_k5f7m")
