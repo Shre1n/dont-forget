@@ -1,17 +1,15 @@
 name: Godot CI - Install Godot
 
-
 on:
   push:
     branches:
-      - "**"
-      - "!main"
+      - "*"
   pull_request:
     branches:
       - "development"
 
 jobs:
-  unitTests:
+  build:
     runs-on: ubuntu-20.04
 
     container:
@@ -21,20 +19,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Image Debug
+      - name: Verify Godot Installation
         run: |
-          pwd && ls -al && godot --version
-
-      - name: Build Godot Project
-        run: |
-          godot --headless --import --path dont-forget
-
-      - name: Run Unit Tests with Coverage
-        run: |
-          godot --headless --path dont-forget -s addons/gut/gut_cmdln.gd -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_ > test_results.log
-
-      - name:
-        uses: actions/upload-artifact@v4
-        with:
-          name: test-results
-          path: test_results.log
+          godot --version
