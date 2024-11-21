@@ -16,7 +16,7 @@ var frequency: float = 2.0   # Adjust for speed of oscillation
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sand_display.size.x = 100
+	sand_display.size.x = 60
 	game_manager.connect("current_user", Callable(self, "save_user_location"))
 	game_manager.connect("back_to_village", Callable(self, "total_reset"))
 	game_manager.connect("lifetimer", Callable(self, "update_lifetime_display"))
