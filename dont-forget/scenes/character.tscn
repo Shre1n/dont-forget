@@ -1,9 +1,10 @@
-[gd_scene load_steps=54 format=3 uid="uid://diqm35oue5hsl"]
+[gd_scene load_steps=59 format=3 uid="uid://diqm35oue5hsl"]
 
 [ext_resource type="Script" path="res://scripte/character.gd" id="1_gaw86"]
 [ext_resource type="Texture2D" uid="uid://c2g3xrawrqbt1" path="res://assets/Download.jpeg" id="2_aiptg"]
 [ext_resource type="Texture2D" uid="uid://b4vvbedrqye3e" path="res://assets/dead/1.png" id="3_1nauj"]
 [ext_resource type="Texture2D" uid="uid://b6q74e1gciskk" path="res://assets/fight/1.png" id="3_luolo"]
+[ext_resource type="Shader" uid="uid://ocp2fau3yi65" path="res://shader/Character/player_hit.tres" id="3_si2y3"]
 [ext_resource type="Texture2D" uid="uid://de40om8v40nl3" path="res://assets/idle/1.png" id="3_stdp2"]
 [ext_resource type="Texture2D" uid="uid://camdyo63pbvc3" path="res://assets/idle/2.png" id="4_i541u"]
 [ext_resource type="Texture2D" uid="uid://bqtr367m1nyfl" path="res://assets/dead/2.png" id="4_o2c1e"]
@@ -27,8 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://dj372g4hbi8ug" path="res://assets/run/5.png" id="13_hxmp5"]
 [ext_resource type="Texture2D" uid="uid://cr28p1d83gavs" path="res://assets/run/6.png" id="14_cqljg"]
 [ext_resource type="Texture2D" uid="uid://o5pa0o30ep1k" path="res://assets/run/7.png" id="15_js2sq"]
-[ext_resource type="PackedScene" uid="uid://dnu6va4x16qlb" path="res://scenes/damage_area.tscn" id="24_i5vbm"]
-[ext_resource type="PackedScene" uid="uid://cmgf1s540hgqi" path="res://scenes/attack_area.tscn" id="24_u5kue"]
+[ext_resource type="PackedScene" path="res://scenes/damage_area.tscn" id="24_i5vbm"]
+[ext_resource type="PackedScene" path="res://scenes/attack_area.tscn" id="24_u5kue"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gevhk"]
 radius = 36.2338
@@ -575,6 +576,11 @@ _data = {
 "walk": SubResource("Animation_g5w5e")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j160d"]
+shader = ExtResource("3_si2y3")
+shader_parameter/enabled = false
+shader_parameter/tint = Color(1, 0, 0, 1)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rv3lt"]
 load_path = "res://.godot/imported/1.png-988ce2a0455c58150494c879c9a0ade1.ctex"
 
@@ -812,6 +818,43 @@ animations = [{
 radius = 4.28541
 height = 18.5234
 
+[sub_resource type="Animation" id="Animation_hgj0j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_tqr0o"]
+resource_name = "hit_flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vwtqs"]
+_data = {
+"RESET": SubResource("Animation_hgj0j"),
+"hit_flash": SubResource("Animation_tqr0o")
+}
+
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_gaw86")
 
@@ -834,6 +877,7 @@ enemy = false
 shape = SubResource("CapsuleShape2D_gevhk")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_j160d")
 position = Vector2(10, -23)
 scale = Vector2(0.13, 0.13)
 sprite_frames = SubResource("SpriteFrames_xhvvv")
@@ -865,6 +909,11 @@ one_shot = true
 visible = false
 position = Vector2(8, 148)
 texture = ExtResource("2_aiptg")
+
+[node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vwtqs")
+}
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]

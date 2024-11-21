@@ -13,6 +13,7 @@ signal going_back
 @export var jump_height = -450.0
 @export var life = 100
 
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var JumpAvailability : bool
 @onready var animated_sprite : AnimatedSprite2D = $AnimatedSprite2D
@@ -20,6 +21,7 @@ var JumpAvailability : bool
 @export var input_enabled:bool = true
 @onready var animation_player = $AnimationPlayer
 @onready var game_manager = find_game_manager()
+@onready var hit_flash_anim_player = $HitFlashAnimationPlayer
 
 @export var orientation_left = false
 @export var attacking = false
@@ -97,6 +99,7 @@ func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func take_damage(damage):
+	hit_flash_anim_player.play("hit_flash")
 	emit_signal("lifeChange", -damage)
 
 func get_time(value):
