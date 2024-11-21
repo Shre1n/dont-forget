@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvi4bctnbdpax"]
+[gd_scene load_steps=13 format=3 uid="uid://cvi4bctnbdpax"]
 
 [ext_resource type="Script" path="res://scripte/game_manager.gd" id="1_brvfy"]
 [ext_resource type="PackedScene" uid="uid://bmouk0ih436em" path="res://scenes/tutorial.tscn" id="2_v58es"]
 [ext_resource type="PackedScene" uid="uid://cpylfpo14s0l2" path="res://ui/pause_menu.tscn" id="3_5oodd"]
 [ext_resource type="Script" path="res://ui.gd" id="3_ybw7d"]
+[ext_resource type="Texture2D" uid="uid://ba1vr60upkeqc" path="res://assets/Life/Ui_Time_.png" id="4_03et5"]
 [ext_resource type="Texture2D" uid="uid://c5a4u1d5vk647" path="res://assets/drops/gold.png" id="4_gtkkb"]
 [ext_resource type="PackedScene" uid="uid://cspyht3ytgvhx" path="res://ui/options.tscn" id="4_v2ckv"]
 
@@ -61,6 +62,15 @@ theme = SubResource("Theme_n3kn5")
 max_value = 10.0
 fill_mode = 1
 show_percentage = false
+
+[node name="TextureRect" type="TextureRect" parent="Pause_Menu/UI"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 15.0
+offset_right = 744.0
+offset_bottom = 59.0
+texture = ExtResource("4_03et5")
+expand_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="Pause_Menu/UI"]
 layout_mode = 1
