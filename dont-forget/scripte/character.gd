@@ -57,18 +57,18 @@ func _physics_process(delta):
 		elif JumpTimer.is_stopped():
 			velocity += get_gravity() * delta
 
+	if alive:
+		# Handle jump.
+		if Input.is_action_just_pressed("jump") and JumpAvailability:
+			velocity.y = jump_height
+			JumpAvailability = false
 
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and JumpAvailability:
-		velocity.y = jump_height
-		JumpAvailability = false
-
-	# Get the input direction and handle the movement/deceleration.
-	var direction = Input.get_axis("left", "right")
-	if direction != 0:
-		velocity.x = direction * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		# Get the input direction and handle the movement/deceleration.
+		var direction = Input.get_axis("left", "right")
+		if direction != 0:
+			velocity.x = direction * speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, speed)
 
 	update_animation()
 	move_and_slide()
