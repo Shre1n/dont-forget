@@ -1,12 +1,13 @@
 class_name Character
 extends CharacterBody2D
 
-signal healthChanged(amount)
+signal coinsChange(amount)
 signal lifeChange(amount)
 #Zurück zum Menü
 signal going_back
 #Zurück zum Dorf
 #signal going_back(path)
+
 
 @export var speed = 400.0
 @export var jump_height = -450.0
@@ -95,8 +96,12 @@ func _on_jump_timer_timeout():
 
 func take_damage(damage):
 	emit_signal("lifeChange", -damage)
-	#print(1)
-	pass
+
+func get_time(value):
+	emit_signal("lifeChange", value)
+
+func get_coins(value):
+	emit_signal("coinsChange", value)
 
 func new_spawn_position():
 	if Global.new_position != null:

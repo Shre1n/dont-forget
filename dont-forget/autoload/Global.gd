@@ -12,3 +12,5 @@ func _process(delta: float) -> void:
 
 var new_position
 var new_direction
+
+var coins: int

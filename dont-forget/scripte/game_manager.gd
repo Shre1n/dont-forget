@@ -2,6 +2,9 @@ class_name Game_Manager extends Node2D
 
 signal toggle_game_paused(is_paused : bool)
 signal death
+signal current_user(path)
+signal lifetimer(time)
+signal back_to_village
 
 	#SceneManager.swap_scenes("res://scenes/village.tscn",get_tree().root,self,"transition_type")
 	#SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
@@ -36,9 +39,12 @@ func _ready():
 	#Zum Village zurück (braucht signal mit path)
 	#current_character.connect("going_back", Callable(self, "scene_change"))
 
+
+
 func find_character(level):
 	for child in level.get_children():
 		if child.name == "Character":
+			emit_signal("current_user", child)
 			return child
 	return null
 
@@ -70,7 +76,8 @@ func _on_load_start(_loading_screen):
 	#für wenn man das UI über der Lade Animation haben will, später
 
 func _process(delta):
-	pass
+	if !life.is_stopped():
+		emit_signal("lifetimer", life.time_left)
 
 func options_opend():
 	options_open = true
@@ -102,4 +109,5 @@ func scene_change():
 
 #Zum Village zurück
 #func scene_change(path):
+	#emit_signal("back_to_village")
 	#SceneManager.swap_scenes(path,level_holder,current_level,"transition_type")
