@@ -28,7 +28,10 @@ func _ready() -> void:
 func _add_loading_screen(transition_type:String="fade_to_black"):
 	_transition = "no_to_transition" if transition_type == "no_transition" else transition_type
 	_loading_screen = _loading_screen_scene.instantiate() as LoadingScreen
-	get_tree().root.add_child(_loading_screen)
+	#get_tree().root.add_child(_loading_screen)
+	var canvas_layer = CanvasLayer.new()
+	get_tree().root.add_child(canvas_layer)
+	canvas_layer.add_child(_loading_screen)
 	_loading_screen.start_transition(_transition)
 	
 
