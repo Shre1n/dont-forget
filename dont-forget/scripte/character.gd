@@ -95,6 +95,7 @@ func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func take_damage(damage):
+	print("Character got Damaged")
 	emit_signal("lifeChange", -damage)
 
 func get_time(value):
