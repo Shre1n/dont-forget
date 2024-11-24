@@ -1041,6 +1041,7 @@ animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(950, 761)
+sword = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 

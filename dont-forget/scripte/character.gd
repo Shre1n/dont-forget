@@ -12,6 +12,7 @@ signal going_back
 @export var speed = 400.0
 @export var jump_height = -450.0
 @export var life = 100
+@export var sword: bool = true
 
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -35,7 +36,7 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") && sword:
 		attack()
 		update_animation()
 
