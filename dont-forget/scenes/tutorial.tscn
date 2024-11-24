@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=25 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://scenes/sword_interact.gd" id="9_8mqe6"]
 [ext_resource type="Texture2D" uid="uid://dqrs5p51f6oii" path="res://assets/Sword.png" id="10_e8qmx"]
 [ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="11_ye7re"]
+[ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
+[ext_resource type="PackedScene" uid="uid://dutapi4qgn8vn" path="res://scenes/door.tscn" id="13_k13f7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -19,7 +21,7 @@ animations = []
 size = Vector2(8583, 22.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7b2hd"]
-size = Vector2(254, 89)
+size = Vector2(355, 63)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwnld"]
 size = Vector2(325, 1203)
@@ -28,6 +30,7 @@ size = Vector2(325, 1203)
 texture = ExtResource("4_d3554")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
 1:0/0 = 0
 2:0/0 = 0
 3:0/0 = 0
@@ -1042,13 +1045,13 @@ position = Vector2(950, 761)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="Ground" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(3384, 1310)
+position = Vector2(3391, 1333)
 shape = SubResource("RectangleShape2D_aehu5")
 one_way_collision = true
 one_way_collision_margin = 32.4
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(2180, 1277.5)
+position = Vector2(2176.5, 1286.5)
 shape = SubResource("RectangleShape2D_7b2hd")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
@@ -1162,10 +1165,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Attack" type="Label" parent="."]
-offset_left = 4901.0
-offset_top = 968.0
-offset_right = 5643.0
-offset_bottom = 1314.0
+offset_left = 4283.0
+offset_top = 944.0
+offset_right = 5025.0
+offset_bottom = 1290.0
 theme_override_fonts/font = ExtResource("8_h547o")
 theme_override_font_sizes/font_size = 41
 text = "Left Click to attack"
@@ -1186,9 +1189,18 @@ scale = Vector2(0.0764167, 0.0962817)
 texture = ExtResource("10_e8qmx")
 
 [node name="InteractionArea" parent="Sword_Interact" instance=ExtResource("11_ye7re")]
+position = Vector2(3310, 1265)
 action_name = "pickup"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword_Interact/InteractionArea"]
-position = Vector2(3311, 1266)
 scale = Vector2(9.74282, 9.0481)
 shape = SubResource("CircleShape2D_3tx74")
+
+[node name="Dummie" parent="." instance=ExtResource("12_aqci3")]
+position = Vector2(4649, 1325)
+
+[node name="Door" parent="." instance=ExtResource("13_k13f7")]
+position = Vector2(6961, 970)
+scale = Vector2(-8.97879, 92.5068)
+transition_type = "wipe_to_right"
+menu = true

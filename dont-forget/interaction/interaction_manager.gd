@@ -24,8 +24,8 @@ func _process(delta):
 		active_areas.sort_custom(_sort_by_distance_to_player)
 		label.text = base_test + active_areas[0].action_name
 		label.global_position = active_areas[0].global_position
-		print(active_areas[0].global_position)
-		label.global_position.y -= 36
+		print(label.position)
+		label.global_position.y -= 80
 		label.global_position.x -= label.size.x / 2
 		label.show()
 	else:
