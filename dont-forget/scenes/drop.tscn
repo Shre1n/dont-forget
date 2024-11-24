@@ -475,6 +475,7 @@ _data = {
 collision_layer = 4
 collision_mask = 5
 mass = 0.015
+gravity_scale = 0.4
 script = ExtResource("1_4gpbv")
 time = false
 

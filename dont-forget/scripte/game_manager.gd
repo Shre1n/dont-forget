@@ -3,6 +3,7 @@ class_name Game_Manager extends Node2D
 signal toggle_game_paused(is_paused : bool)
 signal death
 signal current_user(path)
+signal current_Itemholder(path)
 signal lifetimer(time)
 signal back_to_village
 
@@ -33,6 +34,7 @@ func _ready():
 	SceneManager.scene_added.connect(_on_level_added)
 	current_level = level_holder.get_child(0) as Level
 	current_character = find_character(current_level)
+	find_Itemholder(current_level)
 	current_character.connect("lifeChange", Callable(self, "life_timer_update"))
 	#Zum Menü zurück
 	current_character.connect("going_back", Callable(self, "scene_change"))
@@ -48,6 +50,13 @@ func find_character(level):
 			return child
 	return null
 
+func find_Itemholder(level):
+	for child in level.get_children():
+		if child.name == "Itemholder":
+			emit_signal("current_Itemholder", child)
+			return child
+	return null
+
 func _input(event : InputEvent):
 	if(event.is_action_pressed("menu")):
 		if(options_open):
@@ -58,6 +67,7 @@ func _input(event : InputEvent):
 func _on_level_loaded(level) -> void:
 	if level is Level:
 		current_level = level
+		find_Itemholder(level)
 	#Signale zum Character neu verbinden nach einem Scene wechsel
 		current_character = find_character(current_level)
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
@@ -94,14 +104,19 @@ func _on_life_timer_timeout() -> void:
 
 
 func life_timer_update(amount):
+	if life.is_stopped():
+		return
 	if life.time_left + amount <= 0:
 		life.stop()
 		emit_signal("death")
-	elif	life.time_left + amount <= max_time:
+	elif	life.time_left + amount < max_time:
 		life.start(life.time_left + amount)
 	else:
 		life.start(max_time)
-	print(life.time_left)
+	#print(life.time_left)
+
+func restart_life_timer():
+	life.start(max_time)
 
 #Zum Menü zurück
 func scene_change():

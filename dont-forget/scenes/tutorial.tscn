@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=26 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -12,7 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dqrs5p51f6oii" path="res://assets/Sword.png" id="10_e8qmx"]
 [ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="11_ye7re"]
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
-[ext_resource type="PackedScene" uid="uid://dutapi4qgn8vn" path="res://scenes/door.tscn" id="13_k13f7"]
+[ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
+[ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -1205,3 +1206,14 @@ position = Vector2(6961, 970)
 scale = Vector2(-8.97879, 92.5068)
 transition_type = "wipe_to_right"
 menu = true
+
+[node name="Itemholder" type="Node2D" parent="."]
+
+[node name="Gegner" type="Node2D" parent="."]
+
+[node name="Slime" parent="Gegner" instance=ExtResource("14_vrtbd")]
+position = Vector2(5872, 1276)
+scale = Vector2(0.15, 0.152)
+life = 1
+knockback_speed = 300.0
+tutorial = true

@@ -60,15 +60,13 @@ func _physics_process(delta):
 		elif JumpTimer.is_stopped():
 			velocity += get_gravity() * delta
 
-
-	# Handle jump.
 	if alive:
+		# Handle jump.
 		if Input.is_action_just_pressed("jump") and JumpAvailability:
 			velocity.y = jump_height
 			JumpAvailability = false
 
-	# Get the input direction and handle the movement/deceleration.
-	if alive:
+		# Get the input direction and handle the movement/deceleration.
 		var direction = Input.get_axis("left", "right")
 		if direction != 0:
 			velocity.x = direction * speed
@@ -138,7 +136,6 @@ func die():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "death":
-		print("test")
 		#Zum Menu zurück
 		emit_signal("going_back")
 		#Zum Village zurück
