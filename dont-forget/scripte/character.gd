@@ -136,7 +136,6 @@ func die():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "death":
-		print("test")
 		#Zum Menu zurück
 		emit_signal("going_back")
 		#Zum Village zurück

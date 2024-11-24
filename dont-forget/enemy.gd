@@ -4,8 +4,13 @@ extends CharacterBody2D
 @export var idle_time_min: float = 1.0  # Mindestwartezeit im Idle-Zustand
 @export var idle_time_max: float = 5.0  # Maximalwartezeit im Idle-Zustand
 @export var life: int = 100  # Lebenspunkte
+@export var min_gold_drop: int = 1
+@export var max_gold_drop: int = 4
+@export var min_time_drop: int = 2
+@export var max_time_drop: int = 5
 @export var knockback_speed: float = 400.0
 @export var knockback_duration: float = 0.2
+@export var tutorial: bool = false
 
 var drop := preload("res://scenes/drop.tscn")
 var current_Itemholder
@@ -147,18 +152,33 @@ func _on_animation_player_animation_finished(anim_name: String):
 		add_new_drop(global_position)
 		queue_free()
 
-func add_new_drop(death_pos):
-	var item = drop.instantiate()
-	item.position = death_pos
-	current_Itemholder.call_deferred("add_child", item)
-	item.add_to_group("items")
-
 func find_game_manager():
 	var root = get_tree().root  # Root-Node des Scene Trees
 	for child in root.get_children():
 		if child.name == "Game_Manager":
 			return child
 	return null
+
+func add_new_drop(death_pos):
+	var gold_drop = randi_range(min_gold_drop, max_gold_drop)
+	var time_drop = randi_range(min_time_drop, max_time_drop)
+	instantiate_drop_items(gold_drop, death_pos, false)  # False for gold
+	if !tutorial:
+		# Drop time items
+		instantiate_drop_items(time_drop, death_pos, true)  # True for time
+
+
+func instantiate_drop_items(drop_count, death_pos, is_time_item):
+	for i in range(drop_count):
+		var item = drop.instantiate()  # Assuming 'drop' is the base scene for both types
+		item.position = death_pos
+		
+		# Set the type of item (gold or time)
+		item.time = is_time_item
+		
+		# Add item to the scene and group
+		current_Itemholder.call_deferred("add_child", item)
+		item.add_to_group("items")
 
 func save_user_location(path):
 	current_Itemholder = path

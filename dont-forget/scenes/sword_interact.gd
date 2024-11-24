@@ -9,7 +9,6 @@ func _ready():
 	interaction_area.interact = Callable(self, "on_pick_up")
 	
 func on_pick_up():
-	print("Picked up the sword!")
 	character.sword = true
 	sword.queue_free()
 	world_Env.queue_free()
