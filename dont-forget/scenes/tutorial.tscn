@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=23 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -8,12 +8,15 @@
 [ext_resource type="Texture2D" uid="uid://cuaxdf0m8gk3r" path="res://assets/Tilemap/Tilemap2.png" id="4_nasg4"]
 [ext_resource type="Texture2D" uid="uid://bvsyg0uhfdf5" path="res://assets/Tilemap/Bg_2.png" id="6_wqrb5"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="8_h547o"]
+[ext_resource type="Script" path="res://scenes/sword_interact.gd" id="9_8mqe6"]
+[ext_resource type="Texture2D" uid="uid://dqrs5p51f6oii" path="res://assets/Sword.png" id="10_e8qmx"]
+[ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="11_ye7re"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uvql2"]
-distance = -409.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aehu5"]
+size = Vector2(8583, 22.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7b2hd"]
 size = Vector2(254, 89)
@@ -1016,6 +1019,14 @@ sources/8 = SubResource("TileSetAtlasSource_rowan")
 sources/10 = SubResource("TileSetAtlasSource_3an1s")
 sources/1 = SubResource("TileSetAtlasSource_7lyfh")
 
+[sub_resource type="Environment" id="Environment_i5evx"]
+background_mode = 3
+glow_enabled = true
+glow_blend_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3tx74"]
+radius = 12.7999
+
 [node name="tutorial" type="Node2D"]
 script = ExtResource("1_howbq")
 
@@ -1030,9 +1041,9 @@ position = Vector2(950, 761)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(930, 888)
-shape = SubResource("WorldBoundaryShape2D_uvql2")
+[node name="Ground" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(3384, 1310)
+shape = SubResource("RectangleShape2D_aehu5")
 one_way_collision = true
 one_way_collision_margin = 32.4
 
@@ -1139,10 +1150,11 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Interact" type="Label" parent="."]
-offset_left = 3215.0
-offset_top = 969.0
-offset_right = 3957.0
-offset_bottom = 1315.0
+visible = false
+offset_left = 3013.0
+offset_top = 956.0
+offset_right = 3755.0
+offset_bottom = 1302.0
 theme_override_fonts/font = ExtResource("8_h547o")
 theme_override_font_sizes/font_size = 41
 text = "Press E to pick up Items"
@@ -1159,3 +1171,24 @@ theme_override_font_sizes/font_size = 41
 text = "Left Click to attack"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sword_Interact" type="Node2D" parent="."]
+script = ExtResource("9_8mqe6")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Sword_Interact"]
+environment = SubResource("Environment_i5evx")
+
+[node name="Sword" type="Sprite2D" parent="Sword_Interact"]
+self_modulate = Color(2, 2, 2, 1)
+position = Vector2(3283, 1303)
+rotation = 3.13213
+scale = Vector2(0.0764167, 0.0962817)
+texture = ExtResource("10_e8qmx")
+
+[node name="InteractionArea" parent="Sword_Interact" instance=ExtResource("11_ye7re")]
+action_name = "pickup"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword_Interact/InteractionArea"]
+position = Vector2(3311, 1266)
+scale = Vector2(9.74282, 9.0481)
+shape = SubResource("CircleShape2D_3tx74")
