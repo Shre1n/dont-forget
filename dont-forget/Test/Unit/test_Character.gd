@@ -13,7 +13,7 @@ var _drop;
 
 # Instanziate Nodes before each test
 func before_each():
-	_character = Player.new();
+	_character = Character.new();
 	
 # Run following Code after each test
 func after_each(): 

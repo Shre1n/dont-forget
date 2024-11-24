@@ -12,6 +12,8 @@ signal going_back
 @export var speed = 400.0
 @export var jump_height = -450.0
 @export var life = 100
+@export var sword: bool = true
+
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var JumpAvailability : bool
@@ -20,6 +22,7 @@ var JumpAvailability : bool
 @export var input_enabled:bool = true
 @onready var animation_player = $AnimationPlayer
 @onready var game_manager = find_game_manager()
+@onready var hit_flash_anim_player = $HitFlashAnimationPlayer
 
 @export var orientation_left = false
 @export var attacking = false
@@ -33,7 +36,7 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") && sword:
 		attack()
 		update_animation()
 
@@ -95,7 +98,7 @@ func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func take_damage(damage):
-	print("Character got Damaged")
+	hit_flash_anim_player.play("hit_flash")
 	emit_signal("lifeChange", -damage)
 
 func get_time(value):
@@ -126,8 +129,10 @@ func find_game_manager():
 
 
 func die():
+	velocity = Vector2.ZERO
 	alive = false
 	animation_player.play("death")
+	await (animation_player.animation_finished)
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "death":
