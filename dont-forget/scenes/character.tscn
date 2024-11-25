@@ -928,6 +928,7 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -250)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
