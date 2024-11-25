@@ -8,7 +8,6 @@ func _ready():
 
 func take_damage(damage):
 	animation_player.play("damage")
-	print(damage)
 
 func _on_animation_finished(anim_name):
 	if anim_name == "damage":

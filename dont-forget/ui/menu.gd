@@ -10,7 +10,7 @@ func _input(event : InputEvent):
 		get_node("Options").hide()
 
 func _ready():
-	print(position)
+	pass
 
 func _process(delta):
 	pass

@@ -7,6 +7,8 @@ signal player_entered_door(door:Door,transition_type:String)
 @export var new_position: Vector2
 @export var new_direction: float
 @export var menu: bool = false
+@export var newRound: bool = false
+#@export var pathToVillage: bool = false
 #@export_enum("left", "right") var new_direction_word:string #auslesen und dann zu zahlen 1, 0, -1 umwandeln, 1 und -1 noch testen ob richtige richtung
 @export_enum("left", "right") var new_direction_word: String
 
@@ -22,10 +24,12 @@ func evaluate_direction():
 func _on_body_entered(body: Node2D) -> void:
 	if not body is Character:
 		return
+	var game_manager = find_game_manager()
 	if menu:
-		var game_manager = find_game_manager()
 		SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,game_manager,"transition_type")
 	else:
+		if newRound:
+			game_manager.restart_life_timer()
 		player_entered_door.emit(self)
 		Global.new_position = new_position
 		evaluate_direction()

@@ -12,6 +12,8 @@ signal going_back
 @export var speed = 400.0
 @export var jump_height = -450.0
 @export var life = 100
+@export var sword: bool = true
+
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var JumpAvailability : bool
@@ -20,6 +22,7 @@ var JumpAvailability : bool
 @export var input_enabled:bool = true
 @onready var animation_player = $AnimationPlayer
 @onready var game_manager = find_game_manager()
+@onready var hit_flash_anim_player = $HitFlashAnimationPlayer
 
 @export var orientation_left = false
 @export var attacking = false
@@ -33,7 +36,7 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_pressed("attack") && sword:
 		attack()
 		update_animation()
 
@@ -57,15 +60,13 @@ func _physics_process(delta):
 		elif JumpTimer.is_stopped():
 			velocity += get_gravity() * delta
 
-
-	# Handle jump.
 	if alive:
+		# Handle jump.
 		if Input.is_action_just_pressed("jump") and JumpAvailability:
 			velocity.y = jump_height
 			JumpAvailability = false
 
-	# Get the input direction and handle the movement/deceleration.
-	if alive:
+		# Get the input direction and handle the movement/deceleration.
 		var direction = Input.get_axis("left", "right")
 		if direction != 0:
 			velocity.x = direction * speed
@@ -97,6 +98,7 @@ func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func take_damage(damage):
+	hit_flash_anim_player.play("hit_flash")
 	emit_signal("lifeChange", -damage)
 
 func get_time(value):
@@ -134,7 +136,6 @@ func die():
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "death":
-		print("test")
 		#Zum Menu zurück
 		emit_signal("going_back")
 		#Zum Village zurück
