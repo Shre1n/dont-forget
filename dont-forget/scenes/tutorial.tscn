@@ -1031,6 +1031,7 @@ shader = ExtResource("7_iab1c")
 background_mode = 3
 glow_enabled = true
 glow_intensity = 1.05
+glow_strength = 0.0
 glow_blend_mode = 1
 glow_hdr_threshold = 0.0
 glow_hdr_scale = 1.97
@@ -1218,6 +1219,6 @@ menu = true
 [node name="Slime" parent="Gegner" instance=ExtResource("14_vrtbd")]
 position = Vector2(5872, 1276)
 scale = Vector2(0.15, 0.152)
-life = 1
+life = 21
 knockback_speed = 300.0
 tutorial = true
