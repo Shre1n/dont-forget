@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=28 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bnkd1ln6xu6mo" path="res://assets/Tilemap/tilemap.png" id="4_d3554"]
 [ext_resource type="Texture2D" uid="uid://cuaxdf0m8gk3r" path="res://assets/Tilemap/Tilemap2.png" id="4_nasg4"]
 [ext_resource type="Texture2D" uid="uid://bvsyg0uhfdf5" path="res://assets/Tilemap/Bg_2.png" id="6_wqrb5"]
+[ext_resource type="Shader" path="res://shader/Tilemap/layer1.gdshader" id="7_iab1c"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="8_h547o"]
 [ext_resource type="Script" path="res://scenes/sword_interact.gd" id="9_8mqe6"]
 [ext_resource type="Texture2D" uid="uid://dqrs5p51f6oii" path="res://assets/Sword.png" id="10_e8qmx"]
@@ -1023,16 +1024,33 @@ sources/8 = SubResource("TileSetAtlasSource_rowan")
 sources/10 = SubResource("TileSetAtlasSource_3an1s")
 sources/1 = SubResource("TileSetAtlasSource_7lyfh")
 
-[sub_resource type="Environment" id="Environment_i5evx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tu7ao"]
+shader = ExtResource("7_iab1c")
+
+[sub_resource type="Environment" id="Environment_2cxkj"]
 background_mode = 3
 glow_enabled = true
+glow_intensity = 1.05
 glow_blend_mode = 1
+glow_hdr_threshold = 0.0
+glow_hdr_scale = 1.97
+glow_hdr_luminance_cap = 13.45
+glow_map_strength = 0.78
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3tx74"]
 radius = 12.7999
 
 [node name="tutorial" type="Node2D"]
 script = ExtResource("1_howbq")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+position = Vector2(3247, 305)
+color = Color(0.585062, 0.585062, 0.585062, 1)
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(2002, 635)
+energy = 0.5
+shadow_enabled = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1066, 1096)
@@ -1086,11 +1104,12 @@ tile_set = SubResource("TileSet_y2saf")
 
 [node name="1" type="TileMapLayer" parent="layerholder"]
 z_index = 1
+material = SubResource("ShaderMaterial_tu7ao")
 tile_map_data = PackedByteArray("AADy/wkACAASAAQAAABuABUACAAIABEAAABmABUACAAGAAgAAABzABQACAAGAAwAAAAlABQACAAIABEAAAA4ABUACAAGAAwAAABLABUACAAGAAgAAABCABUACAAGAAwAAAAxAAkACAASAAQAAAAvABQACAAIABEAAAADABUACAAIABEAAAAXABQACAAIABEAAAAcABQACAAIABEAAAASABUACAAGAAwAAAAKABUACAAGAAgAAAD9/xUACAAGAAgAAADy/xQACAAIABEAAAD3/xUACAAIABEAAAAgABQACAAIABEAAABYABUACAAIABEAAABeABUACAAIABEAAABSABUACAAIABEAAABVABQACAAHABsAAAAzABQACAAOABwAAAD1/xQACAAOABwAAAApABQACAAKABsAAAA=")
 tile_set = SubResource("TileSet_y2saf")
 
 [node name="2" type="TileMapLayer" parent="layerholder"]
-z_index = 2
+z_index = 7
 tile_map_data = PackedByteArray("AABXABYACAAGAAwAAAB0ABYACAAGAAgAAABeABYACAAGAAwAAABQABUACAAGAAwAAADz/xUACAAGAAgAAAD6/xYACAAIABEAAAABABYACAAGAAgAAAAIABYACAAGAAwAAAAPABcACAAGAAwAAAAWABYACAAGAAgAAAAdABUACAAIABEAAAAjABUACAAIABEAAAApABUACAAGAAwAAAAzABUACAAIABEAAAA9ABUACAAGAAwAAABrABYACAAGAAwAAABkABYACAAIABEAAABHABYACAAGAAgAAAA=")
 tile_set = SubResource("TileSet_y2saf")
 
@@ -1100,19 +1119,16 @@ tile_map_data = PackedByteArray("AAAmABUACAAIABEAAAA6ABYACAAGAAgAAABCABYACAAGAAg
 tile_set = SubResource("TileSet_y2saf")
 
 [node name="4" type="TileMapLayer" parent="layerholder"]
-visible = false
 z_index = 4
 tile_map_data = PackedByteArray("AADx/xUACAAGAAgAAAD0/xYACAAIABEAAAD5/xcACAAGAAgAAAD//xcACAAIABEAAABRABgACAAGAAgAAABZABkACAAGAAgAAABhABgACAAGAAgAAABqABgACAAGAAgAAAATABcACAAGAAwAAAAZABYACAAGAAgAAAAfABcACAAGAAwAAAAkABYACAAIABEAAAAMABYACAAGAAgAAAAFABYACAAGAAgAAAA=")
 tile_set = SubResource("TileSet_y2saf")
 
 [node name="5" type="TileMapLayer" parent="layerholder"]
-visible = false
 z_index = 5
 tile_map_data = PackedByteArray("AAD2/xYACAAGAAgAAAD7/xgACAAIABEAAABPABkACAAGAAgAAABYABkACAAGAAgAAABfABkACAAGAAgAAABpABgACAAGAAgAAAByABgACAAGAAgAAAACABcACAAGAAgAAAAKABcACAAGAAgAAAAVABYACAAIABEAAAARABcACAAGAAwAAAAZABcACAAGAAgAAAA=")
 tile_set = SubResource("TileSet_y2saf")
 
 [node name="6" type="TileMapLayer" parent="layerholder"]
-visible = false
 z_index = 6
 tile_map_data = PackedByteArray("AAD0/xgACAAGAAgAAAD7/xkACAAIABEAAABWABoACAAGAAgAAABfABoACAAGAAgAAABmABkACAAGAAwAAABuABkACAAGAAgAAAACABgACAAGAAgAAAAQABgACAAGAAgAAAAaABgACAAGAAgAAAAhABcACAAGAAwAAAAIABgACAAIABEAAAA=")
 tile_set = SubResource("TileSet_y2saf")
@@ -1154,18 +1170,6 @@ text = "Press Space or W to jump"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Interact" type="Label" parent="."]
-visible = false
-offset_left = 3013.0
-offset_top = 956.0
-offset_right = 3755.0
-offset_bottom = 1302.0
-theme_override_fonts/font = ExtResource("8_h547o")
-theme_override_font_sizes/font_size = 41
-text = "Press E to pick up Items"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Attack" type="Label" parent="."]
 offset_left = 4283.0
 offset_top = 944.0
@@ -1181,13 +1185,13 @@ vertical_alignment = 1
 script = ExtResource("9_8mqe6")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Sword_Interact"]
-environment = SubResource("Environment_i5evx")
+environment = SubResource("Environment_2cxkj")
 
 [node name="Sword" type="Sprite2D" parent="Sword_Interact"]
 self_modulate = Color(2, 2, 2, 1)
-position = Vector2(3283, 1303)
+position = Vector2(3287, 1283)
 rotation = 3.13213
-scale = Vector2(0.0764167, 0.0962817)
+scale = Vector2(0.0621314, 0.0607497)
 texture = ExtResource("10_e8qmx")
 
 [node name="InteractionArea" parent="Sword_Interact" instance=ExtResource("11_ye7re")]
