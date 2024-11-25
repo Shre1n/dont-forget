@@ -1172,13 +1172,13 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Attack" type="Label" parent="."]
-offset_left = 4283.0
-offset_top = 944.0
-offset_right = 5025.0
-offset_bottom = 1290.0
+offset_left = 3705.0
+offset_top = 939.0
+offset_right = 4447.0
+offset_bottom = 1285.0
 theme_override_fonts/font = ExtResource("8_h547o")
 theme_override_font_sizes/font_size = 41
-text = "Left Click to attack"
+text = "LEFT Click to attack"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1204,11 +1204,11 @@ scale = Vector2(9.74282, 9.0481)
 shape = SubResource("CircleShape2D_3tx74")
 
 [node name="Dummie" parent="." instance=ExtResource("12_aqci3")]
-position = Vector2(4649, 1325)
+position = Vector2(4030, 1336)
 
 [node name="Door" parent="." instance=ExtResource("13_k13f7")]
 position = Vector2(6961, 970)
-scale = Vector2(-8.97879, 92.5068)
+scale = Vector2(-37.5186, 96.0971)
 transition_type = "wipe_to_right"
 menu = true
 
@@ -1217,7 +1217,7 @@ menu = true
 [node name="Gegner" type="Node2D" parent="."]
 
 [node name="Slime" parent="Gegner" instance=ExtResource("14_vrtbd")]
-position = Vector2(5872, 1276)
+position = Vector2(5090, 1264)
 scale = Vector2(0.15, 0.152)
 life = 21
 knockback_speed = 300.0
