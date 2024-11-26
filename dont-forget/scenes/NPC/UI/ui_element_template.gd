@@ -2,8 +2,8 @@ extends Control
 
 
 # Properties
-@export var element_name: String = "Element Name"
-@export var description: String = "Description here..."
+@export var element_name: String = ""
+@export var description: String = ""
 @export var icon_texture: Texture2D
 @export var action_data: Dictionary = {}  # Data passed when the action is triggered.
 

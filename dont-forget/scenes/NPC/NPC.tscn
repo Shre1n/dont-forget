@@ -1,3 +1,14 @@
-[gd_scene format=3 uid="uid://b8sq0g8rd2qcn"]
+[gd_scene load_steps=4 format=3 uid="uid://b8sq0g8rd2qcn"]
 
-[node name="NPC" type="Node2D"]
+[ext_resource type="Script" path="res://scenes/NPC/npc.gd" id="1_8fncy"]
+[ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="2_lfhkm"]
+[ext_resource type="PackedScene" uid="uid://db7p1ldqe8cyj" path="res://scenes/NPC/Manager/NPC_UIManager.tscn" id="3_b8670"]
+
+[node name="NPC" type="Node2D" groups=["npcs"]]
+script = ExtResource("1_8fncy")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_lfhkm")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+
+[node name="NPC_UI" parent="." instance=ExtResource("3_b8670")]

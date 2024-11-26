@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://yvg01f5jeevu"]
+
+[ext_resource type="Script" path="res://scenes/Shop/shop_item.gd" id="1_dgmmt"]
+
+[node name="ShopItem" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_dgmmt")
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 20.0
+
+[node name="PriceLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 20.0

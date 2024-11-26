@@ -34,6 +34,7 @@ enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 [global_group]
 
 character=""
+npcs=""
 
 [gui]
 
