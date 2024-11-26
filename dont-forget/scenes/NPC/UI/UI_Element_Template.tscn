@@ -22,7 +22,7 @@ layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Icon" type="TextureRect" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
