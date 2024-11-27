@@ -43,16 +43,11 @@ HSlider/styles/grabber_area = SubResource("StyleBoxFlat_ehqm5")
 HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_112xp")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tstbd"]
-draw_center = false
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-shadow_size = 3
 
 [sub_resource type="Theme" id="Theme_dmn8s"]
 CheckButton/styles/normal = SubResource("StyleBoxFlat_tstbd")
@@ -156,7 +151,7 @@ text = "Volume
 "
 
 [node name="Volume" type="HSlider" parent="Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(124, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -166,6 +161,7 @@ theme = SubResource("Theme_joij3")
 value = 100.0
 
 [node name="Mute" type="CheckButton" parent="Panel/Panel/VBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(124, 0)
 layout_mode = 2
 size_flags_vertical = 8
 tooltip_text = "Muting the game"
