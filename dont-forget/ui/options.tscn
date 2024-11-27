@@ -157,7 +157,8 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-tooltip_text = "Verschiebe um die Gesamtlautstärke anzupassen"
+tooltip_text = "Slide to adjust the overall volume
+"
 theme = SubResource("Theme_joij3")
 value = 100.0
 
