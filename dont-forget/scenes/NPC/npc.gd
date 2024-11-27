@@ -10,14 +10,12 @@ extends Node2D
 signal interact_with_player(npc)
 
 func _ready():
-	interaction_area.connect("body_entered", Callable(self, "_on_body_entered"))
+	interaction_area.interact = Callable(self, "on_interact")
 
-func _on_body_entered(body):
-	if body.is_in_group("Character"):
-		# Notify the NPC_UIManager to update the UI based on this NPC
-		npc_ui_manager.update_ui(self)
-		emit_signal("interact_with_player", self)
-		
-		
+
+func on_interact():
+	# Pass this NPC instance to the UI Manager
+	npc_ui_manager.update_ui(self)
+
 func get_shop_items() -> Array:
 	return shop_items

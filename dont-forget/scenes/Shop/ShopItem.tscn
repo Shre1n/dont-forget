@@ -7,12 +7,12 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_dgmmt")
 
-[node name="NameLabel" type="Label" parent="."]
+[node name="name" type="Label" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 20.0
 
-[node name="PriceLabel" type="Label" parent="."]
+[node name="price" type="Label" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 20.0

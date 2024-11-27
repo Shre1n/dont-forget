@@ -10,4 +10,4 @@ anchors_preset = 0
 script = ExtResource("1_7yj3n")
 ui_element_template = ExtResource("2_byk15")
 
-[node name="UiElementTemplate" parent="." instance=ExtResource("3_hlhab")]
+[node name="UI_Container" parent="." instance=ExtResource("3_hlhab")]

@@ -1198,7 +1198,6 @@ texture = ExtResource("10_e8qmx")
 
 [node name="InteractionArea" parent="Sword_Interact" instance=ExtResource("11_ye7re")]
 position = Vector2(3310, 1265)
-action_name = "pickup"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword_Interact/InteractionArea"]
 scale = Vector2(9.74282, 9.0481)
@@ -1226,4 +1225,4 @@ tutorial = true
 
 [node name="ShopNpc" parent="." instance=ExtResource("16_vpndh")]
 position = Vector2(-657, 1116)
-scale = Vector2(2.71545, 2.5827)
+scale = Vector2(2.87545, 2.5827)
