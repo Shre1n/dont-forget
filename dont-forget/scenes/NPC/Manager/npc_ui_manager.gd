@@ -23,7 +23,7 @@ func update_ui(npc: Node):
 			else:
 				print("Error: ui_element is not of type ShopItem")
 				print(ui_container.get_child(0), typeof(ui_container))
-				print(ui_container.get_child(1), typeof(ui_container))
+				print(ui_container.get_child(1).get_tree(), typeof(ui_container))
 
 	# Clears the current UI elements
 func clear_ui():

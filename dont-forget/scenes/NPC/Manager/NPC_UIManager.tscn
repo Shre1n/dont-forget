@@ -16,4 +16,6 @@ ui_element_template = ExtResource("2_byk15")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+scale = Vector2(1.00146, 0.993958)
+theme_override_constants/h_separation = 100
 columns = 2

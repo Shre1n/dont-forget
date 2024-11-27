@@ -16,6 +16,8 @@ func _ready():
 func on_interact():
 	# Pass this NPC instance to the UI Manager
 	npc_ui_manager.update_ui(self)
+	#get_tree().paused = true
+	#get_node("../Character/AnimationPlayer").play("idle")
 
 func get_shop_items() -> Array:
 	return shop_items
