@@ -11,3 +11,9 @@ script = ExtResource("1_7yj3n")
 ui_element_template = ExtResource("2_byk15")
 
 [node name="UI_Container" parent="." instance=ExtResource("3_hlhab")]
+
+[node name="GridContainer" type="GridContainer" parent="UI_Container"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 2
