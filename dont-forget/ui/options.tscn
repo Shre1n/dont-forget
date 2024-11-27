@@ -1,6 +1,24 @@
-[gd_scene load_steps=15 format=3 uid="uid://cspyht3ytgvhx"]
+[gd_scene load_steps=21 format=3 uid="uid://cspyht3ytgvhx"]
 
 [ext_resource type="Script" path="res://ui/options.gd" id="1_sxokr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_et0gm"]
+bg_color = Color(0.303233, 0.303233, 0.303233, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ux76x"]
+bg_color = Color(0.142256, 0.142256, 0.142256, 1)
+
+[sub_resource type="Theme" id="Theme_g4wqp"]
+Panel/styles/panel = SubResource("StyleBoxFlat_ux76x")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mfkeb"]
+bg_color = Color(0.807303, 0.113662, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kd76n"]
+bg_color = Color(0.770791, 0.511126, 0.614406, 1)
+
+[sub_resource type="Theme" id="Theme_p7iw0"]
+Panel/styles/panel = SubResource("StyleBoxFlat_kd76n")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebwff"]
 bg_color = Color(0.288852, 0.262479, 0.331737, 1)
@@ -85,6 +103,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_et0gm")
 
 [node name="Panel" type="Panel" parent="Panel"]
 layout_mode = 1
@@ -95,6 +114,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_g4wqp")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mfkeb")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel"]
 layout_mode = 1
@@ -109,6 +130,7 @@ offset_right = 337.0
 offset_bottom = 131.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_p7iw0")
 theme_override_constants/separation = 30
 
 [node name="HSplitContainer" type="HSplitContainer" parent="Panel/Panel/VBoxContainer"]
@@ -168,7 +190,7 @@ icon = SubResource("ImageTexture_lgjsh")
 [node name="Reset_Btn" type="Button" parent="Panel/Panel/VBoxContainer/HSplitContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Setzt die Einstellungen zurück auf den Standart"
+tooltip_text = "Resets the settings to default"
 theme = SubResource("Theme_42qfs")
 theme_override_font_sizes/font_size = 30
 keep_pressed_outside = true
