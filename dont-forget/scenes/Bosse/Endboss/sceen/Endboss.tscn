@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbtj81n70c8tm"]
+
+[ext_resource type="Script" path="res://scenes/Bosse/Endboss/sceen/endboss.gd" id="1_4st5j"]
+[ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="2_u5hs7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1b63"]
+
+[node name="Boss" type="Node2D"]
+script = ExtResource("1_4st5j")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_u5hs7")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("RectangleShape2D_s1b63")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
