@@ -5,7 +5,8 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s1b63"]
 
-[node name="Boss" type="Node2D"]
+[node name="Endboss" type="Node2D"]
+scale = Vector2(5.73895, 20.1067)
 script = ExtResource("1_4st5j")
 
 [node name="InteractionArea" parent="." instance=ExtResource("2_u5hs7")]

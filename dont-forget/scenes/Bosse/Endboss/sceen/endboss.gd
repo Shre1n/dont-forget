@@ -1,11 +1,24 @@
 extends Node2D
 
+@onready var interaction_area: InteractionArea = $InteractionArea
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+signal boss_defeated(boss_name: String)
+signal boss_engaged(boss_name: String)
 
+@export var max_health: int = 100
+var current_heath: int = max_health
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _ready(damage: int = 10):
+	interaction_area.interact = Callable(self, "on_hit")
+
+func on_hit(damage: int = 10):
+	current_heath -= damage
+	print("Boss hit! Remain! HP: ", current_heath)
+	emit_signal
+	
+	if current_heath <= 0:
+		die()
+
+func die():
+	emit_signal("boss_defeated")
+	queue_free()

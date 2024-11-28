@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://c5bhu2ll1r458"]
+[gd_scene load_steps=2 format=3 uid="uid://c5bhu2ll1r458"]
+
+[ext_resource type="Script" path="res://scenes/Bosse/manager.gd" id="1_nxbm7"]
 
 [node name="Manager" type="Node2D"]
+script = ExtResource("1_nxbm7")
