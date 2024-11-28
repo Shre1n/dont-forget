@@ -879,7 +879,7 @@ _data = {
 "hit_flash": SubResource("Animation_tqr0o")
 }
 
-[node name="Character" type="CharacterBody2D"]
+[node name="Character" type="CharacterBody2D" groups=["character"]]
 script = ExtResource("1_gaw86")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
