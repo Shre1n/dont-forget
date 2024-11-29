@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
 [ext_resource type="Texture2D" uid="uid://ble1h840tgkst" path="res://assets/Tilemap/dirt.png" id="4_1x1oc"]
 [ext_resource type="Texture2D" uid="uid://dbyietkipegb0" path="res://assets/deco/decoElements.png" id="4_7kvei"]
-[ext_resource type="Texture2D" uid="uid://bnkd1ln6xu6mo" path="res://assets/Tilemap/tilemap.png" id="4_d3554"]
 [ext_resource type="Texture2D" uid="uid://cuaxdf0m8gk3r" path="res://assets/Tilemap/Tilemap2.png" id="4_nasg4"]
 [ext_resource type="Texture2D" uid="uid://bvsyg0uhfdf5" path="res://assets/Tilemap/Bg_2.png" id="6_wqrb5"]
 [ext_resource type="Shader" path="res://shader/Tilemap/layer1.gdshader" id="7_iab1c"]
@@ -29,8 +28,10 @@ size = Vector2(355, 63)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwnld"]
 size = Vector2(325, 1203)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_amgem"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_txnar"]
-texture = ExtResource("4_d3554")
+texture = SubResource("CompressedTexture2D_amgem")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
