@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=39 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://scenes/home_1.gd" id="17_53bj1"]
 [ext_resource type="Script" path="res://scenes/laterne_5.gd" id="18_p0o2n"]
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="20_igg15"]
+[ext_resource type="Script" path="res://door.gd" id="21_n45p4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2ado"]
 texture = ExtResource("2_cj6i5")
@@ -460,6 +461,9 @@ background_mode = 3
 glow_enabled = true
 glow_blend_mode = 1
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bdhh3"]
+distance = -43.9025
+
 [node name="Village" type="Node2D"]
 script = ExtResource("1_5at0l")
 
@@ -769,3 +773,16 @@ z_index = 10
 position = Vector2(-519.48, 589.39)
 scale = Vector2(0.519, 0.519)
 texture = ExtResource("9_i6aox")
+
+[node name="Door" type="Area2D" parent="."]
+position = Vector2(1358, 2031)
+scale = Vector2(17.96, 3.28)
+script = ExtResource("21_n45p4")
+transition_type = "fade_to_white"
+menu = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+scale = Vector2(2.02004, 1)
+shape = SubResource("WorldBoundaryShape2D_bdhh3")
+
+[connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
