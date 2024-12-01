@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=30 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -1042,6 +1042,8 @@ glow_map_strength = 0.78
 [sub_resource type="CircleShape2D" id="CircleShape2D_3tx74"]
 radius = 12.7999
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3hr1b"]
+
 [node name="tutorial" type="Node2D"]
 script = ExtResource("1_howbq")
 
@@ -1220,9 +1222,14 @@ menu = true
 position = Vector2(5090, 1264)
 scale = Vector2(0.15, 0.152)
 life = 21
-knockback_speed = 300.0
 tutorial = true
 
 [node name="ShopNpc" parent="." instance=ExtResource("16_vpndh")]
 position = Vector2(-657, 1116)
 scale = Vector2(2.87545, 2.5827)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(200, 1328)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_3hr1b")

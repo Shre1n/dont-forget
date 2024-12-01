@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var max_gold_drop: int = 4
 @export var min_time_drop: int = 2
 @export var max_time_drop: int = 5
-@export var knockback_speed: float = 400.0
+@export var knockback_speed: float = 300.0
 @export var knockback_duration: float = 0.2
 @export var tutorial: bool = false
 
@@ -128,7 +128,7 @@ func _on_detection_area_body_exited(body):
 		character_chase = false
 		start_new_behavior()
 
-func take_damage(damage: int):
+func take_damage(damage, pierce, knockback, position, falle):
 	life -= damage
 	damaged = true
 	animated_player.play("hurt")
