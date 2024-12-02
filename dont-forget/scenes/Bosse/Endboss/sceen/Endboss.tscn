@@ -1,7 +1,6 @@
-[gd_scene load_steps=36 format=3 uid="uid://bbtj81n70c8tm"]
+[gd_scene load_steps=35 format=3 uid="uid://bbtj81n70c8tm"]
 
 [ext_resource type="Script" path="res://scenes/Bosse/Endboss/sceen/endboss.gd" id="1_4st5j"]
-[ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="2_u5hs7"]
 [ext_resource type="Texture2D" uid="uid://dulu8n0ybuoow" path="res://assets/Boss/attack/1.png" id="3_5wx5q"]
 [ext_resource type="Shader" uid="uid://cyb1f3lqb6oys" path="res://shader/Boss/Endboss.tres" id="3_arqil"]
 [ext_resource type="Texture2D" uid="uid://diwh0wlpo8kdv" path="res://assets/Boss/attack/2.png" id="4_svlsf"]
@@ -21,8 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://cfm5kq3bus6jy" path="res://assets/Boss/run/3.png" id="18_rvt6r"]
 [ext_resource type="PackedScene" uid="uid://dnu6va4x16qlb" path="res://scenes/damage_area.tscn" id="19_pc17t"]
 [ext_resource type="Script" path="res://scripte/attack_area.gd" id="20_kw2np"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s1b63"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q2p7g"]
 shader = ExtResource("3_arqil")
@@ -1009,14 +1006,12 @@ _data = {
 "hit_flash": SubResource("Animation_bn6gs")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yifdr"]
+size = Vector2(2086.79, 410.51)
+
 [node name="Endboss" type="CharacterBody2D"]
 scale = Vector2(5.73895, 20.1067)
 script = ExtResource("1_4st5j")
-
-[node name="InteractionArea" parent="." instance=ExtResource("2_u5hs7")]
-
-[node name="Room" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource("RectangleShape2D_s1b63")
 
 [node name="Boss" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_q2p7g")
@@ -1061,3 +1056,12 @@ polygon = PackedVector2Array(5.2472, 13.5029, 4.74179, 12.8045, 4.60209, 12.0095
 libraries = {
 "": SubResource("AnimationLibrary_x63fv")
 }
+
+[node name="Detection Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection Area"]
+position = Vector2(89.7377, 29.0948)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_yifdr")
+
+[connection signal="body_entered" from="Detection Area" to="." method="_on_detection_area_body_entered"]
