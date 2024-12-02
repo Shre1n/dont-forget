@@ -124,9 +124,10 @@ func perform_bomb_attack():
 	
 	# Determine vertical direction (jumping towards the player)
 	var jump_height = character.global_position.y - global_position.y
+	print("Jump H: ", jump_height)
 	if jump_height > 0:
 		# Character is below the boss (boss needs to jump up)
-		velocity.y = -400  # Adjust this value to control the jump strength
+		velocity.y = -1000 # Adjust this value to control the jump strength
 		print("Boss jumps up towards player")
 	else:
 		# Character is above the boss (boss needs to jump down)
@@ -137,6 +138,8 @@ func perform_bomb_attack():
 	animationPlayer.play("bombe")
 	print("Boss drops bombs towards player!")
 	
+	if is_on_floor():
+		animationPlayer.play("idle")
 	# The attack animation should not override the jump or movement logic,
 	# so we'll make sure to sync the jump and bomb dropping.
 
@@ -159,7 +162,8 @@ func chase_character():
 		var direction_to_character = (character.global_position - global_position).normalized()
 		direction = direction_calcX(direction_to_character)
 		velocity.x = direction * speed
-		attacking = false
+		if	animationPlayer.is:
+			attacking = false
 		# Spieler-Distanz prüfen und angreifen, wenn nah genug
 		var distance_to_character = character.global_position.distance_to(global_position)
 		if distance_to_character <= attack_range and !attacking:
