@@ -101,6 +101,7 @@ func perform_attack():
 	attacking = true
 	animationPlayer.play("attack")
 	print("Boss performs a basic attack")
+	attacking = false
 
 func perform_phase_2_attack():
 	var random_action = randi() % 2
@@ -162,8 +163,7 @@ func chase_character():
 		var direction_to_character = (character.global_position - global_position).normalized()
 		direction = direction_calcX(direction_to_character)
 		velocity.x = direction * speed
-		if	animationPlayer.is:
-			attacking = false
+		attacking = false
 		# Spieler-Distanz prüfen und angreifen, wenn nah genug
 		var distance_to_character = character.global_position.distance_to(global_position)
 		if distance_to_character <= attack_range and !attacking:
