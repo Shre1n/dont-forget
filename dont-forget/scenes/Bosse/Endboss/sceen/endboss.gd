@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-@onready var interaction_area: InteractionArea = $InteractionArea
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var hitFlashPlayer: AnimationPlayer = $HitFlashPlayer
 @onready var boss: AnimatedSprite2D = $Boss
@@ -23,7 +22,6 @@ signal boss_engaged(boss_name: String)
 var current_heath: int = max_health
 
 func _ready():
-	interaction_area.interact = Callable(self, "on_hit")
 	animationPlayer.play("idle")
 
 func _physics_process(delta):
@@ -31,6 +29,7 @@ func _physics_process(delta):
 	if character_chase:
 		chase_character()
 	move_and_slide()
+	update_animation()
 
 func take_damge(damage:int):
 	current_heath -= damage
@@ -45,21 +44,26 @@ func update_animation():
 		return
 	if damaged:
 		return
+	print("dehugfurgfz")
 
 	match direction:
 		0:
 			animationPlayer.play("idle")
+			print("hufhufhuw")
 		-1:
 			if !orientation_left:
 				flip_sprite()
+				print("frzgfz7fegwueij")
 			animationPlayer.play("run")
 		1:
 			if orientation_left:
 				flip_sprite()
+				print("eghfzegfuwihfiw")
 			animationPlayer.play("run")
 
 func flip_sprite():
 	$".".scale.x *= -1
+	print("ghezgfdgeu")
 	orientation_left = !orientation_left
 
 
