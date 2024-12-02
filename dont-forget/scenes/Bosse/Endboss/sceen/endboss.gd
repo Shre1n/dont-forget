@@ -58,7 +58,7 @@ func update_animation():
 	if velocity.x == 0:
 		animationPlayer.play("idle")
 	else:
-		if velocity.x <= 0:
+		if velocity.x < 0:
 			if !orientation_left:
 				flip_sprite()
 			animationPlayer.play("run")
@@ -117,11 +117,12 @@ func perform_combo_attack():
 func perform_bomb_attack():
 	# Make the boss jump towards the player
 	var direction_to_character = (character.global_position - global_position).normalized()
+	
 	# Calculate horizontal direction
 	direction = direction_calcX(direction_to_character)
 	velocity.x = direction * speed
-
-	# Calculate vertical direction for jumping
+	
+	# Determine vertical direction (jumping towards the player)
 	var jump_height = character.global_position.y - global_position.y
 	if jump_height > 0:
 		# Character is below the boss (boss needs to jump up)
@@ -131,10 +132,14 @@ func perform_bomb_attack():
 		# Character is above the boss (boss needs to jump down)
 		velocity.y = 400  # Adjust this value to control downward velocity
 		print("Boss jumps down towards player")
-
-	# Play bomb animation once jump is performed
+	
+	# Play the bomb animation after the jump is initiated
 	animationPlayer.play("bombe")
 	print("Boss drops bombs towards player!")
+	
+	# The attack animation should not override the jump or movement logic,
+	# so we'll make sure to sync the jump and bomb dropping.
+
 
 
 func die():
