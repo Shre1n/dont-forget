@@ -8,7 +8,7 @@ extends CharacterBody2D
 @export var attacking = false
 @export var alive = true
 @export var damaged: bool = false
-@export var attack_range: float = 200.0  # Angriffsreichweite
+@export var attack_range: float = 150.0  # Angriffsreichweite
 
 var combo_phase: int = 0
 var phase: int = 1  # Boss starting Phase
@@ -58,11 +58,11 @@ func update_animation():
 	if velocity.x == 0:
 		animationPlayer.play("idle")
 	else:
-		if direction == -1:
-			if orientation_left:
+		if velocity.x <= 0:
+			if !orientation_left:
 				flip_sprite()
 			animationPlayer.play("run")
-		elif direction == 1:
+		elif velocity.x > 0:
 			if	orientation_left:
 				flip_sprite()
 			animationPlayer.play("run")
@@ -115,8 +115,27 @@ func perform_combo_attack():
 	print("Boss starts combo attack (left-right-left).")
 
 func perform_bomb_attack():
+	# Make the boss jump towards the player
+	var direction_to_character = (character.global_position - global_position).normalized()
+	# Calculate horizontal direction
+	direction = direction_calcX(direction_to_character)
+	velocity.x = direction * speed
+
+	# Calculate vertical direction for jumping
+	var jump_height = character.global_position.y - global_position.y
+	if jump_height > 0:
+		# Character is below the boss (boss needs to jump up)
+		velocity.y = -400  # Adjust this value to control the jump strength
+		print("Boss jumps up towards player")
+	else:
+		# Character is above the boss (boss needs to jump down)
+		velocity.y = 400  # Adjust this value to control downward velocity
+		print("Boss jumps down towards player")
+
+	# Play bomb animation once jump is performed
 	animationPlayer.play("bombe")
-	print("Boss drops bombs!")
+	print("Boss drops bombs towards player!")
+
 
 func die():
 	alive = false
