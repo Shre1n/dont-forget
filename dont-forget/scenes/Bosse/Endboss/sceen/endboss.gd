@@ -14,7 +14,7 @@ func _ready(damage: int = 10):
 func on_hit(damage: int = 10):
 	current_heath -= damage
 	print("Boss hit! Remain! HP: ", current_heath)
-	emit_signal
+	emit_signal("boss_engaged")
 	
 	if current_heath <= 0:
 		die()
