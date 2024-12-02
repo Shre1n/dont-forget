@@ -1231,4 +1231,6 @@ scale = Vector2(2.87545, 2.5827)
 
 [node name="Manager" parent="." instance=ExtResource("17_065xf")]
 
-[node name="Endboss" parent="Manager" instance=ExtResource("18_eudvh")]
+[node name="Endboss" parent="." instance=ExtResource("18_eudvh")]
+position = Vector2(1433, 491)
+scale = Vector2(2, 7.007)
