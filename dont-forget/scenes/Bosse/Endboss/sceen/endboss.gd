@@ -2,14 +2,16 @@ extends CharacterBody2D
 
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var hitFlashPlayer: AnimationPlayer = $HitFlashPlayer
-@onready var boss: AnimatedSprite2D = $Boss
+@onready var combo_timer: Timer = $ComboTimer
 
-@export var speed: float = 100.0 
+@export var speed: float = 100.0
 @export var attacking = false
 @export var alive = true
 @export var damaged: bool = false
+@export var attack_range: float = 200.0  # Angriffsreichweite
 
-
+var combo_phase: int = 0
+var phase: int = 1  # Boss starting Phase
 var orientation_left: bool = false
 var character: Character = null
 var character_chase: bool = false
@@ -19,7 +21,7 @@ signal boss_defeated(boss_name: String)
 signal boss_engaged(boss_name: String)
 
 @export var max_health: int = 100
-var current_heath: int = max_health
+var current_health: int = max_health
 
 func _ready():
 	animationPlayer.play("idle")
@@ -31,41 +33,43 @@ func _physics_process(delta):
 	move_and_slide()
 	update_animation()
 
-func take_damge(damage:int):
-	current_heath -= damage
+func take_damage(damage: int):
+	current_health -= damage
 	damaged = true
 	hitFlashPlayer.play("hit_flash")
-	if current_heath <= 0:
+	if current_health <= max_health / 2 and phase == 1:
+		start_phase_2()
+	if current_health <= 0:
 		die()
 
+func start_phase_2():
+	phase = 2
+	print("Boss entered Phase 2")
 
 func update_animation():
-	if !alive:
+	if !alive or damaged:
 		return
-	if damaged:
+		
+	if attacking:
+		animationPlayer.play("attack")
+		print("attack")
 		return
-	print("dehugfurgfz")
-
-	match direction:
-		0:
-			animationPlayer.play("idle")
-			print("hufhufhuw")
-		-1:
-			if !orientation_left:
-				flip_sprite()
-				print("frzgfz7fegwueij")
-			animationPlayer.play("run")
-		1:
+		
+	if velocity.x == 0:
+		animationPlayer.play("idle")
+	else:
+		if direction == -1:
 			if orientation_left:
 				flip_sprite()
-				print("eghfzegfuwihfiw")
+			animationPlayer.play("run")
+		elif direction == 1:
+			if	orientation_left:
+				flip_sprite()
 			animationPlayer.play("run")
 
 func flip_sprite():
 	$".".scale.x *= -1
-	print("ghezgfdgeu")
 	orientation_left = !orientation_left
-
 
 func apply_gravity(delta):
 	if !is_on_floor():
@@ -73,23 +77,46 @@ func apply_gravity(delta):
 	else:
 		velocity.y = 0
 
-
 func on_hit(damage: int = 10):
-	current_heath -= damage
-	print("Boss hit! Remain! HP: ", current_heath)
-	
-	
+	take_damage(damage)
 	emit_signal("boss_engaged")
-	
-	if current_heath <= 0:
-		die()
 
 func attack():
+	print("attack() called")
+	if global_position.x < character.global_position.x:
+		if orientation_left:
+			flip_sprite()
+		print("right")
+	else:
+		if not orientation_left:
+			flip_sprite()
+		print("left")
+	if phase == 1:
+		perform_attack()
+		print("perform 1")
+	elif phase == 2:
+		perform_phase_2_attack()
+
+func perform_attack():
 	attacking = true
 	animationPlayer.play("attack")
-	
-	
-	
+	print("Boss performs a basic attack")
+
+func perform_phase_2_attack():
+	var random_action = randi() % 2
+	if random_action == 0:
+		perform_combo_attack()
+	else:
+		perform_bomb_attack()
+
+func perform_combo_attack():
+	combo_phase = 0
+	combo_timer.start()
+	print("Boss starts combo attack (left-right-left).")
+
+func perform_bomb_attack():
+	animationPlayer.play("bombe")
+	print("Boss drops bombs!")
 
 func die():
 	alive = false
@@ -97,26 +124,34 @@ func die():
 	animationPlayer.play("dead")
 	queue_free()
 
-
 func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body is Character:
 		animationPlayer.play("run")
 		character = body
 		character_chase = true
-		
+
 func chase_character():
 	if character:
 		var direction_to_character = (character.global_position - global_position).normalized()
 		direction = direction_calcX(direction_to_character)
 		velocity.x = direction * speed
+		attacking = false
+		# Spieler-Distanz prüfen und angreifen, wenn nah genug
+		var distance_to_character = character.global_position.distance_to(global_position)
+		if distance_to_character <= attack_range and !attacking:
+			velocity.x = 0
+			attack()
 
+func direction_calcX(new_goal):
+	if new_goal.x > 0:
+		return 1  # Nach rechts
+	elif new_goal.x < 0:
+		return -1  # Nach links
+	return 0  # Stillstand
 
-func direction_calcX(newGoal):
-	var new_direction
-	if newGoal.x > 0:
-		new_direction = 1  # Nach rechts
-	elif newGoal.x < 0:
-		new_direction = -1  # Nach links
+func update_orientation():
+	# Flips the sprite based on orientation.
+	if orientation_left:
+		$".".scale.x = abs($".".scale.x) * -1
 	else:
-		new_direction = 0  # Stillstand
-	return new_direction
+		$".".scale.x = abs($".".scale.x)

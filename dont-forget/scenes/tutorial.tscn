@@ -1063,7 +1063,7 @@ sprite_frames = SubResource("SpriteFrames_x17dd")
 animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
-position = Vector2(950, 761)
+position = Vector2(3267, 1125)
 sword = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -1232,5 +1232,5 @@ scale = Vector2(2.87545, 2.5827)
 [node name="Manager" parent="." instance=ExtResource("17_065xf")]
 
 [node name="Endboss" parent="." instance=ExtResource("18_eudvh")]
-position = Vector2(4329, 897)
-scale = Vector2(1, 3.503)
+position = Vector2(4339, 1109)
+scale = Vector2(0.5, 1.752)
