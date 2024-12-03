@@ -124,8 +124,12 @@ func update_animation():
 
 func flip_sprite():
 	# Flip the sprite horizontally
-	$".".scale.x *= -1
-	orientation_left = !orientation_left
+	if velocity.x >= 0 and orientation_left:
+		$".".scale.x *= -1
+		orientation_left = !orientation_left
+	elif velocity.x < 0 and orientation_left:
+		$".".scale.x *= -1
+		orientation_left = !orientation_left
 
 func _on_detection_area_body_entered(body):
 	# Triggered when the player enters the detection area

@@ -1062,7 +1062,7 @@ sprite_frames = SubResource("SpriteFrames_x17dd")
 animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
-position = Vector2(950, 761)
+position = Vector2(3041, 1073)
 sword = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -1231,4 +1231,3 @@ scale = Vector2(2.87545, 2.5827)
 [node name="EnemyTemplate" parent="." instance=ExtResource("17_01rhj")]
 position = Vector2(2527, 1006)
 scale = Vector2(0.3, 0.3)
-chase_range = 0.0

@@ -9,12 +9,23 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 @onready var hit: AnimationPlayer = $HitFlashPlayer
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var detection_area_size: CollisionShape2D = $DetectionArea/CollisionShape2D
+@onready var hitbox: CollisionShape2D = $Hitbox
+var start_position: Vector2
 
 var original_position: Vector2
 var player: Character = null
+var min_pos: Vector2
+var max_pos: Vector2
 
 func _ready():
 	original_position = global_position
+	start_position = position
+	min_pos = start_position
+	max_pos = start_position
+	min_pos.x -= 10
+	max_pos.x += 10
+	min_pos.y -= 10
+	max_pos.y += 10
 	chase_range = detection_area_size.scale.x*100
 	animationPlayer.play("idle")
 	# Connect detection area signals
@@ -23,9 +34,18 @@ func _ready():
 
 func _physics_process(delta):
 	# Custom flying movement
-	var offset = sin(global_position.x / fly_range) * fly_height  # Sine wave for vertical movement
-	velocity.x = fly_speed  # Constant horizontal speed
-	velocity.y = offset  # Apply vertical movement
+	super.flip_sprite()
+	if position.distance_to(start_position) > hitbox.scale.x:
+		if start_position.x <= position.x:
+			velocity.x = -fly_speed
+		else:
+			velocity.x = fly_speed  # Constant horizontal speed
+		if start_position.y <= position.y:
+			velocity.y = -fly_speed
+		else:
+			velocity.y = fly_speed
+	else:
+		velocity = Vector2.ZERO
 
 	# If player is within range, start chasing
 	if player and global_position.distance_to(player.global_position) <= chase_range:
