@@ -20,7 +20,7 @@ signal going_back  # Zurück zum Menü
 @export var cooldown_stat = 250
 @export var pierce_stat = 0  # Durchschlagskraft (Prozent)
 @export var crit_stat = 0  # Kritische Trefferchance (0–1000 = 0–100%)
-@export var knockback_stat = 1  # Knockback-Stärke
+@export var knockback_stat = 50  # Knockback-Stärke
 @export var knockback_res_stat = 0 # Knockback-Resistenz
 
 # Noch fehlende Stats
