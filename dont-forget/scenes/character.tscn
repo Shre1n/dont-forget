@@ -873,6 +873,7 @@ _data = {
 
 [node name="Character" type="CharacterBody2D" groups=["character"]]
 script = ExtResource("1_gaw86")
+test_on = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

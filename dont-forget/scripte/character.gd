@@ -8,19 +8,15 @@ signal going_back  # Zurück zum Menü
 # signal going_back(path)  # Zurück zum Dorf
 
 # --- Export-Variablen ---
-# Unendlich erhöhbar
+# Bis 3500 erhöhbar
 @export var damage_stat = 10
 @export var crit_dmg_stat = 10  # Schadenserhöhung bei Krits (Prozent)
 @export var res_stat = 0
-
-# Bis 3500 erhöhbar
 @export var speed_stat = 250
 @export var jump_stat = 250
 @export var imunity_stat = 0
 @export var attack_speed_stat = 250
 @export var extra_weight_stat = 0
-
-# Bis 1000 erhöhbar
 @export var cooldown_stat = 250
 @export var pierce_stat = 0  # Durchschlagskraft (Prozent)
 @export var crit_stat = 0  # Kritische Trefferchance (0–1000 = 0–100%)
@@ -31,6 +27,7 @@ signal going_back  # Zurück zum Menü
 # @export var dash_cooldown_stat = 1
 # @export var dash_speed_stat = 1
 
+@export var test_on: bool = false
 @export var sword: bool = true
 @export var input_enabled: bool = true
 @export var orientation_left = false
@@ -39,45 +36,30 @@ signal going_back  # Zurück zum Menü
 @export var alive = true
 
 @export var cooldown_duration: float = 1.0
-@export var max_attack_speed = 6.0
-@export var min_attack_speed = 2.0
 @export var knockback_speed: float = 300.0
 @export var knockback_duration: float = 0.2
 
-# --- Lokale Variablen ---
-var min_damage_stat = 1
-var min_speed_stat = 20
-var min_res_stat = 0
-var min_pierce_stat = 0
-var min_crit_stat = 0
-var min_crit_dmg_stat = 1
-var min_knockback_stat = 0
-var min_knockback_res_stat = 0
-var min_cooldown_stat = 0
-var min_attack_speed_stat = 1
-var min_jump_stat = 35
-var min_dash_cooldown_stat = 0
-var min_dash_speed_stat = 2
 
-var speed = max(20, speed_stat * 10)
-var jump_height = max(35, -(jump_stat * 10))
-var max_resistenz = 70
-var resistenz = res_stat
-var imunity = calculate_stats_to_value(imunity_stat, 0.0, 1.0, 0, 0.99, 3500.0)
-var knockback_res = (1 - (knockback_res_stat / 1000))
-var knockback_power = calculate_stats_to_value(knockback_stat, 0.0, 1.0, 0, 3000, 3500.0)
-var cooldown_reduction = (1 - (cooldown_stat / 1000))
-var attack_speed = calculate_stats_to_value(attack_speed_stat, 0.0, 3.5, min_attack_speed, max_attack_speed)
+var damage
+var speed
+var jump_height
+var resistenz
+var imunity
+var knockback_res
+var cooldown_reduction
+var attack_speed
+var cooldown_duration_base: float
+var all_stats 
+var extra_weight 
+var weight
+
 var cooldown: float = 0.0
-var cooldown_duration_base: float = 1.6 / attack_speed
-var all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
-var extra_weight = calculate_stats_to_value(extra_weight_stat, 0.0, 3.5, 0, 10)
-var weight = min(49, all_stats / 1000) + extra_weight
 
 var is_knocked_back: bool = false
 var knockback_timer: float = 0.0
 var knockback_direction: Vector2 = Vector2.ZERO
 var knockback_speed_new
+var knockback_wait
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var JumpAvailability: bool
@@ -96,19 +78,92 @@ func _ready():
 	new_spawn_position()
 	animation_player.play("idle")
 	game_manager.connect("death", Callable(self, "die"))
-	
-	var min_speed = 100
-	var max_speed = 2000 #max speed pro 1000 Stats
-	var max_step_speed = 3.5
-	speed = calculate_stats_to_value(speed_stat, 0.0 , max_step_speed, min_speed, max_speed)
-	var min_jump = 350
-	var max_jump = 900 #pro 1000 Stats
-	var max_step_jump = 3.5
-	jump_height = -calculate_stats_to_value(jump_stat, 0.0, max_step_jump, min_jump, max_jump)
-	resistenz = res_stat #fester Wert
-	imunity = calculate_stats_to_value(imunity_stat, 0.0, 1.0, 0, 0.99, 3500.0)
-	knockback_res = (1 - (knockback_res_stat/1000))
-	cooldown_reduction = (1 - (cooldown_stat/1000))
+	if test_on:
+		update_status()
+	else:
+		get_stats()
+
+func get_stats():
+	damage_stat = game_manager.damage_stat
+	crit_dmg_stat = game_manager.crit_dmg_stat
+	res_stat = game_manager.res_stat
+	speed_stat = game_manager.speed_stat
+	jump_stat = game_manager.jump_stat
+	imunity_stat = game_manager.imunity_stat
+	attack_speed_stat = game_manager.attack_speed_stat
+	cooldown_stat = game_manager.cooldown_stat
+	pierce_stat = game_manager.pierce_stat
+	crit_stat = game_manager.crit_stat
+	knockback_stat = game_manager.knockback_stat
+	knockback_res_stat = game_manager.knockback_res_stat
+	update_status()
+
+func adjust_stats(changes: Array) -> void:
+	var min_stats = 0
+	var max_stats = 3500
+	# Example: changes = [{"stat": "damage_stat", "amount": 10}, {"stat": "speed_stat", "amount": -5}]
+	for change in changes:
+		var stat_name = change.get("stat", "")
+		var amount = change.get("amount", 0)
+		if stat_name in self:
+			var new_value = self.get(stat_name) + amount
+			# Optional: Min-/Max-Grenzen berücksichtigen
+			match stat_name:
+				"damage_stat":
+					new_value = clamp(new_value, min_stats, max_stats)
+				"speed_stat":
+					new_value = clamp(new_value, min_stats, max_stats)
+				"jump_stat":
+					new_value = clamp(new_value, min_stats, max_stats)
+				"res_stat":
+					new_value = clamp(new_value, min_stats, max_stats)
+				"imunity_stat":
+					new_value = clamp(new_value, min_stats, max_stats)
+				"crit_stat":
+					new_value = clamp(new_value, min_stats, max_stats)
+				"crit_dmg_stat":
+					new_value = clamp(new_value, min_stats, max_stats)
+				"pierce_stat":
+					new_value = clamp(new_value, min_stats, max_stats)
+				"knockback_stat":
+					new_value = max(new_value, min_stats, max_stats)
+				"knockback_res_stat":
+					new_value = max(new_value, min_stats, max_stats)
+				"cooldown_stat":
+					new_value = max(new_value, min_stats, max_stats)
+				"attack_speed_stat":
+					new_value = max(new_value, min_stats, max_stats)
+				"extra_weight_stat":
+					new_value = max(new_value, min_stats, max_stats)
+				# Hier einfach neue hinzufügen, falls nötig
+			self.set(stat_name, new_value)
+	save_stats()
+
+func save_stats():
+	game_manager.damage_stat = damage_stat
+	game_manager.crit_dmg_stat = crit_dmg_stat
+	game_manager.res_stat = res_stat
+	game_manager.speed_stat = speed_stat
+	game_manager.jump_stat = jump_stat
+	game_manager.imunity_stat = imunity_stat
+	game_manager.attack_speed_stat = attack_speed_stat
+	game_manager.cooldown_stat = cooldown_stat
+	game_manager.pierce_stat = pierce_stat
+	game_manager.crit_stat = crit_stat
+	game_manager.knockback_stat = knockback_stat
+	game_manager.knockback_res_stat = knockback_res_stat
+	update_status()
+
+func update_status():
+	damage = calculate_stats_to_value(damage_stat, 0.0, 1.0, 0.0, 3500.0, 3500.0)
+	speed = calculate_stats_to_value(speed_stat, 0.0 , 1.0, 200, 3500, 3500.0) #6000
+	jump_height = -calculate_stats_to_value(jump_stat, 0.0, 1.0, 450, 1500, 3500.0) #2500
+	resistenz = calculate_stats_to_value(res_stat, 0.0, 1.0, 0.0, 7000.0, 3500.0)#res_stat #fester Wert
+	imunity = calculate_stats_to_value(imunity_stat, 0.0, 1.0, 1, 0.01, 3500.0)
+	knockback_res = calculate_stats_to_value(knockback_res_stat, 0.0, 1.0, 1, 0.01, 3500.0) #(1 - (knockback_res_stat/1000))
+	cooldown_reduction = calculate_stats_to_value(cooldown_stat, 0.0, 1.0, 1, 0.0, 3500.0) #(1 - (cooldown_stat/1000))
+	attack_speed = calculate_stats_to_value(attack_speed_stat, 0.0, 1.0, 2.0, 14.0, 3500.0)
+	cooldown_duration_base = 1.6 / attack_speed
 	all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
 	extra_weight = calculate_stats_to_value(extra_weight_stat, 0.0, 3.5, 0, 100)
 	weight = min(490, all_stats / 100) + extra_weight
@@ -117,8 +172,7 @@ func _ready():
 	weapon.pierce_multi = pierce_stat
 	weapon.crit_chance = crit_stat
 	weapon.crit_multi = max(1, crit_dmg_stat)
-	weapon.knockback = knockback_power
-
+	weapon.knockback = knockback_stat
 
 func _process(delta):
 	if cooldown > 0:
@@ -168,28 +222,35 @@ func _physics_process(delta):
 	update_animation()
 	move_and_slide()
 
+var post_knockback_timer = 0.0
+var post_knockback_duration = 0.6  # Dauer der Nach-Knockback-Phase
+
 func handle_knockback(delta):
-	knockback_timer -= delta
-	if knockback_timer <= 0 or knockback_res == 0:
-		is_knocked_back = false
-		# Behalte die letzte Geschwindigkeit bei
-		#velocity.x = knockback_direction.x * knockback_speed_new
-		velocity = velocity.move_toward(Vector2.ZERO, knockback_speed_new * delta)
-	else:
-		# Wende Knockback-Effekte an
-		#knockback_speed_new = lerp(knockback_speed_new, 0.0, 0.05)
+	if knockback_timer > 0:
+		# Wende Knockback an
+		knockback_timer -= delta
 		velocity = knockback_direction * knockback_speed_new
+	elif post_knockback_timer > 0:
+		# Reduziere Geschwindigkeit nach Knockback
+		post_knockback_timer -= delta
+		velocity = velocity.move_toward(Vector2.ZERO, knockback_speed_new * delta)
+		if velocity.length() < 10:  # Geschwindigkeitsschwelle für Ende der Nach-Knockback-Phase
+			velocity = Vector2.ZERO
+			post_knockback_timer = 0
+			is_knocked_back = false
+	else:
+		# Knockback abgeschlossen
+		is_knocked_back = false
 
 func knockback(knockback, damage_position):
 	var direction = (position - damage_position).normalized()
 	knockback_direction = direction
-	# Knockback wird durch Widerstand und Gewicht reduziert
-	knockback_speed_new = knockback #- weight
-	# Knockback-Dauer skaliert mit Stärke
-	knockback_timer = 0.2 #max(0.1, knockback_duration * effective_knockback)  #knockback_power
+	knockback_speed_new = knockback
+	knockback_timer = 0.2
+	post_knockback_timer = post_knockback_duration
 	is_knocked_back = true
 
-func take_damage(damage, pierce, knockback, knockback_power_in, damage_position, falle):
+func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	var effective_damage = ceil((max(0, damage - resistenz) + pierce) * imunity)
 	var knockback_effect = knockback_power_in * knockback_res
 	if (knockback_effect) > weight:

@@ -701,8 +701,6 @@ polygon = PackedVector2Array(-383.606, 269.146, -395.27, 229.957, -386.417, 129.
 
 [node name="Attack_Area" type="Area2D" parent="CollisionPolygon2D"]
 script = ExtResource("19_oxnyd")
-damage = 5
-knockback = 3500
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionPolygon2D/Attack_Area"]
 polygon = PackedVector2Array(-383.606, 269.146, -395.27, 229.957, -386.417, 129.811, -353.475, 27.6503, -270.746, -103.628, -157.242, -181.636, -30.8029, -217.177, 76.2925, -194.067, 180.534, -111.073, 269.25, 1.95711, 304.067, 112.286, 305.898, 255.17, 301.533, 289.205, 87.2304, 297.715, -75.1512, 297.161, -250.458, 297.161, -271.011, 297.161, -294.615, 297.161, -315.971, 297.321, -324, 296.358, -332.35, 294.431)
