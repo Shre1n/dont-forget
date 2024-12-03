@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://culoyaxpwar4k"]
+
+[ext_resource type="Script" path="res://scenes/NPC/Manager/npcui_manager.gd" id="1_lnh0e"]
+[ext_resource type="PackedScene" uid="uid://vlrvm682bebs" path="res://scenes/NPC/UI/UI_Element_Template.tscn" id="2_ttyr1"]
+
+[node name="NpcuiManager" type="CanvasLayer"]
+script = ExtResource("1_lnh0e")
+
+[node name="GridContainer" type="GridContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="UiElementTemplate" parent="GridContainer" instance=ExtResource("2_ttyr1")]
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Background" type="Panel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
