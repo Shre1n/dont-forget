@@ -1,14 +1,19 @@
-[gd_scene load_steps=20 format=3 uid="uid://by3lcj8fbv8ev"]
+[gd_scene load_steps=22 format=3 uid="uid://cyq2xerlbrab8"]
 
-[ext_resource type="Texture2D" uid="uid://bfaxjrj224q1u" path="res://assets/enemy/fly/dead/1.png" id="1_16at2"]
-[ext_resource type="Script" path="res://scenes/Fly Enemy/fly_enemy.gd" id="1_po0lk"]
-[ext_resource type="Shader" uid="uid://c4tc51uu3uhpc" path="res://shader/Enemy/Fly/Fly_enemy.tres" id="2_8kym3"]
-[ext_resource type="Texture2D" uid="uid://cmuuxaxo33ple" path="res://assets/enemy/fly/dead/2.png" id="2_awcg3"]
-[ext_resource type="Texture2D" uid="uid://c2agt5gh7x1p7" path="res://assets/enemy/fly/dead/3.png" id="3_jihwr"]
-[ext_resource type="Texture2D" uid="uid://yuus7om2x33m" path="res://assets/enemy/fly/Idle/1.png" id="4_1v6rh"]
-[ext_resource type="Texture2D" uid="uid://n105o4m88yys" path="res://assets/enemy/fly/Idle/2.png" id="5_0lgks"]
-[ext_resource type="Texture2D" uid="uid://buwo648p880ex" path="res://assets/enemy/fly/Idle/3.png" id="6_avorm"]
-[ext_resource type="Texture2D" uid="uid://diammteb7s2w3" path="res://assets/enemy/fly/Idle/4.png" id="7_1u6e5"]
+[ext_resource type="PackedScene" uid="uid://drwrxl4akk264" path="res://Templates/Enemy_Template/Enemy_Template.tscn" id="1_5ywvc"]
+[ext_resource type="Script" path="res://scenes/Fly Enemy/fly_enemy.gd" id="2_0hae0"]
+[ext_resource type="Shader" uid="uid://c4tc51uu3uhpc" path="res://shader/Enemy/Fly/Fly_enemy.tres" id="2_l1vj5"]
+[ext_resource type="Texture2D" uid="uid://bfaxjrj224q1u" path="res://assets/enemy/fly/dead/1.png" id="3_bw0mr"]
+[ext_resource type="Texture2D" uid="uid://cmuuxaxo33ple" path="res://assets/enemy/fly/dead/2.png" id="4_tcu7u"]
+[ext_resource type="Texture2D" uid="uid://c2agt5gh7x1p7" path="res://assets/enemy/fly/dead/3.png" id="5_a7wtx"]
+[ext_resource type="Texture2D" uid="uid://yuus7om2x33m" path="res://assets/enemy/fly/Idle/1.png" id="6_f1jde"]
+[ext_resource type="Texture2D" uid="uid://n105o4m88yys" path="res://assets/enemy/fly/Idle/2.png" id="7_fgu01"]
+[ext_resource type="Texture2D" uid="uid://buwo648p880ex" path="res://assets/enemy/fly/Idle/3.png" id="8_rg6nh"]
+[ext_resource type="Texture2D" uid="uid://diammteb7s2w3" path="res://assets/enemy/fly/Idle/4.png" id="9_et10g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h47fp"]
+radius = 63.0327
+height = 142.039
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aq7qi"]
 radius = 150.971
@@ -415,22 +420,22 @@ _data = {
 "idle": SubResource("Animation_blyha")
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hgusr"]
-shader = ExtResource("2_8kym3")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hhoaw"]
+shader = ExtResource("2_l1vj5")
 shader_parameter/enabled = true
 shader_parameter/tint = Color(0.805539, 0.0906658, 0.113234, 1)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_iwrx1"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_3n0po"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_16at2")
+"texture": ExtResource("3_bw0mr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_awcg3")
+"texture": ExtResource("4_tcu7u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_jihwr")
+"texture": ExtResource("5_a7wtx")
 }],
 "loop": false,
 "name": &"dead",
@@ -438,16 +443,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_1v6rh")
+"texture": ExtResource("6_f1jde")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_0lgks")
+"texture": ExtResource("7_fgu01")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_avorm")
+"texture": ExtResource("8_rg6nh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_1u6e5")
+"texture": ExtResource("9_et10g")
 }],
 "loop": true,
 "name": &"idle",
@@ -491,27 +496,37 @@ _data = {
 "hit_flash": SubResource("Animation_t5vvg")
 }
 
-[node name="FlyEnemy" type="CharacterBody2D"]
-script = ExtResource("1_po0lk")
+[node name="EnemyTemplate" instance=ExtResource("1_5ywvc")]
+script = ExtResource("2_0hae0")
+fly_speed = 150.0
+fly_height = 50.0
+fly_range = 200.0
+hit_flash_time = 0.2
+chase_range = 0.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="CollisionShape2D" parent="DetectionArea" index="0"]
+position = Vector2(-184.436, -4.9e+06)
+scale = Vector2(10.4937, 1.85958e+06)
+shape = SubResource("CapsuleShape2D_h47fp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
 libraries = {
 "": SubResource("AnimationLibrary_dcxf7")
 }
 speed_scale = 1.5
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-material = SubResource("ShaderMaterial_hgusr")
-sprite_frames = SubResource("SpriteFrames_iwrx1")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="6"]
+material = SubResource("ShaderMaterial_hhoaw")
+sprite_frames = SubResource("SpriteFrames_3n0po")
 animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="7"]
 position = Vector2(-314, 22)
 rotation = 1.47566
 scale = Vector2(2.03783, 1.49932)
 shape = SubResource("CircleShape2D_aq7qi")
 
-[node name="HitFlashPlayer" type="AnimationPlayer" parent="."]
+[node name="HitFlashPlayer" type="AnimationPlayer" parent="." index="8"]
 libraries = {
 "": SubResource("AnimationLibrary_7026u")
 }

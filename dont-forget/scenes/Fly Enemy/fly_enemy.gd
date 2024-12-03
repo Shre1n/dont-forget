@@ -4,22 +4,57 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 @export var fly_height: float = 50.0  # The height the flying enemy moves up and down
 @export var fly_range: float = 200.0  # The horizontal range of movement
 @export var hit_flash_time: float = 0.2  # Duration of the hit flash
+@export var chase_range: float  # Range within which the enemy starts chasing the player
 
-@onready var hit_flash: AnimationPlayer = $HitFlashPlayer
+@onready var hit: AnimationPlayer = $HitFlashPlayer
+@onready var animationPlayer: AnimationPlayer = $AnimationPlayer
+@onready var detection_area_size: CollisionShape2D = $DetectionArea/CollisionShape2D
 
 var original_position: Vector2
+var player: Character = null
 
 func _ready():
-	super()._ready()
 	original_position = global_position
+	chase_range = detection_area_size.scale.x*100
+	animationPlayer.play("idle")
+	# Connect detection area signals
+	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
+	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
 
 func _physics_process(delta):
-	var offset = sin(global_position.x / fly_range) * fly_height
-	velocity.x = fly_speed
-	velocity.y = offset
+	# Custom flying movement
+	var offset = sin(global_position.x / fly_range) * fly_height  # Sine wave for vertical movement
+	velocity.x = fly_speed  # Constant horizontal speed
+	velocity.y = offset  # Apply vertical movement
+
+	# If player is within range, start chasing
+	if player and global_position.distance_to(player.global_position) <= chase_range:
+		chase_player()
+
+	# Call the parent's handle_knockback() to manage knockback behavior
 	super.handle_knockback(delta)
 	move_and_slide()
 
+func chase_player():
+	# Move towards the player
+	var direction_to_player = (player.global_position - global_position).normalized()
+	velocity.x = direction_to_player.x * fly_speed  # Move horizontally towards the player
+	velocity.y = direction_to_player.y * fly_speed  # Move vertically towards the player
+
 func take_damage(damage: int):
-	hit_flash.play("hit_flash")
+	# Custom damage logic (for example, hit flash effect or other special behavior)
+	# Call the parent's take_damage method to handle the core damage logic
 	super.take_damage(damage)
+	hit.play("hit_flash")
+
+func _on_detection_area_body_entered(body):
+	# Triggered when the player enters the detection area
+	if body is Character:
+		player = body  # Set player reference
+		chase_player()  # Start chasing the player immediately
+
+func _on_detection_area_body_exited(body):
+	# Triggered when the player exits the detection area
+	if body is Character and body == player:
+		player = null  # Stop chasing the player
+		velocity = Vector2.ZERO  # Stop moving when the player leaves the range

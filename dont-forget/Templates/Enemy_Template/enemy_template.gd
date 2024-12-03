@@ -17,7 +17,6 @@ var drop := preload("res://scenes/drop.tscn")  # Preload the drop scene
 var current_Itemholder  # Reference to the item holder
 
 # Nodes and Signals
-@onready var chase_anim: AnimationPlayer = $Chase_Anim
 @onready var direction_timer: Timer = $Direction_Timer
 @onready var detection_area: Area2D = $DetectionArea  # Add your detection area
 
@@ -35,9 +34,12 @@ var character_chase: bool = false
 func _ready():
 	# Initialize references and start behavior
 	var gamemanager = find_game_manager()
+	print(get_children())
 	current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
 	randomize()
 	start_new_behavior()
+	
+	
 
 	# Connect area signals
 	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
@@ -128,7 +130,6 @@ func flip_sprite():
 func _on_detection_area_body_entered(body):
 	# Triggered when the player enters the detection area
 	if body is Character:
-		chase_anim.play("chase")
 		character = body
 		character_chase = true
 		direction_timer.stop()
@@ -136,7 +137,7 @@ func _on_detection_area_body_entered(body):
 func _on_detection_area_body_exited(body):
 	# Triggered when the player exits the detection area
 	if body is Character and character == body:
-		chase_anim.play("lost")
+		print("Body existed")
 		character = null
 		character_chase = false
 		start_new_behavior()
