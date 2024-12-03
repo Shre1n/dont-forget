@@ -1201,6 +1201,7 @@ texture = ExtResource("10_e8qmx")
 position = Vector2(3310, 1265)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword_Interact/InteractionArea"]
+position = Vector2(0, 1)
 scale = Vector2(9.74282, 9.0481)
 shape = SubResource("CircleShape2D_3tx74")
 

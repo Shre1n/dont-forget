@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=41 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
@@ -464,6 +464,12 @@ glow_blend_mode = 1
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bdhh3"]
 distance = -43.9025
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckata"]
+size = Vector2(325, 1203)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6w6l"]
+size = Vector2(895, 1691.5)
+
 [node name="Village" type="Node2D"]
 script = ExtResource("1_5at0l")
 
@@ -485,10 +491,10 @@ tile_set = SubResource("TileSet_oiqi6")
 
 [node name="-3 Trees" type="TileMapLayer" parent="layerholder"]
 
-[node name="-3" type="TileMapLayer" parent="layerholder"]
+[node name="-3 Border" type="TileMapLayer" parent="layerholder"]
 z_index = -3
 position = Vector2(-2093, -1321)
-tile_map_data = PackedByteArray("AABUABcACAASAAQAAABzABgACAASAAQAAACAABgACAASAAQAAAChABgACAASAAQAAAAtABgACAASAAQAAABAABcACAASAAQAAAA=")
+tile_map_data = PackedByteArray("AABUABcACAASAAQAAABzABgACAASAAQAAACAABgACAASAAQAAAChABgACAASAAQAAAAtABgACAASAAQAAABAABcACAASAAQAAAC5ABcACAASAAQAAAC3ABcACAASAAQAAAC8ABcACAASAAQAAACxACEACAAGAAwAAACzACIACAAKABsAAACwACIACAAKABsAAACxACIACAAKABsAAACvACIACAAKABsAAAC3ACIACAAKABsAAAC6ACIACAAKABsAAAC9ACIACAAKABsAAAC8ACIACAAHABsAAACyACIACAAHABsAAACUACIACAAHABsAAACIACIACAAHABsAAAB7ACIACAAHABsAAABoACIACAAKABsAAABzACIACAAKABsAAABYACIACAAKABsAAABdACIACAAKABsAAABCACIACAAKABsAAAAjACIACAAKABsAAAASACIACAAKABsAAAAVACIACAAKABsAAAAGACIACAAKABsAAACSACIACAAKABsAAACRACIACAAKABsAAAC/ABkACAASAAQAAAC6AB0ACAASAAQAAADCABsACAASAAQAAADAABwACAASAAQAAADFABwACAASAAQAAAC9ABwACAASAAQAAADCACIACAAKABsAAADBACIACAAKABsAAACxABgACAASAAQAABChABkACAASAAQAABB6ABkACAASAAQAABBWABgACAASAAQAABBmABkACAASAAQAAAB3ABsACAASAAQAAACVABoACAASAAQAABCfABoACAASAAQAAABCABkACAASAAQAAABEABgACAASAAQAAAA4ABcACAASAAQAAAAnABcACAASAAQAAADz/xAACAASAAQAAADx/xEACAASAAQAAADs/xQACAASAAQAABDz/xQACAASAAQAABDx/xAACAASAAQAABD9/xoACAASAAQAABA=")
 tile_set = SubResource("TileSet_oiqi6")
 
 [node name="-2" type="TileMapLayer" parent="layerholder"]
@@ -844,5 +850,16 @@ menu = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 scale = Vector2(2.02004, 1)
 shape = SubResource("WorldBoundaryShape2D_bdhh3")
+
+[node name="collision" type="StaticBody2D" parent="."]
+position = Vector2(9103, 7)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="collision"]
+position = Vector2(-12511, -89)
+shape = SubResource("RectangleShape2D_ckata")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision"]
+position = Vector2(924.5, 58)
+shape = SubResource("RectangleShape2D_c6w6l")
 
 [connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
