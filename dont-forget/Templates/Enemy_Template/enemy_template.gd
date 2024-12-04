@@ -59,7 +59,6 @@ func _physics_process(delta):
 
 	apply_gravity(delta)
 	move_and_slide()
-	update_animation()
 
 func apply_gravity(delta):
 	# Apply gravity if not on the floor
@@ -106,32 +105,37 @@ func _on_direction_timer_timeout():
 	# Start new behavior after idle time
 	start_new_behavior()
 
-func update_animation():
-	# Update animations based on the direction and state
-	if !alive:
-		return
-	if damaged:
-		return
+#func update_animation():
+	## Update animations based on the direction and state
+	#if !alive:
+		#return
+	#if damaged:
+		#return
+#
+	#match direction:
+			#
+		#-1:
+			#if !orientation_left:
+				#flip_sprite()  # Flip sprite if moving left
+			#
+		#1:
+			#if orientation_left:
+				#flip_sprite()  # Flip sprite if moving right
+			
 
-	match direction:
-			
-		-1:
-			if !orientation_left:
-				flip_sprite()  # Flip sprite if moving left
-			
-		1:
-			if orientation_left:
-				flip_sprite()  # Flip sprite if moving right
-			
+func flip_sprite(body: Character):
+	# Calculate the player's relative position to the enemy
+	var relative_position = body.global_position.x - global_position.x
 
-func flip_sprite():
-	# Flip the sprite horizontally
-	if velocity.x >= 0 and orientation_left:
+	# If the player is on the right and the enemy is facing left, flip to the right
+	if relative_position > 0 and orientation_left:
 		$".".scale.x *= -1
-		orientation_left = !orientation_left
-	elif velocity.x < 0 and orientation_left:
+		orientation_left = false
+	# If the player is on the left and the enemy is facing right, flip to the left
+	elif relative_position < 0 and !orientation_left:
 		$".".scale.x *= -1
-		orientation_left = !orientation_left
+		orientation_left = true
+
 
 func _on_detection_area_body_entered(body):
 	# Triggered when the player enters the detection area

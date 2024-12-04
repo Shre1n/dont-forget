@@ -34,11 +34,10 @@ func _ready():
 	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
 	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
 	animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
-
-
+	
 func _physics_process(delta):
 	# Custom flying movement
-	super.flip_sprite()
+	
 	if alive:
 		if position.distance_to(start_position) > hitbox.scale.x:
 			if start_position.x <= position.x:
@@ -62,9 +61,11 @@ func _physics_process(delta):
 
 func chase_player():
 	# Move towards the player
-	var direction_to_player = (player.global_position - global_position).normalized()
-	velocity.x = direction_to_player.x * fly_speed  # Move horizontally towards the player
-	velocity.y = direction_to_player.y * fly_speed  # Move vertically towards the player
+	if player:
+		var direction_to_player = (player.global_position - global_position).normalized()
+		velocity.x = direction_to_player.x * fly_speed  # Move horizontally towards the player
+		velocity.y = direction_to_player.y * fly_speed  # Move vertically towards the player
+		flip_sprite(player)
 
 func take_damage(damage: int):
 	# Custom damage logic (for example, hit flash effect or other special behavior)
@@ -77,7 +78,6 @@ func take_damage(damage: int):
 		animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
 
 func _on_animation_player_animation_finished(anim_name: String):
-	print("Animation finished: ", anim_name)
 	if anim_name == "dead":
 		animationPlayer.disconnect("animation_finished", Callable(self, "_on_dead_animation_finished"))  # Disconnect the signal to avoid multiple calls
 		super.die()
@@ -87,6 +87,7 @@ func _on_animation_player_animation_finished(anim_name: String):
 func _on_detection_area_body_entered(body):
 	# Triggered when the player enters the detection area
 	if body is Character:
+		super.flip_sprite(body)
 		player = body  # Set player reference
 		chase_player()  # Start chasing the player immediately
 
