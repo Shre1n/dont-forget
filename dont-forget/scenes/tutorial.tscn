@@ -30,8 +30,10 @@ size = Vector2(355, 63)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwnld"]
 size = Vector2(325, 1203)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_amgem"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_txnar"]
-texture = ExtResource("4_d3554")
+texture = SubResource("CompressedTexture2D_amgem")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -1212,7 +1214,8 @@ position = Vector2(4030, 1336)
 position = Vector2(6961, 970)
 scale = Vector2(-37.5186, 96.0971)
 transition_type = "wipe_to_right"
-menu = true
+path_to_new_scene = "res://scenes/Village.tscn"
+new_position = Vector2(-1839, 833)
 
 [node name="Itemholder" type="Node2D" parent="."]
 
