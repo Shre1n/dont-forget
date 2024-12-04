@@ -5,6 +5,7 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 @export var fly_range: float = 200.0  # The horizontal range of movement
 @export var hit_flash_time: float = 0.2  # Duration of the hit flash
 @export var chase_range: float  # Range within which the enemy starts chasing the player
+@export var damage_of_fly_enemy: int = 10
 
 @onready var hit: AnimationPlayer = $HitFlashPlayer
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
@@ -18,6 +19,7 @@ var min_pos: Vector2
 var max_pos: Vector2
 
 func _ready():
+	super._ready()
 	original_position = global_position
 	start_position = position
 	min_pos = start_position
@@ -31,6 +33,8 @@ func _ready():
 	# Connect detection area signals
 	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
 	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
+	animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
+
 
 func _physics_process(delta):
 	# Custom flying movement
@@ -66,6 +70,18 @@ func take_damage(damage: int):
 	# Call the parent's take_damage method to handle the core damage logic
 	super.take_damage(damage)
 	hit.play("hit_flash")
+	
+	if life <= 0:
+		animationPlayer.play("dead")
+		animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
+
+func _on_animation_player_animation_finished(anim_name: String):
+	print("Animation finished: ", anim_name)
+	if anim_name == "dead":
+		animationPlayer.disconnect("animation_finished", Callable(self, "_on_dead_animation_finished"))  # Disconnect the signal to avoid multiple calls
+		super.die()
+		queue_free()
+	
 
 func _on_detection_area_body_entered(body):
 	# Triggered when the player enters the detection area
@@ -78,3 +94,12 @@ func _on_detection_area_body_exited(body):
 	if body is Character and body == player:
 		player = null  # Stop chasing the player
 		velocity = Vector2.ZERO  # Stop moving when the player leaves the range
+
+func _on_attack_area_body_entered(body):
+	if !alive:
+		return
+	if body is Character:
+		body.take_damage(damage_of_fly_enemy)
+
+func _on_damage_area_body_entered(body):
+	super._on_damage_area_body_entered(body)

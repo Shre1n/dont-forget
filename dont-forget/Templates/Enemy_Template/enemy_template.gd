@@ -19,6 +19,8 @@ var current_Itemholder  # Reference to the item holder
 # Nodes and Signals
 @onready var direction_timer: Timer = $Direction_Timer
 @onready var detection_area: Area2D = $DetectionArea  # Add your detection area
+@onready var attack_area: Area2D = $AttackArea
+@onready var damage_area: Area2D = $DamageArea
 
 # Variables for controlling the enemy behavior
 var direction: int = 0  # -1 = left, 1 = right, 0 = idle
@@ -34,7 +36,6 @@ var character_chase: bool = false
 func _ready():
 	# Initialize references and start behavior
 	var gamemanager = find_game_manager()
-	print(get_children())
 	current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
 	randomize()
 	start_new_behavior()
@@ -44,6 +45,7 @@ func _ready():
 	# Connect area signals
 	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
 	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
+	attack_area.connect("attack_entered", Callable(self, "_on_attack_area_body_entered"))
 
 func _physics_process(delta):
 	if !alive:
@@ -165,6 +167,10 @@ func knockback():
 func die():
 	# Handle the death of the enemy
 	alive = false
+	damage_area.queue_free()
+	attack_area.queue_free()
+	direction_timer.queue_free()
+	add_new_drop(position)
 
 func _on_animation_player_animation_finished(anim_name: String):
 	# Check when the death animation is finished to drop items and remove the enemy
@@ -205,3 +211,21 @@ func instantiate_drop_items(drop_count, death_pos, is_time_item):
 func save_user_location(path):
 	# Save the location of the item holder (optional)
 	current_Itemholder = path
+
+
+func _on_attack_area_body_entered(body):
+	if !alive:
+		return
+	if body is Character and alive:
+		body.take_damage(10)
+		knockback_direction = (body.global_position - global_position).normalized()
+		body.apply_knockback(knockback_direction, knockback_speed)
+
+
+func _on_damage_area_body_entered(body):
+	if !alive:
+		return
+	if body is Character:
+		var attack_area = body.get_node_or_null("Attack_Area")
+		if attack_area and attack_area.is_in_group("player_attacks") && body.attacking:
+			self.take_damage(body.damage_value)

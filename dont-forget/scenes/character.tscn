@@ -910,7 +910,7 @@ autoplay = "idle2.0"
 frame = 1
 speed_scale = 0.7
 
-[node name="Attack_Area" parent="." instance=ExtResource("24_u5kue")]
+[node name="Attack_Area" parent="." groups=["player_attacks"] instance=ExtResource("24_u5kue")]
 visible = false
 position = Vector2(-221, -123)
 rotation = -4.26635

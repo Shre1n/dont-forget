@@ -1231,3 +1231,4 @@ scale = Vector2(2.87545, 2.5827)
 [node name="EnemyTemplate" parent="." instance=ExtResource("17_01rhj")]
 position = Vector2(2527, 1006)
 scale = Vector2(0.3, 0.3)
+damage_of_fly_enemy = 10

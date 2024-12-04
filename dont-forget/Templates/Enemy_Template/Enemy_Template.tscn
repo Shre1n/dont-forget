@@ -7,6 +7,8 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mdnk7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4r7uq"]
+radius = 275.0
+height = 782.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ync57"]
 
@@ -36,6 +38,8 @@ shape = SubResource("CapsuleShape2D_ync57")
 
 [node name="Direction_Timer" type="Timer" parent="."]
 
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="timeout" from="Direction_Timer" to="." method="_on_direction_timer_timeout"]
