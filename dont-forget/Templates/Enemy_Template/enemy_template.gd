@@ -167,9 +167,6 @@ func knockback():
 func die():
 	# Handle the death of the enemy
 	alive = false
-	damage_area.queue_free()
-	attack_area.queue_free()
-	direction_timer.queue_free()
 	add_new_drop(position)
 
 func _on_animation_player_animation_finished(anim_name: String):

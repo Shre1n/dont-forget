@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cyq2xerlbrab8"]
+[gd_scene load_steps=21 format=3 uid="uid://cyq2xerlbrab8"]
 
 [ext_resource type="PackedScene" uid="uid://drwrxl4akk264" path="res://Templates/Enemy_Template/Enemy_Template.tscn" id="1_5ywvc"]
 [ext_resource type="Script" path="res://scenes/Fly Enemy/fly_enemy.gd" id="2_0hae0"]
@@ -14,9 +14,6 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_h47fp"]
 radius = 63.0327
 height = 142.039
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_aq7qi"]
-radius = 150.971
 
 [sub_resource type="Animation" id="Animation_7560b"]
 length = 0.001
@@ -92,70 +89,9 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Hitbox:shape")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("CircleShape2D_aq7qi")]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Hitbox:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-314, 22)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Hitbox:scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(2.03783, 1.49932)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Hitbox:rotation")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [1.47566]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Hitbox:disabled")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
 
 [sub_resource type="Animation" id="Animation_rscsi"]
 resource_name = "dead"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -227,66 +163,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Hitbox:shape")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.433333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [SubResource("CircleShape2D_aq7qi"), SubResource("CircleShape2D_aq7qi"), SubResource("CircleShape2D_aq7qi")]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Hitbox:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.433333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(-314, 22), Vector2(-332, 80), Vector2(-224, 182)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Hitbox:scale")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.433333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(2.03783, 1.49932), Vector2(2.03783, 1.49932), Vector2(2.03783, 1.49932)]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Hitbox:rotation")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.433333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [-0.0804861, 1.47566, 2.86546]
-}
-tracks/10/type = "value"
-tracks/10/imported = false
-tracks/10/enabled = true
-tracks/10/path = NodePath("Hitbox:disabled")
-tracks/10/interp = 1
-tracks/10/loop_wrap = true
-tracks/10/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.433333),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_blyha"]
@@ -363,54 +239,6 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Hitbox:shape")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.433333, 0.6, 0.766667, 0.966667, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [SubResource("CircleShape2D_aq7qi"), SubResource("CircleShape2D_aq7qi"), SubResource("CircleShape2D_aq7qi"), SubResource("CircleShape2D_aq7qi"), SubResource("CircleShape2D_aq7qi"), SubResource("CircleShape2D_aq7qi"), SubResource("CircleShape2D_aq7qi"), SubResource("CircleShape2D_aq7qi")]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Hitbox:position")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.433333, 0.6, 0.766667, 0.966667, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-341, -15), Vector2(-338, -53), Vector2(-338.462, -47.1538), Vector2(-339.038, -39.8462), Vector2(-337, -52), Vector2(-338.667, -36.5833), Vector2(-389, -21), Vector2(-363, -34)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Hitbox:rotation")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.433333, 0.766667, 0.966667, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [2.86546, 2.60896, 2.64842, 2.69775, 2.7964, 2.44098, 2.55832]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("Hitbox:scale")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0, 0.133333, 0.266667, 0.433333, 0.6, 0.766667, 0.966667, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(2.23662, 1.87607), Vector2(2.23662, 1.87607), Vector2(2.23662, 1.87607), Vector2(2.23662, 1.87607), Vector2(2.23662, 1.87607), Vector2(2.23662, 1.87607), Vector2(1.93078, 1.53427), Vector2(1.93797, 1.4662)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dcxf7"]
@@ -525,14 +353,7 @@ material = SubResource("ShaderMaterial_hhoaw")
 sprite_frames = SubResource("SpriteFrames_3n0po")
 animation = &"idle"
 
-[node name="Hitbox" type="CollisionShape2D" parent="." index="7"]
-visible = false
-position = Vector2(-314, 22)
-rotation = 1.47566
-scale = Vector2(2.03783, 1.49932)
-shape = SubResource("CircleShape2D_aq7qi")
-
-[node name="HitFlashPlayer" type="AnimationPlayer" parent="." index="8"]
+[node name="HitFlashPlayer" type="AnimationPlayer" parent="." index="7"]
 libraries = {
 "": SubResource("AnimationLibrary_7026u")
 }
