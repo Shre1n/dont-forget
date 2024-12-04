@@ -18,9 +18,7 @@ var current_Itemholder  # Reference to the item holder
 
 # Nodes and Signals
 @onready var direction_timer: Timer = $Direction_Timer
-@onready var detection_area: Area2D = $DetectionArea  # Add your detection area
-@onready var attack_area: Area2D = $AttackArea
-@onready var damage_area: Area2D = $DamageArea
+
 
 # Variables for controlling the enemy behavior
 var direction: int = 0  # -1 = left, 1 = right, 0 = idle
@@ -39,13 +37,6 @@ func _ready():
 	current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
 	randomize()
 	start_new_behavior()
-	
-	
-
-	# Connect area signals
-	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
-	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
-	attack_area.connect("attack_entered", Callable(self, "_on_attack_area_body_entered"))
 
 func _physics_process(delta):
 	if !alive:

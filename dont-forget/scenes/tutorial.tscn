@@ -10,13 +10,13 @@
 [ext_resource type="Shader" path="res://shader/Tilemap/layer1.gdshader" id="7_iab1c"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="8_h547o"]
 [ext_resource type="Script" path="res://scenes/sword_interact.gd" id="9_8mqe6"]
-[ext_resource type="Texture2D" uid="uid://ctlo8c01i8bj6" path="res://assets/Sword.png" id="10_e8qmx"]
+[ext_resource type="Texture2D" uid="uid://dqrs5p51f6oii" path="res://assets/Sword.png" id="10_e8qmx"]
 [ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="11_ye7re"]
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
 [ext_resource type="PackedScene" uid="uid://rwcbxprdm3p4" path="res://scenes/Shop/ShopNPC.tscn" id="16_vpndh"]
-[ext_resource type="PackedScene" uid="uid://cyq2xerlbrab8" path="res://scenes/Fly Enemy/fly_enemy_inherits.tscn" id="17_01rhj"]
+[ext_resource type="PackedScene" uid="uid://ihipi7rph5xc" path="res://scenes/Enemies/Hide Enemy/hide_enemy.tscn" id="17_bfsm0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -1229,6 +1229,6 @@ tutorial = true
 position = Vector2(-657, 1116)
 scale = Vector2(2.87545, 2.5827)
 
-[node name="Fly_Enemy" parent="." instance=ExtResource("17_01rhj")]
-position = Vector2(3805, 1063)
-scale = Vector2(0.2, 0.2)
+[node name="hide_enemy" parent="." instance=ExtResource("17_bfsm0")]
+position = Vector2(3810, 1293)
+scale = Vector2(0.3, 0.3)
