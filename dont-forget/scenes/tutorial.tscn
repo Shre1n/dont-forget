@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=30 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
 [ext_resource type="PackedScene" uid="uid://rwcbxprdm3p4" path="res://scenes/Shop/ShopNPC.tscn" id="16_vpndh"]
+[ext_resource type="PackedScene" uid="uid://cyq2xerlbrab8" path="res://scenes/Fly Enemy/fly_enemy_inherits.tscn" id="17_01rhj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -1061,7 +1062,7 @@ sprite_frames = SubResource("SpriteFrames_x17dd")
 animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
-position = Vector2(950, 761)
+position = Vector2(3041, 1073)
 sword = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -1227,3 +1228,7 @@ tutorial = true
 [node name="ShopNpc" parent="." instance=ExtResource("16_vpndh")]
 position = Vector2(-657, 1116)
 scale = Vector2(2.87545, 2.5827)
+
+[node name="Fly_Enemy" parent="." instance=ExtResource("17_01rhj")]
+position = Vector2(3805, 1063)
+scale = Vector2(0.2, 0.2)
