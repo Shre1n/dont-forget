@@ -234,7 +234,8 @@ func handle_knockback(delta):
 		# Reduziere Geschwindigkeit nach Knockback
 		post_knockback_timer -= delta
 		velocity = velocity.move_toward(Vector2.ZERO, knockback_speed_new * delta)
-		if velocity.length() < 10:  # Geschwindigkeitsschwelle für Ende der Nach-Knockback-Phase
+		var direction = Input.get_axis("left", "right")
+		if  velocity.length() < 10: #(direction == -1 and velocity.x > 0) or (direction == 1 and velocity.x < 0): #velocity.x < 10 or velocity.x < direction.x:  # Geschwindigkeitsschwelle für Ende der Nach-Knockback-Phase
 			velocity = Vector2.ZERO
 			post_knockback_timer = 0
 			is_knocked_back = false
