@@ -27,6 +27,7 @@ var JumpAvailability : bool
 @export var orientation_left = false
 @export var attacking = false
 @export var alive = true
+@export var damage_value: int = 10
 
 
 func _ready():
