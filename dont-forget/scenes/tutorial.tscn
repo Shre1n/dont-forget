@@ -1228,6 +1228,6 @@ tutorial = true
 position = Vector2(-657, 1116)
 scale = Vector2(2.87545, 2.5827)
 
-[node name="EnemyTemplate" parent="." instance=ExtResource("17_01rhj")]
-position = Vector2(2527, 1006)
-scale = Vector2(0.3, 0.3)
+[node name="Fly_Enemy" parent="." instance=ExtResource("17_01rhj")]
+position = Vector2(3805, 1063)
+scale = Vector2(0.2, 0.2)

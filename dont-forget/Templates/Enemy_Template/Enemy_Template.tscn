@@ -5,10 +5,12 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3vvr"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mdnk7"]
+radius = 606.0
+height = 1212.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4r7uq"]
-radius = 275.0
-height = 782.0
+radius = 285.0
+height = 658.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ync57"]
 

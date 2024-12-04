@@ -92,6 +92,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_rscsi"]
 resource_name = "dead"
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -111,7 +112,7 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.233333, 0.433333),
+"times": PackedFloat32Array(0, 0.366667, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [0, 1, 2]
@@ -123,7 +124,7 @@ tracks/2/path = NodePath("AnimatedSprite2D:speed_scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [1.0]
@@ -135,7 +136,7 @@ tracks/3/path = NodePath("AnimatedSprite2D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [0.0]
@@ -147,7 +148,7 @@ tracks/4/path = NodePath("AnimatedSprite2D:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
@@ -159,7 +160,7 @@ tracks/5/path = NodePath("AnimatedSprite2D:scale")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0.0333333),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
@@ -324,8 +325,11 @@ _data = {
 "hit_flash": SubResource("Animation_t5vvg")
 }
 
-[node name="EnemyTemplate" instance=ExtResource("1_5ywvc")]
+[node name="Fly_Enemy" instance=ExtResource("1_5ywvc")]
 script = ExtResource("2_0hae0")
+fly_radius_x = 100.0
+fly_radius_y = 100.0
+fly_rotation_speed = 2.0
 fly_speed = 150.0
 fly_height = 50.0
 fly_range = 200.0
@@ -334,8 +338,12 @@ chase_range = 0.0
 damage_of_fly_enemy = 10
 life = 10
 
+[node name="CollisionShape2D" parent="DamageArea" index="0"]
+position = Vector2(-332, -44)
+scale = Vector2(0.608901, 0.654925)
+
 [node name="CollisionShape2D" parent="AttackArea" index="0"]
-position = Vector2(-341, -18)
+position = Vector2(-333, -66)
 
 [node name="CollisionShape2D" parent="DetectionArea" index="0"]
 position = Vector2(-184.436, -4.9e+06)

@@ -1,5 +1,9 @@
 extends "res://Templates/Enemy_Template/enemy_template.gd"
 
+
+@export var fly_radius_x: float = 100.0
+@export var fly_radius_y: float = 100.0
+@export var fly_rotation_speed: float = 2.0
 @export var fly_speed: float = 150.0  # Custom flying speed
 @export var fly_height: float = 50.0  # The height the flying enemy moves up and down
 @export var fly_range: float = 200.0  # The horizontal range of movement
@@ -11,6 +15,8 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var detection_area_size: CollisionShape2D = $DetectionArea/CollisionShape2D
 @onready var hitbox: CollisionShape2D = $DamageArea/CollisionShape2D
+
+var angle: float = 0.0
 var start_position: Vector2
 
 var original_position: Vector2
@@ -38,7 +44,11 @@ func _ready():
 func _physics_process(delta):
 	# Custom flying movement
 	
-	if alive:
+	if alive and not player:
+		
+		if position == start_position:
+			fly_around_origin(delta)
+		
 		if position.distance_to(start_position) > hitbox.scale.x:
 			if start_position.x <= position.x:
 				velocity.x = -fly_speed
@@ -58,6 +68,12 @@ func _physics_process(delta):
 	# Call the parent's handle_knockback() to manage knockback behavior
 	super.handle_knockback(delta)
 	move_and_slide()
+
+func fly_around_origin(delta):
+	angle += fly_rotation_speed * delta
+	
+	global_position.x += cos(angle) * fly_radius_x
+	global_position.y += sin(angle) * fly_radius_y
 
 func chase_player():
 	# Move towards the player

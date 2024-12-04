@@ -128,11 +128,11 @@ func flip_sprite(body: Character):
 	var relative_position = body.global_position.x - global_position.x
 
 	# If the player is on the right and the enemy is facing left, flip to the right
-	if relative_position > 0 and orientation_left:
+	if relative_position < 0 and orientation_left:
 		$".".scale.x *= -1
 		orientation_left = false
 	# If the player is on the left and the enemy is facing right, flip to the left
-	elif relative_position < 0 and !orientation_left:
+	elif relative_position > 0 and !orientation_left:
 		$".".scale.x *= -1
 		orientation_left = true
 
@@ -220,7 +220,6 @@ func _on_attack_area_body_entered(body):
 	if body is Character and alive:
 		body.take_damage(10)
 		knockback_direction = (body.global_position - global_position).normalized()
-		body.apply_knockback(knockback_direction, knockback_speed)
 
 
 func _on_damage_area_body_entered(body):
