@@ -285,7 +285,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 10.0
+"speed": 6.0
 }]
 
 [sub_resource type="Animation" id="Animation_abo1g"]
