@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=53 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
@@ -20,7 +20,16 @@
 [ext_resource type="Script" path="res://scenes/home_1.gd" id="17_53bj1"]
 [ext_resource type="Script" path="res://scenes/laterne_5.gd" id="18_p0o2n"]
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="20_igg15"]
+[ext_resource type="Script" path="res://scenes/bugs.gd" id="21_68u6s"]
 [ext_resource type="Script" path="res://door.gd" id="21_n45p4"]
+[ext_resource type="Texture2D" uid="uid://nhb6ni0fxa6p" path="res://assets/NPC/Käfer/1.png" id="22_1f42u"]
+[ext_resource type="Texture2D" uid="uid://1q5k2ynwbhox" path="res://assets/NPC/Käfer/2.png" id="23_ak0eo"]
+[ext_resource type="Script" path="res://scenes/owl_2.gd" id="24_h0mkm"]
+[ext_resource type="Texture2D" uid="uid://bql1s4ckbx2y3" path="res://assets/NPC/Mole/1.png" id="24_hh04x"]
+[ext_resource type="Texture2D" uid="uid://68lvlstwpn50" path="res://assets/NPC/Mole/2.png" id="25_ksxhc"]
+[ext_resource type="Texture2D" uid="uid://b5n44yfdxue7d" path="res://assets/NPC/Owl/1.png" id="26_cxjl8"]
+[ext_resource type="Script" path="res://scenes/mole.gd" id="27_4ojhx"]
+[ext_resource type="Texture2D" uid="uid://q7ikoiew26od" path="res://assets/NPC/Owl/2.png" id="27_wlgfp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2ado"]
 texture = ExtResource("2_cj6i5")
@@ -461,6 +470,48 @@ background_mode = 3
 glow_enabled = true
 glow_blend_mode = 1
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_0juon"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_1f42u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_ak0eo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5fs7w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("26_cxjl8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_wlgfp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v3tre"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("24_hh04x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ksxhc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}]
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bdhh3"]
 distance = -43.9025
 
@@ -652,6 +703,7 @@ z_index = -1
 position = Vector2(6971, 568)
 scale = Vector2(0.521, 0.5)
 sprite_frames = SubResource("SpriteFrames_7ntwp")
+frame_progress = 0.915234
 speed_scale = 0.7
 
 [node name="PointLight2D" type="PointLight2D" parent="Environment/Homes/Home 2"]
@@ -683,6 +735,7 @@ z_index = -1
 position = Vector2(739, 561)
 scale = Vector2(0.521, 0.5)
 sprite_frames = SubResource("SpriteFrames_7ntwp")
+frame_progress = 0.761755
 speed_scale = 0.7
 flip_h = true
 
@@ -698,13 +751,8 @@ z_index = -1
 position = Vector2(7793, 763)
 scale = Vector2(0.271441, 0.25)
 sprite_frames = SubResource("SpriteFrames_7ntwp")
+frame_progress = 0.98539
 speed_scale = 0.7
-
-[node name="PointLight2D" type="PointLight2D" parent="Environment/Homes/Home 4"]
-position = Vector2(268.192, 171.397)
-scale = Vector2(6.83695, 4.69925)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_g0s2c")
 
 [node name="Home 5" type="AnimatedSprite2D" parent="Environment/Homes"]
 self_modulate = Color(0.815686, 0.862745, 0.682353, 1)
@@ -712,6 +760,7 @@ z_index = -1
 position = Vector2(1751, 731)
 scale = Vector2(0.303935, 0.304704)
 sprite_frames = SubResource("SpriteFrames_pu8m7")
+frame_progress = 0.277077
 speed_scale = 0.7
 
 [node name="Home 6" type="AnimatedSprite2D" parent="Environment/Homes"]
@@ -720,6 +769,7 @@ z_index = -1
 position = Vector2(2403, 794)
 scale = Vector2(0.207689, 0.168197)
 sprite_frames = SubResource("SpriteFrames_pu8m7")
+frame_progress = 0.133356
 speed_scale = 0.7
 
 [node name="Lanterns" type="Node" parent="Environment"]
@@ -736,8 +786,8 @@ script = ExtResource("18_p0o2n")
 environment = SubResource("Environment_nnj2g")
 
 [node name="PointLight2D" type="PointLight2D" parent="Environment/Lanterns/Laterne5"]
-position = Vector2(114.286, -191.429)
-scale = Vector2(4.94557, 4.98749)
+position = Vector2(110, -182.857)
+scale = Vector2(9.63797, 9.71966)
 color = Color(0.734112, 0.711665, 0, 1)
 energy = 3.17
 shadow_enabled = true
@@ -754,8 +804,8 @@ flip_h = true
 environment = SubResource("Environment_nnj2g")
 
 [node name="PointLight2D" type="PointLight2D" parent="Environment/Lanterns/Laterne2"]
-position = Vector2(112.855, -194.286)
-scale = Vector2(4.94557, 4.98749)
+position = Vector2(115.715, -185.714)
+scale = Vector2(6.98167, 7.04085)
 color = Color(0.734112, 0.711665, 0, 1)
 energy = 3.17
 shadow_enabled = true
@@ -771,8 +821,8 @@ texture = ExtResource("13_ugjyp")
 environment = SubResource("Environment_nnj2g")
 
 [node name="PointLight2D" type="PointLight2D" parent="Environment/Lanterns/Laterne3"]
-position = Vector2(-109, -194)
-scale = Vector2(4.94557, 4.98749)
+position = Vector2(-121.428, -188.571)
+scale = Vector2(7.48841, 7.55189)
 color = Color(0.734112, 0.711665, 0, 1)
 energy = 3.17
 shadow_enabled = true
@@ -788,8 +838,8 @@ texture = ExtResource("13_ugjyp")
 environment = SubResource("Environment_nnj2g")
 
 [node name="PointLight2D" type="PointLight2D" parent="Environment/Lanterns/Laterne4"]
-position = Vector2(-109, -194)
-scale = Vector2(4.94557, 4.98749)
+position = Vector2(-118.572, -191.429)
+scale = Vector2(7.8125, 7.87872)
 color = Color(0.734112, 0.711665, 0, 1)
 energy = 3.17
 shadow_enabled = true
@@ -807,8 +857,8 @@ script = ExtResource("18_p0o2n")
 environment = SubResource("Environment_nnj2g")
 
 [node name="PointLight2D" type="PointLight2D" parent="Environment/Lanterns/Laterne6"]
-position = Vector2(114.286, -191.429)
-scale = Vector2(4.94557, 4.98749)
+position = Vector2(117.143, -187.143)
+scale = Vector2(9.92815, 10.0123)
 color = Color(0.734112, 0.711665, 0, 1)
 energy = 3.17
 shadow_enabled = true
@@ -839,6 +889,56 @@ z_index = 10
 position = Vector2(-497, 590)
 scale = Vector2(0.522454, 0.509568)
 texture = ExtResource("9_i6aox")
+
+[node name="bugs" type="Node2D" parent="Environment"]
+script = ExtResource("21_68u6s")
+
+[node name="Bug" type="AnimatedSprite2D" parent="Environment/bugs"]
+z_index = -1
+position = Vector2(144, 844)
+scale = Vector2(0.118005, 0.118056)
+sprite_frames = SubResource("SpriteFrames_0juon")
+animation = &"idle"
+frame_progress = 0.903874
+
+[node name="Bug2" type="AnimatedSprite2D" parent="Environment/bugs"]
+z_index = -1
+position = Vector2(123, 845)
+scale = Vector2(0.118005, 0.118056)
+sprite_frames = SubResource("SpriteFrames_0juon")
+animation = &"idle"
+frame_progress = 0.5688
+flip_h = true
+
+[node name="owl" type="Node2D" parent="Environment"]
+script = ExtResource("24_h0mkm")
+
+[node name="owl" type="AnimatedSprite2D" parent="Environment/owl"]
+position = Vector2(3815, 378)
+scale = Vector2(0.156327, 0.156327)
+sprite_frames = SubResource("SpriteFrames_5fs7w")
+animation = &"idle"
+frame_progress = 0.724712
+
+[node name="mole" type="Node2D" parent="Environment"]
+script = ExtResource("27_4ojhx")
+
+[node name="Mole" type="AnimatedSprite2D" parent="Environment/mole"]
+position = Vector2(1245, 807)
+scale = Vector2(0.175, 0.175)
+sprite_frames = SubResource("SpriteFrames_v3tre")
+animation = &"idle"
+frame_progress = 0.459487
+flip_h = true
+
+[node name="Mole2" type="AnimatedSprite2D" parent="Environment/mole"]
+z_index = -1
+position = Vector2(4584, 891)
+scale = Vector2(0.151775, 0.151775)
+sprite_frames = SubResource("SpriteFrames_v3tre")
+animation = &"idle"
+frame_progress = 0.387906
+flip_h = true
 
 [node name="Door" type="Area2D" parent="."]
 position = Vector2(1358, 2031)
