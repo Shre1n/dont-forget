@@ -6,7 +6,7 @@ func _ready():
 	animation_player.play("idle")
 	animation_player.connect("animation_finished", self._on_animation_finished)
 
-func take_damage(damage):
+func take_damage(damage, pierce, knockback, position, falle):
 	animation_player.play("damage")
 
 func _on_animation_finished(anim_name):
