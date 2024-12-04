@@ -10,7 +10,7 @@
 [ext_resource type="Shader" path="res://shader/Tilemap/layer1.gdshader" id="7_iab1c"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="8_h547o"]
 [ext_resource type="Script" path="res://scenes/sword_interact.gd" id="9_8mqe6"]
-[ext_resource type="Texture2D" uid="uid://dqrs5p51f6oii" path="res://assets/Sword.png" id="10_e8qmx"]
+[ext_resource type="Texture2D" uid="uid://ctlo8c01i8bj6" path="res://assets/Sword.png" id="10_e8qmx"]
 [ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="11_ye7re"]
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
@@ -1192,15 +1192,16 @@ environment = SubResource("Environment_2cxkj")
 
 [node name="Sword" type="Sprite2D" parent="Sword_Interact"]
 self_modulate = Color(2, 2, 2, 1)
-position = Vector2(3287, 1283)
+position = Vector2(3306, 1257)
 rotation = 3.13213
-scale = Vector2(0.0621314, 0.0607497)
+scale = Vector2(0.0436782, 0.0427069)
 texture = ExtResource("10_e8qmx")
 
 [node name="InteractionArea" parent="Sword_Interact" instance=ExtResource("11_ye7re")]
 position = Vector2(3310, 1265)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword_Interact/InteractionArea"]
+position = Vector2(-4, -21)
 scale = Vector2(9.74282, 9.0481)
 shape = SubResource("CircleShape2D_3tx74")
 
