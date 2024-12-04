@@ -28,6 +28,21 @@ var game_paused : bool = false:
 		get_tree().paused = game_paused
 		emit_signal("toggle_game_paused", game_paused)
 
+var damage_stat = 10
+var crit_dmg_stat = 0
+var res_stat = 0
+var speed_stat = 250
+var jump_stat = 250
+var imunity_stat = 0
+var attack_speed_stat = 250
+var cooldown_stat = 0
+var pierce_stat = 0
+var crit_stat = 0
+var knockback_stat = 50
+var knockback_res_stat = 0
+
+var all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
+
 func _ready():
 	SceneManager.load_complete.connect(_on_level_loaded)
 	SceneManager.load_start.connect(_on_load_start)
