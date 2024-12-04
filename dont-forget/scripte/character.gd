@@ -33,7 +33,7 @@ var JumpAvailability : bool
 func _ready():
 	new_spawn_position()
 	animation_player.play("idle")
-	#game_manager.connect("death", Callable(self, "die"))
+	game_manager.connect("death", Callable(self, "die"))
 
 
 func _process(delta):

@@ -786,8 +786,8 @@ script = ExtResource("18_p0o2n")
 environment = SubResource("Environment_nnj2g")
 
 [node name="PointLight2D" type="PointLight2D" parent="Environment/Lanterns/Laterne5"]
-position = Vector2(110, -182.857)
-scale = Vector2(9.63797, 9.71966)
+position = Vector2(114.286, -184.286)
+scale = Vector2(12.9886, 13.0987)
 color = Color(0.734112, 0.711665, 0, 1)
 energy = 3.17
 shadow_enabled = true
@@ -804,8 +804,8 @@ flip_h = true
 environment = SubResource("Environment_nnj2g")
 
 [node name="PointLight2D" type="PointLight2D" parent="Environment/Lanterns/Laterne2"]
-position = Vector2(115.715, -185.714)
-scale = Vector2(6.98167, 7.04085)
+position = Vector2(114.286, -182.857)
+scale = Vector2(10.4998, 10.5888)
 color = Color(0.734112, 0.711665, 0, 1)
 energy = 3.17
 shadow_enabled = true
@@ -821,8 +821,8 @@ texture = ExtResource("13_ugjyp")
 environment = SubResource("Environment_nnj2g")
 
 [node name="PointLight2D" type="PointLight2D" parent="Environment/Lanterns/Laterne3"]
-position = Vector2(-121.428, -188.571)
-scale = Vector2(7.48841, 7.55189)
+position = Vector2(-127.143, -192.857)
+scale = Vector2(12.5389, 12.6451)
 color = Color(0.734112, 0.711665, 0, 1)
 energy = 3.17
 shadow_enabled = true
@@ -838,8 +838,8 @@ texture = ExtResource("13_ugjyp")
 environment = SubResource("Environment_nnj2g")
 
 [node name="PointLight2D" type="PointLight2D" parent="Environment/Lanterns/Laterne4"]
-position = Vector2(-118.572, -191.429)
-scale = Vector2(7.8125, 7.87872)
+position = Vector2(-122.857, -181.429)
+scale = Vector2(11.4286, 11.5254)
 color = Color(0.734112, 0.711665, 0, 1)
 energy = 3.17
 shadow_enabled = true
@@ -857,8 +857,8 @@ script = ExtResource("18_p0o2n")
 environment = SubResource("Environment_nnj2g")
 
 [node name="PointLight2D" type="PointLight2D" parent="Environment/Lanterns/Laterne6"]
-position = Vector2(117.143, -187.143)
-scale = Vector2(9.92815, 10.0123)
+position = Vector2(112.857, -185.714)
+scale = Vector2(13.4685, 13.5827)
 color = Color(0.734112, 0.711665, 0, 1)
 energy = 3.17
 shadow_enabled = true
