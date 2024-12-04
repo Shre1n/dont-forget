@@ -131,39 +131,45 @@ func special_load():
 func update_start_stats():
 	# Verwende die Min/Max-Werte aus der geladenen JSON-Datei
 	if min_stats and max_stats and !tutorial:
-		life_stat = randf_range(min_stats["life_stat"], max_stats["life_stat"])
-		damage_stat = randf_range(min_stats["damage_stat"], max_stats["damage_stat"])
-		crit_dmg_stat = randf_range(min_stats["crit_dmg_stat"], max_stats["crit_dmg_stat"])
-		res_stat = randf_range(min_stats["res_stat"], max_stats["res_stat"])
-		speed_stat = randf_range(min_stats["speed_stat"], max_stats["speed_stat"])
-		imunity_stat = randf_range(min_stats["imunity_stat"], max_stats["imunity_stat"])
-		pierce_stat = randf_range(min_stats["pierce_stat"], max_stats["pierce_stat"])
-		crit_stat = randf_range(min_stats["crit_stat"], max_stats["crit_stat"])
-		knockback_stat = randf_range(min_stats["knockback_stat"], max_stats["knockback_stat"])
-		knockback_res_stat = randf_range(min_stats["knockback_res_stat"], max_stats["knockback_res_stat"])
+		life_stat = randf_range(min_stats["life_stat"], max_stats["life_stat"]) * (0.8 + (0.2 * level_nr))
+		damage_stat = randf_range(min_stats["damage_stat"], max_stats["damage_stat"]) * (0.95 + (0.05 * level_nr))
+		crit_dmg_stat = randf_range(min_stats["crit_dmg_stat"], max_stats["crit_dmg_stat"]) * (0.97 + (0.03 * level_nr))
+		res_stat = randf_range(min_stats["res_stat"], max_stats["res_stat"]) * (0.99 + (0.01 * level_nr))
+		speed_stat = randf_range(min_stats["speed_stat"], max_stats["speed_stat"])  * (0.99 + (0.01 * level_nr))
+		imunity_stat = randf_range(min_stats["imunity_stat"], max_stats["imunity_stat"]) * (0.99 + (0.01 * level_nr))
+		pierce_stat = randf_range(min_stats["pierce_stat"], max_stats["pierce_stat"]) * (0.99 + (0.01 * level_nr))
+		crit_stat = randf_range(min_stats["crit_stat"], max_stats["crit_stat"]) * (0.95 + (0.05 * level_nr))
+		knockback_stat = randf_range(min_stats["knockback_stat"], max_stats["knockback_stat"]) * (0.99 + (0.01 * level_nr))
+		knockback_res_stat = randf_range(min_stats["knockback_res_stat"], max_stats["knockback_res_stat"]) * (0.99 + (0.01 * level_nr))
+		jump_stat = randf_range(min_stats["jump_stat"], max_stats["jump_stat"])  * (1 + (0.01 * level_nr))
+		attack_speed_stat = randf_range(min_stats["attack_speed_stat"], max_stats["attack_speed_stat"]) * (0.9 + (0.1 * level_nr))
+		cooldown_stat = randf_range(min_stats["cooldown_stat"], max_stats["cooldown_stat"]) * (0.95 + (0.05 * level_nr))
+		reaction_stat = randf_range(min_stats["reaction_stat"], max_stats["reaction_stat"]) * (0.95 + (0.01 * level_nr))
+		deception_stat = randf_range(min_stats["deception_stat"], max_stats["deception_stat"])
+		fear_stat = randf_range(min_stats["fear_stat"], max_stats["fear_stat"])
 		print("Randomized stats applied within min/max range")
 	else:
 		print("Min/Max stats not properly loaded, using defaults")
 
 func update_status():
-	life = calculate_stats_to_value(life_stat, 0.0, 1.0, 0.0, 3500.0, 3500.0) * (1 + (0.2 * level_nr))
+	life = calculate_stats_to_value(life_stat, 0.0, 1.0, 0.0, 3500.0, 3500.0)
 	if elite:
 		life = life * 10
 	elif mini_boss:
 		life = life * 100
-	speed = calculate_stats_to_value(speed_stat, 0.0 , 1.0, 20.0, 600.0, 3500.0)  * (1 + (0.01 * level_nr))
-	resistenz = calculate_stats_to_value(res_stat, 0.0, 1.0, 0.0, 7000.0, 3500.0) * (1 + (0.01 * level_nr))
-	imunity = calculate_stats_to_value(imunity_stat, 0.0, 1.0, 1, 0.01, 3500.0) * (1 + (0.01 * level_nr))
-	knockback_res = calculate_stats_to_value(knockback_res_stat, 0.0, 1.0, 1, 0.01, 3500.0) * (1 + (0.01 * level_nr))
+	speed = calculate_stats_to_value(speed_stat, 0.0 , 1.0, 20.0, 600.0, 3500.0) 
+	resistenz = calculate_stats_to_value(res_stat, 0.0, 1.0, 0.0, 7000.0, 3500.0)
+	imunity = calculate_stats_to_value(imunity_stat, 0.0, 1.0, 1, 0.01, 3500.0)
+	knockback_res = calculate_stats_to_value(knockback_res_stat, 0.0, 1.0, 1, 0.01, 3500.0)
 	all_stats = life_stat + damage_stat + crit_dmg_stat + res_stat + speed_stat + imunity_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
 	print(all_stats)
 	weight = min(490, all_stats / 100)
 	
-	weapon.damage = max(1, damage_stat)* (1 + (0.05 * level_nr))
-	weapon.pierce_multi = pierce_stat * (1 + (0.01 * level_nr))
-	weapon.crit_chance = crit_stat * (1 + (0.05 * level_nr))
-	weapon.crit_multi = max(1, crit_dmg_stat) * (1 + (0.03 * level_nr))
-	weapon.knockback = knockback_stat * (1 + (0.01 * level_nr))
+	weapon.damage = max(1, damage_stat)
+	weapon.pierce_multi = pierce_stat
+	weapon.crit_chance = crit_stat
+	weapon.crit_multi = max(1, crit_dmg_stat)
+	weapon.knockback = knockback_stat
 
 func calculate_stats_to_value(stat: int, span_start: float, span_end: float, min_value: float, max_value: float, divider: float = 1000.0) -> float:
 	var stat_factor = clamp(stat / divider, span_start, span_end)
