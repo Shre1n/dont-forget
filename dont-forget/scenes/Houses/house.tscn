@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3j8css7fqtys"]
+
+[ext_resource type="Script" path="res://haus.gd" id="1_jsbgu"]
+[ext_resource type="SpriteFrames" path="res://assets/Village/Home/" id="2_846aq"]
+
+[node name="Haus" type="Node2D"]
+script = ExtResource("1_jsbgu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_846aq")
+animation = &"HouseFunnel"
+frame_progress = 0.753664
+speed_scale = 0.7

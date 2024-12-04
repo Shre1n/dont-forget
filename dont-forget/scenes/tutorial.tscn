@@ -10,7 +10,7 @@
 [ext_resource type="Shader" path="res://shader/Tilemap/layer1.gdshader" id="7_iab1c"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="8_h547o"]
 [ext_resource type="Script" path="res://scenes/sword_interact.gd" id="9_8mqe6"]
-[ext_resource type="Texture2D" uid="uid://dqrs5p51f6oii" path="res://assets/Sword.png" id="10_e8qmx"]
+[ext_resource type="Texture2D" uid="uid://ctlo8c01i8bj6" path="res://assets/Sword.png" id="10_e8qmx"]
 [ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="11_ye7re"]
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
@@ -29,8 +29,10 @@ size = Vector2(355, 63)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwnld"]
 size = Vector2(325, 1203)
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_amgem"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_txnar"]
-texture = ExtResource("4_d3554")
+texture = SubResource("CompressedTexture2D_amgem")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
@@ -1042,8 +1044,6 @@ glow_map_strength = 0.78
 [sub_resource type="CircleShape2D" id="CircleShape2D_3tx74"]
 radius = 12.7999
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3hr1b"]
-
 [node name="tutorial" type="Node2D"]
 script = ExtResource("1_howbq")
 
@@ -1193,15 +1193,16 @@ environment = SubResource("Environment_2cxkj")
 
 [node name="Sword" type="Sprite2D" parent="Sword_Interact"]
 self_modulate = Color(2, 2, 2, 1)
-position = Vector2(3287, 1283)
+position = Vector2(3306, 1257)
 rotation = 3.13213
-scale = Vector2(0.0621314, 0.0607497)
+scale = Vector2(0.0436782, 0.0427069)
 texture = ExtResource("10_e8qmx")
 
 [node name="InteractionArea" parent="Sword_Interact" instance=ExtResource("11_ye7re")]
 position = Vector2(3310, 1265)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword_Interact/InteractionArea"]
+position = Vector2(-4, -21)
 scale = Vector2(9.74282, 9.0481)
 shape = SubResource("CircleShape2D_3tx74")
 
@@ -1212,7 +1213,8 @@ position = Vector2(4030, 1336)
 position = Vector2(6961, 970)
 scale = Vector2(-37.5186, 96.0971)
 transition_type = "wipe_to_right"
-menu = true
+path_to_new_scene = "res://scenes/Village.tscn"
+new_position = Vector2(-1839, 833)
 
 [node name="Itemholder" type="Node2D" parent="."]
 
@@ -1221,15 +1223,8 @@ menu = true
 [node name="Slime" parent="Gegner" instance=ExtResource("14_vrtbd")]
 position = Vector2(5090, 1264)
 scale = Vector2(0.15, 0.152)
-life = 21
 tutorial = true
 
 [node name="ShopNpc" parent="." instance=ExtResource("16_vpndh")]
 position = Vector2(-657, 1116)
 scale = Vector2(2.87545, 2.5827)
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(200, 1328)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-shape = SubResource("WorldBoundaryShape2D_3hr1b")
