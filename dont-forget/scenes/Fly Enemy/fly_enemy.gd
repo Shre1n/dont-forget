@@ -72,7 +72,7 @@ func _physics_process(delta):
 func fly_around_origin(delta):
 	angle += fly_rotation_speed * delta
 	
-	global_position.x += cos(angle) * fly_radius_x
+	global_position.x += cos(angle)* fly_radius_x
 	global_position.y += sin(angle) * fly_radius_y
 
 func chase_player():

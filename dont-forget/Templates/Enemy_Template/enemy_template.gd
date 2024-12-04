@@ -53,7 +53,7 @@ func _physics_process(delta):
 	elif is_knocked_back:
 		handle_knockback(delta)
 	elif character_chase:
-		chase_character()
+		chase_player()
 	else:
 		move_in_direction()
 
@@ -75,12 +75,6 @@ func handle_knockback(delta):
 	else:
 		velocity.x = knockback_direction.x * knockback_speed
 
-func chase_character():
-	# Chase the player character
-	if character:
-		var direction_to_character = (character.global_position - global_position).normalized()
-		direction = direction_calcX(direction_to_character)
-		velocity.x = direction * speed
 
 func direction_calcX(newGoal):
 	# Calculate direction based on the player's position
@@ -105,24 +99,6 @@ func _on_direction_timer_timeout():
 	# Start new behavior after idle time
 	start_new_behavior()
 
-#func update_animation():
-	## Update animations based on the direction and state
-	#if !alive:
-		#return
-	#if damaged:
-		#return
-#
-	#match direction:
-			#
-		#-1:
-			#if !orientation_left:
-				#flip_sprite()  # Flip sprite if moving left
-			#
-		#1:
-			#if orientation_left:
-				#flip_sprite()  # Flip sprite if moving right
-			
-
 func flip_sprite(body: Character):
 	# Calculate the player's relative position to the enemy
 	var relative_position = body.global_position.x - global_position.x
@@ -136,6 +112,13 @@ func flip_sprite(body: Character):
 		$".".scale.x *= -1
 		orientation_left = true
 
+
+func chase_player():
+	if character: 
+		var direction_to_player = (character.global_position - global_position).normalized()
+		velocity.x = direction_to_player.x * speed  # Move horizontally towards the player
+		velocity.y = direction_to_player.y * speed  # Move vertically towards the player
+		flip_sprite(character)
 
 func _on_detection_area_body_entered(body):
 	# Triggered when the player enters the detection area
