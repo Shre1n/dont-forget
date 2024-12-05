@@ -398,7 +398,6 @@ fly_height = 50.0
 fly_range = 200.0
 hit_flash_time = 0.2
 chase_range = 0.0
-damage_of_fly_enemy = 10
 stats_file = "res://gegner/fly.json"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
@@ -452,5 +451,5 @@ shape = SubResource("CircleShape2D_r850h")
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_handle_on_detection_area_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

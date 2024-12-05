@@ -1,7 +1,6 @@
 extends "res://Templates/Enemy_Template/enemy_template.gd"
 
 @export var chase_range: float  # Range within which the enemy starts chasing the player
-@export var damage: float = 10
 
 @export var stats_file: String = "res://gegner/hide.json"
 
@@ -20,6 +19,7 @@ var max_pos: Vector2
 
 func _ready():
 	super._ready()
+	load_stats()
 	
 	chase_range = detection_area.scale.x*100
 	animationPlayer.play("idle")
@@ -29,30 +29,44 @@ func _ready():
 	animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
 
 func _physics_process(delta: float) -> void:
-	pass
+	super._physics_process(delta)
+
+func chase_player():
+	if character:
+		var direction_to_character = (character.global_position - global_position).normalized()
+		direction = direction_calcX(direction_to_character)
+		velocity.x = direction * speed_stat
+		flip_sprite(character)
 
 func load_stats():
 	super.load_stats_from_file(stats_file)
 	
 
-func take_damage(damage: int):
-	pass
+func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
+	super.take_damage(damage, pierce, knockback_power_in, damage_position, falle)
+	hit.play("hit_flash")
+	
+	if life <= 0:
+		animationPlayer.play("dead")
+		animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
 
 func _on_animation_player_animation_finished(anim_name: String):
-	pass
+	if anim_name == "dead":
+		animationPlayer.disconnect("animation_finished", Callable(self, "_on_dead_animation_finished"))  # Disconnect the signal to avoid multiple calls
+		super.die()
+		queue_free()
 	
 
 func _on_detection_area_body_entered(body):
-	pass
+	if body is Character:
+		super.flip_sprite(body)
+		animationPlayer.play("run")
+		player = body  # Set player reference
+		chase_player()  # Start chasing the player immediately
 
 func _on_detection_area_body_exited(body):
-	pass
-
-func _on_attack_area_body_entered(body):
-	if !alive:
-		return
-	if body is Character:
-		body.take_damage(damage)
-
-func _on_damage_area_body_entered(body):
-	super._on_damage_area_body_entered(body)
+	if body is Character and body == player:
+		animationPlayer.play_backwards("awake")
+		animationPlayer.queue("idle")
+		player = null  # Stop chasing the player
+		velocity = Vector2.ZERO  # Stop moving when the player leaves the range

@@ -41,7 +41,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(111, 95)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -102,6 +102,18 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("DetectionArea:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-51.3119, 46.1155)]
 }
 
 [sub_resource type="Animation" id="Animation_368j1"]
@@ -180,11 +192,22 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(214, 200), Vector2(214, 200)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("DetectionArea:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-31.4453, 14.7308)]
+}
 
 [sub_resource type="Animation" id="Animation_lvt2f"]
 resource_name = "awake"
-length = 1.5
-loop_mode = 1
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -192,7 +215,7 @@ tracks/0/path = NodePath("AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [&"awake", &"awake"]
@@ -204,7 +227,7 @@ tracks/1/path = NodePath("AnimatedSprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.433333, 0.766667),
+"times": PackedFloat32Array(0, 0.2, 0.433333, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [0, 1, 2, 3]
@@ -216,10 +239,10 @@ tracks/2/path = NodePath("AnimatedSprite2D:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, 0)]
+"values": [Vector2(194, 154), Vector2(194, 154)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -228,7 +251,7 @@ tracks/3/path = NodePath("AnimatedSprite2D:rotation")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 0.0]
@@ -240,15 +263,26 @@ tracks/4/path = NodePath("AnimatedSprite2D:scale")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 1.5),
+"times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DetectionArea:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-93.5573, 13.3071)]
+}
 
 [sub_resource type="Animation" id="Animation_41rmk"]
 resource_name = "dead"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -374,6 +408,18 @@ tracks/4/keys = {
 "update": 1,
 "values": [&"idle", &"idle"]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DetectionArea:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-51.3119, 46.1155)]
+}
 
 [sub_resource type="Animation" id="Animation_a67ra"]
 resource_name = "run"
@@ -438,6 +484,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("DetectionArea:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-93.5573, 13.3071)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_y0og7"]
@@ -564,39 +622,15 @@ radius = 453.441
 radius = 3115.95
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bnhh3"]
-radius = 8.39063
+radius = 20.1505
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q4prk"]
-radius = 43.4555
+radius = 40.6494
 
 [node name="hide_enemy" instance=ExtResource("1_worv2")]
 script = ExtResource("2_800ox")
-idle_time_min = null
-idle_time_max = null
-knockback_duration = null
-tutorial = null
-level_nr = null
-stats_file_path = null
-selected_profile = null
-life_stat = null
-damage_stat = null
-crit_dmg_stat = null
-res_stat = null
-speed_stat = null
-imunity_stat = null
-pierce_stat = null
-crit_stat = null
-knockback_stat = null
-knockback_res_stat = null
-jump_stat = null
-attack_speed_stat = null
-cooldown_stat = null
-reaction_stat = null
-deception_stat = null
-fear_stat = null
-damaged = null
-chase_range = null
-damage = null
+chase_range = 0.0
+stats_file = "res://gegner/hide.json"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -604,6 +638,7 @@ libraries = {
 }
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="2"]
+position = Vector2(111, 95)
 scale = Vector2(0.55, 0.55)
 sprite_frames = SubResource("SpriteFrames_d3h82")
 animation = &"attack"
@@ -634,8 +669,8 @@ scale = Vector2(1.93517, 1.94888)
 shape = SubResource("CircleShape2D_bnhh3")
 
 [node name="Body Area" type="CollisionShape2D" parent="." index="7"]
-position = Vector2(19, 20)
-scale = Vector2(10.7013, 10.44)
+position = Vector2(1.90735e-06, -2)
+scale = Vector2(11.1126, 10.9923)
 shape = SubResource("CircleShape2D_q4prk")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

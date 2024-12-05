@@ -60,13 +60,13 @@ func _physics_process(delta):
 		
 		if position.distance_to(start_position) > damage_area.scale.x:
 			if start_position.x <= position.x:
-				velocity.x = -fly_speed
+				velocity.x = -speed_stat
 			else:
 				velocity.x = fly_speed  # Constant horizontal speed
 			if start_position.y <= position.y:
-				velocity.y = -fly_speed
+				velocity.y = -speed_stat
 			else:
-				velocity.y = fly_speed
+				velocity.y = speed_stat
 		else:
 			velocity = Vector2.ZERO
 

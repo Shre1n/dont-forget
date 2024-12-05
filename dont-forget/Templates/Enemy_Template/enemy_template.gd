@@ -91,18 +91,20 @@ func _ready():
 	start_new_behavior()
 	
 func load_stats_from_file(file):
-	file = FileAccess.open(stats_file_path, FileAccess.READ)
 	if file:
-		var json_data = file.get_as_text()
-		var json = JSON.new()
-		var parse_result = json.parse(json_data)
-		if parse_result == OK:
-			profiles_data = json.data
-		else:
-			print("Error parsing JSON file: ", parse_result)
-		file.close()
+		file = FileAccess.open(file, FileAccess.READ)
 	else:
-		print("Could not open file: ", stats_file_path)
+		file = FileAccess.open(stats_file_path, FileAccess.READ)
+	
+	var json_data = file.get_as_text()
+	var json = JSON.new()
+	var parse_result = json.parse(json_data)
+	if parse_result == OK:
+		profiles_data = json.data
+		print(profiles_data)
+	else:
+		print("Error parsing JSON file: ", parse_result)
+	file.close()
 
 func apply_profile_data():
 	if profiles_data.has("profiles") and profiles_data["profiles"].has(selected_profile):
@@ -113,7 +115,6 @@ func apply_profile_data():
 		max_drops = profile["max_drops"]
 		special_type = profile["special_type"]
 		extra_data = profile["extra_data"]
-		print("Min/Max stats and drops applied for profile: ", selected_profile)
 	else:
 		print("Profile not found: ", selected_profile)
 		# Standardwerte setzen
@@ -130,10 +131,6 @@ func special_load():
 	
 func set_weapon(new_weapon: Node):
 	weapon = new_weapon
-	if weapon:
-		print("weapon assigned: ", weapon.name)
-	else:
-		print("Weapon = null")
 	
 
 func update_start_stats():
@@ -155,7 +152,6 @@ func update_start_stats():
 		reaction_stat = randf_range(min_stats["reaction_stat"], max_stats["reaction_stat"]) * (0.95 + (0.01 * level_nr))
 		deception_stat = randf_range(min_stats["deception_stat"], max_stats["deception_stat"])
 		fear_stat = randf_range(min_stats["fear_stat"], max_stats["fear_stat"])
-		print("Randomized stats applied within min/max range")
 	else:
 		print("Min/Max stats not properly loaded, using defaults")
 
@@ -170,7 +166,6 @@ func update_status():
 	imunity = calculate_stats_to_value(imunity_stat, 0.0, 1.0, 1, 0.01, 3500.0)
 	knockback_res = calculate_stats_to_value(knockback_res_stat, 0.0, 1.0, 1, 0.01, 3500.0)
 	all_stats = life_stat + damage_stat + crit_dmg_stat + res_stat + speed_stat + imunity_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
-	print(all_stats)
 	weight = min(490, all_stats / 100)
 	
 	if weapon:
