@@ -3,6 +3,8 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 @export var chase_range: float  # Range within which the enemy starts chasing the player
 @export var damage: float = 10
 
+@export var stats_file: String = "res://gegner/hide.json"
+
 
 @onready var hit: AnimationPlayer = $HitFlashPlayer
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
@@ -28,6 +30,10 @@ func _ready():
 
 func _physics_process(delta: float) -> void:
 	pass
+
+func load_stats():
+	super.load_stats_from_file(stats_file)
+	
 
 func take_damage(damage: int):
 	pass

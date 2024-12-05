@@ -9,13 +9,15 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 @export var fly_range: float = 200.0  # The horizontal range of movement
 @export var hit_flash_time: float = 0.2  # Duration of the hit flash
 @export var chase_range: float  # Range within which the enemy starts chasing the player
-@export var damage_of_fly_enemy: int = 10
+
+@export var stats_file: String = "res://gegner/fly.json"
 
 @onready var chase: AnimationPlayer = $Chase
 @onready var hit: AnimationPlayer = $HitFlashPlayer
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var detection_area: CollisionShape2D = $DetectionArea/CollisionShape2D
 @onready var damage_area: CollisionShape2D = $DamageArea/CollisionShape2D
+@onready var child_weapon: Area2D = $AttackArea
 
 var angle: float = 0.0
 var start_position: Vector2
@@ -27,6 +29,8 @@ var max_pos: Vector2
 
 func _ready():
 	super._ready()
+	super.set_weapon(child_weapon)
+	load_stats()
 	original_position = global_position
 	start_position = position
 	min_pos = start_position
@@ -42,6 +46,10 @@ func _ready():
 	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
 	animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
 	
+func load_stats():
+	super.load_stats_from_file(stats_file)
+
+
 func _physics_process(delta):
 	# Custom flying movement
 	
@@ -84,10 +92,10 @@ func chase_player():
 		velocity.y = direction_to_player.y * fly_speed  # Move vertically towards the player
 		flip_sprite(player)
 
-func take_damage(damage: int):
+func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	# Custom damage logic (for example, hit flash effect or other special behavior)
 	# Call the parent's take_damage method to handle the core damage logic
-	super.take_damage(damage)
+	super.take_damage(damage, pierce, knockback_power_in, damage_position, falle)
 	hit.play("hit_flash")
 	
 	if life <= 0:
@@ -115,12 +123,3 @@ func _on_detection_area_body_exited(body):
 		chase.play("lost")
 		player = null  # Stop chasing the player
 		velocity = Vector2.ZERO  # Stop moving when the player leaves the range
-
-func _on_attack_area_body_entered(body):
-	if !alive:
-		return
-	if body is Character:
-		body.take_damage(damage_of_fly_enemy)
-
-func _on_damage_area_body_entered(body):
-	super._on_damage_area_body_entered(body)

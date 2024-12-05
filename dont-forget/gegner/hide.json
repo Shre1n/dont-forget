@@ -1,0 +1,118 @@
+{
+  "hide_enemy": {
+    "profiles": {
+      "default": {
+        "min_stats": {
+          "life_stat": 3,
+          "damage_stat": 1,
+          "crit_dmg_stat": 0,
+          "res_stat": 0,
+          "speed_stat": 100,
+          "imunity_stat": 0,
+          "pierce_stat": 0,
+          "crit_stat": 0,
+          "knockback_stat": 30,
+          "knockback_res_stat": 0,
+          "jump_stat": 5,
+          "attack_speed_stat": 80,
+          "cooldown_stat": 0,
+          "reaction_stat": 30,
+          "deception_stat": 15,
+          "fear_stat": 10
+        },
+        "max_stats": {
+          "life_stat": 20,
+          "damage_stat": 3,
+          "crit_dmg_stat": 25,
+          "res_stat": 1,
+          "speed_stat": 200,
+          "imunity_stat": 10,
+          "pierce_stat": 50,
+          "crit_stat": 25,
+          "knockback_stat": 100,
+          "knockback_res_stat": 25,
+          "jump_stat": 10,
+          "attack_speed_stat": 120,
+          "cooldown_stat": 20,
+          "reaction_stat": 80,
+          "deception_stat": 40,
+          "fear_stat": 25
+        },
+        "min_drops": {
+          "gold": 0,
+          "time": 1
+        },
+        "max_drops": {
+          "gold": 2,
+          "time": 3
+        },
+        "special_type": {
+          "elite": false,
+          "mini_boss": false
+        },
+        "extra_data": {
+          "hide_behavior": {
+            "stealth_chance": 50,
+            "hide_duration": 3
+          }
+        }
+      },
+      "strong_enemy": {
+        "min_stats": {
+          "life_stat": 10,
+          "damage_stat": 5,
+          "crit_dmg_stat": 50,
+          "res_stat": 2,
+          "speed_stat": 150,
+          "imunity_stat": 20,
+          "pierce_stat": 30,
+          "crit_stat": 50,
+          "knockback_stat": 80,
+          "knockback_res_stat": 15,
+          "jump_stat": 10,
+          "attack_speed_stat": 100,
+          "cooldown_stat": 10,
+          "reaction_stat": 50,
+          "deception_stat": 50,
+          "fear_stat": 15
+        },
+        "max_stats": {
+          "life_stat": 50,
+          "damage_stat": 10,
+          "crit_dmg_stat": 100,
+          "res_stat": 5,
+          "speed_stat": 250,
+          "imunity_stat": 50,
+          "pierce_stat": 80,
+          "crit_stat": 100,
+          "knockback_stat": 150,
+          "knockback_res_stat": 50,
+          "jump_stat": 20,
+          "attack_speed_stat": 150,
+          "cooldown_stat": 40,
+          "reaction_stat": 120,
+          "deception_stat": 80,
+          "fear_stat": 40
+        },
+        "min_drops": {
+          "gold": 1,
+          "time": 2
+        },
+        "max_drops": {
+          "gold": 4,
+          "time": 5
+        },
+        "special_type": {
+          "elite": true,
+          "mini_boss": false
+        },
+        "extra_data": {
+          "hide_behavior": {
+            "stealth_chance": 75,
+            "hide_duration": 5
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://0qutpmchax1b"]
+[gd_scene load_steps=30 format=3 uid="uid://0qutpmchax1b"]
 
 [ext_resource type="PackedScene" uid="uid://drwrxl4akk264" path="res://Templates/Enemy_Template/Enemy_Template.tscn" id="1_s8poh"]
 [ext_resource type="Script" path="res://scenes/Enemies/Fly Enemy/fly.gd" id="2_4o5g4"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://n105o4m88yys" path="res://assets/enemy/fly/Idle/2.png" id="7_w3u45"]
 [ext_resource type="Texture2D" uid="uid://buwo648p880ex" path="res://assets/enemy/fly/Idle/3.png" id="8_ro2b8"]
 [ext_resource type="Texture2D" uid="uid://diammteb7s2w3" path="res://assets/enemy/fly/Idle/4.png" id="9_f7ni5"]
+[ext_resource type="Script" path="res://scenes/damage_area.gd" id="11_c182f"]
+[ext_resource type="Script" path="res://scripte/attack_area.gd" id="12_8qs1o"]
 
 [sub_resource type="Animation" id="Animation_7560b"]
 length = 0.001
@@ -322,13 +324,28 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wc2ka"]
-radius = 453.441
+radius = 417.011
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nkbdt"]
-radius = 375.537
+radius = 452.028
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojkmh"]
 radius = 12.6021
+
+[sub_resource type="Animation" id="Animation_ygoiu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DetectionArea:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-140.025, 129.228)]
+}
 
 [sub_resource type="Animation" id="Animation_er3ca"]
 resource_name = "chase"
@@ -344,21 +361,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(-230.305, 182.708)]
-}
-
-[sub_resource type="Animation" id="Animation_ygoiu"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("DetectionArea:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-140.025, 129.228)]
 }
 
 [sub_resource type="Animation" id="Animation_y1jk3"]
@@ -384,7 +386,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r850h"]
-radius = 42.2031
+radius = 41.1779
 
 [node name="Fly_Enemy" instance=ExtResource("1_s8poh")]
 script = ExtResource("2_4o5g4")
@@ -397,6 +399,7 @@ fly_range = 200.0
 hit_flash_time = 0.2
 chase_range = 0.0
 damage_of_fly_enemy = 10
+stats_file = "res://gegner/fly.json"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -415,12 +418,14 @@ libraries = {
 }
 
 [node name="DamageArea" type="Area2D" parent="." index="4"]
+script = ExtResource("11_c182f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
 position = Vector2(-338, -100)
 shape = SubResource("CircleShape2D_wc2ka")
 
 [node name="AttackArea" type="Area2D" parent="." index="5"]
+script = ExtResource("12_8qs1o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" index="0"]
 position = Vector2(-331, -93)
