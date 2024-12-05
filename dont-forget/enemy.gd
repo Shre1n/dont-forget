@@ -159,7 +159,6 @@ func update_status():
 	imunity = calculate_stats_to_value(imunity_stat, 0.0, 1.0, 1, 0.01, 3500.0)
 	knockback_res = calculate_stats_to_value(knockback_res_stat, 0.0, 1.0, 1, 0.01, 3500.0)
 	all_stats = life_stat + damage_stat + crit_dmg_stat + res_stat + speed_stat + imunity_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
-	print(all_stats)
 	weight = min(490, all_stats / 100)
 	
 	weapon.damage = max(1, damage_stat)

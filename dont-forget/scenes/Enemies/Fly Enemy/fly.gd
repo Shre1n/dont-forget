@@ -62,7 +62,7 @@ func _physics_process(delta):
 			if start_position.x <= position.x:
 				velocity.x = -speed_stat
 			else:
-				velocity.x = fly_speed  # Constant horizontal speed
+				velocity.x = speed_stat  # Constant horizontal speed
 			if start_position.y <= position.y:
 				velocity.y = -speed_stat
 			else:

@@ -52,6 +52,7 @@ var weapon: Node = null:
 
 var direction: int = 0  # -1 für links, 1 für rechts, 0 für idle
 var orientation_left: bool = false
+@export var attacking: bool = false
 @export var damaged: bool = false
 var alive: bool = true
 
@@ -101,7 +102,6 @@ func load_stats_from_file(file):
 	var parse_result = json.parse(json_data)
 	if parse_result == OK:
 		profiles_data = json.data
-		print(profiles_data)
 	else:
 		print("Error parsing JSON file: ", parse_result)
 	file.close()
