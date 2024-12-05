@@ -1,16 +1,15 @@
-[gd_scene load_steps=30 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=29 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
 [ext_resource type="Texture2D" uid="uid://ble1h840tgkst" path="res://assets/Tilemap/dirt.png" id="4_1x1oc"]
 [ext_resource type="Texture2D" uid="uid://dbyietkipegb0" path="res://assets/deco/decoElements.png" id="4_7kvei"]
-[ext_resource type="Texture2D" uid="uid://bnkd1ln6xu6mo" path="res://assets/Tilemap/tilemap.png" id="4_d3554"]
 [ext_resource type="Texture2D" uid="uid://cuaxdf0m8gk3r" path="res://assets/Tilemap/Tilemap2.png" id="4_nasg4"]
 [ext_resource type="Texture2D" uid="uid://bvsyg0uhfdf5" path="res://assets/Tilemap/Bg_2.png" id="6_wqrb5"]
 [ext_resource type="Shader" path="res://shader/Tilemap/layer1.gdshader" id="7_iab1c"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="8_h547o"]
 [ext_resource type="Script" path="res://scenes/sword_interact.gd" id="9_8mqe6"]
-[ext_resource type="Texture2D" uid="uid://ctlo8c01i8bj6" path="res://assets/Sword.png" id="10_e8qmx"]
+[ext_resource type="Texture2D" uid="uid://dqrs5p51f6oii" path="res://assets/Sword.png" id="10_e8qmx"]
 [ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="11_ye7re"]
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
@@ -1063,7 +1062,7 @@ sprite_frames = SubResource("SpriteFrames_x17dd")
 animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
-position = Vector2(950, 761)
+position = Vector2(3193, 1142)
 sword = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
