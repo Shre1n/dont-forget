@@ -1,6 +1,6 @@
 extends "res://Templates/Enemy_Template/enemy_template.gd"
 
-@export var chase_range: float  # Range within which the enemy starts chasing the player
+
 
 @export var stats_file: String = "res://gegner/hide.json"
 
@@ -24,7 +24,6 @@ func _ready():
 	load_stats()
 	super.update_status()
 	
-	chase_range = detection_area.scale.x*100
 	animationPlayer.play("idle")
 	# Connect detection area signals
 	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
@@ -32,10 +31,13 @@ func _ready():
 	animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
 
 func _physics_process(delta: float) -> void:
+	if !alive:
+		return
+	
+	
 	if player and !attacking:
 		var distance_to_player = global_position.distance_to(player.global_position)
-		print(damage_area.scale.x)
-		if distance_to_player < damage_area.scale.x*300 && alive:
+		if distance_to_player < damage_area.scale.x*300:
 			start_attack()
 		else:
 			chase_player()
@@ -69,8 +71,9 @@ func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	
 	if life <= 0:
 		alive = false
+		velocity = Vector2.ZERO
 		animationPlayer.play("dead")
-		animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
+		animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"), CONNECT_ONE_SHOT)
 
 func _on_animation_player_animation_finished(anim_name: String):
 	if anim_name == "dead":
