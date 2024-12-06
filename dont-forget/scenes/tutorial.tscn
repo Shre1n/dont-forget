@@ -1180,7 +1180,7 @@ offset_right = 2427.0
 offset_bottom = 1253.0
 theme_override_fonts/font = ExtResource("8_h547o")
 theme_override_font_sizes/font_size = 41
-text = "Press Space or W to jump"
+text = "Press W to jump"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1203,7 +1203,7 @@ offset_right = 4447.0
 offset_bottom = 1285.0
 theme_override_fonts/font = ExtResource("8_h547o")
 theme_override_font_sizes/font_size = 41
-text = "LEFT Click to attack"
+text = "Press SPACE to attack"
 horizontal_alignment = 1
 vertical_alignment = 1
 
