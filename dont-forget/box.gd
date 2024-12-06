@@ -20,7 +20,6 @@ var current_Itemholder
 func _ready():
 	var gamemanager = find_game_manager()
 	current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
-	print(current_Itemholder)
 	randomize()
 	load_stats_from_file()
 	apply_profile_data()
@@ -35,7 +34,7 @@ func load_stats_from_file():
 		var parse_result = json.parse(json_data)
 		if parse_result == OK:
 			profiles_data = json.data
-			print("Stats loaded: ", profiles_data)
+			#print("Stats loaded: ", profiles_data)
 		else:
 			print("Error parsing JSON file: ", parse_result)
 		file.close()
@@ -49,7 +48,7 @@ func apply_profile_data():
 		min_drops = profile["min_drops"]
 		max_drops = profile["max_drops"]
 		extra_data = profile["extra_data"]
-		print("Min/Max stats and drops applied for profile: ", selected_profile)
+		#print("Min/Max stats and drops applied for profile: ", selected_profile)
 	else:
 		print("Profile not found: ", selected_profile)
 		# Standardwerte setzen
