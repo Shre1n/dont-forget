@@ -1,0 +1,191 @@
+{
+	"profiles": {
+		"default": {
+			"stats": {
+				"life_stat": 100,
+				"amor_stat": 0,
+				"imunity_stat": 0
+			},
+			"min_drops": {
+				"gold": 0,
+				"time": 0
+			},
+			"max_drops": {
+				"gold": 0,
+				"time": 0
+			},
+			"extra_data": {
+			}
+		},
+		"stone_block": {
+			"stats": {
+				"life_stat": 600,
+				"amor_stat": 50,
+				"imunity_stat": 10
+			},
+			"min_drops": {
+				"gold": 0,
+				"time": 0
+			},
+			"max_drops": {
+				"gold": 0,
+				"time": 1
+			},
+			"extra_data": {
+			}
+		},
+		"metal_block": {
+			"stats": {
+				"life_stat": 450,
+				"amor_stat": 100,
+				"imunity_stat": 20
+			},
+			"min_drops": {
+				"gold": 0,
+				"time": 0
+			},
+			"max_drops": {
+				"gold": 2,
+				"time": 0
+			},
+			"extra_data": {
+			}
+		},
+		"gold_block": {
+			"stats": {
+				"life_stat": 1000,
+				"amor_stat": 150,
+				"imunity_stat": 30
+			},
+			"min_drops": {
+				"gold": 5,
+				"time": 0
+			},
+			"max_drops": {
+				"gold": 10,
+				"time": 0
+			},
+			"extra_data": {
+			}
+		},
+		"wall_block": {
+			"stats": {
+				"life_stat": 10000,
+				"amor_stat": 250,
+				"imunity_stat": 100
+			},
+			"min_drops": {
+				"gold": 0,
+				"time": 0
+			},
+			"max_drops": {
+				"gold": 0,
+				"time": 0
+			},
+			"extra_data": {
+			}
+		},
+		"simple_treasure_chest": {
+			"stats": {
+				"life_stat": 20,
+				"amor_stat": 0,
+				"imunity_stat": 0
+			},
+			"min_drops": {
+				"gold": 10,
+				"time": 0
+			},
+			"max_drops": {
+				"gold": 30,
+				"time": 0
+			},
+			"extra_data": {
+			}
+		},
+		"wood_treasure_chest": {
+			"stats": {
+				"life_stat": 20,
+				"amor_stat": 1,
+				"imunity_stat": 0
+			},
+			"min_drops": {
+				"gold": 10,
+				"time": 0
+			},
+			"max_drops": {
+				"gold": 30,
+				"time": 3
+			},
+			"extra_data": {
+			}
+		},
+		"iron_treasure_chest": {
+			"stats": {
+				"life_stat": 40,
+				"amor_stat": 2,
+				"imunity_stat": 5
+			},
+			"min_drops": {
+				"gold": 15,
+				"time": 2
+			},
+			"max_drops": {
+				"gold": 32,
+				"time": 5
+			},
+			"extra_data": {
+			}
+		},
+		"bronze_treasure_chest": {
+			"stats": {
+				"life_stat": 60,
+				"amor_stat": 4,
+				"imunity_stat": 10
+			},
+			"min_drops": {
+				"gold": 20,
+				"time": 6
+			},
+			"max_drops": {
+				"gold": 42,
+				"time": 12
+			},
+			"extra_data": {
+			}
+		},
+		"gold_treasure_chest": {
+			"stats": {
+				"life_stat": 80,
+				"amor_stat": 8,
+				"imunity_stat": 15
+			},
+			"min_drops": {
+				"gold": 50,
+				"time": 5
+			},
+			"max_drops": {
+				"gold": 100,
+				"time": 8
+			},
+			"extra_data": {
+			}
+		},
+		"diamand_treasure_chest": {
+			"stats": {
+				"life_stat": 100,
+				"amor_stat": 16,
+				"imunity_stat": 25
+			},
+			"min_drops": {
+				"gold": 20,
+				"time": 15
+			},
+			"max_drops": {
+				"gold": 30,
+				"time": 30
+			},
+			"extra_data": {
+			}
+		}
+	}
+}

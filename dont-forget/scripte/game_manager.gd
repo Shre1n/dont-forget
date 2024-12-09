@@ -69,7 +69,6 @@ func load_saved_scene():
 		var saved_scene_instance = saved_scene_path.instantiate() as Level
 		if saved_scene_instance:
 			level_holder.add_child(saved_scene_instance)
-			print("Loaded saved scene: ", saved_scene_instance)
 			gold.text = user_save.gold
 			life_time = user_save.life
 		else:

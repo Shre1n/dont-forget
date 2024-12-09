@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=59 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
@@ -30,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://b5n44yfdxue7d" path="res://assets/NPC/Owl/1.png" id="26_cxjl8"]
 [ext_resource type="Script" path="res://scenes/mole.gd" id="27_4ojhx"]
 [ext_resource type="Texture2D" uid="uid://q7ikoiew26od" path="res://assets/NPC/Owl/2.png" id="27_wlgfp"]
+[ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="31_hehs4"]
+[ext_resource type="Script" path="res://scenes/no_attack_area.gd" id="32_l4m7q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2ado"]
 texture = ExtResource("2_cj6i5")
@@ -521,8 +523,21 @@ size = Vector2(325, 1203)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c6w6l"]
 size = Vector2(895, 1691.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wo80w"]
+size = Vector2(14013, 343)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rgn0"]
+size = Vector2(1710.01, 200)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0l7o"]
+size = Vector2(299, 1316)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfvmh"]
+
 [node name="Village" type="Node2D"]
 script = ExtResource("1_5at0l")
+
+[node name="Itemholder" type="Node2D" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.497474, 0.497474, 0.497474, 1)
@@ -689,7 +704,11 @@ texture = ExtResource("6_w1pej")
 centered = false
 
 [node name="Character" parent="." instance=ExtResource("7_jeyt0")]
-position = Vector2(-1839, 833)
+position = Vector2(2992, 756)
+camera_limit_left = -3344
+camera_limit_top = -1057
+camera_limit_right = 9927
+camera_limit_bottom = 990
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -951,15 +970,90 @@ menu = true
 scale = Vector2(2.02004, 1)
 shape = SubResource("WorldBoundaryShape2D_bdhh3")
 
-[node name="collision" type="StaticBody2D" parent="."]
+[node name="Border" type="StaticBody2D" parent="."]
 position = Vector2(9103, 7)
+collision_mask = 0
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="collision"]
-position = Vector2(-12511, -89)
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Border"]
+position = Vector2(-12488, -196)
 shape = SubResource("RectangleShape2D_ckata")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Border"]
 position = Vector2(924.5, 58)
 shape = SubResource("RectangleShape2D_c6w6l")
 
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Border"]
+position = Vector2(-5633, -976)
+shape = SubResource("RectangleShape2D_wo80w")
+
+[node name="kisten" type="Node2D" parent="."]
+
+[node name="tresaure" parent="kisten" instance=ExtResource("31_hehs4")]
+position = Vector2(9214, 831)
+selected_profile = "simple_treasure_chest"
+
+[node name="wall5" parent="kisten" instance=ExtResource("31_hehs4")]
+position = Vector2(6366, 831)
+selected_profile = "wall_block"
+
+[node name="metall" parent="kisten" instance=ExtResource("31_hehs4")]
+position = Vector2(6282, 680)
+selected_profile = "metal_block"
+
+[node name="wood" parent="kisten" instance=ExtResource("31_hehs4")]
+position = Vector2(6221, 832)
+
+[node name="wall1" parent="kisten" instance=ExtResource("31_hehs4")]
+position = Vector2(9510, 834)
+selected_profile = "wall_block"
+
+[node name="wall2" parent="kisten" instance=ExtResource("31_hehs4")]
+position = Vector2(9510, 692)
+selected_profile = "wall_block"
+
+[node name="wall3" parent="kisten" instance=ExtResource("31_hehs4")]
+position = Vector2(9509, 555)
+selected_profile = "wall_block"
+
+[node name="wall4" parent="kisten" instance=ExtResource("31_hehs4")]
+position = Vector2(9363, 832)
+selected_profile = "wall_block"
+
+[node name="wall6" parent="kisten" instance=ExtResource("31_hehs4")]
+position = Vector2(9508, 418)
+selected_profile = "wall_block"
+
+[node name="Village_Way" type="Node2D" parent="."]
+
+[node name="One_Way_Area" type="StaticBody2D" parent="Village_Way"]
+position = Vector2(-31, -45)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Village_Way/One_Way_Area"]
+position = Vector2(-530.239, 102.995)
+rotation = 1.5704
+shape = SubResource("RectangleShape2D_0rgn0")
+one_way_collision = true
+one_way_collision_margin = 8.0
+debug_color = Color(0.936909, 0.187254, 0.429852, 0.42)
+
+[node name="no_attack_area" type="Area2D" parent="Village_Way/One_Way_Area"]
+visible = false
+monitoring = false
+script = ExtResource("32_l4m7q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Village_Way/One_Way_Area/no_attack_area"]
+position = Vector2(-295.5, 309)
+shape = SubResource("RectangleShape2D_a0l7o")
+
+[node name="Brunnen" type="Node2D" parent="."]
+position = Vector2(10022, 89)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Brunnen"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Brunnen/StaticBody2D"]
+shape = SubResource("RectangleShape2D_nfvmh")
+
 [connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
+[connection signal="body_entered" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_entered"]
+[connection signal="body_exited" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_exited"]

@@ -1,8 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsvg8hvpepc70"]
+[gd_scene load_steps=14 format=3 uid="uid://bsvg8hvpepc70"]
 
 [ext_resource type="Script" path="res://drop.gd" id="1_4gpbv"]
 [ext_resource type="Texture2D" uid="uid://c5a4u1d5vk647" path="res://assets/drops/gold.png" id="2_d2rxu"]
 [ext_resource type="Texture2D" uid="uid://8yjymhny3cfh" path="res://assets/drops/time.png" id="3_btvxa"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6qefl"]
+bounce = 0.5
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g4nbm"]
 size = Vector2(46.8103, 23.2189)
@@ -100,7 +103,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Area2D/CollisionShape2D:shape")
+tracks/5/path = NodePath("detection_area/CollisionShape2D:shape")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -112,7 +115,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/6/path = NodePath("detection_area/CollisionShape2D:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -124,7 +127,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Area2D/CollisionShape2D:rotation")
+tracks/7/path = NodePath("detection_area/CollisionShape2D:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -136,7 +139,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Area2D/CollisionShape2D:scale")
+tracks/8/path = NodePath("detection_area/CollisionShape2D:scale")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -259,7 +262,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/6/path = NodePath("detection_area/CollisionShape2D:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -271,7 +274,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Area2D/CollisionShape2D:shape")
+tracks/7/path = NodePath("detection_area/CollisionShape2D:shape")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -283,7 +286,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Area2D/CollisionShape2D:rotation")
+tracks/8/path = NodePath("detection_area/CollisionShape2D:rotation")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -295,7 +298,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Area2D/CollisionShape2D:scale")
+tracks/9/path = NodePath("detection_area/CollisionShape2D:scale")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -394,7 +397,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Area2D/CollisionShape2D:position")
+tracks/5/path = NodePath("detection_area/CollisionShape2D:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -406,7 +409,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Area2D/CollisionShape2D:shape")
+tracks/6/path = NodePath("detection_area/CollisionShape2D:shape")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -418,7 +421,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Area2D/CollisionShape2D:rotation")
+tracks/7/path = NodePath("detection_area/CollisionShape2D:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -473,9 +476,9 @@ _data = {
 
 [node name="drop" type="RigidBody2D"]
 collision_layer = 4
-collision_mask = 5
+collision_mask = 53
 mass = 0.015
-gravity_scale = 0.4
+physics_material_override = SubResource("PhysicsMaterial_6qefl")
 script = ExtResource("1_4gpbv")
 time = false
 
@@ -494,9 +497,11 @@ scale = Vector2(0.0182773, 0.0182773)
 sprite_frames = SubResource("SpriteFrames_7vyr5")
 animation = &"Gold"
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="detection_area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detection_area"]
 position = Vector2(0.0671793, -0.530856)
 rotation = -0.75233
 shape = SubResource("RectangleShape2D_3llli")
@@ -506,4 +511,4 @@ libraries = {
 "": SubResource("AnimationLibrary_qxuf3")
 }
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="detection_area" to="." method="_on_area_2d_body_entered"]
