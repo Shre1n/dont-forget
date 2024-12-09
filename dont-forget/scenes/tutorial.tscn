@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=33 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
 [ext_resource type="PackedScene" uid="uid://dhx18cj8fwfgg" path="res://heal/heal.tscn" id="16_auwwc"]
-[ext_resource type="PackedScene" uid="uid://bkh7wikmhukm7" path="res://scenes/box.tscn" id="16_ten56"]
+[ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
 [ext_resource type="PackedScene" uid="uid://rwcbxprdm3p4" path="res://scenes/Shop/ShopNPC.tscn" id="16_vpndh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
@@ -1265,7 +1265,7 @@ position = Vector2(-657, 1116)
 scale = Vector2(2.87545, 2.5827)
 
 [node name="heal" parent="." instance=ExtResource("16_auwwc")]
-position = Vector2(512, 1256)
+position = Vector2(93, 1256)
 
 [node name="box" parent="." instance=ExtResource("16_ten56")]
 position = Vector2(381, 1170)

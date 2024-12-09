@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://b5n44yfdxue7d" path="res://assets/NPC/Owl/1.png" id="26_cxjl8"]
 [ext_resource type="Script" path="res://scenes/mole.gd" id="27_4ojhx"]
 [ext_resource type="Texture2D" uid="uid://q7ikoiew26od" path="res://assets/NPC/Owl/2.png" id="27_wlgfp"]
-[ext_resource type="PackedScene" uid="uid://bkh7wikmhukm7" path="res://scenes/box.tscn" id="31_hehs4"]
+[ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="31_hehs4"]
 [ext_resource type="Script" path="res://scenes/no_attack_area.gd" id="32_l4m7q"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="33_70adg"]
 
@@ -706,10 +706,10 @@ centered = false
 
 [node name="Character" parent="." instance=ExtResource("7_jeyt0")]
 position = Vector2(2992, 756)
-camera_limit_left = -3381
-camera_limit_top = -674
-camera_limit_right = 10022
-camera_limit_bottom = 1019
+camera_limit_left = -3344
+camera_limit_top = -1057
+camera_limit_right = 9927
+camera_limit_bottom = 990
 
 [node name="Environment" type="Node2D" parent="."]
 
