@@ -9,9 +9,9 @@ radius = 117.068
 
 [node name="heal" type="Node2D"]
 script = ExtResource("1_13lt1")
-selected_profile = "broken"
 
 [node name="InteractionArea" type="Area2D" parent="."]
+collision_mask = 33
 script = ExtResource("2_7br43")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
