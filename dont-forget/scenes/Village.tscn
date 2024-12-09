@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://bftcpdoacnb8n"]
+[gd_scene load_steps=60 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://b5n44yfdxue7d" path="res://assets/NPC/Owl/1.png" id="26_cxjl8"]
 [ext_resource type="Script" path="res://scenes/mole.gd" id="27_4ojhx"]
 [ext_resource type="Texture2D" uid="uid://q7ikoiew26od" path="res://assets/NPC/Owl/2.png" id="27_wlgfp"]
-[ext_resource type="PackedScene" uid="uid://btadrn84rfpco" path="res://scenes/box.tscn" id="31_hehs4"]
+[ext_resource type="PackedScene" uid="uid://bkh7wikmhukm7" path="res://scenes/box.tscn" id="31_hehs4"]
 [ext_resource type="Script" path="res://scenes/no_attack_area.gd" id="32_l4m7q"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="33_70adg"]
 

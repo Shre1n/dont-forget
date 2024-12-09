@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
-[ext_resource type="PackedScene" uid="uid://btadrn84rfpco" path="res://scenes/box.tscn" id="16_ten56"]
+[ext_resource type="PackedScene" uid="uid://bkh7wikmhukm7" path="res://scenes/box.tscn" id="16_ten56"]
 [ext_resource type="PackedScene" uid="uid://rwcbxprdm3p4" path="res://scenes/Shop/ShopNPC.tscn" id="16_vpndh"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
@@ -1071,6 +1071,7 @@ animation = &""
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(950, 993)
 sword = false
+pierce_stat = 1000
 camera_limit_left = -1080
 camera_limit_top = 0
 camera_limit_right = 7343
