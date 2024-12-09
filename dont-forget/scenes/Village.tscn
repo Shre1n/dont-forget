@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=59 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
@@ -32,7 +32,6 @@
 [ext_resource type="Texture2D" uid="uid://q7ikoiew26od" path="res://assets/NPC/Owl/2.png" id="27_wlgfp"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="31_hehs4"]
 [ext_resource type="Script" path="res://scenes/no_attack_area.gd" id="32_l4m7q"]
-[ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="33_70adg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2ado"]
 texture = ExtResource("2_cj6i5")
@@ -990,34 +989,38 @@ shape = SubResource("RectangleShape2D_wo80w")
 [node name="kisten" type="Node2D" parent="."]
 
 [node name="tresaure" parent="kisten" instance=ExtResource("31_hehs4")]
-position = Vector2(8958, 777)
+position = Vector2(9214, 831)
 selected_profile = "simple_treasure_chest"
 
 [node name="wall5" parent="kisten" instance=ExtResource("31_hehs4")]
-position = Vector2(6411, 772)
+position = Vector2(6366, 831)
 selected_profile = "wall_block"
 
 [node name="metall" parent="kisten" instance=ExtResource("31_hehs4")]
-position = Vector2(6254, 517)
+position = Vector2(6282, 680)
 selected_profile = "metal_block"
 
 [node name="wood" parent="kisten" instance=ExtResource("31_hehs4")]
-position = Vector2(6124, 759)
+position = Vector2(6221, 832)
 
 [node name="wall1" parent="kisten" instance=ExtResource("31_hehs4")]
-position = Vector2(9456, 786)
+position = Vector2(9510, 834)
 selected_profile = "wall_block"
 
 [node name="wall2" parent="kisten" instance=ExtResource("31_hehs4")]
-position = Vector2(9456, 542)
+position = Vector2(9510, 692)
 selected_profile = "wall_block"
 
 [node name="wall3" parent="kisten" instance=ExtResource("31_hehs4")]
-position = Vector2(9456, 302)
+position = Vector2(9509, 555)
 selected_profile = "wall_block"
 
 [node name="wall4" parent="kisten" instance=ExtResource("31_hehs4")]
-position = Vector2(9210, 783)
+position = Vector2(9363, 832)
+selected_profile = "wall_block"
+
+[node name="wall6" parent="kisten" instance=ExtResource("31_hehs4")]
+position = Vector2(9508, 418)
 selected_profile = "wall_block"
 
 [node name="Village_Way" type="Node2D" parent="."]
@@ -1050,15 +1053,6 @@ position = Vector2(10022, 89)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Brunnen/StaticBody2D"]
 shape = SubResource("RectangleShape2D_nfvmh")
-
-[node name="Slime" parent="." instance=ExtResource("33_70adg")]
-position = Vector2(7641, 550)
-selected_profile = "strong_enemy"
-tutorial = true
-life_stat = 500
-damage_stat = 0
-imunity_stat = 300
-knockback_stat = 250
 
 [connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
 [connection signal="body_entered" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_entered"]
