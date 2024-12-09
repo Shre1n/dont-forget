@@ -1062,7 +1062,7 @@ sprite_frames = SubResource("SpriteFrames_x17dd")
 animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
-position = Vector2(6254, 1182)
+position = Vector2(681, 1183)
 sword = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]

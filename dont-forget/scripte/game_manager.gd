@@ -83,7 +83,8 @@ func load_saved_scene():
 	current_character = find_character(current_level)
 	find_Itemholder(current_level)
 	if current_character:
-		current_character.position = save_user.position_of_character
+		if saved_scene_path != null:
+			current_character.position = save_user.position_of_character
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
 		current_character.connect("going_back", Callable(self, "scene_change"))
 	
