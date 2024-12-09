@@ -36,5 +36,17 @@ func _on_quit_pressed():
 	user_save.life = time_left
 	user_save.gold = gold
 	user_save.position_of_character = character_position
+	
+	var root_children = get_tree().root.get_children()
+	for child in root_children:
+		if child.name == "Bag":
+			var packed_scene = PackedScene.new()
+			if packed_scene.pack(child):  # Pack the current state of the "Bag"
+				user_save.bag_scene = packed_scene  # Assign it to the save resource
+				print("Bag instance saved in user save.")
+			else:
+				print("Failed to pack Bag instance.")
+			break
+		
 	user_save.save()
 	get_tree().quit()

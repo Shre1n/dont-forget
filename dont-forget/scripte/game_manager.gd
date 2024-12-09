@@ -48,6 +48,7 @@ var knockback_res_stat = 0
 var all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
 
 func _ready():
+	restart_life_timer()
 	load_saved_scene()
 	SceneManager.load_complete.connect(_on_level_loaded)
 	SceneManager.load_start.connect(_on_load_start)
@@ -61,6 +62,7 @@ func load_saved_scene():
 	var user_save = save_User.load_save()
 	save_user = user_save
 	var saved_scene_path = save_user.scene_path
+	var bag_scene = save_user.bag_scene
 	
 	for child in level_holder.get_children():
 			child.queue_free()
@@ -87,7 +89,13 @@ func load_saved_scene():
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
 		current_character.connect("going_back", Callable(self, "scene_change"))
 	
-	
+	if user_save.bag_scene:
+		var bag_instance = user_save.bag_scene.instantiate() as Node2D
+		bag_instance.position = user_save.bag_position  # Restore position if saved
+		get_tree().root.add_child(bag_instance)
+		print("Bag instance restored.")
+	else:
+		print("No Bag scene saved. Skipping Bag restoration.")
 
 func find_character(level):
 	for child in level.get_children():

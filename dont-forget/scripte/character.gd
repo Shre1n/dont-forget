@@ -5,6 +5,7 @@ extends CharacterBody2D
 signal coinsChange(amount)
 signal lifeChange(amount)
 signal going_back  # Zurück zum Menü
+signal resetCoins
 # signal going_back(path)  # Zurück zum Dorf
 
 @export_category("Einstellungen")
@@ -48,7 +49,6 @@ signal going_back  # Zurück zum Menü
 @export var knockback_duration: float = 0.2 
 @export var post_knockback_duration: float = 0.6  # Dauer der Nach-Knockback-Phase
 
-
 var damage
 var speed
 var jump_height
@@ -61,6 +61,9 @@ var cooldown_duration_base: float
 var all_stats 
 var extra_weight 
 var weight
+var coins = 0
+
+
 
 var cooldown: float = 0.0
 
@@ -296,10 +299,36 @@ func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func die():
+	drop_bag()
 	velocity = Vector2.ZERO
 	alive = false
 	animation_player.play("death")
 	await (animation_player.animation_finished)
+	
+func drop_bag():
+	var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
+	for child in get_tree().root.get_children():
+		if child.name == "Bag":
+			child.queue_free()
+			child.call_deferred("free")
+			print("Removed existing Bag instance:", child)
+	
+	call_deferred("_add_new_bag", bag_scene)
+
+func _add_new_bag(bag_scene):
+	var bag_instance = bag_scene.instantiate()
+	bag_instance.name = "Bag"
+	bag_instance.position = position
+	bag_instance.scale = Vector2(0.3,0.3)
+	
+	get_tree().root.add_child(bag_instance)
+	bag_instance.set_coins(coins)
+	coins = 0
+	
+	emit_signal("resetCoins")
+	print("New Bag instance:", bag_instance)
+	print("Current root children:", get_tree().root.get_children())
+
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "death":
@@ -323,8 +352,11 @@ func enable():
 
 func get_time(value):
 	emit_signal("lifeChange", value)
+	
+
 
 func get_coins(value):
+	coins += value
 	emit_signal("coinsChange", value)
 
 func calculate_stats_to_value(stat: int, span_start: float, span_end: float, min_value: float, max_value: float, divider: float = 1000.0) -> float:

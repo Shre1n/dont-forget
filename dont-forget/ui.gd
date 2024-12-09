@@ -25,12 +25,16 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if sand_display:
+		elapsed_time += delta
+		var scale_modulation = amplitude * sin(elapsed_time * frequency)
+		sand_display.scale.x = 1.0 + scale_modulation / 200.0  # Example for vertical oscillation
 
 func save_user_location(path):
 	current_player = path
 	current_player.connect("coinsChange", Callable(self, "coin_update"))
-
+	current_player.connect("resetCoins", Callable(self,"coin_reset"))
+	
 func coin_update(amount):
 	var sum = coins + amount
 	if sum > 0:
@@ -44,6 +48,7 @@ func total_reset():
 
 func coin_reset():
 	coins = 0
+	amount_label.text = "0"
 
 func update_lifetime_display(time):
 	if sand_display:

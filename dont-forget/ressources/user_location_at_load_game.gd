@@ -2,6 +2,7 @@ class_name save_User extends Resource
 
 
 @export var scene_path: PackedScene
+@export var bag_scene: PackedScene
 @export var gold: String
 @export var life: float
 @export var position_of_character: Vector2
