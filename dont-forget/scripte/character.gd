@@ -7,8 +7,12 @@ signal lifeChange(amount)
 signal going_back  # Zurück zum Menü
 # signal going_back(path)  # Zurück zum Dorf
 
+@export_category("Einstellungen")
+@export var test_on: bool = false
+@export var sword: bool = true
 # --- Export-Variablen ---
 # Bis 3500 erhöhbar
+@export_subgroup("Stats")
 @export var damage_stat = 10
 @export var crit_dmg_stat = 10  # Schadenserhöhung bei Krits (Prozent)
 @export var res_stat = 0
@@ -22,22 +26,27 @@ signal going_back  # Zurück zum Menü
 @export var crit_stat = 0  # Kritische Trefferchance (0–1000 = 0–100%)
 @export var knockback_stat = 50  # Knockback-Stärke
 @export var knockback_res_stat = 0 # Knockback-Resistenz
-
 # Noch fehlende Stats
 # @export var dash_cooldown_stat = 1
 # @export var dash_speed_stat = 1
 
-@export var test_on: bool = false
-@export var sword: bool = true
-@export var input_enabled: bool = true
-@export var orientation_left = false
-@export var attacking = false
-@export var can_attack = true
-@export var alive = true
+@export_subgroup("Camera")
+@export var camera_limit_left = -10000000
+@export var camera_limit_top = -10000000
+@export var camera_limit_right = 10000000
+@export var camera_limit_bottom = 10000000
 
+@export_subgroup("Game_Setups")
+@export var input_enabled: bool = true
+@export var orientation_left: bool = false
+@export var attacking: bool = false
+@export var can_attack: bool = true
+@export var alive: bool = true
+
+@export_subgroup("Balancing")
 @export var cooldown_duration: float = 1.0
-@export var knockback_speed: float = 300.0
-@export var knockback_duration: float = 0.2
+@export var knockback_duration: float = 0.2 
+@export var post_knockback_duration: float = 0.6  # Dauer der Nach-Knockback-Phase
 
 
 var damage
@@ -58,8 +67,10 @@ var cooldown: float = 0.0
 var is_knocked_back: bool = false
 var knockback_timer: float = 0.0
 var knockback_direction: Vector2 = Vector2.ZERO
+var knockback_speed: float = 300.0
 var knockback_speed_new
 var knockback_wait
+var post_knockback_timer = 0.0
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var JumpAvailability: bool
@@ -71,11 +82,16 @@ var JumpAvailability: bool
 @onready var game_manager = find_game_manager()
 @onready var hit_flash_anim_player = $HitFlashAnimationPlayer
 @onready var weapon = $Attack_Area
+@onready var camera = $Camera2D
 
 # --- Funktionen ---
 
 func _ready():
 	new_spawn_position()
+	camera.limit_left = camera_limit_left
+	camera.limit_top = camera_limit_top
+	camera.limit_right = camera_limit_right
+	camera.limit_bottom = camera_limit_bottom
 	animation_player.play("idle")
 	game_manager.connect("death", Callable(self, "die"))
 	if test_on:
@@ -221,9 +237,6 @@ func _physics_process(delta):
 					velocity.x = move_toward(velocity.x, 0, speed)
 	update_animation()
 	move_and_slide()
-
-var post_knockback_timer = 0.0
-var post_knockback_duration = 0.6  # Dauer der Nach-Knockback-Phase
 
 func handle_knockback(delta):
 	if knockback_timer > 0:

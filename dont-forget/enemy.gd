@@ -1,16 +1,9 @@
 extends CharacterBody2D
 
-@export var idle_time_min: float = 1.0  # Mindestwartezeit im Idle-Zustand
-@export var idle_time_max: float = 5.0  # Maximalwartezeit im Idle-Zustand
-
-var knockback_speed: float = 300.0
-@export var knockback_duration: float = 0.2
-@export var tutorial: bool = false
-@export var level_nr: int = 1
-
 # -- Exportierte Variablen für Dropdown-Auswahl --
-@export var stats_file_path: String = "res://gegner/slime.json"
-@export var selected_profile: String = "default" #"strong_enemy"
+@export_category("Gegner Type")
+@export var stats_file_path: String = "res://gegner/slime/slime.json"
+@export_enum("default","strong_enemy") var selected_profile: String = "default"
 
 # -- Variablen für Min/Max-Stats und Drops --
 var min_stats: Dictionary
@@ -21,7 +14,16 @@ var special_type: Dictionary
 var extra_data: Dictionary
 var profiles_data: Dictionary
 
+@export_category("Einstellungen")
+@export var tutorial: bool = false
+@export var level_nr: int = 1
+
+@export_subgroup("Idle Timer")
+@export var idle_time_min: float = 1.0  # Mindestwartezeit im Idle-Zustand
+@export var idle_time_max: float = 5.0  # Maximalwartezeit im Idle-Zustand
+
 # Bis 3500 erhöhbar
+@export_subgroup("Stats")
 @export var life_stat = 29
 @export var damage_stat = 5
 @export var crit_dmg_stat = 40
@@ -40,6 +42,15 @@ var profiles_data: Dictionary
 @export var deception_stat = 0
 @export var fear_stat = 0
 
+@export_subgroup("Balancing")
+@export var knockback_duration: float = 0.2
+@export var post_knockback_duration = 0.6  # Dauer der Nach-Knockback-Phase
+
+@export_subgroup("Debugging")
+@export var orientation_left: bool = false
+@export var damaged: bool = false
+@export var alive: bool = true
+
 var drop := preload("res://scenes/drop.tscn")
 var current_Itemholder
 
@@ -50,9 +61,6 @@ var current_Itemholder
 @onready var weapon = $CollisionPolygon2D/Attack_Area
 
 var direction: int = 0  # -1 für links, 1 für rechts, 0 für idle
-var orientation_left: bool = false
-@export var damaged: bool = false
-var alive: bool = true
 
 var character: Character = null
 var character_chase: bool = false
@@ -60,10 +68,9 @@ var character_chase: bool = false
 var is_knocked_back: bool = false
 var knockback_timer: float = 0.0
 var knockback_direction: Vector2 = Vector2.ZERO
-
+var knockback_speed: float = 300.0
 var knockback_speed_new : float
 var post_knockback_timer = 0.0
-var post_knockback_duration = 0.6  # Dauer der Nach-Knockback-Phase
 
 var life
 var damage
@@ -97,6 +104,7 @@ func load_stats_from_file():
 		var parse_result = json.parse(json_data)
 		if parse_result == OK:
 			profiles_data = json.data
+			#print("Stats loaded: ", profiles_data)
 		else:
 			print("Error parsing JSON file: ", parse_result)
 		file.close()
@@ -112,6 +120,7 @@ func apply_profile_data():
 		max_drops = profile["max_drops"]
 		special_type = profile["special_type"]
 		extra_data = profile["extra_data"]
+		#print("Min/Max stats and drops applied for profile: ", selected_profile)
 	else:
 		print("Profile not found: ", selected_profile)
 		# Standardwerte setzen
@@ -145,6 +154,7 @@ func update_start_stats():
 		reaction_stat = randf_range(min_stats["reaction_stat"], max_stats["reaction_stat"]) * (0.95 + (0.01 * level_nr))
 		deception_stat = randf_range(min_stats["deception_stat"], max_stats["deception_stat"])
 		fear_stat = randf_range(min_stats["fear_stat"], max_stats["fear_stat"])
+		#print("Randomized stats applied within min/max range")
 	else:
 		print("Min/Max stats not properly loaded, using defaults")
 
