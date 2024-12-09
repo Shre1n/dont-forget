@@ -62,7 +62,6 @@ func update_start_stats():
 		life  = stats["life_stat"]
 		amor = stats["amor_stat"]
 		imunity = 1 - (stats["imunity_stat"]/100)
-		print("Randomized stats applied within min/max range")
 	else:
 		print("Min/Max stats not properly loaded, using defaults")
 
