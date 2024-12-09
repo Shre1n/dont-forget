@@ -9,8 +9,8 @@ extends Node2D
 @export var test = false
 @export var value = 150
 @export_subgroup("Type")
-@export var stats_file_path: String = "res://objekte/kiste/reg.json"
-@export_enum("default") var selected_profile: String = "default"
+@export var stats_file_path: String = "res://heal/heal.json"
+@export_enum("default","broken") var selected_profile: String = "default"
 
 var data: Dictionary
 var profiles_data: Dictionary
@@ -54,9 +54,10 @@ func apply_profile_data():
 func update_start_stats():
 	if data:
 		value = data["value"]
-		sprite.texture = data["sprite"]
-		col.shape.extents = Vector2(data["collision_size"][0], data["collision_size"][1])
-		#col.shape = Vector2(data["collision_size"][0], data["collision_size"][1])
+		sprite.texture = load(data["sprite"])
+		var shape = CircleShape2D.new()
+		shape.radius = data["collision_size"]
+		col.shape = shape
 	else:
 		print("No Data")
 
