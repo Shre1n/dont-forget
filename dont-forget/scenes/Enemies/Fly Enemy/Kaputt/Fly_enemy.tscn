@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://by3lcj8fbv8ev"]
 
 [ext_resource type="Texture2D" uid="uid://bfaxjrj224q1u" path="res://assets/enemy/fly/dead/1.png" id="1_16at2"]
-[ext_resource type="Script" path="res://scenes/Fly Enemy/fly_enemy.gd" id="1_po0lk"]
+[ext_resource type="Script" path="res://scenes/Enemies/Fly Enemy/Kaputt/fly_enemy.gd" id="1_po0lk"]
 [ext_resource type="Shader" uid="uid://c4tc51uu3uhpc" path="res://shader/Enemy/Fly/Fly_enemy.tres" id="2_8kym3"]
 [ext_resource type="Texture2D" uid="uid://cmuuxaxo33ple" path="res://assets/enemy/fly/dead/2.png" id="2_awcg3"]
 [ext_resource type="Texture2D" uid="uid://c2agt5gh7x1p7" path="res://assets/enemy/fly/dead/3.png" id="3_jihwr"]

@@ -156,7 +156,7 @@ layout_mode = 2
 tooltip_text = "Quit the Game"
 theme = SubResource("Theme_3v6wt")
 theme_override_font_sizes/font_size = 30
-text = "Quit"
+text = "Save and Quit"
 
 [connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Options" to="." method="_on_options_pressed"]

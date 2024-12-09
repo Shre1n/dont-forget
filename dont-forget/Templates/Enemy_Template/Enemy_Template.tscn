@@ -1,47 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://drwrxl4akk264"]
+[gd_scene load_steps=2 format=3 uid="uid://drwrxl4akk264"]
 
 [ext_resource type="Script" path="res://Templates/Enemy_Template/enemy_template.gd" id="1_k7rkf"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_i3vvr"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mdnk7"]
-radius = 606.0
-height = 1212.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4r7uq"]
-radius = 285.0
-height = 658.0
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ync57"]
 
 [node name="EnemyTemplate" type="CharacterBody2D"]
 script = ExtResource("1_k7rkf")
 
-[node name="ChaseArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseArea"]
-shape = SubResource("CapsuleShape2D_i3vvr")
-
-[node name="DamageArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
-shape = SubResource("CapsuleShape2D_mdnk7")
-
-[node name="AttackArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-shape = SubResource("CapsuleShape2D_4r7uq")
-
-[node name="DetectionArea" type="Area2D" parent="."]
-scale = Vector2(1.89226, 1e-05)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
-shape = SubResource("CapsuleShape2D_ync57")
-
 [node name="Direction_Timer" type="Timer" parent="."]
 
-[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
-[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
-[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
-[connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
 [connection signal="timeout" from="Direction_Timer" to="." method="_on_direction_timer_timeout"]
