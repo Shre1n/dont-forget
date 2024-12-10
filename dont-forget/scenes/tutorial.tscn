@@ -1266,6 +1266,7 @@ scale = Vector2(2.87545, 2.5827)
 
 [node name="heal" parent="." instance=ExtResource("16_auwwc")]
 position = Vector2(93, 1256)
+selected_profile = "broken"
 
 [node name="box" parent="." instance=ExtResource("16_ten56")]
 position = Vector2(381, 1170)

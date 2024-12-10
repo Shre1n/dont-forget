@@ -2,10 +2,12 @@ class_name Pause_Menu extends Control
 
 @export var game_manager : Game_Manager
 var character: Character
+var current_player
 
 func _ready() -> void:
 	hide()
 	game_manager.connect("toggle_game_paused", _on_game_manager_toggle_game_paused)
+	game_manager.connect("current_user", Callable(self, "save_user_location"))
 
 func _on_game_manager_toggle_game_paused(is_paused : bool):
 	if(is_paused):
@@ -28,8 +30,8 @@ func _on_quit_pressed():
 	var user_save = save_User.load_save()
 	var current_scene = game_manager.get_child(0).get_child(0).scene_file_path
 	var time_left = game_manager.life_time
-	
-	var gold = character.coins
+
+	var gold = current_player.coins
 	
 	var character_position = game_manager.current_character.position
 	
@@ -47,3 +49,6 @@ func _on_quit_pressed():
 			break
 	user_save.save()
 	get_tree().quit()
+
+func save_user_location(path):
+	current_player = path
