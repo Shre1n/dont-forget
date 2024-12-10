@@ -45,6 +45,21 @@ var crit_stat = 0
 var knockback_stat = 50
 var knockback_res_stat = 0
 
+var all_stats_in_dict = {
+	"damage_stat": damage_stat,
+	"crit_dmg_stat": crit_dmg_stat,
+	"res_stat": res_stat,
+	"speed_stat": speed_stat,
+	"jump_stat": jump_stat,
+	"imunity_stat": imunity_stat,
+	"attack_speed_stat": attack_speed_stat,
+	"cooldown_stat": cooldown_stat,
+	"pierce_stat": pierce_stat,
+	"crit_stat": crit_stat,
+	"knockback_stat": knockback_stat,
+	"knockback_res_stat": knockback_res_stat
+}
+
 var all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
 
 func _ready():
@@ -57,6 +72,21 @@ func _ready():
 	#current_character.connect("going_back", Callable(self, "scene_change"))
 	
 
+func get_all_stats():
+	return {
+		"damage_stat": damage_stat,
+		"crit_dmg_stat": crit_dmg_stat,
+		"res_stat": res_stat,
+		"speed_stat": speed_stat,
+		"jump_stat": jump_stat,
+		"imunity_stat": imunity_stat,
+		"attack_speed_stat": attack_speed_stat,
+		"cooldown_stat": cooldown_stat,
+		"pierce_stat": pierce_stat,
+		"crit_stat": crit_stat,
+		"knockback_stat": knockback_stat,
+		"knockback_res_stat": knockback_res_stat
+	}
 
 func load_saved_scene():
 	var user_save = save_User.load_save()
@@ -71,8 +101,8 @@ func load_saved_scene():
 		var saved_scene_instance = saved_scene_path.instantiate() as Level
 		if saved_scene_instance:
 			level_holder.add_child(saved_scene_instance)
-			gold.text = user_save.gold
-			life_time = user_save.life
+			all_stats_in_dict = user_save.stats
+			print(user_save.stats)
 		else:
 			print("failed to instance saved scene. Loading Tutorial.")
 			level_holder.add_child(tutorial.instantiate() as Level)
@@ -86,6 +116,8 @@ func load_saved_scene():
 	if current_character:
 		if saved_scene_path != null:
 			current_character.position = save_user.position_of_character
+			current_character.coins = user_save.gold
+			life_time = user_save.life
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
 		current_character.connect("going_back", Callable(self, "scene_change"))
 		current_character.connect("add_bag", Callable(self, "add_bag"))

@@ -1,7 +1,6 @@
 class_name Pause_Menu extends Control
 
 @export var game_manager : Game_Manager
-var character: Character
 var current_player
 
 func _ready() -> void:
@@ -39,6 +38,8 @@ func _on_quit_pressed():
 	user_save.life = time_left
 	user_save.gold = gold
 	user_save.position_of_character = character_position
+	user_save.stats = game_manager.get_all_stats()
+	print(game_manager.get_all_stats())
 	
 	var root_children = get_tree().root.get_children()
 	for child in root_children:
