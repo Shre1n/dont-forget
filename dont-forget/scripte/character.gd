@@ -63,9 +63,11 @@ var extra_weight
 var weight
 var coins = 0
 
+var start_position: Vector2
 
 
 var cooldown: float = 0.0
+
 
 var is_knocked_back: bool = false
 var knockback_timer: float = 0.0
@@ -96,6 +98,7 @@ func _ready():
 	camera.limit_right = camera_limit_right
 	camera.limit_bottom = camera_limit_bottom
 	animation_player.play("idle")
+	start_position = position
 	game_manager.connect("death", Callable(self, "die"))
 	if test_on:
 		update_status()
@@ -331,12 +334,20 @@ func _add_new_bag(bag_scene):
 
 
 func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "death":
+	if anim_name == "death" and !alive:
 		#Zum Menu zurück
-		emit_signal("going_back")
+		alive = false
+		$AnimationPlayer.stop()
+		return_to_origin()
+		position = start_position
+		
 		#Zum Village zurück
 		#var path = "res://scenes/village.tscn"
 		#emit_signal("going_back", path)
+
+func return_to_origin():
+	position = start_position
+	alive = true
 
 func new_spawn_position():
 	if Global.new_position != null:
