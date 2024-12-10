@@ -90,9 +90,11 @@ func load_saved_scene():
 		current_character.connect("going_back", Callable(self, "scene_change"))
 	
 	if user_save.bag_scene:
-		var bag_instance = user_save.bag_scene.instantiate() as Node2D
-		bag_instance.position = user_save.bag_position  # Restore position if saved
+		var bag_instance = user_save.bag_scene.instantiate()
 		get_tree().root.add_child(bag_instance)
+		if user_save.bag_position:
+			bag_instance.position = user_save.bag_position  # Restore the position
+		print("Bag instance restored at position ", bag_instance.position)
 		print("Bag instance restored.")
 	else:
 		print("No Bag scene saved. Skipping Bag restoration.")

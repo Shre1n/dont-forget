@@ -40,13 +40,9 @@ func _on_quit_pressed():
 	var root_children = get_tree().root.get_children()
 	for child in root_children:
 		if child.name == "Bag":
-			var packed_scene = PackedScene.new()
-			if packed_scene.pack(child):  # Pack the current state of the "Bag"
-				user_save.bag_scene = packed_scene  # Assign it to the save resource
-				print("Bag instance saved in user save.")
-			else:
-				print("Failed to pack Bag instance.")
+			user_save.bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")  # Assign it to the save resource
+			user_save.bag_position = child.position
+			print("Bag instance saved in user save.")
 			break
-		
 	user_save.save()
 	get_tree().quit()
