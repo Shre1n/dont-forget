@@ -203,25 +203,10 @@ func restart_life_timer():
 	life.start(max_time)
 
 #Zum Menü zurück
-func scene_change():
-	#print("B Remove: ", level_holder.get_children())
-	#level_holder.remove_child(current_level)
-	#var village_path = preload("res://scenes/Village.tscn")
-	#print("A Remove: ", level_holder.get_children())
-	#var village_instance = village_path.instantiate() as Level
-	#level_holder.add_child(village_instance)
-	#current_level = village_instance
-	#current_character = find_character(current_level)
-	#if current_character:
-		#current_character.connect("lifeChange", Callable(self, "life_timer_update"))
-		#current_character.connect("going_back", Callable(self, "scene_change"))
-	#print("A add: ", level_holder.get_children())
-	#restart_life_timer()
-	#save_scene()
-	#SceneManager.swap_scenes("res://scenes/Village.tscn",get_tree().root,self,"transition_type")
-	SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
+#func scene_change():
+	#SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
 
 #Zum Village zurück
-#func scene_change(path):
-	#emit_signal("back_to_village")
-	#SceneManager.swap_scenes(path,level_holder,current_level,"transition_type")
+func scene_change():
+	emit_signal("back_to_village")
+	SceneManager.swap_scenes("res://scenes/Village.tscn",level_holder,current_level,"transition_type")

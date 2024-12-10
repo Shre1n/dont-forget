@@ -61,6 +61,7 @@ var cooldown_duration_base: float
 var all_stats 
 var extra_weight 
 var weight
+
 var coins = 0
 
 var start_position: Vector2
