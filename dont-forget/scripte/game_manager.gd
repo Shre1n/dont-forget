@@ -14,7 +14,7 @@ signal back_to_village
 @onready var life: Timer = $Life_Timer
 @onready var gold: Label = $Pause_Menu/UI/GridContainer/Menge
 @export var life_time:float = 10.0
-@export var max_time: float = 100.0
+@export var max_time: float = 10.0
 
 @onready var canvaslayer = $Pause_Menu
 
@@ -88,7 +88,8 @@ func load_saved_scene():
 			current_character.position = save_user.position_of_character
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
 		current_character.connect("going_back", Callable(self, "scene_change"))
-	
+		current_character.connect("add_bag", Callable(self, "add_bag"))
+		
 	if user_save.bag_scene:
 		var bag_instance = user_save.bag_scene.instantiate()
 		get_tree().root.add_child(bag_instance)
@@ -98,6 +99,22 @@ func load_saved_scene():
 		print("Bag instance restored.")
 	else:
 		print("No Bag scene saved. Skipping Bag restoration.")
+
+func add_bag(bag_scene):
+	for child in current_level.get_children().slice(0,3):
+		if child.name == "Bag":
+			child.queue_free()
+			child.call_deferred("free")
+			print("Removed existing Bag instance:", child)
+	var bag_instance = bag_scene.instantiate()
+	current_level.add_child(bag_instance)
+	current_level.move_child(bag_instance, 2)
+	bag_instance.name = "Bag"
+	bag_instance.position = current_character.position
+	bag_instance.scale = Vector2(0.3,0.3)
+	bag_instance.set_coins(current_character.coins)
+	current_character.coins = 0
+
 
 func find_character(level):
 	for child in level.get_children():
@@ -187,6 +204,21 @@ func restart_life_timer():
 
 #Zum Menü zurück
 func scene_change():
+	#print("B Remove: ", level_holder.get_children())
+	#level_holder.remove_child(current_level)
+	#var village_path = preload("res://scenes/Village.tscn")
+	#print("A Remove: ", level_holder.get_children())
+	#var village_instance = village_path.instantiate() as Level
+	#level_holder.add_child(village_instance)
+	#current_level = village_instance
+	#current_character = find_character(current_level)
+	#if current_character:
+		#current_character.connect("lifeChange", Callable(self, "life_timer_update"))
+		#current_character.connect("going_back", Callable(self, "scene_change"))
+	#print("A add: ", level_holder.get_children())
+	#restart_life_timer()
+	#save_scene()
+	#SceneManager.swap_scenes("res://scenes/Village.tscn",get_tree().root,self,"transition_type")
 	SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
 
 #Zum Village zurück

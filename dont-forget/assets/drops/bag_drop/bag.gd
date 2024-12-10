@@ -2,7 +2,7 @@ extends Node2D
 
 
 var bag_coins = 0
-var character: Character
+@onready var character = $"../Character"
 		
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
@@ -14,7 +14,7 @@ func _ready():
 
 
 func on_pick_up():
-	character.coins += bag_coins
+	character.get_coins(bag_coins)
 	queue_free()
 
 

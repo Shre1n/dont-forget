@@ -1,6 +1,7 @@
 class_name Pause_Menu extends Control
 
 @export var game_manager : Game_Manager
+var character: Character
 
 func _ready() -> void:
 	hide()
@@ -28,7 +29,7 @@ func _on_quit_pressed():
 	var current_scene = game_manager.get_child(0).get_child(0).scene_file_path
 	var time_left = game_manager.life_time
 	
-	var gold = get_parent().get_child(0).find_child("Menge").text
+	var gold = character.coins
 	
 	var character_position = game_manager.current_character.position
 	

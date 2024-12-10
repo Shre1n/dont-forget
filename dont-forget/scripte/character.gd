@@ -4,9 +4,9 @@ extends CharacterBody2D
 # Signale
 signal coinsChange(amount)
 signal lifeChange(amount)
-signal going_back  # Zurück zum Menü
 signal resetCoins
-# signal going_back(path)  # Zurück zum Dorf
+signal add_bag(bag_instance)
+signal going_back(path)  # Zurück zum Dorf
 
 @export_category("Einstellungen")
 @export var test_on: bool = false
@@ -310,27 +310,12 @@ func die():
 	
 func drop_bag():
 	var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
-	for child in get_tree().root.get_children():
-		if child.name == "Bag":
-			child.queue_free()
-			child.call_deferred("free")
-			print("Removed existing Bag instance:", child)
-	
 	call_deferred("_add_new_bag", bag_scene)
 
 func _add_new_bag(bag_scene):
-	var bag_instance = bag_scene.instantiate()
-	bag_instance.name = "Bag"
-	bag_instance.position = position
-	bag_instance.scale = Vector2(0.3,0.3)
-	
-	get_tree().root.add_child(bag_instance)
-	bag_instance.set_coins(coins)
-	coins = 0
-	
 	emit_signal("resetCoins")
-	print("New Bag instance:", bag_instance)
-	print("Current root children:", get_tree().root.get_children())
+	emit_signal("add_bag", bag_scene)
+	print("New Bag instance:", bag_scene)
 
 
 func _on_animation_player_animation_finished(anim_name):
@@ -338,16 +323,9 @@ func _on_animation_player_animation_finished(anim_name):
 		#Zum Menu zurück
 		alive = false
 		$AnimationPlayer.stop()
-		return_to_origin()
-		position = start_position
 		
 		#Zum Village zurück
-		#var path = "res://scenes/village.tscn"
-		#emit_signal("going_back", path)
-
-func return_to_origin():
-	position = start_position
-	alive = true
+		emit_signal("going_back")
 
 func new_spawn_position():
 	if Global.new_position != null:
