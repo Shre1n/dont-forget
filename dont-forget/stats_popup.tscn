@@ -1,0 +1,574 @@
+[gd_scene load_steps=13 format=3 uid="uid://byy056hrby4p5"]
+
+[ext_resource type="Texture2D" uid="uid://cpklytbomyi5d" path="res://icons/strength.png" id="1_cqx2c"]
+[ext_resource type="Script" path="res://stats_popup.gd" id="1_ux2dx"]
+[ext_resource type="Texture2D" uid="uid://byfjcy14xuima" path="res://icons/crit_damage.png" id="2_jj6hw"]
+[ext_resource type="Texture2D" uid="uid://bafipqrpy6fvp" path="res://icons/shield.png" id="3_pttpp"]
+[ext_resource type="FontFile" uid="uid://bhjgpy1dovmyq" path="res://addons/gut/fonts/CourierPrime-Bold.ttf" id="3_sgbt0"]
+[ext_resource type="Script" path="res://progressbar.gd" id="4_3vieg"]
+[ext_resource type="Texture2D" uid="uid://bsdqfgjrkdvqs" path="res://icons/imun.png" id="4_li24q"]
+[ext_resource type="Texture2D" uid="uid://cndc4rnpwb2cu" path="res://icons/speed.png" id="5_w7epn"]
+[ext_resource type="Texture2D" uid="uid://keg3tu5dh43l" path="res://icons/run.png" id="6_yh2k1"]
+[ext_resource type="Texture2D" uid="uid://cujv4ntu0gfjs" path="res://icons/spring.png" id="7_ed4d2"]
+[ext_resource type="Texture2D" uid="uid://b8ureimgownke" path="res://icons/medical.png" id="8_534t1"]
+[ext_resource type="Texture2D" uid="uid://chw3dw1a8c6du" path="res://icons/runer-silhouette-running-fast.png" id="9_aoiro"]
+
+[node name="stats_popup" type="Control"]
+layout_mode = 3
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+script = ExtResource("1_ux2dx")
+
+[node name="Panel" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -324.0
+offset_right = -20.0
+offset_bottom = 330.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Your Stats"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="Damage" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("1_cqx2c")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="damage" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+rounded = true
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/damage"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Crit_Damage" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_jj6hw")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="crit_damage" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/crit_damage"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Pierce" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_jj6hw")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="pierce" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/pierce"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Resistence" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("3_pttpp")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="resistence" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/resistence"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Imunity" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("4_li24q")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="imunity" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/imunity"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Cooldown" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("5_w7epn")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="cooldown" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/cooldown"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Attack_Speed" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("5_w7epn")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="attack_speed" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/attack_speed"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Speed" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("6_yh2k1")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="speed" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/speed"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Jump_Hight" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("7_ed4d2")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="jump_hight" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/jump_hight"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Crit_Chance" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("2_jj6hw")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="crit_chance" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/crit_chance"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Knockback" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("7_ed4d2")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="knockback" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/knockback"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Knockback_res" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("8_534t1")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="knockback_res" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/knockback_res"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Extra_Weight" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("3_pttpp")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="extra_weight" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/extra_weight"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dash_Cooldown" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("5_w7epn")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="dash_cooldown" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/dash_cooldown"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dash_Speed" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = ExtResource("9_aoiro")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="dash_speed" type="ProgressBar" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("3_sgbt0")
+max_value = 3500.0
+step = 1.0
+show_percentage = false
+script = ExtResource("4_3vieg")
+
+[node name="ValueLabel" type="Label" parent="Panel/VBoxContainer/GridContainer/dash_speed"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -10.0
+offset_bottom = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_sgbt0")
+theme_override_font_sizes/font_size = 20
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Close" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "Press I again  to close"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/damage" to="Panel/VBoxContainer/GridContainer/damage" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/crit_damage" to="Panel/VBoxContainer/GridContainer/crit_damage" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/pierce" to="Panel/VBoxContainer/GridContainer/pierce" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/resistence" to="Panel/VBoxContainer/GridContainer/resistence" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/imunity" to="Panel/VBoxContainer/GridContainer/imunity" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/cooldown" to="Panel/VBoxContainer/GridContainer/cooldown" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/attack_speed" to="Panel/VBoxContainer/GridContainer/attack_speed" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/speed" to="Panel/VBoxContainer/GridContainer/speed" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/jump_hight" to="Panel/VBoxContainer/GridContainer/jump_hight" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/crit_chance" to="Panel/VBoxContainer/GridContainer/crit_chance" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/knockback" to="Panel/VBoxContainer/GridContainer/knockback" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/knockback_res" to="Panel/VBoxContainer/GridContainer/knockback_res" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/extra_weight" to="Panel/VBoxContainer/GridContainer/extra_weight" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/dash_cooldown" to="Panel/VBoxContainer/GridContainer/dash_cooldown" method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/VBoxContainer/GridContainer/dash_speed" to="Panel/VBoxContainer/GridContainer/dash_speed" method="_on_value_changed"]
