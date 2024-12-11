@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://ksfxsfjbv20j"]
+
+[ext_resource type="Script" path="res://scenes/Shop/shop_npc.gd" id="1_wbcvt"]
+[ext_resource type="Script" path="res://interaction/interaction area/interaction_area.gd" id="2_ic4y6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1j6r7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5g7gf"]
+
+[node name="ShopNpc" type="Node2D"]
+script = ExtResource("1_wbcvt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1j6r7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="InteractionArea" type="Area2D" parent="."]
+script = ExtResource("2_ic4y6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_5g7gf")
+
+[connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]
