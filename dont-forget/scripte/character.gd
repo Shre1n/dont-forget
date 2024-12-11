@@ -4,8 +4,9 @@ extends CharacterBody2D
 # Signale
 signal coinsChange(amount)
 signal lifeChange(amount)
-signal going_back  # Zurück zum Menü
-# signal going_back(path)  # Zurück zum Dorf
+signal resetCoins
+signal add_bag(bag_instance)
+signal going_back(path)  # Zurück zum Dorf
 
 @export_category("Einstellungen")
 @export var test_on: bool = false
@@ -49,9 +50,8 @@ signal going_back  # Zurück zum Menü
 @export var dash_cooldown_duration: float = 5.0
 @export var dash_duration: float = 0.2
 @export var dash_cooldown_duration_base: float = 0.1
-@export var knockback_duration: float = 0.2 
+@export var knockback_duration: float = 0.2
 @export var post_knockback_duration: float = 0.6  # Dauer der Nach-Knockback-Phase
-
 
 var damage
 var speed
@@ -71,8 +71,14 @@ var dash_cooldown_reduction
 var current_dash_speed = 1
 var dashing = false
 
+var coins = 0
+
+var start_position: Vector2
+
+
 var cooldown: float = 0.0
 var dash_cooldown: float = 0.0
+
 
 var is_knocked_back: bool = false
 var knockback_timer: float = 0.0
@@ -85,6 +91,8 @@ var post_knockback_timer = 0.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var JumpAvailability: bool
 
+var open = false
+
 # --- Onready-Variablen ---
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var JumpTimer: Timer = $Jump_Timer
@@ -94,6 +102,8 @@ var JumpAvailability: bool
 @onready var weapon = $Attack_Area
 @onready var camera = $Camera2D
 @onready var dash_timer = $Dash_Timer
+@onready var stats_popup = $Camera2D/CanvasLayer/stats_popup
+
 # --- Funktionen ---
 
 func _ready():
@@ -104,6 +114,7 @@ func _ready():
 	camera.limit_bottom = camera_limit_bottom
 	dash_timer.wait_time = dashtime
 	animation_player.play("idle")
+	start_position = position
 	game_manager.connect("death", Callable(self, "die"))
 	if test_on:
 		update_status()
@@ -208,12 +219,13 @@ func update_status():
 	weight = min(490, all_stats / 100) + extra_weight
 	dash_cooldown_reduction = calculate_stats_to_value(dash_cooldown_stat, 0.0, 1.0, 1, 0.0, 3500.0)
 	dash_speed = calculate_stats_to_value(dash_speed_stat, 0.0 , 1.0, 3.0, 6.0, 3500.0)
-	
+
 	weapon.damage = max(1, damage_stat)
 	weapon.pierce_multi = pierce_stat
 	weapon.crit_chance = crit_stat
 	weapon.crit_multi = max(1, crit_dmg_stat)
 	weapon.knockback = knockback_stat
+	stats_popup.update_bars()
 
 func _process(delta):
 	if cooldown > 0:
@@ -225,6 +237,9 @@ func _process(delta):
 		update_animation()
 	elif Input.is_action_just_pressed("dash") && dash_cooldown <= 0 && Input.get_axis("left", "right"):
 		dash()
+	if Input.is_action_just_pressed("inventar"):
+		open = !open
+		stats_popup.visible = open
 
 func _physics_process(delta):
 	if alive:
@@ -349,22 +364,39 @@ func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func die():
+	drop_bag()
 	velocity = Vector2.ZERO
 	alive = false
 	animation_player.play("death")
 	await (animation_player.animation_finished)
 
+func drop_bag():
+	var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
+	call_deferred("_add_new_bag", bag_scene)
+
+func _add_new_bag(bag_scene):
+	emit_signal("resetCoins")
+	#emit_signal("add_bag", bag_scene)
+	print(get_tree().root.get_children())
+	print("New Bag instance:", bag_scene)
+
+
 func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "death":
+	if anim_name == "death" and !alive:
 		#Zum Menu zurück
-		emit_signal("going_back")
+		alive = false
+		$AnimationPlayer.stop()
+
 		#Zum Village zurück
-		#var path = "res://scenes/village.tscn"
-		#emit_signal("going_back", path)
+		#emit_signal("going_back")
+		#Zum Village zurück
+		var path = "res://scenes/village.tscn"
+		emit_signal("going_back", path)
 
 func new_spawn_position():
 	if Global.new_position != null:
 		position = Global.new_position
+		Global.new_position = null
 
 func disable():
 	input_enabled = false
@@ -377,7 +409,9 @@ func enable():
 func get_time(value):
 	emit_signal("lifeChange", value)
 
+
 func get_coins(value):
+	coins += value
 	emit_signal("coinsChange", value)
 
 func calculate_stats_to_value(stat: int, span_start: float, span_end: float, min_value: float, max_value: float, divider: float = 1000.0) -> float:

@@ -536,6 +536,7 @@ size = Vector2(299, 1316)
 
 [node name="Village" type="Node2D"]
 script = ExtResource("1_5at0l")
+level_nr = 2
 
 [node name="Itemholder" type="Node2D" parent="."]
 

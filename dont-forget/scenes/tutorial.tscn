@@ -1221,6 +1221,18 @@ text = "Face the enemy or
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Stats_popup" type="Label" parent="."]
+offset_left = 5541.0
+offset_top = 900.0
+offset_right = 6283.0
+offset_bottom = 1246.0
+theme_override_fonts/font = ExtResource("8_h547o")
+theme_override_font_sizes/font_size = 41
+text = "Press I to discover
+or hide your stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Sword_Interact" type="Node2D" parent="."]
 script = ExtResource("9_8mqe6")
 
