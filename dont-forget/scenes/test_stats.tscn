@@ -6,6 +6,8 @@
 radius = 269.258
 
 [node name="test_stats" type="Area2D"]
+collision_layer = 0
+collision_mask = 32
 script = ExtResource("1_ibg4k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

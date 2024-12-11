@@ -1071,6 +1071,8 @@ animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(950, 993)
+test_on = true
+sword = false
 camera_limit_left = -1080
 camera_limit_top = 0
 camera_limit_right = 7343
@@ -1219,6 +1221,18 @@ text = "Face the enemy or
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="Stats_popup" type="Label" parent="."]
+offset_left = 5541.0
+offset_top = 900.0
+offset_right = 6283.0
+offset_bottom = 1246.0
+theme_override_fonts/font = ExtResource("8_h547o")
+theme_override_font_sizes/font_size = 41
+text = "Press I to discover
+or hide your stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Sword_Interact" type="Node2D" parent="."]
 script = ExtResource("9_8mqe6")
 
@@ -1265,11 +1279,10 @@ scale = Vector2(2.87545, 2.5827)
 
 [node name="heal" parent="." instance=ExtResource("16_auwwc")]
 position = Vector2(93, 1256)
-selected_profile = "broken"
 
 [node name="box" parent="." instance=ExtResource("16_ten56")]
 position = Vector2(381, 1170)
-selected_profile = "simple_treasure_chest"
+selected_profile = "gold_block"
 
 [node name="Block" type="Node2D" parent="."]
 

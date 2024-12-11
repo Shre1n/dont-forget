@@ -28,8 +28,8 @@ signal going_back(path)  # Zurück zum Dorf
 @export var knockback_stat = 50  # Knockback-Stärke
 @export var knockback_res_stat = 0 # Knockback-Resistenz
 # Noch fehlende Stats
-# @export var dash_cooldown_stat = 1
-# @export var dash_speed_stat = 1
+@export var dash_cooldown_stat = 1
+@export var dash_speed_stat = 1
 
 @export_subgroup("Camera")
 @export var camera_limit_left = -10000000
@@ -81,6 +81,8 @@ var post_knockback_timer = 0.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var JumpAvailability: bool
 
+var open = false
+
 # --- Onready-Variablen ---
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var JumpTimer: Timer = $Jump_Timer
@@ -89,6 +91,7 @@ var JumpAvailability: bool
 @onready var hit_flash_anim_player = $HitFlashAnimationPlayer
 @onready var weapon = $Attack_Area
 @onready var camera = $Camera2D
+@onready var stats_popup = $Camera2D/CanvasLayer/stats_popup
 
 # --- Funktionen ---
 
@@ -196,6 +199,7 @@ func update_status():
 	weapon.crit_chance = crit_stat
 	weapon.crit_multi = max(1, crit_dmg_stat)
 	weapon.knockback = knockback_stat
+	stats_popup.update_bars()
 
 func _process(delta):
 	if cooldown > 0:
@@ -203,6 +207,9 @@ func _process(delta):
 	if Input.is_action_just_pressed("attack") && sword && cooldown <= 0:
 		attack()
 		update_animation()
+	if Input.is_action_just_pressed("inventar"):
+		open = !open
+		stats_popup.visible = open
 
 func _physics_process(delta):
 	if alive:
