@@ -315,7 +315,8 @@ func drop_bag():
 
 func _add_new_bag(bag_scene):
 	emit_signal("resetCoins")
-	emit_signal("add_bag", bag_scene)
+	#emit_signal("add_bag", bag_scene)
+	print(get_tree().root.get_children())
 	print("New Bag instance:", bag_scene)
 
 
@@ -331,6 +332,7 @@ func _on_animation_player_animation_finished(anim_name):
 func new_spawn_position():
 	if Global.new_position != null:
 		position = Global.new_position
+		Global.new_position = null
 
 func disable():
 	input_enabled = false

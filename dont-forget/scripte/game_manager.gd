@@ -45,6 +45,8 @@ var crit_stat = 0
 var knockback_stat = 50
 var knockback_res_stat = 0
 
+var user_save = save_User.load_save()
+
 var all_stats_in_dict = {
 	"damage_stat": damage_stat,
 	"crit_dmg_stat": crit_dmg_stat,
@@ -133,19 +135,24 @@ func load_saved_scene():
 		print("No Bag scene saved. Skipping Bag restoration.")
 
 func add_bag(bag_scene):
-	for child in current_level.get_children().slice(0,3):
+	for child in get_tree().root.get_children():
 		if child.name == "Bag":
 			child.queue_free()
 			child.call_deferred("free")
 			print("Removed existing Bag instance:", child)
+	call_deferred("add_child_as_bag", bag_scene)
+
+func add_child_as_bag(bag_scene):
 	var bag_instance = bag_scene.instantiate()
-	current_level.add_child(bag_instance)
-	current_level.move_child(bag_instance, 2)
+	get_tree().root.add_child(bag_instance)
 	bag_instance.name = "Bag"
 	bag_instance.position = current_character.position
-	bag_instance.scale = Vector2(0.3,0.3)
 	bag_instance.set_coins(current_character.coins)
 	current_character.coins = 0
+	user_save.level_nr = current_level.level_nr
+	#user_save.bag_scene = bag_instance
+	#user_save.bag_position = current_character.position
+	user_save.gold = current_character.coins
 
 
 func find_character(level):
@@ -215,6 +222,12 @@ func options_closed():
 
 
 func _on_life_timer_timeout() -> void:
+	if save_user:
+		save_user.scene_path = load(current_level.scene_file_path)
+		save_user.bag_position = current_character.position
+		var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
+		add_bag(bag_scene)
+		save_user.save()
 	emit_signal("death")
 	#SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
 

@@ -5,6 +5,7 @@ class_name save_User extends Resource
 @export var bag_scene: PackedScene
 @export var gold: int
 @export var life: float
+@export var level_nr: int = 0
 @export var stats: Dictionary
 @export var position_of_character: Vector2
 @export var bag_position: Vector2 = Vector2.ZERO

@@ -1071,7 +1071,6 @@ animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(950, 993)
-sword = false
 camera_limit_left = -1080
 camera_limit_top = 0
 camera_limit_right = 7343
@@ -1270,7 +1269,7 @@ selected_profile = "broken"
 
 [node name="box" parent="." instance=ExtResource("16_ten56")]
 position = Vector2(381, 1170)
-selected_profile = "gold_block"
+selected_profile = "simple_treasure_chest"
 
 [node name="Block" type="Node2D" parent="."]
 

@@ -22,13 +22,11 @@ func _ready():
 	game_manager.connect("lifetimer", Callable(self, "update_lifetime_display"))
 	
 	amount_label.text = str(coins)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if sand_display:
-		elapsed_time += delta
-		var scale_modulation = amplitude * sin(elapsed_time * frequency)
-		sand_display.scale.x = 1.0 + scale_modulation / 200.0  # Example for vertical oscillation
+	update_lifetime_display(max_time)
 
 func save_user_location(path):
 	current_player = path
