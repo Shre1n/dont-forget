@@ -73,21 +73,8 @@ func _ready():
 	#current_character.connect("going_back", Callable(self, "scene_change"))
 	
 
-func get_all_stats():
-	return {
-		"damage_stat": damage_stat,
-		"crit_dmg_stat": crit_dmg_stat,
-		"res_stat": res_stat,
-		"speed_stat": speed_stat,
-		"jump_stat": jump_stat,
-		"imunity_stat": imunity_stat,
-		"attack_speed_stat": attack_speed_stat,
-		"cooldown_stat": cooldown_stat,
-		"pierce_stat": pierce_stat,
-		"crit_stat": crit_stat,
-		"knockback_stat": knockback_stat,
-		"knockback_res_stat": knockback_res_stat
-	}
+func get_all_stats() -> Dictionary:
+	return all_stats_in_dict
 
 func load_saved_scene():
 	var user_save = save_User.load_save()
