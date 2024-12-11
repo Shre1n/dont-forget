@@ -14,7 +14,7 @@ signal back_to_village
 @onready var life: Timer = $Life_Timer
 @onready var gold: Label = $Pause_Menu/UI/GridContainer/Menge
 @export var life_time:float = 10.0
-@export var max_time: float = 10.0
+@export var max_time: float = 100.0
 
 @onready var canvaslayer = $Pause_Menu
 
@@ -44,6 +44,9 @@ var pierce_stat = 0
 var crit_stat = 0
 var knockback_stat = 50
 var knockback_res_stat = 0
+var dash_cooldown_stat = 0
+var dash_speed_stat = 0
+var extra_weight_stat = 0
 
 var user_save = save_User.load_save()
 
@@ -59,10 +62,13 @@ var all_stats_in_dict = {
 	"pierce_stat": pierce_stat,
 	"crit_stat": crit_stat,
 	"knockback_stat": knockback_stat,
-	"knockback_res_stat": knockback_res_stat
+	"knockback_res_stat": knockback_res_stat,
+	"dash_cooldown_stat": dash_cooldown_stat,
+	"dash_speed_stat": dash_speed_stat,
+	"extra_weight_stat": extra_weight_stat
 }
 
-var all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
+var all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat + dash_cooldown_stat+ dash_speed_stat
 
 func _ready():
 	load_saved_scene()
@@ -71,30 +77,16 @@ func _ready():
 	SceneManager.scene_added.connect(_on_level_added)
 	#Zum Village zurück (braucht signal mit path)
 	#current_character.connect("going_back", Callable(self, "scene_change"))
-	
 
-func get_all_stats():
-	return {
-		"damage_stat": damage_stat,
-		"crit_dmg_stat": crit_dmg_stat,
-		"res_stat": res_stat,
-		"speed_stat": speed_stat,
-		"jump_stat": jump_stat,
-		"imunity_stat": imunity_stat,
-		"attack_speed_stat": attack_speed_stat,
-		"cooldown_stat": cooldown_stat,
-		"pierce_stat": pierce_stat,
-		"crit_stat": crit_stat,
-		"knockback_stat": knockback_stat,
-		"knockback_res_stat": knockback_res_stat
-	}
+func get_all_stats() -> Dictionary:
+	return all_stats_in_dict
 
 func load_saved_scene():
 	var user_save = save_User.load_save()
 	save_user = user_save
 	var saved_scene_path = save_user.scene_path
 	var bag_scene = save_user.bag_scene
-	
+
 	for child in level_holder.get_children():
 			child.queue_free()
 	
@@ -102,8 +94,9 @@ func load_saved_scene():
 		var saved_scene_instance = saved_scene_path.instantiate() as Level
 		if saved_scene_instance:
 			level_holder.add_child(saved_scene_instance)
+			gold.text = user_save.gold
+			life_time = user_save.life
 			all_stats_in_dict = user_save.stats
-			print(user_save.stats)
 		else:
 			print("failed to instance saved scene. Loading Tutorial.")
 			level_holder.add_child(tutorial.instantiate() as Level)
@@ -122,7 +115,7 @@ func load_saved_scene():
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
 		current_character.connect("going_back", Callable(self, "scene_change"))
 		current_character.connect("add_bag", Callable(self, "add_bag"))
-		
+
 	if user_save.bag_scene:
 		var bag_instance = user_save.bag_scene.instantiate()
 		get_tree().root.add_child(bag_instance)

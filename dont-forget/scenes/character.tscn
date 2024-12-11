@@ -29,7 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://o5pa0o30ep1k" path="res://assets/run/7.png" id="15_js2sq"]
 [ext_resource type="PackedScene" uid="uid://dnu6va4x16qlb" path="res://scenes/damage_area.tscn" id="24_i5vbm"]
 [ext_resource type="PackedScene" uid="uid://cmgf1s540hgqi" path="res://scenes/attack_area.tscn" id="24_u5kue"]
-[ext_resource type="PackedScene" uid="uid://byy056hrby4p5" path="res://stats_popup.tscn" id="30_pbvn4"]
+[ext_resource type="PackedScene" path="res://stats_popup.tscn" id="30_pbvn4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gevhk"]
 radius = 36.2338
@@ -874,7 +874,7 @@ _data = {
 
 [node name="Character" type="CharacterBody2D" groups=["character"]]
 collision_layer = 32
-collision_mask = 25
+collision_mask = 153
 script = ExtResource("1_gaw86")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -945,5 +945,10 @@ libraries = {
 
 [node name="Attack_Timer" type="Timer" parent="."]
 
+[node name="Dash_Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="Dash_Timer" to="." method="_on_dash_timer_timeout"]
