@@ -27,6 +27,9 @@ func populate_shop():
 		hbox.add_child(buy_button)
 		
 		grid_containter.add_child(hbox)
+		
+		for child in grid_containter.get_children():
+			print(child)
 
 func _on_buy_button_pressed(item):
 	print("Purchased: ", item.name)
