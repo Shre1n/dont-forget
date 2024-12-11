@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvi4bctnbdpax"]
+[gd_scene load_steps=14 format=3 uid="uid://cvi4bctnbdpax"]
 
 [ext_resource type="Script" path="res://scripte/game_manager.gd" id="1_brvfy"]
 [ext_resource type="PackedScene" uid="uid://cpylfpo14s0l2" path="res://ui/pause_menu.tscn" id="3_5oodd"]
@@ -6,6 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://ba1vr60upkeqc" path="res://assets/Life/Ui_Time_.png" id="4_03et5"]
 [ext_resource type="Texture2D" uid="uid://c5a4u1d5vk647" path="res://assets/drops/gold.png" id="4_gtkkb"]
 [ext_resource type="PackedScene" uid="uid://cspyht3ytgvhx" path="res://ui/options.tscn" id="4_v2ckv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hijv6"]
+bg_color = Color(0.203922, 0.203922, 0.286275, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_ymhmf"]
+Panel/styles/panel = SubResource("StyleBoxFlat_hijv6")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nojtj"]
 bg_color = Color(0.866667, 0.690196, 0.262745, 1)
@@ -47,13 +61,32 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("3_ybw7d")
 
+[node name="Panel" type="Panel" parent="Pause_Menu/UI"]
+visible = false
+layout_mode = 2
+offset_left = 1700.0
+offset_right = 1921.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ymhmf")
+
+[node name="Panel2" type="Panel" parent="Pause_Menu/UI"]
+layout_mode = 2
+offset_left = -54.0
+offset_top = -13.0
+offset_right = 1925.0
+offset_bottom = 101.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="SandDisplay" type="ProgressBar" parent="Pause_Menu/UI"]
 modulate = Color(1, 1, 0.317647, 1)
 layout_mode = 0
-offset_left = 32.0
+offset_left = 36.0
 offset_top = 25.0
 offset_right = 577.0
-offset_bottom = 51.0
+offset_bottom = 78.0
 theme = SubResource("Theme_n3kn5")
 max_value = 10.0
 fill_mode = 1
@@ -61,10 +94,10 @@ show_percentage = false
 
 [node name="TextureRect" type="TextureRect" parent="Pause_Menu/UI"]
 layout_mode = 0
-offset_left = 16.0
+offset_left = 14.0
 offset_top = 15.0
-offset_right = 800.0
-offset_bottom = 59.0
+offset_right = 846.0
+offset_bottom = 87.0
 texture = ExtResource("4_03et5")
 expand_mode = 2
 
@@ -73,10 +106,9 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 2.438
 anchor_bottom = 1.0
-offset_left = 1757.0
-offset_top = 9.0
-offset_right = 1712.48
-offset_bottom = 2.0
+offset_left = 1700.0
+offset_right = 1680.48
+offset_bottom = -1.0
 scale = Vector2(2.84, 2.24)
 columns = 2
 
@@ -84,13 +116,16 @@ columns = 2
 layout_mode = 2
 texture = ExtResource("4_gtkkb")
 expand_mode = 2
+stretch_mode = 4
 flip_h = true
 
 [node name="Menge" type="Label" parent="Pause_Menu/UI/GridContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 16
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 30
+text = "0"
 label_settings = SubResource("LabelSettings_gbgn7")
-horizontal_alignment = 2
 
 [node name="Pause_Menu" parent="Pause_Menu" node_paths=PackedStringArray("game_manager") instance=ExtResource("3_5oodd")]
 process_mode = 3
