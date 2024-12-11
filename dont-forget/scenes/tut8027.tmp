@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=34 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dhx18cj8fwfgg" path="res://heal/heal.tscn" id="16_auwwc"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
 [ext_resource type="PackedScene" uid="uid://rwcbxprdm3p4" path="res://scenes/Shop/ShopNPC.tscn" id="16_vpndh"]
+[ext_resource type="PackedScene" uid="uid://2nkmel7nksqk" path="res://assets/drops/bag_drop/bag.tscn" id="18_fvvy3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -1071,7 +1072,6 @@ animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(950, 993)
-test_on = true
 sword = false
 camera_limit_left = -1080
 camera_limit_top = 0
@@ -1221,18 +1221,6 @@ text = "Face the enemy or
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Stats_popup" type="Label" parent="."]
-offset_left = 5541.0
-offset_top = 900.0
-offset_right = 6283.0
-offset_bottom = 1246.0
-theme_override_fonts/font = ExtResource("8_h547o")
-theme_override_font_sizes/font_size = 41
-text = "Press I to discover
-or hide your stats"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Sword_Interact" type="Node2D" parent="."]
 script = ExtResource("9_8mqe6")
 
@@ -1301,3 +1289,7 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block/Slime_Block"]
 position = Vector2(0, -549)
 shape = SubResource("RectangleShape2D_q71vo")
+
+[node name="Bag" parent="." instance=ExtResource("18_fvvy3")]
+position = Vector2(1573, 1218)
+scale = Vector2(0.3, 0.3)

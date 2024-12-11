@@ -14,7 +14,7 @@ signal back_to_village
 @onready var life: Timer = $Life_Timer
 @onready var gold: Label = $Pause_Menu/UI/GridContainer/Menge
 @export var life_time:float = 10.0
-@export var max_time: float = 100.0
+@export var max_time: float = 10.0
 
 @onready var canvaslayer = $Pause_Menu
 
@@ -45,6 +45,23 @@ var crit_stat = 0
 var knockback_stat = 50
 var knockback_res_stat = 0
 
+var user_save = save_User.load_save()
+
+var all_stats_in_dict = {
+	"damage_stat": damage_stat,
+	"crit_dmg_stat": crit_dmg_stat,
+	"res_stat": res_stat,
+	"speed_stat": speed_stat,
+	"jump_stat": jump_stat,
+	"imunity_stat": imunity_stat,
+	"attack_speed_stat": attack_speed_stat,
+	"cooldown_stat": cooldown_stat,
+	"pierce_stat": pierce_stat,
+	"crit_stat": crit_stat,
+	"knockback_stat": knockback_stat,
+	"knockback_res_stat": knockback_res_stat
+}
+
 var all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
 
 func _ready():
@@ -56,11 +73,27 @@ func _ready():
 	#current_character.connect("going_back", Callable(self, "scene_change"))
 	
 
+func get_all_stats():
+	return {
+		"damage_stat": damage_stat,
+		"crit_dmg_stat": crit_dmg_stat,
+		"res_stat": res_stat,
+		"speed_stat": speed_stat,
+		"jump_stat": jump_stat,
+		"imunity_stat": imunity_stat,
+		"attack_speed_stat": attack_speed_stat,
+		"cooldown_stat": cooldown_stat,
+		"pierce_stat": pierce_stat,
+		"crit_stat": crit_stat,
+		"knockback_stat": knockback_stat,
+		"knockback_res_stat": knockback_res_stat
+	}
 
 func load_saved_scene():
 	var user_save = save_User.load_save()
 	save_user = user_save
 	var saved_scene_path = save_user.scene_path
+	var bag_scene = save_user.bag_scene
 	
 	for child in level_holder.get_children():
 			child.queue_free()
@@ -69,8 +102,8 @@ func load_saved_scene():
 		var saved_scene_instance = saved_scene_path.instantiate() as Level
 		if saved_scene_instance:
 			level_holder.add_child(saved_scene_instance)
-			gold.text = user_save.gold
-			life_time = user_save.life
+			all_stats_in_dict = user_save.stats
+			print(user_save.stats)
 		else:
 			print("failed to instance saved scene. Loading Tutorial.")
 			level_holder.add_child(tutorial.instantiate() as Level)
@@ -84,10 +117,42 @@ func load_saved_scene():
 	if current_character:
 		if saved_scene_path != null:
 			current_character.position = save_user.position_of_character
+			current_character.coins = user_save.gold
+			life_time = user_save.life
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
 		current_character.connect("going_back", Callable(self, "scene_change"))
-	
-	
+		current_character.connect("add_bag", Callable(self, "add_bag"))
+		
+	if user_save.bag_scene:
+		var bag_instance = user_save.bag_scene.instantiate()
+		get_tree().root.add_child(bag_instance)
+		if user_save.bag_position:
+			bag_instance.position = user_save.bag_position  # Restore the position
+		print("Bag instance restored at position ", bag_instance.position)
+		print("Bag instance restored.")
+	else:
+		print("No Bag scene saved. Skipping Bag restoration.")
+
+func add_bag(bag_scene):
+	for child in get_tree().root.get_children():
+		if child.name == "Bag":
+			child.queue_free()
+			child.call_deferred("free")
+			print("Removed existing Bag instance:", child)
+	call_deferred("add_child_as_bag", bag_scene)
+
+func add_child_as_bag(bag_scene):
+	var bag_instance = bag_scene.instantiate()
+	get_tree().root.add_child(bag_instance)
+	bag_instance.name = "Bag"
+	bag_instance.position = current_character.position
+	bag_instance.set_coins(current_character.coins)
+	current_character.coins = 0
+	user_save.level_nr = current_level.level_nr
+	#user_save.bag_scene = bag_instance
+	#user_save.bag_position = current_character.position
+	user_save.gold = current_character.coins
+
 
 func find_character(level):
 	for child in level.get_children():
@@ -156,6 +221,12 @@ func options_closed():
 
 
 func _on_life_timer_timeout() -> void:
+	if save_user:
+		save_user.scene_path = load(current_level.scene_file_path)
+		save_user.bag_position = current_character.position
+		var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
+		add_bag(bag_scene)
+		save_user.save()
 	emit_signal("death")
 	#SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
 
@@ -176,10 +247,10 @@ func restart_life_timer():
 	life.start(max_time)
 
 #Zum Menü zurück
-func scene_change():
-	SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
+#func scene_change():
+	#SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
 
 #Zum Village zurück
-#func scene_change(path):
-	#emit_signal("back_to_village")
-	#SceneManager.swap_scenes(path,level_holder,current_level,"transition_type")
+func scene_change():
+	emit_signal("back_to_village")
+	SceneManager.swap_scenes("res://scenes/Village.tscn",level_holder,current_level,"transition_type")
