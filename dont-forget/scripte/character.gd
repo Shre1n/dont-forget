@@ -123,6 +123,9 @@ func get_stats():
 	crit_stat = game_manager.crit_stat
 	knockback_stat = game_manager.knockback_stat
 	knockback_res_stat = game_manager.knockback_res_stat
+	dash_cooldown_stat = game_manager.dash_cooldown_stat
+	dash_speed_stat = game_manager.dash_speed_stat
+	extra_weight_stat = game_manager.extra_weight_stat
 	update_status()
 
 func adjust_stats(changes: Array) -> void:
@@ -162,6 +165,12 @@ func adjust_stats(changes: Array) -> void:
 					new_value = max(new_value, min_stats, max_stats)
 				"extra_weight_stat":
 					new_value = max(new_value, min_stats, max_stats)
+				"dash_cooldown_stat":
+					new_value = max(new_value, min_stats, max_stats)
+				"dash_speed_stat":
+					new_value = max(new_value, min_stats, max_stats)
+				"extra_weight_stat":
+					new_value = max(new_value, min_stats, max_stats)
 				# Hier einfach neue hinzufügen, falls nötig
 			self.set(stat_name, new_value)
 	save_stats()
@@ -179,6 +188,9 @@ func save_stats():
 	game_manager.crit_stat = crit_stat
 	game_manager.knockback_stat = knockback_stat
 	game_manager.knockback_res_stat = knockback_res_stat
+	game_manager.dash_cooldown_stat = dash_cooldown_stat
+	game_manager.dash_speed_stat = dash_speed_stat
+	game_manager.extra_weight_stat = extra_weight_stat
 	update_status()
 
 func update_status():

@@ -44,8 +44,29 @@ var pierce_stat = 0
 var crit_stat = 0
 var knockback_stat = 50
 var knockback_res_stat = 0
+var dash_cooldown_stat = 0
+var dash_speed_stat = 0
+var extra_weight_stat = 0
 
-var all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
+var all_stats_in_dict = {
+	"damage_stat": damage_stat,
+	"crit_dmg_stat": crit_dmg_stat,
+	"res_stat": res_stat,
+	"speed_stat": speed_stat,
+	"jump_stat": jump_stat,
+	"imunity_stat": imunity_stat,
+	"attack_speed_stat": attack_speed_stat,
+	"cooldown_stat": cooldown_stat,
+	"pierce_stat": pierce_stat,
+	"crit_stat": crit_stat,
+	"knockback_stat": knockback_stat,
+	"knockback_res_stat": knockback_res_stat,
+	"dash_cooldown_stat": dash_cooldown_stat,
+	"dash_speed_stat": dash_speed_stat,
+	"extra_weight_stat": extra_weight_stat
+}
+
+var all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat + dash_cooldown_stat+ dash_speed_stat
 
 func _ready():
 	load_saved_scene()
@@ -54,8 +75,9 @@ func _ready():
 	SceneManager.scene_added.connect(_on_level_added)
 	#Zum Village zurück (braucht signal mit path)
 	#current_character.connect("going_back", Callable(self, "scene_change"))
-	
 
+func get_all_stats() -> Dictionary:
+	return all_stats_in_dict
 
 func load_saved_scene():
 	var user_save = save_User.load_save()
