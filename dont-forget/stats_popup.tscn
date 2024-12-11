@@ -20,7 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cgpdhxp7qt4pt" path="res://icon_stats/Dash_Speed.png" id="18_o0bdi"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkvc7"]
-bg_color = Color(0.203954, 0.202802, 0.284797, 1)
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
