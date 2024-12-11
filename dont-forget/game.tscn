@@ -32,6 +32,7 @@ font_color = Color(1, 1, 0.372549, 1)
 [node name="Game_Manager" type="Node2D" groups=["game_manager"]]
 process_mode = 3
 script = ExtResource("1_brvfy")
+life_time = 2.0
 
 [node name="Level_Folder" type="Node2D" parent="."]
 process_mode = 1
@@ -102,7 +103,7 @@ visible = false
 game_manager = NodePath("../..")
 
 [node name="Life_Timer" type="Timer" parent="."]
-wait_time = 100.0
+wait_time = 5.0
 one_shot = true
 
 [connection signal="timeout" from="Life_Timer" to="." method="_on_life_timer_timeout"]

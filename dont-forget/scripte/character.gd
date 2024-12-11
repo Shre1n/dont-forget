@@ -4,8 +4,9 @@ extends CharacterBody2D
 # Signale
 signal coinsChange(amount)
 signal lifeChange(amount)
-signal going_back  # Zurück zum Menü
-# signal going_back(path)  # Zurück zum Dorf
+signal resetCoins
+signal add_bag(bag_instance)
+signal going_back(path)  # Zurück zum Dorf
 
 @export_category("Einstellungen")
 @export var test_on: bool = false
@@ -48,7 +49,6 @@ signal going_back  # Zurück zum Menü
 @export var knockback_duration: float = 0.2 
 @export var post_knockback_duration: float = 0.6  # Dauer der Nach-Knockback-Phase
 
-
 var damage
 var speed
 var jump_height
@@ -62,7 +62,13 @@ var all_stats
 var extra_weight 
 var weight
 
+var coins = 0
+
+var start_position: Vector2
+
+
 var cooldown: float = 0.0
+
 
 var is_knocked_back: bool = false
 var knockback_timer: float = 0.0
@@ -93,6 +99,7 @@ func _ready():
 	camera.limit_right = camera_limit_right
 	camera.limit_bottom = camera_limit_bottom
 	animation_player.play("idle")
+	start_position = position
 	game_manager.connect("death", Callable(self, "die"))
 	if test_on:
 		update_status()
@@ -296,22 +303,36 @@ func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func die():
+	drop_bag()
 	velocity = Vector2.ZERO
 	alive = false
 	animation_player.play("death")
 	await (animation_player.animation_finished)
+	
+func drop_bag():
+	var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
+	call_deferred("_add_new_bag", bag_scene)
+
+func _add_new_bag(bag_scene):
+	emit_signal("resetCoins")
+	#emit_signal("add_bag", bag_scene)
+	print(get_tree().root.get_children())
+	print("New Bag instance:", bag_scene)
+
 
 func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "death":
+	if anim_name == "death" and !alive:
 		#Zum Menu zurück
-		emit_signal("going_back")
+		alive = false
+		$AnimationPlayer.stop()
+		
 		#Zum Village zurück
-		#var path = "res://scenes/village.tscn"
-		#emit_signal("going_back", path)
+		emit_signal("going_back")
 
 func new_spawn_position():
 	if Global.new_position != null:
 		position = Global.new_position
+		Global.new_position = null
 
 func disable():
 	input_enabled = false
@@ -323,8 +344,11 @@ func enable():
 
 func get_time(value):
 	emit_signal("lifeChange", value)
+	
+
 
 func get_coins(value):
+	coins += value
 	emit_signal("coinsChange", value)
 
 func calculate_stats_to_value(stat: int, span_start: float, span_end: float, min_value: float, max_value: float, divider: float = 1000.0) -> float:
