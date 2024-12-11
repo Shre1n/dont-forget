@@ -43,6 +43,8 @@ signal going_back  # Zurück zum Menü
 @export var alive: bool = true
 
 @export_subgroup("Balancing")
+@export var dash_price: float = 30.0
+@export var dashtime: float = 0.2
 @export var cooldown_duration: float = 1.0
 @export var dash_cooldown_duration: float = 5.0
 @export var dash_duration: float = 0.2
@@ -67,6 +69,7 @@ var dash_speed
 var dash_cooldown_reduction
 
 var current_dash_speed = 1
+var dashing = false
 
 var cooldown: float = 0.0
 var dash_cooldown: float = 0.0
@@ -90,7 +93,7 @@ var JumpAvailability: bool
 @onready var hit_flash_anim_player = $HitFlashAnimationPlayer
 @onready var weapon = $Attack_Area
 @onready var camera = $Camera2D
-
+@onready var dash_timer = $Dash_Timer
 # --- Funktionen ---
 
 func _ready():
@@ -99,6 +102,7 @@ func _ready():
 	camera.limit_top = camera_limit_top
 	camera.limit_right = camera_limit_right
 	camera.limit_bottom = camera_limit_bottom
+	dash_timer.wait_time = dashtime
 	animation_player.play("idle")
 	game_manager.connect("death", Callable(self, "die"))
 	if test_on:
@@ -191,7 +195,7 @@ func update_status():
 	extra_weight = calculate_stats_to_value(extra_weight_stat, 0.0, 3.5, 0, 100)
 	weight = min(490, all_stats / 100) + extra_weight
 	dash_cooldown_reduction = calculate_stats_to_value(dash_cooldown_stat, 0.0, 1.0, 1, 0.0, 3500.0)
-	dash_speed = calculate_stats_to_value(dash_speed_stat, 0.0 , 1.0, 1.5, 6.0, 3500.0)
+	dash_speed = calculate_stats_to_value(dash_speed_stat, 0.0 , 1.0, 3.0, 6.0, 3500.0)
 	
 	weapon.damage = max(1, damage_stat)
 	weapon.pierce_multi = pierce_stat
@@ -204,14 +208,10 @@ func _process(delta):
 		cooldown -= delta
 	if dash_cooldown > 0:
 		dash_cooldown -= delta
-	if dash_duration > 0:
-		dash_cooldown -= delta
-	elif dash_duration <= 0:
-		current_dash_speed = 1
 	if Input.is_action_just_pressed("attack") && sword && cooldown <= 0:
 		attack()
 		update_animation()
-	elif Input.is_action_just_pressed("dash") && dash_cooldown <= 0 && dash_duration <= 0:
+	elif Input.is_action_just_pressed("dash") && dash_cooldown <= 0 && Input.get_axis("left", "right"):
 		dash()
 
 func _physics_process(delta):
@@ -265,7 +265,7 @@ func handle_knockback(delta):
 		post_knockback_timer -= delta
 		velocity = velocity.move_toward(Vector2.ZERO, knockback_speed_new * delta)
 		var direction = Input.get_axis("left", "right")
-		if  velocity.length() < 10: #(direction == -1 and velocity.x > 0) or (direction == 1 and velocity.x < 0): #velocity.x < 10 or velocity.x < direction.x:  # Geschwindigkeitsschwelle für Ende der Nach-Knockback-Phase
+		if  velocity.length() < 10 or dashing: #(direction == -1 and velocity.x > 0) or (direction == 1 and velocity.x < 0): #velocity.x < 10 or velocity.x < direction.x:  # Geschwindigkeitsschwelle für Ende der Nach-Knockback-Phase
 			velocity = Vector2.ZERO
 			post_knockback_timer = 0
 			is_knocked_back = false
@@ -297,8 +297,28 @@ func attack():
 	animation_player.play("fight")
 
 func dash():
-	dash_cooldown = dash_cooldown_duration_base + dash_cooldown_duration * dash_cooldown_reduction
+	dashing = true
+	get_time(-dash_price)
+	dash_cooldown = dash_cooldown_duration_base + dash_cooldown_duration * dash_cooldown_reduction # +dashtime
 	current_dash_speed = dash_speed
+	var col1a = 1 +16
+	collision_mask = col1a
+	var col2a = 0
+	$CollisionShape2D2/Damage_Area.collision_mask = col2a
+	var col3a = 0
+	collision_layer = col3a
+	dash_timer.start()
+
+
+func _on_dash_timer_timeout():
+	dashing = false
+	current_dash_speed = 1
+	var col1b = 1 + 8 + 16 +128
+	collision_mask = col1b
+	var col2b = 2
+	$CollisionShape2D2/Damage_Area.collision_mask = col2b
+	var col3b = 32
+	collision_layer = col3b
 
 func update_animation():
 	if alive:
