@@ -26,9 +26,8 @@ signal going_back  # Zurück zum Menü
 @export var crit_stat = 0  # Kritische Trefferchance (0–1000 = 0–100%)
 @export var knockback_stat = 50  # Knockback-Stärke
 @export var knockback_res_stat = 0 # Knockback-Resistenz
-# Noch fehlende Stats
-# @export var dash_cooldown_stat = 1
-# @export var dash_speed_stat = 1
+@export var dash_cooldown_stat = 0
+@export var dash_speed_stat = 0
 
 @export_subgroup("Camera")
 @export var camera_limit_left = -10000000
@@ -45,6 +44,9 @@ signal going_back  # Zurück zum Menü
 
 @export_subgroup("Balancing")
 @export var cooldown_duration: float = 1.0
+@export var dash_cooldown_duration: float = 5.0
+@export var dash_duration: float = 0.2
+@export var dash_cooldown_duration_base: float = 0.1
 @export var knockback_duration: float = 0.2 
 @export var post_knockback_duration: float = 0.6  # Dauer der Nach-Knockback-Phase
 
@@ -61,8 +63,13 @@ var cooldown_duration_base: float
 var all_stats 
 var extra_weight 
 var weight
+var dash_speed
+var dash_cooldown_reduction
+
+var current_dash_speed = 1
 
 var cooldown: float = 0.0
+var dash_cooldown: float = 0.0
 
 var is_knocked_back: bool = false
 var knockback_timer: float = 0.0
@@ -183,6 +190,8 @@ func update_status():
 	all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
 	extra_weight = calculate_stats_to_value(extra_weight_stat, 0.0, 3.5, 0, 100)
 	weight = min(490, all_stats / 100) + extra_weight
+	dash_cooldown_reduction = calculate_stats_to_value(dash_cooldown_stat, 0.0, 1.0, 1, 0.0, 3500.0)
+	dash_speed = calculate_stats_to_value(dash_speed_stat, 0.0 , 1.0, 1.5, 6.0, 3500.0)
 	
 	weapon.damage = max(1, damage_stat)
 	weapon.pierce_multi = pierce_stat
@@ -193,9 +202,17 @@ func update_status():
 func _process(delta):
 	if cooldown > 0:
 		cooldown -= delta
+	if dash_cooldown > 0:
+		dash_cooldown -= delta
+	if dash_duration > 0:
+		dash_cooldown -= delta
+	elif dash_duration <= 0:
+		current_dash_speed = 1
 	if Input.is_action_just_pressed("attack") && sword && cooldown <= 0:
 		attack()
 		update_animation()
+	elif Input.is_action_just_pressed("dash") && dash_cooldown <= 0 && dash_duration <= 0:
+		dash()
 
 func _physics_process(delta):
 	if alive:
@@ -229,7 +246,7 @@ func _physics_process(delta):
 			# Get the input direction and handle the movement/deceleration.
 			var direction = Input.get_axis("left", "right")
 			if direction != 0:
-				velocity.x = direction * speed
+				velocity.x = (direction * speed) * current_dash_speed
 			else:
 				if !JumpAvailability:
 					velocity.x = move_toward(velocity.x, 0, speed * delta)
@@ -278,6 +295,10 @@ func attack():
 	cooldown = cooldown_duration_base + cooldown_duration * cooldown_reduction
 	animation_player.speed_scale = attack_speed
 	animation_player.play("fight")
+
+func dash():
+	dash_cooldown = dash_cooldown_duration_base + dash_cooldown_duration * dash_cooldown_reduction
+	current_dash_speed = dash_speed
 
 func update_animation():
 	if alive:
