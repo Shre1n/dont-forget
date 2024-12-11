@@ -1,17 +1,196 @@
-[gd_scene load_steps=13 format=3 uid="uid://byy056hrby4p5"]
+[gd_scene load_steps=54 format=3 uid="uid://byy056hrby4p5"]
 
-[ext_resource type="Texture2D" uid="uid://cpklytbomyi5d" path="res://icons/strength.png" id="1_cqx2c"]
 [ext_resource type="Script" path="res://stats_popup.gd" id="1_ux2dx"]
-[ext_resource type="Texture2D" uid="uid://byfjcy14xuima" path="res://icons/crit_damage.png" id="2_jj6hw"]
-[ext_resource type="Texture2D" uid="uid://bafipqrpy6fvp" path="res://icons/shield.png" id="3_pttpp"]
+[ext_resource type="Texture2D" uid="uid://d28s4vbyx5qfg" path="res://icon_stats/Damage.png" id="2_ns4p6"]
 [ext_resource type="FontFile" uid="uid://bhjgpy1dovmyq" path="res://addons/gut/fonts/CourierPrime-Bold.ttf" id="3_sgbt0"]
 [ext_resource type="Script" path="res://progressbar.gd" id="4_3vieg"]
-[ext_resource type="Texture2D" uid="uid://bsdqfgjrkdvqs" path="res://icons/imun.png" id="4_li24q"]
-[ext_resource type="Texture2D" uid="uid://cndc4rnpwb2cu" path="res://icons/speed.png" id="5_w7epn"]
-[ext_resource type="Texture2D" uid="uid://keg3tu5dh43l" path="res://icons/run.png" id="6_yh2k1"]
-[ext_resource type="Texture2D" uid="uid://cujv4ntu0gfjs" path="res://icons/spring.png" id="7_ed4d2"]
-[ext_resource type="Texture2D" uid="uid://b8ureimgownke" path="res://icons/medical.png" id="8_534t1"]
-[ext_resource type="Texture2D" uid="uid://chw3dw1a8c6du" path="res://icons/runer-silhouette-running-fast.png" id="9_aoiro"]
+[ext_resource type="Texture2D" uid="uid://bnh7agj46g66j" path="res://icon_stats/Crit Damage.png" id="5_4t7w3"]
+[ext_resource type="Texture2D" uid="uid://bpoh1x1cl51bx" path="res://icon_stats/Pierce.png" id="6_a5a1n"]
+[ext_resource type="Texture2D" uid="uid://cum7w8bk633jg" path="res://icon_stats/Resistenz.png" id="7_lhqmu"]
+[ext_resource type="Texture2D" uid="uid://dgyg284ljqp88" path="res://icon_stats/Imunity.png" id="8_ardcl"]
+[ext_resource type="Texture2D" uid="uid://bg3deu5tcguv1" path="res://icon_stats/Cooldown.png" id="9_k3yxd"]
+[ext_resource type="Texture2D" uid="uid://cd2evxpygpbpu" path="res://icon_stats/Attackspeed.png" id="10_tahcp"]
+[ext_resource type="Texture2D" uid="uid://7ban2tp5bs" path="res://icon_stats/speed.png" id="11_elx4m"]
+[ext_resource type="Texture2D" uid="uid://cmmyqlsiyv55j" path="res://icon_stats/Jump_hight.png" id="12_bxbuy"]
+[ext_resource type="Texture2D" uid="uid://b4h23kwe8mtyl" path="res://icon_stats/Crit_chance.png" id="13_sscn4"]
+[ext_resource type="Texture2D" uid="uid://dydxj24f3s3du" path="res://icon_stats/Knockback.png" id="14_eag3f"]
+[ext_resource type="Texture2D" uid="uid://c56pu1rh2ddvn" path="res://icon_stats/Knockback_Res.png" id="15_214xt"]
+[ext_resource type="Texture2D" uid="uid://b8lpro46r48px" path="res://icon_stats/Extra_Weight.png" id="16_wj6lh"]
+[ext_resource type="Texture2D" uid="uid://bvtpdwlifcjb2" path="res://icon_stats/Dash_Cooldown.png" id="17_x02ed"]
+[ext_resource type="Texture2D" uid="uid://cgpdhxp7qt4pt" path="res://icon_stats/Dash_Speed.png" id="18_o0bdi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gkvc7"]
+bg_color = Color(0.203954, 0.202802, 0.284797, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="Theme" id="Theme_d2df5"]
+Panel/styles/panel = SubResource("StyleBoxFlat_gkvc7")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0cr78"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_76ksk"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_0cr78")
+
+[sub_resource type="Theme" id="Theme_fpsxy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mqumc"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_1gapm"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_mqumc")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_swxtw"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_d5f2k"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_swxtw")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p71pa"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_1o5tg"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_p71pa")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mmgca"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_53jxl"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_mmgca")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vhlyq"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_4qus4"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_vhlyq")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vfl0"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_wc4cd"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_3vfl0")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ty537"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_kfxxx"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_ty537")
+
+[sub_resource type="Theme" id="Theme_7w10s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3i7l"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_uk7yh"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_u3i7l")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60wwx"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_7jgf8"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_60wwx")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ab33i"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_cso2p"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_ab33i")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cx8s3"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_1q7hd"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_cx8s3")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0u1o3"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_kfy02"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_0u1o3")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d2mvw"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_ih8p8"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_d2mvw")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d5uja"]
+bg_color = Color(0.792157, 0.388235, 0.2, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_6fuck"]
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_d5uja")
+
+[sub_resource type="Theme" id="Theme_q7oxi"]
+Label/font_sizes/font_size = 30
+Label/fonts/font = null
 
 [node name="stats_popup" type="Control"]
 layout_mode = 3
@@ -23,23 +202,24 @@ grow_horizontal = 0
 grow_vertical = 2
 script = ExtResource("1_ux2dx")
 
-[node name="Panel" type="MarginContainer" parent="."]
+[node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -324.0
-offset_right = -20.0
-offset_bottom = 330.0
-grow_horizontal = 0
+offset_left = -397.0
+offset_top = -452.5
+offset_bottom = 452.5
 grow_vertical = 2
+theme = SubResource("Theme_d2df5")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 2
+offset_left = 13.0
+offset_top = 9.0
+offset_right = 367.0
+offset_bottom = 654.0
 
 [node name="Title" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
@@ -54,9 +234,9 @@ size_flags_vertical = 3
 columns = 2
 
 [node name="Damage" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
-texture = ExtResource("1_cqx2c")
+texture = ExtResource("2_ns4p6")
 expand_mode = 2
 stretch_mode = 5
 
@@ -65,6 +245,9 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Increases the damage dealt by your attacks "
+theme = SubResource("Theme_76ksk")
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -89,8 +272,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Crit_Damage" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
-texture = ExtResource("2_jj6hw")
+theme = SubResource("Theme_fpsxy")
+texture = ExtResource("5_4t7w3")
 expand_mode = 2
 stretch_mode = 5
 
@@ -99,6 +284,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Enhances the damage multiplier for critical hits"
+theme = SubResource("Theme_1gapm")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -122,8 +309,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Pierce" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
-texture = ExtResource("2_jj6hw")
+texture = ExtResource("6_a5a1n")
 expand_mode = 2
 stretch_mode = 5
 
@@ -132,6 +320,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Allows your attacks to penetrate through enemies"
+theme = SubResource("Theme_d5f2k")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -155,8 +345,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Resistence" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("3_pttpp")
+texture = ExtResource("7_lhqmu")
 expand_mode = 2
 stretch_mode = 5
 
@@ -165,6 +356,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Reduces damage taken from enemy attacks "
+theme = SubResource("Theme_1o5tg")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -188,8 +381,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Imunity" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("4_li24q")
+texture = ExtResource("8_ardcl")
 expand_mode = 2
 stretch_mode = 5
 
@@ -198,6 +392,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Provides resistance against debuffs or status effects"
+theme = SubResource("Theme_53jxl")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -221,8 +417,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Cooldown" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
-texture = ExtResource("5_w7epn")
+texture = ExtResource("9_k3yxd")
 expand_mode = 2
 stretch_mode = 5
 
@@ -231,6 +428,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Reduces the cooldown time for abilities or skills"
+theme = SubResource("Theme_4qus4")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -254,8 +453,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Attack_Speed" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("5_w7epn")
+texture = ExtResource("10_tahcp")
 expand_mode = 2
 stretch_mode = 5
 
@@ -264,6 +464,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Shortens the time between attacks"
+theme = SubResource("Theme_wc4cd")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -287,8 +489,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Speed" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("6_yh2k1")
+texture = ExtResource("11_elx4m")
 expand_mode = 2
 stretch_mode = 5
 
@@ -297,6 +500,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Determines how fast your character moves"
+theme = SubResource("Theme_kfxxx")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -320,8 +525,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Jump_Hight" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(100, 50)
 layout_mode = 2
-texture = ExtResource("7_ed4d2")
+theme = SubResource("Theme_7w10s")
+texture = ExtResource("12_bxbuy")
 expand_mode = 2
 stretch_mode = 5
 
@@ -330,6 +537,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Improves the height and distance of your jumps"
+theme = SubResource("Theme_uk7yh")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -353,8 +562,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Crit_Chance" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("2_jj6hw")
+texture = ExtResource("13_sscn4")
 expand_mode = 2
 stretch_mode = 5
 
@@ -363,6 +573,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Increases the likelihood of landing critical hits"
+theme = SubResource("Theme_7jgf8")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -386,8 +598,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Knockback" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("7_ed4d2")
+texture = ExtResource("14_eag3f")
 expand_mode = 2
 stretch_mode = 5
 
@@ -396,6 +609,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Determines the force with which enemies are pushed back on hit"
+theme = SubResource("Theme_cso2p")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -419,8 +634,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Knockback_res" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("8_534t1")
+texture = ExtResource("15_214xt")
 expand_mode = 2
 stretch_mode = 5
 
@@ -429,6 +645,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Reduces the effect of knockback from enemy attacks"
+theme = SubResource("Theme_1q7hd")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -452,8 +670,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Extra_Weight" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("3_pttpp")
+texture = ExtResource("16_wj6lh")
 expand_mode = 2
 stretch_mode = 5
 
@@ -462,6 +681,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Increases your character's weight, reducing knockback from enemy attacks"
+theme = SubResource("Theme_kfy02")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -485,8 +706,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Dash_Cooldown" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-texture = ExtResource("5_w7epn")
+texture = ExtResource("17_x02ed")
 expand_mode = 2
 stretch_mode = 5
 
@@ -495,6 +717,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Reduces the cooldown time between dashes"
+theme = SubResource("Theme_ih8p8")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -518,8 +742,9 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Dash_Speed" type="TextureRect" parent="Panel/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(70, 50)
 layout_mode = 2
-texture = ExtResource("9_aoiro")
+texture = ExtResource("18_o0bdi")
 expand_mode = 2
 stretch_mode = 5
 
@@ -528,6 +753,8 @@ custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+tooltip_text = "Increases the speed of your dash"
+theme = SubResource("Theme_6fuck")
 theme_override_fonts/font = ExtResource("3_sgbt0")
 max_value = 3500.0
 step = 1.0
@@ -551,8 +778,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Close" type="Label" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
-theme_override_font_sizes/font_size = 15
+theme = SubResource("Theme_q7oxi")
+theme_override_font_sizes/font_size = 25
 text = "Press I again  to close"
 horizontal_alignment = 1
 vertical_alignment = 2
