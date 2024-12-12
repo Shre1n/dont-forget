@@ -164,6 +164,8 @@ func _input(event : InputEvent):
 	if(event.is_action_pressed("menu")):
 		if(options_open):
 			options_closed()
+		elif (controls_open):
+			controls_closed()
 		else:
 			game_paused = !game_paused
 
@@ -212,9 +214,12 @@ func options_closed():
 	get_node("Pause_Menu/Options").hide()
 
 func controls_closed():
-	options_open = false
+	controls_open = false
 	get_node("Pause_Menu/Controls").hide()
 
+func controls_opend():
+	controls_open = true
+	get_node("Pause_Menu/Controls").show()
 
 func _on_life_timer_timeout() -> void:
 	if save_user:

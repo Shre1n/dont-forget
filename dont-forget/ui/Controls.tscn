@@ -1,6 +1,59 @@
-[gd_scene load_steps=2 format=3 uid="uid://tva2dh5gu8b0"]
+[gd_scene load_steps=10 format=3 uid="uid://tva2dh5gu8b0"]
 
 [ext_resource type="Script" path="res://ui/controls.gd" id="1_v5aba"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he3xc"]
+bg_color = Color(0.137255, 0.14902, 0.188235, 1)
+
+[sub_resource type="Theme" id="Theme_2lboy"]
+Panel/styles/panel = SubResource("StyleBoxFlat_he3xc")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0w2k"]
+bg_color = Color(0.258824, 0.145098, 0.654902, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pyvyu"]
+bg_color = Color(0.258824, 0.145098, 0.654902, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_578u4"]
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="Theme" id="Theme_sto77"]
+Button/styles/hover = SubResource("StyleBoxFlat_n0w2k")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_pyvyu")
+Button/styles/normal = SubResource("StyleBoxFlat_578u4")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qhj62"]
+draw_center = false
+
+[sub_resource type="Theme" id="Theme_5ojh6"]
+Label/styles/normal = SubResource("StyleBoxFlat_qhj62")
 
 [node name="Controls" type="Control"]
 layout_mode = 3
@@ -19,24 +72,37 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -19.0
+offset_left = -44.0
 offset_top = -51.0
 offset_right = 1936.0
 offset_bottom = 1071.0
 grow_horizontal = 2
 grow_vertical = 0
+theme = SubResource("Theme_2lboy")
 
-[node name="TextEdit" type="TextEdit" parent="Control/Panel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -167.5
-offset_top = -101.5
-offset_right = 167.5
-offset_bottom = 101.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "BLAAAAA"
+[node name="Close_btn" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 64.0
+offset_top = 53.0
+offset_right = 241.0
+offset_bottom = 146.0
+tooltip_text = "It Close the Controls"
+theme = SubResource("Theme_sto77")
+theme_override_font_sizes/font_size = 50
+text = "close
+"
+
+[node name="Label" type="Label" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 639.0
+offset_top = 30.0
+offset_right = 1228.0
+offset_bottom = 177.0
+theme = SubResource("Theme_5ojh6")
+theme_override_font_sizes/font_size = 100
+text = "Controls
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Control/Panel/Close_btn" to="." method="_on_close_btn_pressed"]

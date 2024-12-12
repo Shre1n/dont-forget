@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cqm7cwb02ir77"]
+[gd_scene load_steps=27 format=3 uid="uid://cqm7cwb02ir77"]
 
 [ext_resource type="Script" path="res://ui/menu.gd" id="1_myn0o"]
 [ext_resource type="Texture2D" uid="uid://s0ok8hdyv6fa" path="res://ui/background/background.png" id="2_epbqx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cspyht3ytgvhx" path="res://ui/options.tscn" id="2_mc7cj"]
 [ext_resource type="Texture2D" uid="uid://ddeipc8fvbhe0" path="res://ui/background/leaf.png" id="2_x4tpf"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="3_1jn53"]
+[ext_resource type="PackedScene" uid="uid://tva2dh5gu8b0" path="res://ui/Controls.tscn" id="7_2l5kn"]
 
 [sub_resource type="Curve" id="Curve_tf0c3"]
 min_value = -612.84
@@ -291,6 +292,10 @@ theme_override_fonts/font = ExtResource("3_1jn53")
 theme_override_font_sizes/font_size = 30
 text = "Load the Game "
 
+[node name="Controls" type="Button" parent="Panel/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Controls"
+
 [node name="Options_Button" type="Button" parent="Panel/Panel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -323,8 +328,12 @@ text = "Quit "
 visible = false
 layout_mode = 1
 
+[node name="Controls" parent="." instance=ExtResource("7_2l5kn")]
+visible = false
+
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Start_Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Load_Button" to="." method="_on_load_button_pressed"]
+[connection signal="pressed" from="Panel/Panel/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Options_Button" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Credits_Button" to="." method="_on_credits_button_pressed"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Quit_Button" to="." method="_on_quit_button_pressed"]

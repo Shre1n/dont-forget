@@ -25,7 +25,10 @@ func _on_resume_pressed():
 
 func _on_options_pressed():
 	game_manager.options_opend()
+	
 
+func _on_controls_pressed():
+	game_manager.controls_opend()
 
 func _on_quit_pressed():
 	var user_save = save_User.load_save()
@@ -55,8 +58,3 @@ func _on_quit_pressed():
 
 func save_user_location(path):
 	current_player = path
-
-
-func _on_controls_pressed():
-	controls_open = true
-	get_node("Controls").show()
