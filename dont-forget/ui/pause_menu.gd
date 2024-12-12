@@ -2,6 +2,8 @@ class_name Pause_Menu extends Control
 
 @export var game_manager : Game_Manager
 var current_player
+var controls_open: bool = false
+
 
 func _ready() -> void:
 	hide()
@@ -56,4 +58,5 @@ func save_user_location(path):
 
 
 func _on_controls_pressed():
-	game_manager.controls_opend()
+	controls_open = true
+	get_node("Controls").show()

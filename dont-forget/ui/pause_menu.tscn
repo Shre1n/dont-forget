@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpylfpo14s0l2"]
+[gd_scene load_steps=11 format=3 uid="uid://cpylfpo14s0l2"]
 
 [ext_resource type="Script" path="res://ui/pause_menu.gd" id="1_u5ic6"]
+[ext_resource type="PackedScene" uid="uid://tva2dh5gu8b0" path="res://ui/Controls.tscn" id="2_4w4vx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2uqmj"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
@@ -157,6 +158,9 @@ tooltip_text = "Quit the Game"
 theme = SubResource("Theme_3v6wt")
 theme_override_font_sizes/font_size = 30
 text = "Save and Quit"
+
+[node name="Controls" parent="." instance=ExtResource("2_4w4vx")]
+visible = false
 
 [connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
