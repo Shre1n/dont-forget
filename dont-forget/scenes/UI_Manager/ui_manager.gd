@@ -4,15 +4,9 @@ extends Control
 @onready var content_holder: Container = $Panel/Container
 
 
-
-var current_player
-
 func _ready():
 	closed_button.connect("pressed", Callable(self, "_on_close_button_pressed"))
 	self.hide()
-
-
-
 
 func load_content(scene_path: String):
 	var scene = load(scene_path).instantiate()
