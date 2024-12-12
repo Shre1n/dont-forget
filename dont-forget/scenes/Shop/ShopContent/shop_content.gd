@@ -1,37 +1,56 @@
 extends Control
 
-var shop_items: Array =  [{ "name": "damage", "price": 100 }]
+signal item_purchase(price)
+
+# Shop items as a dictionary for key-based identification
+var shop_items: Dictionary = {
+	"damage": { "name": "damage", "price": 100 },
+	"health": { "name": "health", "price": 150 },
+	"speed": { "name": "speed", "price": 50 }
+}
 
 @onready var vbox_container: VBoxContainer = $VBoxContainer
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	populate_shop()
 
-
 func populate_shop():
-	for item in shop_items:
+	for key in shop_items.keys():
+		var item = shop_items[key]
+		print(key)
+		
+		var margin_container = MarginContainer.new()
+		margin_container.add_theme_constant_override("margin_top", 10)
+		margin_container.add_theme_constant_override("margin_left", 20)
+		margin_container.add_theme_constant_override("margin_bottom", 10)
+		margin_container.add_theme_constant_override("margin_right", 20)
+		vbox_container.add_child(margin_container)
+
 		var hcontainer = HBoxContainer.new()
+		hcontainer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		vbox_container.add_child(hcontainer)
-		var name_label: Label = Expanding_Label.new()
-		name_label.text = item.name
+
+		var name_label: Label = Label.new()
+		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		name_label.text = item["name"]  # Access item name
 		hcontainer.add_child(name_label)
-		
-		var price_label: Label = Expanding_Label.new()
-		price_label.text = str(item.price) + " Gold"
+
+		var price_label: Label = Label.new()
+		price_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		price_label.text = str(item["price"]) + " Gold"  # Access item price
 		hcontainer.add_child(price_label)
-		
-		var buy_button: Button = Expanding_Button.new()
+
+		var buy_button: Button = Button.new()
 		buy_button.text = "Buy"
-		buy_button.connect("pressed", Callable(self, "_on_buy_button_pressed"))
+		buy_button.connect("pressed", Callable(self, "_on_buy_button_pressed").bind(key))  # Pass the item's key
+		buy_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		hcontainer.add_child(buy_button)
-		
+
 		vbox_container.add_child(HSeparator.new())
-		
-		for child in hcontainer.get_children():
-			print(child)
 
-
-func _on_buy_button_pressed(item):
-	print("Purchased: ", item.name)
+func _on_buy_button_pressed(key):
+	# Access the item using its key
+	var item = shop_items[key]
+	emit_signal("item_purchase", item["price"])
+	print("Purchased: ", item["name"])

@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://crhfkojipnm7f"]
+[gd_scene load_steps=3 format=3 uid="uid://crhfkojipnm7f"]
 
+[ext_resource type="FontFile" uid="uid://dm8youq5l6rka" path="res://ui/font/CourierPrime-Bold.ttf" id="1_5xskx"]
 [ext_resource type="Script" path="res://scenes/Shop/ShopContent/expanding_button.gd" id="1_sn6ou"]
 
 [node name="ExpandingButton" type="Button"]
 offset_right = 8.0
 offset_bottom = 20.0
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_5xskx")
+theme_override_font_sizes/font_size = 16
 script = ExtResource("1_sn6ou")

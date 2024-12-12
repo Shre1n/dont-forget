@@ -6,7 +6,6 @@ signal current_user(path)
 signal current_Itemholder(path)
 signal lifetimer(time)
 signal back_to_village
-
 	#SceneManager.swap_scenes("res://scenes/village.tscn",get_tree().root,self,"transition_type")
 	#SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
 

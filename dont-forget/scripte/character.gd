@@ -71,7 +71,7 @@ var dash_cooldown_reduction
 var current_dash_speed = 1
 var dashing = false
 
-var coins = 0
+@export var coins = 0
 
 var start_position: Vector2
 
