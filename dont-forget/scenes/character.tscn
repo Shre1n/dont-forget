@@ -874,7 +874,7 @@ _data = {
 
 [node name="Character" type="CharacterBody2D" groups=["character"]]
 collision_layer = 32
-collision_mask = 25
+collision_mask = 153
 script = ExtResource("1_gaw86")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -945,5 +945,10 @@ libraries = {
 
 [node name="Attack_Timer" type="Timer" parent="."]
 
+[node name="Dash_Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="Dash_Timer" to="." method="_on_dash_timer_timeout"]
