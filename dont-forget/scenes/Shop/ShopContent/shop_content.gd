@@ -2,7 +2,7 @@ extends Control
 
 var shop_items: Array =  [{ "name": "damage", "price": 100 }]
 
-@onready var grid_containter: GridContainer = $GridContainer
+@onready var vbox_container: VBoxContainer = $VBoxContainer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,24 +12,26 @@ func _ready():
 
 func populate_shop():
 	for item in shop_items:
-		var hbox: HBoxContainer = HBoxContainer.new()
-		var name_label: Label = Label.new()
+		var hcontainer = HBoxContainer.new()
+		vbox_container.add_child(hcontainer)
+		var name_label: Label = Expanding_Label.new()
 		name_label.text = item.name
-		hbox.add_child(name_label)
+		hcontainer.add_child(name_label)
 		
-		var price_label: Label = Label.new()
-		price_label.text = str(item.price) + "Gold"
-		hbox.add_child(price_label)
+		var price_label: Label = Expanding_Label.new()
+		price_label.text = str(item.price) + " Gold"
+		hcontainer.add_child(price_label)
 		
-		var buy_button: Button = Button.new()
+		var buy_button: Button = Expanding_Button.new()
 		buy_button.text = "Buy"
 		buy_button.connect("pressed", Callable(self, "_on_buy_button_pressed"))
-		hbox.add_child(buy_button)
+		hcontainer.add_child(buy_button)
 		
-		grid_containter.add_child(hbox)
+		vbox_container.add_child(HSeparator.new())
 		
-		for child in grid_containter.get_children():
+		for child in hcontainer.get_children():
 			print(child)
+
 
 func _on_buy_button_pressed(item):
 	print("Purchased: ", item.name)
