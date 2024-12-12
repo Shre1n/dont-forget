@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=60 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
@@ -402,6 +402,9 @@ sources/6 = SubResource("TileSetAtlasSource_hiuga")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x1f4y"]
 shader = ExtResource("5_cj87q")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c043q"]
+size = Vector2(0.653341, 3.99572)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_7ntwp"]
 animations = [{
 "frames": [{
@@ -538,8 +541,6 @@ size = Vector2(299, 1316)
 script = ExtResource("1_5at0l")
 level_nr = 2
 
-[node name="Itemholder" type="Node2D" parent="."]
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.497474, 0.497474, 0.497474, 1)
 
@@ -547,6 +548,8 @@ color = Color(0.497474, 0.497474, 0.497474, 1)
 color = Color(0.176284, 0.0336571, 0.0760144, 1)
 energy = 0.36
 blend_mode = 2
+
+[node name="Itemholder" type="Node2D" parent="."]
 
 [node name="layerholder" type="Node2D" parent="."]
 
@@ -689,6 +692,22 @@ visible = false
 z_index = 6
 tile_map_data = PackedByteArray("AAD0/xgACAAGAAgAAAD7/xkACAAIABEAAABWABoACAAGAAgAAABfABoACAAGAAgAAABmABkACAAGAAwAAABuABkACAAGAAgAAAACABgACAAGAAgAAAAQABgACAAGAAgAAAAaABgACAAGAAgAAAAhABcACAAGAAwAAAAIABgACAAIABEAAAAqABYACAAGAAwAAAAuABcACAAIABEAAAAlABcACAAIABEAAAA4ABgACAAGAAgAAAAwABgACAAGAAgAAAA=")
 tile_set = SubResource("TileSet_oiqi6")
+
+[node name="Door2" type="Area2D" parent="."]
+position = Vector2(3844, 741)
+rotation = 3.14159
+scale = Vector2(570.912, -77.5204)
+collision_layer = 0
+collision_mask = 32
+priority = 1
+script = ExtResource("21_n45p4")
+transition_type = "wipe_to_right"
+path_to_new_scene = "res://scenes/cave.tscn"
+newRound = true
+
+[node name="Doorcollision" type="CollisionShape2D" parent="Door2"]
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_c043q")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
@@ -1055,6 +1074,7 @@ position = Vector2(10022, 89)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Brunnen/StaticBody2D"]
 shape = SubResource("RectangleShape2D_nfvmh")
 
+[connection signal="body_entered" from="Door2" to="Door2" method="_on_body_entered"]
 [connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
 [connection signal="body_entered" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_entered"]
 [connection signal="body_exited" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_exited"]

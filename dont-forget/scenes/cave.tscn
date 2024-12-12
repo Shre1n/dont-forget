@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=4 uid="uid://cpjr1368l52on"]
 
 [ext_resource type="Texture2D" uid="uid://csraw4laufjo0" path="res://assets/Tilemap/cave/Tilemap_Cave.png" id="1_40pgv"]
-[ext_resource type="Script" path="res://scripte/character.gd" id="1_fwhm5"]
+[ext_resource type="Script" path="res://scripte/level.gd" id="1_let7l"]
 [ext_resource type="Texture2D" uid="uid://bybh80er5ar5t" path="res://assets/Tilemap/cave/Tilemap_Cave2.png" id="2_hyl08"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_o1hmx"]
 [ext_resource type="Texture2D" uid="uid://b0ugogm0iavri" path="res://assets/Tilemap/cave/WandMitDecke.png" id="4_51lpr"]
@@ -4386,7 +4386,10 @@ sources/1 = SubResource("TileSetAtlasSource_da7oj")
 sources/3 = SubResource("TileSetAtlasSource_4clgn")
 
 [node name="Cave" type="Node2D"]
-script = ExtResource("1_fwhm5")
+script = ExtResource("1_let7l")
+level_nr = 2
+
+[node name="Itemholder" type="Node2D" parent="."]
 
 [node name="Node2D" type="Node2D" parent="."]
 
@@ -4413,4 +4416,8 @@ texture = ExtResource("5_mcres")
 centered = false
 
 [node name="Character" parent="." instance=ExtResource("3_o1hmx")]
-position = Vector2(555, 420)
+position = Vector2(2992, 756)
+camera_limit_left = -3344
+camera_limit_top = -1057
+camera_limit_right = 9927
+camera_limit_bottom = 990
