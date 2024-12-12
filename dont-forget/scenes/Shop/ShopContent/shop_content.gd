@@ -2,6 +2,12 @@ extends Control
 
 signal item_purchase(price)
 
+@export var player : Character
+
+@onready var game_manager = find_game_manager()
+
+var current_player: Character
+
 # Shop items as a dictionary for key-based identification
 var shop_items: Dictionary = {
 	"damage": { "name": "damage", "price": 100 },
@@ -13,7 +19,12 @@ var shop_items: Dictionary = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	game_manager.connect("current_user", Callable(self, "self_user"))
 	populate_shop()
+	
+
+func self_user(path):
+	current_player = path
 
 func populate_shop():
 	for key in shop_items.keys():
@@ -52,5 +63,14 @@ func populate_shop():
 func _on_buy_button_pressed(key):
 	# Access the item using its key
 	var item = shop_items[key]
+	print(current_player.coins, -item["price"])
+	current_player.connect("coinChange",-item["price"])
 	emit_signal("item_purchase", item["price"])
 	print("Purchased: ", item["name"])
+	
+func find_game_manager():
+	var root = get_tree().root  # Root-Node des Scene Trees
+	for child in root.get_children():
+		if child.name == "Game_Manager":
+			return child
+	return null

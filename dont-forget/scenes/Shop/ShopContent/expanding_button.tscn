@@ -10,3 +10,5 @@ size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("1_5xskx")
 theme_override_font_sizes/font_size = 16
 script = ExtResource("1_sn6ou")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

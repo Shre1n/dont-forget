@@ -17,7 +17,7 @@ func open_shop():
 
 
 func show_shop_ui():
-	$'../../../Pause_Menu/UiManager'.load_content(scene_of_Shop)
+	$'../../../Pause_Menu/UiManager/ShopContent'.show()
 	
 func _on_ui_closed():
 	print("Shop UI was closed.")
