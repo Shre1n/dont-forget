@@ -133,14 +133,14 @@ theme = SubResource("Theme_gag6b")
 theme_override_font_sizes/font_size = 30
 text = "Continue"
 
-[node name="Load" type="Button" parent="Control/Panel/Control2/VBoxContainer"]
-visible = false
+[node name="Controls" type="Button" parent="Control/Panel/Control2/VBoxContainer"]
 custom_minimum_size = Vector2(574.5, 81)
 layout_mode = 2
 tooltip_text = "Load last save point"
 theme = SubResource("Theme_mo0li")
 theme_override_font_sizes/font_size = 30
-text = "Load"
+text = "Controls
+"
 
 [node name="Options" type="Button" parent="Control/Panel/Control2/VBoxContainer"]
 custom_minimum_size = Vector2(574.5, 81)
@@ -159,5 +159,6 @@ theme_override_font_sizes/font_size = 30
 text = "Save and Quit"
 
 [connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Controls" to="." method="_on_controls_pressed"]
 [connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Options" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

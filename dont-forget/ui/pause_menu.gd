@@ -53,3 +53,7 @@ func _on_quit_pressed():
 
 func save_user_location(path):
 	current_player = path
+
+
+func _on_controls_pressed():
+	game_manager.controls_opend()

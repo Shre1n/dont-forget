@@ -24,6 +24,7 @@ var save_user: save_User
 var current_level:Level
 var current_character
 var options_open = false
+var controls_open =false
 var game_paused : bool = false:
 	get:
 		return game_paused
@@ -201,6 +202,14 @@ func _on_load_start(_loading_screen):
 func _process(delta):
 	if !life.is_stopped():
 		emit_signal("lifetimer", life.time_left)
+
+func controls_opend():
+	controls_open = true
+	get_node("Pausen_Menu/Controls").show()
+	
+func controls_closed():
+	controls_open = false
+	get_node("Pausen_Menu/Controls").hide()
 
 func options_opend():
 	options_open = true
