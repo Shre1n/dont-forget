@@ -294,7 +294,11 @@ text = "Load the Game "
 
 [node name="Controls" type="Button" parent="Panel/Panel/VBoxContainer"]
 layout_mode = 2
-text = "Controls"
+size_flags_vertical = 3
+tooltip_text = "Show Controls"
+theme = SubResource("Theme_6byat")
+theme_override_font_sizes/font_size = 30
+text = "Controls "
 
 [node name="Options_Button" type="Button" parent="Panel/Panel/VBoxContainer"]
 layout_mode = 2
