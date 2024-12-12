@@ -22,15 +22,17 @@ func _ready():
 	game_manager.connect("lifetimer", Callable(self, "update_lifetime_display"))
 	
 	amount_label.text = str(coins)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	update_lifetime_display(max_time)
 
 func save_user_location(path):
 	current_player = path
 	current_player.connect("coinsChange", Callable(self, "coin_update"))
-
+	current_player.connect("resetCoins", Callable(self,"coin_reset"))
+	
 func coin_update(amount):
 	var sum = coins + amount
 	if sum > 0:
@@ -44,6 +46,7 @@ func total_reset():
 
 func coin_reset():
 	coins = 0
+	amount_label.text = "0"
 
 func update_lifetime_display(time):
 	if sand_display:

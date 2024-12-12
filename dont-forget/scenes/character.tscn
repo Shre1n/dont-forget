@@ -1,7 +1,6 @@
 [gd_scene load_steps=59 format=3 uid="uid://diqm35oue5hsl"]
 
 [ext_resource type="Script" path="res://scripte/character.gd" id="1_gaw86"]
-[ext_resource type="Texture2D" uid="uid://c2g3xrawrqbt1" path="res://assets/Download.jpeg" id="2_aiptg"]
 [ext_resource type="Texture2D" uid="uid://b4vvbedrqye3e" path="res://assets/dead/1.png" id="3_1nauj"]
 [ext_resource type="Texture2D" uid="uid://b6q74e1gciskk" path="res://assets/fight/1.png" id="3_luolo"]
 [ext_resource type="Shader" uid="uid://ocp2fau3yi65" path="res://shader/Character/player_hit.tres" id="3_si2y3"]
@@ -30,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://o5pa0o30ep1k" path="res://assets/run/7.png" id="15_js2sq"]
 [ext_resource type="PackedScene" uid="uid://dnu6va4x16qlb" path="res://scenes/damage_area.tscn" id="24_i5vbm"]
 [ext_resource type="PackedScene" uid="uid://cmgf1s540hgqi" path="res://scenes/attack_area.tscn" id="24_u5kue"]
+[ext_resource type="PackedScene" uid="uid://byy056hrby4p5" path="res://stats_popup.tscn" id="30_pbvn4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gevhk"]
 radius = 36.2338
@@ -416,10 +416,10 @@ tracks/13/path = NodePath("AnimationPlayer:speed_scale")
 tracks/13/interp = 1
 tracks/13/loop_wrap = true
 tracks/13/keys = {
-"times": PackedFloat32Array(0, 1.57778),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(1.57778),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [3.0, 1.5]
+"values": [1.5]
 }
 
 [sub_resource type="Animation" id="Animation_4n2gy"]
@@ -624,25 +624,18 @@ load_path = "res://.godot/imported/3.png-458b75cfda9b3c2a9918e0e954fba4b8.ctex"
 load_path = "res://.godot/imported/4.png-386a0676e092e93043a820ae7763af42.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kr0p5"]
-load_path = "res://.godot/imported/1.png-d778c799eccb68349f248ec1c87a93ea.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1hj74"]
-load_path = "res://.godot/imported/2.png-7833f88def82fa2f5be2aa3bc3138490.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6tiki"]
-load_path = "res://.godot/imported/3.png-23d6815a4e31d46fc2911135798b5b97.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ro6gh"]
-load_path = "res://.godot/imported/4.png-b5078ecf3b1fc7a748c09d9cab363bea.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ocnvn"]
-load_path = "res://.godot/imported/5.png-4f52a98417763ebf908f32fac7d5fb53.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ejw7f"]
-load_path = "res://.godot/imported/6.png-0379ef6a059533df9804eada2a5c05dd.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sjfwf"]
-load_path = "res://.godot/imported/7.png-bfc2113d42142db176754ffadb064978.ctex"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xhvvv"]
 animations = [{
@@ -677,7 +670,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_aiptg")
+"texture": null
 }],
 "loop": true,
 "name": &"default",
@@ -880,6 +873,8 @@ _data = {
 }
 
 [node name="Character" type="CharacterBody2D" groups=["character"]]
+collision_layer = 32
+collision_mask = 153
 script = ExtResource("1_gaw86")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -910,7 +905,7 @@ autoplay = "idle2.0"
 frame = 1
 speed_scale = 0.7
 
-[node name="Attack_Area" parent="." instance=ExtResource("24_u5kue")]
+[node name="Attack_Area" parent="." groups=["player_attacks"] instance=ExtResource("24_u5kue")]
 visible = false
 position = Vector2(-221, -123)
 rotation = -4.26635
@@ -928,17 +923,32 @@ wait_time = 0.1
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -250)
+editor_draw_limits = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+
+[node name="stats_popup" parent="Camera2D/CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("30_pbvn4")]
+visible = false
+anchors_preset = 6
+anchor_top = 0.5
+anchor_bottom = 0.5
+player = NodePath("../../..")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(8, 148)
-texture = ExtResource("2_aiptg")
 
 [node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_vwtqs")
 }
 
+[node name="Attack_Timer" type="Timer" parent="."]
+
+[node name="Dash_Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]
+[connection signal="timeout" from="Dash_Timer" to="." method="_on_dash_timer_timeout"]

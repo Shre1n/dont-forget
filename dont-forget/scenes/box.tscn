@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://4v3mtijto1jp"]
+
+[ext_resource type="Script" path="res://box.gd" id="1_jinl7"]
+[ext_resource type="Script" path="res://scenes/damage_area.gd" id="2_0teo7"]
+[ext_resource type="Texture2D" uid="uid://b835ifn3mhksa" path="res://objekte/kiste/Kiste.png" id="2_ei3sn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mx01k"]
+absorbent = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qr5b"]
+size = Vector2(136.656, 134.375)
+
+[node name="box" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 23
+mass = 9999.0
+physics_material_override = SubResource("PhysicsMaterial_mx01k")
+gravity_scale = 3.0
+sleeping = true
+freeze_mode = 1
+constant_force = Vector2(0, 1000)
+script = ExtResource("1_jinl7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(3.50001, -12.5)
+scale = Vector2(0.2, 0.194)
+texture = ExtResource("2_ei3sn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.671875, -4.1875)
+shape = SubResource("RectangleShape2D_1qr5b")
+
+[node name="Damage_Area" type="Area2D" parent="."]
+script = ExtResource("2_0teo7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Damage_Area"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_1qr5b")
