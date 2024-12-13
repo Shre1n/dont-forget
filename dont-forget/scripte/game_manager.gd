@@ -94,9 +94,6 @@ func load_saved_scene():
 		var saved_scene_instance = saved_scene_path.instantiate() as Level
 		if saved_scene_instance:
 			level_holder.add_child(saved_scene_instance)
-			gold.text = user_save.gold
-			life_time = user_save.life
-			all_stats_in_dict = user_save.stats
 		else:
 			print("failed to instance saved scene. Loading Tutorial.")
 			level_holder.add_child(tutorial.instantiate() as Level)
@@ -112,6 +109,7 @@ func load_saved_scene():
 			current_character.position = save_user.position_of_character
 			current_character.coins = user_save.gold
 			life_time = user_save.life
+			all_stats_in_dict = user_save.stats
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
 		current_character.connect("going_back", Callable(self, "scene_change"))
 		current_character.connect("add_bag", Callable(self, "add_bag"))
