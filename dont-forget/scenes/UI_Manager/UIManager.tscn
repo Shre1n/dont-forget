@@ -12,9 +12,9 @@ script = ExtResource("1_v3nap")
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
 offset_left = 394.0
-offset_top = 70.0
+offset_top = 104.0
 offset_right = 1239.0
-offset_bottom = 693.0
+offset_bottom = 703.0
 scale = Vector2(1.36654, 1.45226)
 
 [node name="Container" type="Container" parent="Panel"]

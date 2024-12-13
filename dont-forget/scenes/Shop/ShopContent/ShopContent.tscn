@@ -21,6 +21,22 @@ layout_mode = 0
 offset_right = 656.0
 offset_bottom = 437.0
 
+[node name="title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 0.404999
+offset_top = -269.095
+offset_right = 0.405029
+offset_bottom = -219.095
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Lucky Pete's Shop"
+horizontal_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 offset_top = 0.781967

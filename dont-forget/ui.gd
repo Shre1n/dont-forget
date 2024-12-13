@@ -35,7 +35,7 @@ func save_user_location(path):
 	
 func coin_update(amount):
 	var sum = coins + amount
-	if sum > 0:
+	if sum >= 0:
 		coins = coins + amount
 		amount_label.text = str(coins)
 	else:

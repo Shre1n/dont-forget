@@ -367,6 +367,7 @@ func die():
 	drop_bag()
 	velocity = Vector2.ZERO
 	alive = false
+	Global.price_multi = 1
 	animation_player.play("death")
 	await (animation_player.animation_finished)
 

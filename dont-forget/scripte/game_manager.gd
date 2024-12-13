@@ -76,6 +76,10 @@ func _ready():
 	SceneManager.scene_added.connect(_on_level_added)
 	#Zum Village zurück (braucht signal mit path)
 	#current_character.connect("going_back", Callable(self, "scene_change"))
+	get_node("Pause_Menu/UiManager").connect("give_user", Callable(self, "give_user"))
+
+func give_user():
+	emit_signal("current_user", current_character)
 
 func get_all_stats() -> Dictionary:
 	return all_stats_in_dict
@@ -160,7 +164,9 @@ func find_Itemholder(level):
 
 func _input(event : InputEvent):
 	if(event.is_action_pressed("menu")):
-		if(options_open):
+		if $Pause_Menu/UiManager.visible:
+			$Pause_Menu/UiManager.close()
+		elif(options_open):
 			options_closed()
 		else:
 			game_paused = !game_paused

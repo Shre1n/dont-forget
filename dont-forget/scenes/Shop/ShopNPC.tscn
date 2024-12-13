@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ksfxsfjbv20j"]
+[gd_scene load_steps=17 format=3 uid="uid://ksfxsfjbv20j"]
 
 [ext_resource type="Script" path="res://scenes/Shop/shop_npc.gd" id="1_wbcvt"]
 [ext_resource type="Texture2D" uid="uid://ceyvvqa5e7bvx" path="res://scenes/Shop/händler/idle/1.png" id="2_a7umw"]
@@ -185,6 +185,61 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_5g7gf"]
 radius = 10.8324
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8m2il"]
+radius = 560.158
+
+[sub_resource type="Animation" id="Animation_vgmt6"]
+resource_name = "show_it"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Leave:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_tr67f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Leave:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_i24hj"]
+resource_name = "hide_it"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Leave:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nr281"]
+_data = {
+"RESET": SubResource("Animation_tr67f"),
+"hide_it": SubResource("Animation_i24hj"),
+"show_it": SubResource("Animation_vgmt6")
+}
+
 [node name="ShopNpc" type="Node2D"]
 script = ExtResource("1_wbcvt")
 
@@ -216,5 +271,20 @@ action_name = "open shop"
 position = Vector2(-3.53772, 1.465)
 shape = SubResource("CircleShape2D_5g7gf")
 
+[node name="Leave" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Leave"]
+position = Vector2(-180, 80)
+shape = SubResource("CircleShape2D_8m2il")
+
+[node name="monitoable_anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nr281")
+}
+
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]
+[connection signal="body_exited" from="Leave" to="." method="_on_leave_body_exited"]

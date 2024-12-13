@@ -55,6 +55,9 @@ process_mode = 1
 [node name="Pause_Menu" type="CanvasLayer" parent="."]
 process_mode = 3
 
+[node name="UiManager" parent="Pause_Menu" instance=ExtResource("7_ldwnw")]
+visible = false
+
 [node name="UI" type="Control" parent="Pause_Menu"]
 layout_mode = 3
 anchors_preset = 0
@@ -137,8 +140,6 @@ game_manager = NodePath("../..")
 process_mode = 3
 visible = false
 game_manager = NodePath("../..")
-
-[node name="UiManager" parent="Pause_Menu" instance=ExtResource("7_ldwnw")]
 
 [node name="Life_Timer" type="Timer" parent="."]
 wait_time = 5.0
