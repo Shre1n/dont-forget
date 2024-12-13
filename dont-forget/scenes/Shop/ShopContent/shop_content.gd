@@ -49,7 +49,7 @@ func apply_button_style(theme: Theme):
 	theme.set_stylebox("hover", "Button", button_style)  # Optional: Hover
 	theme.set_stylebox("pressed", "Button", button_style)
 
-func populate_shop1():
+func populate_shopbackup():
 	for key in shop_items.keys():
 		var item = shop_items[key]
 		#print(key)
@@ -87,283 +87,6 @@ func populate_shop1():
 		hcontainer.add_child(buy_button)
 
 		vbox_container.add_child(HSeparator.new())
-		
-func populate_shop2():
-	for key in shop_items.keys():
-		var item = shop_items[key]
-		var new_item_price = round(item["price"] * Global.price_multi)
-
-		# MarginContainer für Abstand und Styling
-		var margin_container = MarginContainer.new()
-		margin_container.add_theme_constant_override("margin_top", 10)
-		margin_container.add_theme_constant_override("margin_left", 20)
-		margin_container.add_theme_constant_override("margin_bottom", 10)
-		margin_container.add_theme_constant_override("margin_right", 20)
-		vbox_container.add_child(margin_container)
-
-		# HBoxContainer für horizontales Layout
-		var hcontainer = HBoxContainer.new()
-		hcontainer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		margin_container.add_child(hcontainer)
-
-		# TextureRect für Icon
-		var icon_texture = TextureRect.new()
-		icon_texture.texture = preload("res://icon_stats/Damage.png")  # Pfad zum Icon
-		icon_texture.expand = true
-		icon_texture.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		hcontainer.add_child(icon_texture)
-
-		# Label für Item-Name
-		var name_label: Label = Label.new()
-		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		name_label.text = item["name"]  # Access item name
-		name_label.add_theme_font_override("font", preload("res://addons/gut/fonts/CourierPrime-Bold.ttf"))
-		name_label.add_theme_color_override("font_color", Color(1, 1, 1))  # Weißer Text
-		name_label.add_theme_constant_override("margin_left", 10)  # Abstand links
-		hcontainer.add_child(name_label)
-
-		# Label für Preis
-		var price_label: Label = Label.new()
-		price_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		price_label.text = str(new_item_price) + " Gold"  # Access item price
-		price_label.add_theme_font_override("font", preload("res://addons/gut/fonts/CourierPrime-Bold.ttf"))
-		price_label.add_theme_color_override("font_color", Color(1, 0.84, 0))  # Goldener Text
-		price_label.add_theme_constant_override("margin_right", 10)  # Abstand rechts
-		hcontainer.add_child(price_label)
-
-		# Button für Kauf
-		var buy_button: Button = Button.new()
-		if current_player.coins < new_item_price:
-			buy_button.text = "Too poor"
-			buy_button.disabled = true
-			buy_button.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))  # Grauer Text
-			buy_button.add_theme_color_override("disabled_bg_color", Color(0.2, 0.2, 0.2))  # Grauer Hintergrund
-		else:
-			buy_button.text = "Buy"
-			buy_button.connect("pressed", Callable(self, "_on_buy_button_pressed").bind(key))  # Pass the item's key
-			buy_button.add_theme_color_override("font_color", Color(1, 1, 1))  # Weißer Text
-			buy_button.add_theme_color_override("bg_color", Color(100, 0.6, 0.2))  # Grüner Hintergrund
-		buy_button.add_theme_font_override("font", preload("res://addons/gut/fonts/CourierPrime-Bold.ttf"))
-		buy_button.add_theme_constant_override("margin_left", 10)
-		buy_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		hcontainer.add_child(buy_button)
-
-		# Horizontale Linie
-		vbox_container.add_child(HSeparator.new())
-		
-func populate_shop3():
-	for key in shop_items.keys():
-		var item = shop_items[key]
-		var new_item_price = round(item["price"] * Global.price_multi)
-
-		# MarginContainer für Abstand und Styling
-		var margin_container = MarginContainer.new()
-		margin_container.add_theme_constant_override("margin_top", 10)
-		margin_container.add_theme_constant_override("margin_left", 20)
-		margin_container.add_theme_constant_override("margin_bottom", 10)
-		margin_container.add_theme_constant_override("margin_right", 20)
-		vbox_container.add_child(margin_container)
-
-		# HBoxContainer für horizontales Layout
-		var hcontainer = HBoxContainer.new()
-		hcontainer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		margin_container.add_child(hcontainer)
-
-		# TextureRect für Icon
-		var icon_texture = TextureRect.new()
-		icon_texture.texture = preload("res://icon_stats/Damage.png")  # Pfad zum Icon
-		icon_texture.expand = true
-		icon_texture.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		hcontainer.add_child(icon_texture)
-
-		# Label für Item-Name
-		var name_label: Label = Label.new()
-		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		name_label.text = item["name"]  # Access item name
-		name_label.add_theme_font_override("font", preload("res://addons/gut/fonts/CourierPrime-Bold.ttf"))
-		name_label.add_theme_color_override("font_color", Color(1, 1, 1))  # Weißer Text
-		name_label.add_theme_constant_override("margin_left", 10)  # Abstand links
-		hcontainer.add_child(name_label)
-
-		# Label für Preis
-		var price_label: Label = Label.new()
-		price_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		price_label.text = str(new_item_price) + " Gold"  # Access item price
-		price_label.add_theme_font_override("font", preload("res://addons/gut/fonts/CourierPrime-Bold.ttf"))
-		price_label.add_theme_color_override("font_color", Color(1, 0.84, 0))  # Goldener Text
-		price_label.add_theme_constant_override("margin_right", 10)  # Abstand rechts
-		hcontainer.add_child(price_label)
-
-		# Button für Kauf
-		var buy_button: Button = Button.new()
-
-		# Button-Styling
-		var button_style = StyleBoxFlat.new()
-		button_style.bg_color = Color("#4e357e")  # Hintergrundfarbe des Buttons
-		button_style.border_width_left = 5
-		button_style.border_width_top = 5
-		button_style.border_width_right = 5
-		button_style.border_width_bottom = 5
-		button_style.border_color = Color(0.8, 0.8, 0.8)  # Rahmenfarbe
-		button_style.corner_radius_top_left = 5
-		button_style.corner_radius_top_right = 5
-		button_style.corner_radius_bottom_left = 5
-		button_style.corner_radius_bottom_right = 5
-
-		buy_button.add_theme_stylebox_override("normal", button_style)
-
-		# Hover-Styling
-		var hover_style = StyleBoxFlat.new()
-		hover_style.bg_color = Color("#6e50a1")  # Etwas helleres Lila bei Hover
-		hover_style.border_width_left = 5
-		hover_style.border_width_top = 5
-		hover_style.border_width_right = 5
-		hover_style.border_width_bottom = 5
-		hover_style.border_color = Color(1, 1, 1)  # Weißer Rahmen bei Hover
-		hover_style.corner_radius_top_left = 5
-		hover_style.corner_radius_top_right = 5
-		hover_style.corner_radius_bottom_left = 5
-		hover_style.corner_radius_bottom_right = 5
-
-		buy_button.add_theme_stylebox_override("hover", hover_style)
-
-		# Gedrückter Zustand (pressed)
-		var pressed_style = StyleBoxFlat.new()
-		pressed_style.bg_color = Color("#34215a")  # Dunkleres Lila
-		pressed_style.border_width_left = 5
-		pressed_style.border_width_top = 5
-		pressed_style.border_width_right = 5
-		pressed_style.border_width_bottom = 5
-		pressed_style.border_color = Color(0.6, 0.6, 0.6)  # Grauer Rahmen
-		pressed_style.corner_radius_top_left = 5
-		pressed_style.corner_radius_top_right = 5
-		pressed_style.corner_radius_bottom_left = 5
-		pressed_style.corner_radius_bottom_right = 5
-
-		buy_button.add_theme_stylebox_override("pressed", pressed_style)
-
-		if current_player.coins < new_item_price:
-			buy_button.text = "Too poor"
-			buy_button.disabled = true
-			buy_button.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))  # Grauer Text
-		else:
-			buy_button.text = "Buy"
-			buy_button.connect("pressed", Callable(self, "_on_buy_button_pressed").bind(key))  # Pass the item's key
-			buy_button.add_theme_color_override("font_color", Color(1, 1, 1))  # Weißer Text
-		
-		buy_button.add_theme_font_override("font", preload("res://addons/gut/fonts/CourierPrime-Bold.ttf"))
-		buy_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		hcontainer.add_child(buy_button)
-
-		# Horizontale Linie
-		vbox_container.add_child(HSeparator.new())
-
-func populate_shop4():
-	for key in shop_items.keys():
-		var item = shop_items[key]
-		var new_item_price = round(item["price"] * Global.price_multi)
-
-		# MarginContainer für Abstand und Styling
-		var margin_container = MarginContainer.new()
-		margin_container.add_theme_constant_override("margin_top", 10)
-		margin_container.add_theme_constant_override("margin_left", 20)
-		margin_container.add_theme_constant_override("margin_bottom", 10)
-		margin_container.add_theme_constant_override("margin_right", 20)
-		vbox_container.add_child(margin_container)
-
-		# HBoxContainer für horizontales Layout
-		var hcontainer = HBoxContainer.new()
-		hcontainer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		margin_container.add_child(hcontainer)
-
-		# TextureRect für Icon
-		var icon_texture = TextureRect.new()
-		icon_texture.texture = preload("res://icon_stats/Damage.png")  # Pfad zum Icon
-		icon_texture.expand = true
-		icon_texture.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		hcontainer.add_child(icon_texture)
-
-		# Label für Item-Name
-		var name_label: Label = Label.new()
-		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		name_label.text = item["name"]  # Access item name
-		name_label.add_theme_font_override("font", preload("res://addons/gut/fonts/CourierPrime-Bold.ttf"))
-		name_label.add_theme_color_override("font_color", Color(1, 1, 1))  # Weißer Text
-		name_label.add_theme_constant_override("margin_left", 10)  # Abstand links
-		hcontainer.add_child(name_label)
-
-		# Label für Preis
-		var price_label: Label = Label.new()
-		price_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		price_label.text = str(new_item_price) + " Gold"  # Access item price
-		price_label.add_theme_font_override("font", preload("res://addons/gut/fonts/CourierPrime-Bold.ttf"))
-		price_label.add_theme_color_override("font_color", Color(1, 0.84, 0))  # Goldener Text
-		price_label.add_theme_constant_override("margin_right", 10)  # Abstand rechts
-		hcontainer.add_child(price_label)
-
-		# Button für Kauf
-		var buy_button: Button = Button.new()
-
-		# Button-Styling mit StyleBoxFlat
-		var button_style = StyleBoxFlat.new()
-		button_style.bg_color = Color("#4e357e")  # Hintergrundfarbe des Buttons
-		button_style.border_width_left = 5
-		button_style.border_width_top = 5
-		button_style.border_width_right = 5
-		button_style.border_width_bottom = 5
-		button_style.border_color = Color(0.8, 0.8, 0.8)  # Rahmenfarbe
-		button_style.corner_radius_top_left = 5
-		button_style.corner_radius_top_right = 5
-		button_style.corner_radius_bottom_left = 5
-		button_style.corner_radius_bottom_right = 5
-
-		# Hover-Styling
-		var hover_style = StyleBoxFlat.new()
-		hover_style.bg_color = Color("#6e50a1")  # Etwas helleres Lila bei Hover
-		hover_style.border_width_left = 5
-		hover_style.border_width_top = 5
-		hover_style.border_width_right = 5
-		hover_style.border_width_bottom = 5
-		hover_style.border_color = Color(1, 1, 1)  # Weißer Rahmen bei Hover
-		hover_style.corner_radius_top_left = 5
-		hover_style.corner_radius_top_right = 5
-		hover_style.corner_radius_bottom_left = 5
-		hover_style.corner_radius_bottom_right = 5
-
-		# Gedrückter Zustand (pressed)
-		var pressed_style = StyleBoxFlat.new()
-		pressed_style.bg_color = Color("#34215a")  # Dunkleres Lila
-		pressed_style.border_width_left = 5
-		pressed_style.border_width_top = 5
-		pressed_style.border_width_right = 5
-		pressed_style.border_width_bottom = 5
-		pressed_style.border_color = Color(0.6, 0.6, 0.6)  # Grauer Rahmen
-		pressed_style.corner_radius_top_left = 5
-		pressed_style.corner_radius_top_right = 5
-		pressed_style.corner_radius_bottom_left = 5
-		pressed_style.corner_radius_bottom_right = 5
-
-		# Stile anwenden
-		buy_button.add_theme_stylebox_override("normal", button_style)
-		buy_button.add_theme_stylebox_override("hover", hover_style)
-		buy_button.add_theme_stylebox_override("pressed", pressed_style)
-
-		# Text und Verhalten
-		if current_player.coins < new_item_price:
-			buy_button.text = "Too poor"
-			buy_button.disabled = true
-			buy_button.add_theme_color_override("font_color", Color(0.5, 0.5, 0.5))  # Grauer Text
-		else:
-			buy_button.text = "Buy"
-			buy_button.connect("pressed", Callable(self, "_on_buy_button_pressed").bind(key))  # Pass the item's key
-			buy_button.add_theme_color_override("font_color", Color(1, 1, 1))  # Weißer Text
-		
-		buy_button.add_theme_font_override("font", preload("res://addons/gut/fonts/CourierPrime-Bold.ttf"))
-		buy_button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-		hcontainer.add_child(buy_button)
-
-		# Horizontale Linie
-		vbox_container.add_child(HSeparator.new())
 
 func populate_shop():
 	for key in shop_items.keys():
@@ -383,13 +106,6 @@ func populate_shop():
 		hcontainer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		margin_container.add_child(hcontainer)
 
-		# TextureRect für Icon
-		var icon_texture = TextureRect.new()
-		icon_texture.texture = load("res://icon_stats/" + key + "Damage.png")  # Beispiel
-		icon_texture.expand = true
-		icon_texture.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		hcontainer.add_child(icon_texture)
-
 		# Label für Item-Namee
 		var name_label: Label = Label.new()
 		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -397,6 +113,7 @@ func populate_shop():
 		name_label.add_theme_font_override("font", preload("res://addons/gut/fonts/CourierPrime-Bold.ttf"))
 		name_label.add_theme_color_override("font_color", Color(1, 1, 1))  # Weißer Text
 		name_label.add_theme_constant_override("margin_left", 10)  # Abstand links
+		name_label.add_theme_font_size_override("font_size", 30)
 		hcontainer.add_child(name_label)
 
 		# Label für Preis
@@ -404,12 +121,14 @@ func populate_shop():
 		price_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		price_label.text = str(new_item_price) + " Gold"  # Access item price
 		price_label.add_theme_font_override("font", preload("res://addons/gut/fonts/CourierPrime-Bold.ttf"))
-		price_label.add_theme_color_override("font_color", Color(1, 0.84, 0))  # Goldener Text
-		price_label.add_theme_constant_override("margin_right", 10)  # Abstand rechts
+		price_label.add_theme_color_override("font_color", Color(1, 0.84, 0))
+		price_label.add_theme_constant_override("margin_right", 100)
+		price_label.add_theme_font_size_override("font_size", 30)
 		hcontainer.add_child(price_label)
 
 		# Button für Kauf
 		var buy_button: Button = Button.new()
+		buy_button.add_theme_font_size_override("font_size", 30)
 		if current_player.coins < new_item_price:
 			buy_button.text = "Too poor"
 			buy_button.disabled = true
