@@ -5,6 +5,7 @@ signal give_user
 @onready var closed_button: Button = $Panel/CloseButton
 @onready var content_holder: Container = $Panel/Container
 
+var is_shop_open : bool = false
 
 func _ready():
 	#closed_button.connect("pressed", Callable(self, "_on_close_button_pressed"))

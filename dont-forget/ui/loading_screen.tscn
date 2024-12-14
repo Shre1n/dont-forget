@@ -1,9 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://d13yggkw2yru4"]
+[gd_scene load_steps=18 format=3 uid="uid://d13yggkw2yru4"]
 
 [ext_resource type="Script" path="res://ui/loading_screen.gd" id="1_u0qt2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awhaq"]
 bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_70pwc"]
+bg_color = Color(0.866667, 0.690196, 0.262745, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_skg8w"]
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
+
+[sub_resource type="Theme" id="Theme_8nx1l"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_70pwc")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_skg8w")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_17cna"]
 bg_color = Color(1, 1, 1, 1)
@@ -578,6 +588,7 @@ alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 8)
 layout_mode = 2
+theme = SubResource("Theme_8nx1l")
 theme_override_styles/background = SubResource("StyleBoxFlat_17cna")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ljhlj")
 show_percentage = false
