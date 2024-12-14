@@ -111,7 +111,7 @@ func load_saved_scene():
 		if saved_scene_path != null:
 			current_character.position = save_user.position_of_character
 			current_character.coins = user_save.gold
-			life_time = 50
+			life.start(save_user.life)
 			all_stats_in_dict = user_save.stats
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
 		current_character.connect("going_back", Callable(self, "scene_change"))
@@ -177,7 +177,7 @@ func save_scene():
 	var current_scene = get_child(0).get_child(0).scene_file_path
 	user_save.scene_path = load(String(current_scene)) # Get the current scene's path
 	save_user.position_of_character = current_character.position
-	user_save.life = life_time
+	user_save.life = life.time_left
 	user_save.gold = gold.text
 	user_save.save()
 
@@ -206,7 +206,9 @@ func _on_load_start(_loading_screen):
 
 func _process(delta):
 	if !life.is_stopped():
-		emit_signal("lifetimer", life.time_left)
+		var percentage = life.time_left/ max_time
+		print( life.time_left,"test im Gamemanager")
+		emit_signal("lifetimer", percentage)
 
 func options_opend():
 	options_open = true

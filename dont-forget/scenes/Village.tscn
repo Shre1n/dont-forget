@@ -709,7 +709,6 @@ newRound = true
 
 [node name="Doorcollision" type="CollisionShape2D" parent="Door Well"]
 position = Vector2(-0.158081, 1.23113)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_c043q")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -982,14 +981,14 @@ animation = &"idle"
 frame_progress = 0.387906
 flip_h = true
 
-[node name="Door" type="Area2D" parent="."]
+[node name="Out_Door" type="Area2D" parent="."]
 position = Vector2(1358, 2031)
 scale = Vector2(17.96, 3.28)
 script = ExtResource("21_n45p4")
 transition_type = "fade_to_white"
 menu = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Out_Door"]
 position = Vector2(-6.51448, -0.304878)
 scale = Vector2(2.02004, 1)
 shape = SubResource("WorldBoundaryShape2D_bdhh3")
@@ -1089,6 +1088,6 @@ position = Vector2(-847, 749)
 scale = Vector2(0.3, 0.3)
 
 [connection signal="body_entered" from="Door Well" to="Door Well" method="_on_body_entered"]
-[connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
+[connection signal="body_entered" from="Out_Door" to="Out_Door" method="_on_body_entered"]
 [connection signal="body_entered" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_entered"]
 [connection signal="body_exited" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_exited"]

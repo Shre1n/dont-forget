@@ -336,8 +336,8 @@ func dash():
 	collision_mask = col1a
 	var col2a = 0
 	$CollisionShape2D2/Damage_Area.collision_mask = col2a
-	#var col3a = 0
-	#collision_layer = col3a
+	var col3a = 0
+	collision_layer = col3a
 	dash_timer.start()
 
 
@@ -348,8 +348,8 @@ func _on_dash_timer_timeout():
 	collision_mask = col1b
 	var col2b = 2
 	$CollisionShape2D2/Damage_Area.collision_mask = col2b
-	#var col3b = 32
-	#collision_layer = col3b
+	var col3b = 32
+	collision_layer = col3b
 
 func update_animation():
 	if alive:

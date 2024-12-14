@@ -326,6 +326,7 @@ process_mode = 3
 visible = false
 
 [node name="UI" type="Control" parent="Pause_Menu"]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -354,12 +355,12 @@ grow_vertical = 2
 [node name="SandDisplay" type="ProgressBar" parent="Pause_Menu/UI"]
 modulate = Color(1, 1, 0.317647, 1)
 layout_mode = 0
-offset_left = 36.0
+offset_left = 32.0
 offset_top = 25.0
-offset_right = 577.0
+offset_right = 661.0
 offset_bottom = 78.0
 theme = SubResource("Theme_n3kn5")
-max_value = 10.0
+value = 100.0
 fill_mode = 1
 show_percentage = false
 
@@ -405,6 +406,8 @@ visible = false
 game_manager = NodePath("../..")
 
 [node name="Life_Timer" type="Timer" parent="."]
-wait_time = 5.0
+process_mode = 1
+wait_time = 100.0
+one_shot = true
 
 [connection signal="timeout" from="Life_Timer" to="." method="_on_life_timer_timeout"]
