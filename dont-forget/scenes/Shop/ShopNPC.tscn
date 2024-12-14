@@ -19,10 +19,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_u0ras"]
+[sub_resource type="Gradient" id="Gradient_haw71"]
+offsets = PackedFloat32Array(0.220779, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_una43"]
-gradient = SubResource("Gradient_u0ras")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_g3spd"]
+gradient = SubResource("Gradient_haw71")
+fill = 1
+fill_from = Vector2(0, 0.993119)
 
 [sub_resource type="Animation" id="Animation_2ce1r"]
 length = 0.001
@@ -248,13 +252,14 @@ sprite_frames = SubResource("SpriteFrames_1j6r7")
 animation = &"idle"
 
 [node name="PointLight2D" type="PointLight2D" parent="AnimatedSprite2D"]
-position = Vector2(-402.953, 222.338)
-rotation = -0.091026
-scale = Vector2(-0.778777, 235.11)
+position = Vector2(-405, 197)
+rotation = -1.62597
+scale = Vector2(4.37767, 5.01012)
 color = Color(1, 1, 0.25098, 1)
 energy = 3.85
 blend_mode = 2
-texture = SubResource("GradientTexture1D_una43")
+texture = SubResource("GradientTexture2D_g3spd")
+texture_scale = 2.9
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -277,7 +282,7 @@ collision_mask = 32
 monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Leave"]
-position = Vector2(-180, 80)
+position = Vector2(-209, 63)
 shape = SubResource("CircleShape2D_8m2il")
 
 [node name="monitoable_anim" type="AnimationPlayer" parent="."]
