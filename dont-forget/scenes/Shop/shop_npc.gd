@@ -13,22 +13,35 @@ var scene_of_Shop: String = "res://scenes/Shop/ShopContent/ShopContent.tscn"
 @onready var game_manager = find_game_manager()
 var current_player: Character
 
+var is_shop_open : bool = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	interaction_area.interact = Callable(self, "open_shop")
 	game_manager.connect("current_user", Callable(self, "self_user"))	
 
-func close_area():
+func close_areabackup():
 	if $Leave.monitoring == true:
 		anim_moni.play("hide_it")
 		print($Leave.monitoring,"4")
 	print($Leave.monitoring,"1")
 
-func open_shop():
+func open_shopbackup():
 	show_shop_ui()
 	print($Leave.monitoring,"2")
 	anim_moni.play("show_it")
 	print($Leave.monitoring,"3")
+
+
+func open_shop():
+	if is_shop_open:
+		return  # Verhindert das Öffnen des Shops, wenn er bereits geöffnet ist
+	
+	is_shop_open = true  # Markiert den Shop als geöffnet
+	show_shop_ui()  # Zeigt das Shop UI
+	print($Leave.monitoring, "2")
+	anim_moni.play("show_it")
+	print($Leave.monitoring, "3")
 
 func show_shop_ui():
 	ui_manager.load_content(scene_of_Shop)
@@ -38,6 +51,13 @@ func show_shop_ui():
 	#print("Shop UI was closed.")
 	#shop_content.queue_free()
 	#ui_manager.close()
+
+func close_area():
+	if $Leave.monitoring == true:
+		anim_moni.play("hide_it")
+		print($Leave.monitoring, "4")
+	print($Leave.monitoring, "1")
+	is_shop_open = false 
 
 func _process(delta):
 	animation_player.play("idle")

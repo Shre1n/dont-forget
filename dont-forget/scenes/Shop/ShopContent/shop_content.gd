@@ -14,7 +14,7 @@ var current_player: Character
 var shop_items: Dictionary = {
 	"damage_stat": { "name": "Damage", "price": 1, "stat": "damage_stat" },
 	"speed_stat": { "name": "Speed", "price": 2, "stat": "speed_stat" },
-	"jump_stat": { "name": "Jump Hight", "price": 3, "stat": "jump_stat"}
+	"jump_stat": { "name": "Jump Height", "price": 3, "stat": "jump_stat"}
 }
 
 @onready var vbox_container: VBoxContainer = $VBoxContainer
@@ -122,7 +122,7 @@ func populate_shop():
 		price_label.text = str(new_item_price) + " Gold"  # Access item price
 		price_label.add_theme_font_override("font", preload("res://addons/gut/fonts/CourierPrime-Bold.ttf"))
 		price_label.add_theme_color_override("font_color", Color(1, 0.84, 0))
-		price_label.add_theme_constant_override("margin_right", 100)
+		price_label.add_theme_constant_override("margin_right", 10)
 		price_label.add_theme_font_size_override("font_size", 30)
 		hcontainer.add_child(price_label)
 
