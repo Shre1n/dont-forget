@@ -11,8 +11,9 @@ func _ready():
 	#closed_button.connect("pressed", Callable(self, "_on_close_button_pressed"))
 	self.hide()
 
-func load_content(scene_path: String):
+func load_content(scene_path: String, profile: String):
 	var scene = load(scene_path).instantiate()
+	scene.selected_profile = profile
 	content_holder.add_child(scene)
 	emit_signal("give_user")
 	self.show()

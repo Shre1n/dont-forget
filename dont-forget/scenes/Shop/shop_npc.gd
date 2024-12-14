@@ -2,6 +2,7 @@ extends Node2D
 
 @export var shop_content_scene: PackedScene = preload("res://scenes/Shop/ShopContent/ShopContent.tscn")
 @export var ui_manager_scene: PackedScene = preload("res://scenes/UI_Manager/UIManager.tscn")
+@export_enum("default", "second_shop") var selected_profile: String = "default"
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var ui_manager = $'../../../Pause_Menu/UiManager'
@@ -23,14 +24,14 @@ func _ready():
 func close_areabackup():
 	if $Leave.monitoring == true:
 		anim_moni.play("hide_it")
-		print($Leave.monitoring,"4")
-	print($Leave.monitoring,"1")
+		#print($Leave.monitoring,"4")
+	#print($Leave.monitoring,"1")
 
 func open_shopbackup():
 	show_shop_ui()
-	print($Leave.monitoring,"2")
+	#print($Leave.monitoring,"2")
 	anim_moni.play("show_it")
-	print($Leave.monitoring,"3")
+	#print($Leave.monitoring,"3")
 
 
 func open_shop():
@@ -39,12 +40,12 @@ func open_shop():
 	
 	is_shop_open = true  # Markiert den Shop als geöffnet
 	show_shop_ui()  # Zeigt das Shop UI
-	print($Leave.monitoring, "2")
+	#print($Leave.monitoring, "2")
 	anim_moni.play("show_it")
-	print($Leave.monitoring, "3")
+	#print($Leave.monitoring, "3")
 
 func show_shop_ui():
-	ui_manager.load_content(scene_of_Shop)
+	ui_manager.load_content(scene_of_Shop, selected_profile)
 	ui_manager_container.get_child(0).connect("closing", Callable(self, "close_area"))
 	
 #func _on_ui_closed():
@@ -55,8 +56,8 @@ func show_shop_ui():
 func close_area():
 	if $Leave.monitoring == true:
 		anim_moni.play("hide_it")
-		print($Leave.monitoring, "4")
-	print($Leave.monitoring, "1")
+		#print($Leave.monitoring, "4")
+	#print($Leave.monitoring, "1")
 	is_shop_open = false 
 
 func _process(delta):

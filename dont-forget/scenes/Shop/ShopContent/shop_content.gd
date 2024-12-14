@@ -5,17 +5,25 @@ signal item_purchase(price)
 #@export var player : Character
 @export var font_path : String = "res://addons/gut/fonts/CourierPrime-Bold.ttf"
 
+@export var stats_file_path: String = "res://scenes/Shop/ShopContent/lucky_pete.json"
+#@export_enum("default", "second_shop") var selected_profile: String = "default"
+@export var selected_profile: String = "default"
+
+var shop_data: Dictionary
+var profiles_data: Dictionary
+
+
 @onready var game_manager = find_game_manager()
 @export var price_adder = 1
 
 var current_player: Character
 
 # Shop items as a dictionary for key-based identification
-var shop_items: Dictionary = {
-	"damage_stat": { "name": "Damage", "price": 1, "stat": "damage_stat" },
-	"speed_stat": { "name": "Speed", "price": 2, "stat": "speed_stat" },
-	"jump_stat": { "name": "Jump Height", "price": 3, "stat": "jump_stat"}
-}
+#var shop_items: Dictionary = {
+	#"damage_stat": { "name": "Damage", "price": 1, "stat": "damage_stat" },
+	#"speed_stat": { "name": "Speed", "price": 2, "stat": "speed_stat" },
+	#"jump_stat": { "name": "Jump Height", "price": 3, "stat": "jump_stat"}
+#}
 
 @onready var vbox_container: VBoxContainer = $VBoxContainer
 
@@ -25,6 +33,37 @@ func _ready():
 	var theme = Theme.new()
 	apply_button_style(theme)  # Buttons stylen
 	vbox_container.theme = theme  # Theme dem Container zuweisen
+	load_stats_from_file()
+	apply_profile_data()
+
+func load_stats_from_file():
+	var file = FileAccess.open(stats_file_path, FileAccess.READ)
+	if file:
+		var json_data = file.get_as_text()
+		var json = JSON.new()
+		var parse_result = json.parse(json_data)
+		if parse_result == OK:
+			profiles_data = json.data
+			#print("Stats loaded: ", profiles_data)
+		else:
+			print("Error parsing JSON file: ", parse_result)
+		file.close()
+	else:
+		print("Could not open file: ", stats_file_path)
+
+func apply_profile_data():
+	if profiles_data.has("profiles") and profiles_data["profiles"].has(selected_profile):
+		var profile = profiles_data["profiles"][selected_profile]
+		shop_data = profile["shop_data"]
+		#print("Min/Max stats and drops applied for profile: ", selected_profile)
+	else:
+		print("Profile not found: ", selected_profile)
+		# Standardwerte setzen
+		shop_data = {
+			"damage_stat": { "name": "Damage", "price": 1, "stat": "damage_stat" },
+			"speed_stat": { "name": "Speed", "price": 2, "stat": "speed_stat" },
+			"jump_stat": { "name": "Jump Height", "price": 3, "stat": "jump_stat"}
+		}
 
 func self_user(path):
 	current_player = path
@@ -50,8 +89,10 @@ func apply_button_style(theme: Theme):
 	theme.set_stylebox("pressed", "Button", button_style)
 
 func populate_shopbackup():
-	for key in shop_items.keys():
-		var item = shop_items[key]
+	print(shop_data)
+	print(shop_data.keys())
+	for key in shop_data.keys():
+		var item = shop_data[key]
 		#print(key)
 		var new_item_price = round(item["price"]* Global.price_multi)
 		
@@ -89,8 +130,10 @@ func populate_shopbackup():
 		vbox_container.add_child(HSeparator.new())
 
 func populate_shop():
-	for key in shop_items.keys():
-		var item = shop_items[key]
+	print(shop_data)
+	print(shop_data.keys())
+	for key in shop_data.keys():
+		var item = shop_data[key]
 		var new_item_price = round(item["price"] * Global.price_multi)
 
 		# MarginContainer für Abstand und Styling
@@ -143,7 +186,7 @@ func populate_shop():
 
 func _on_buy_button_pressed(key):
 	# Access the item using its key
-	var item = shop_items[key]
+	var item = shop_data[key]
 	#print(current_player.coins, -item["price"])
 	current_player.get_coins(-item["price"])
 	emit_signal("item_purchase", item["price"])
