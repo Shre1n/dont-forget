@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cvi4bctnbdpax"]
+[gd_scene load_steps=15 format=3 uid="uid://cvi4bctnbdpax"]
 
 [ext_resource type="Script" path="res://scripte/game_manager.gd" id="1_brvfy"]
 [ext_resource type="PackedScene" uid="uid://cpylfpo14s0l2" path="res://ui/pause_menu.tscn" id="3_5oodd"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ba1vr60upkeqc" path="res://assets/Life/Ui_Time_.png" id="4_03et5"]
 [ext_resource type="Texture2D" uid="uid://c5a4u1d5vk647" path="res://assets/drops/gold.png" id="4_gtkkb"]
 [ext_resource type="PackedScene" uid="uid://cspyht3ytgvhx" path="res://ui/options.tscn" id="4_v2ckv"]
+[ext_resource type="PackedScene" uid="uid://bos25twpmtbll" path="res://scenes/UI_Manager/UIManager.tscn" id="7_ldwnw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hijv6"]
 bg_color = Color(0.203922, 0.203922, 0.286275, 1)
@@ -53,6 +54,9 @@ process_mode = 1
 
 [node name="Pause_Menu" type="CanvasLayer" parent="."]
 process_mode = 3
+
+[node name="UiManager" parent="Pause_Menu" instance=ExtResource("7_ldwnw")]
+visible = false
 
 [node name="UI" type="Control" parent="Pause_Menu"]
 layout_mode = 3

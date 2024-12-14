@@ -533,6 +533,7 @@ size = Vector2(1710.01, 200)
 size = Vector2(299, 1316)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfvmh"]
+size = Vector2(57, 139)
 
 [node name="Village" type="Node2D"]
 script = ExtResource("1_5at0l")
@@ -1051,8 +1052,14 @@ shape = SubResource("RectangleShape2D_a0l7o")
 position = Vector2(10022, 89)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Brunnen"]
+position = Vector2(-6185, 671)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Brunnen/StaticBody2D"]
+position = Vector2(-119.5, 70.5)
+shape = SubResource("RectangleShape2D_nfvmh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Brunnen/StaticBody2D"]
+position = Vector2(115, 73)
 shape = SubResource("RectangleShape2D_nfvmh")
 
 [connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
