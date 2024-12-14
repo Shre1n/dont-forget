@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dheorcfj6bf44"]
+[gd_scene load_steps=30 format=3 uid="uid://dheorcfj6bf44"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_kt7s3"]
 [ext_resource type="Texture2D" uid="uid://bvqqkjm70mf4g" path="res://assets/Slime/dead/1.png" id="2_by64i"]
@@ -15,9 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://cms48tx8d3fva" path="res://assets/Slime/walk/4.png" id="14_ik7sm"]
 [ext_resource type="Texture2D" uid="uid://cc8v18mk5ajkc" path="res://assets/Slime/walk/5.png" id="15_m856u"]
 [ext_resource type="Texture2D" uid="uid://wgibmyjqxcw5" path="res://assets/Slime/walk/6.png" id="16_0gyc0"]
-[ext_resource type="Texture2D" uid="uid://c2g3xrawrqbt1" path="res://assets/Download.jpeg" id="17_kpllo"]
-[ext_resource type="Script" path="res://scenes/damage_area.gd" id="18_yr20x"]
-[ext_resource type="Script" path="res://scripte/attack_area.gd" id="19_oxnyd"]
+[ext_resource type="PackedScene" uid="uid://dnu6va4x16qlb" path="res://scenes/damage_area.tscn" id="16_olr1l"]
+[ext_resource type="PackedScene" uid="uid://cmgf1s540hgqi" path="res://scenes/attack_area.tscn" id="17_fxlaf"]
 
 [sub_resource type="Animation" id="Animation_i7tg6"]
 length = 0.001
@@ -129,18 +128,6 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("CollisionPolygon2D/Attack_Area:monitorable")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_nj4be"]
 resource_name = "death"
@@ -157,18 +144,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"dead"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CollisionPolygon2D/Attack_Area:monitorable")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_02olc"]
@@ -671,7 +646,7 @@ _data = {
 
 [node name="Slime" type="CharacterBody2D"]
 collision_layer = 8
-collision_mask = 9
+collision_mask = 121
 script = ExtResource("1_kt7s3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -690,20 +665,16 @@ frame = 2
 visible = false
 position = Vector2(-64, 370)
 scale = Vector2(2.62849, 1)
-texture = ExtResource("17_kpllo")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-381, 271, -397, 197, -366, 36, -286, -107, -168, -194, -30, -235, 84, -209, 199, -113, 289, 14, 319, 133, 312, 286, 261, 322, 46, 310, -145, 297, -296, 293)
 
-[node name="Damage_Area" type="Area2D" parent="CollisionPolygon2D"]
-script = ExtResource("18_yr20x")
+[node name="Damage_Area" parent="CollisionPolygon2D" instance=ExtResource("16_olr1l")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionPolygon2D/Damage_Area"]
 polygon = PackedVector2Array(-383.606, 269.146, -395.27, 229.957, -386.417, 129.811, -353.475, 27.6503, -270.746, -103.628, -157.242, -181.636, -30.8029, -217.177, 76.2925, -194.067, 180.534, -111.073, 269.25, 1.95711, 304.067, 112.286, 305.898, 255.17, 301.533, 289.205, 87.2304, 297.715, -75.1512, 297.161, -250.458, 297.161, -271.011, 297.161, -294.615, 297.161, -315.971, 297.321, -324, 296.358, -332.35, 294.431)
 
-[node name="Attack_Area" type="Area2D" parent="CollisionPolygon2D"]
-script = ExtResource("19_oxnyd")
-damage = 5
+[node name="Attack_Area" parent="CollisionPolygon2D" instance=ExtResource("17_fxlaf")]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="CollisionPolygon2D/Attack_Area"]
 polygon = PackedVector2Array(-383.606, 269.146, -395.27, 229.957, -386.417, 129.811, -353.475, 27.6503, -270.746, -103.628, -157.242, -181.636, -30.8029, -217.177, 76.2925, -194.067, 180.534, -111.073, 269.25, 1.95711, 304.067, 112.286, 305.898, 255.17, 301.533, 289.205, 87.2304, 297.715, -75.1512, 297.161, -250.458, 297.161, -271.011, 297.161, -294.615, 297.161, -315.971, 297.321, -324, 296.358, -332.35, 294.431)
@@ -718,6 +689,8 @@ libraries = {
 }
 
 [node name="Detection_Area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection_Area"]
 position = Vector2(-16, -191)

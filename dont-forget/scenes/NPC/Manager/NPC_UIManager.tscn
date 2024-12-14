@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://db7p1ldqe8cyj"]
+
+[ext_resource type="Script" path="res://scenes/NPC/Manager/npc_ui_manager.gd" id="1_7yj3n"]
+[ext_resource type="PackedScene" uid="uid://yvg01f5jeevu" path="res://scenes/Shop/ShopItem.tscn" id="2_byk15"]
+[ext_resource type="PackedScene" uid="uid://vlrvm682bebs" path="res://scenes/NPC/UI/UI_Element_Template.tscn" id="3_hlhab"]
+
+[node name="NpcUiManager" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_7yj3n")
+ui_element_template = ExtResource("2_byk15")
+
+[node name="UI_Container" parent="." instance=ExtResource("3_hlhab")]
+
+[node name="GridContainer" type="GridContainer" parent="UI_Container"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(1.00146, 0.993958)
+theme_override_constants/h_separation = 100
+columns = 2

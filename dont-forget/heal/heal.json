@@ -1,0 +1,18 @@
+{
+	"profiles": {
+		"default": {
+			"data": {
+				"value": 150,
+				"sprite": "res://heal/assets/Idle-Kristall.png",
+				"collision_size": 120
+			}
+		},
+		"broken": {
+			"data": {
+				"value": 60,
+				"sprite": "res://heal/assets/Broke-Kristall.png",
+				"collision_size": 120
+			}
+		}
+	}
+}
