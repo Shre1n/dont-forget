@@ -1,0 +1,26 @@
+{
+	"profiles": {
+		"default": {
+			"data": {
+				"damage": 30,
+				"pierce": 150,
+				"crit_chance": 150,
+				"crit_multi": 150,
+				"knockback": 300,
+				"sprite": "res://fallen/spike/Spikes_.png",
+				"collision_size": [116, 45]
+			}
+		},
+		"very_sharp": {
+			"data": {
+				"damage": 90,
+				"pierce": 300,
+				"crit_chance": 250,
+				"crit_multi": 100,
+				"knockback": 300,
+				"sprite": "res://fallen/spike/Spikes_.png",
+				"collision_size": [116, 45]
+			}
+		}
+	}
+}

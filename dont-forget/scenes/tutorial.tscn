@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=34 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dhx18cj8fwfgg" path="res://heal/heal.tscn" id="16_auwwc"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
 [ext_resource type="PackedScene" uid="uid://rwcbxprdm3p4" path="res://scenes/Shop/ShopNPC.tscn" id="16_vpndh"]
+[ext_resource type="PackedScene" uid="uid://b6w1e4uoa60j5" path="res://fallen/spike/spike.tscn" id="18_o2wqf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -1300,3 +1301,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block/Slime_Block"]
 position = Vector2(0, -549)
 shape = SubResource("RectangleShape2D_q71vo")
+
+[node name="Spike" parent="." instance=ExtResource("18_o2wqf")]
+position = Vector2(1600, 1296)

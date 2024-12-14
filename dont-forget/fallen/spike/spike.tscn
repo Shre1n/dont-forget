@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6w1e4uoa60j5"]
+
+[ext_resource type="Script" path="res://spike.gd" id="1_n81ty"]
+[ext_resource type="Script" path="res://scripte/attack_area.gd" id="2_m7foe"]
+[ext_resource type="Texture2D" uid="uid://b6j4qqaj1ge77" path="res://fallen/spike/Spikes_.png" id="3_50hnd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vx1mn"]
+size = Vector2(116, 45)
+
+[node name="Spike" type="Node2D"]
+script = ExtResource("1_n81ty")
+
+[node name="Attack_Area" type="Area2D" parent="."]
+script = ExtResource("2_m7foe")
+damage = 0
+pierce_multi = 0
+crit_multi = 0
+knockback = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area"]
+position = Vector2(-1, 16.5)
+shape = SubResource("RectangleShape2D_vx1mn")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = -0.0174533
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_50hnd")
