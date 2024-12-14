@@ -18,11 +18,14 @@ func load_content(scene_path: String):
 	self.show()
 
 func _on_close_button_pressed(): 
-	if content_holder.get_child(0).has_method("close_npc"):
-		content_holder.get_child(0).close_npc()
+	extra_close()
 	close()
 
 func close():
 	self.hide()
 	for child in content_holder.get_children():
 		child.queue_free()
+
+func extra_close():
+	if content_holder.get_child(0).has_method("close_npc"):
+		content_holder.get_child(0).close_npc()

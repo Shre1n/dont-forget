@@ -164,7 +164,8 @@ func find_Itemholder(level):
 
 func _input(event : InputEvent):
 	if(event.is_action_pressed("menu")):
-		if $Pause_Menu/UiManager.visible:
+		if $Pause_Menu/UiManager.visible: 
+			$Pause_Menu/UiManager.extra_close()
 			$Pause_Menu/UiManager.close()
 		elif(options_open):
 			options_closed()
