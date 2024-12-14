@@ -71,7 +71,7 @@ var dash_cooldown_reduction
 var current_dash_speed = 1
 var dashing = false
 
-var coins = 0
+@export var coins = 0
 
 var start_position: Vector2
 
@@ -147,6 +147,7 @@ func adjust_stats(changes: Array) -> void:
 		var stat_name = change.get("stat", "")
 		var amount = change.get("amount", 0)
 		if stat_name in self:
+			print(stat_name, amount,self.get(stat_name), "LOL1")
 			var new_value = self.get(stat_name) + amount
 			# Optional: Min-/Max-Grenzen berücksichtigen
 			match stat_name:
@@ -167,21 +168,21 @@ func adjust_stats(changes: Array) -> void:
 				"pierce_stat":
 					new_value = clamp(new_value, min_stats, max_stats)
 				"knockback_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"knockback_res_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"cooldown_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"attack_speed_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"extra_weight_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"dash_cooldown_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"dash_speed_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"extra_weight_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				# Hier einfach neue hinzufügen, falls nötig
 			self.set(stat_name, new_value)
 	save_stats()
@@ -202,6 +203,7 @@ func save_stats():
 	game_manager.dash_cooldown_stat = dash_cooldown_stat
 	game_manager.dash_speed_stat = dash_speed_stat
 	game_manager.extra_weight_stat = extra_weight_stat
+	print(cooldown_stat,"LOL")
 	update_status()
 
 func update_status():
@@ -214,8 +216,8 @@ func update_status():
 	cooldown_reduction = calculate_stats_to_value(cooldown_stat, 0.0, 1.0, 1, 0.0, 3500.0) #(1 - (cooldown_stat/1000))
 	attack_speed = calculate_stats_to_value(attack_speed_stat, 0.0, 1.0, 2.0, 14.0, 3500.0)
 	cooldown_duration_base = 1.6 / attack_speed
-	all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat
-	extra_weight = calculate_stats_to_value(extra_weight_stat, 0.0, 3.5, 0, 100)
+	all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat + dash_cooldown_stat + dash_speed_stat
+	extra_weight = calculate_stats_to_value(extra_weight_stat, 0.0, 3.5, 0, 100, 3500.0)
 	weight = min(490, all_stats / 100) + extra_weight
 	dash_cooldown_reduction = calculate_stats_to_value(dash_cooldown_stat, 0.0, 1.0, 1, 0.0, 3500.0)
 	dash_speed = calculate_stats_to_value(dash_speed_stat, 0.0 , 1.0, 3.0, 6.0, 3500.0)
@@ -259,7 +261,9 @@ func _physics_process(delta):
 		if JumpAvailability and JumpTimer.is_stopped():
 			JumpTimer.start()
 		elif JumpTimer.is_stopped():
-			velocity += get_gravity() * delta
+			#velocity += get_gravity() * delta
+			var normalized_weight = 1+ pow(weight / 590, 2)  # Quadrat: Verstärkt Effekt
+			velocity += get_gravity() * normalized_weight * delta
 
 	if alive:
 		# Handle jump.
@@ -332,8 +336,8 @@ func dash():
 	collision_mask = col1a
 	var col2a = 0
 	$CollisionShape2D2/Damage_Area.collision_mask = col2a
-	var col3a = 0
-	collision_layer = col3a
+	#var col3a = 0
+	#collision_layer = col3a
 	dash_timer.start()
 
 
@@ -344,8 +348,8 @@ func _on_dash_timer_timeout():
 	collision_mask = col1b
 	var col2b = 2
 	$CollisionShape2D2/Damage_Area.collision_mask = col2b
-	var col3b = 32
-	collision_layer = col3b
+	#var col3b = 32
+	#collision_layer = col3b
 
 func update_animation():
 	if alive:
@@ -367,6 +371,7 @@ func die():
 	drop_bag()
 	velocity = Vector2.ZERO
 	alive = false
+	Global.price_multi = 1
 	animation_player.play("death")
 	await (animation_player.animation_finished)
 
