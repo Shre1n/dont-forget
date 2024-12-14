@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://h6any8wuwqdl" path="res://scenes/UI_Manager/Shop_assets/Shopranke_klein.png" id="3_mwk8y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2grv"]
-bg_color = Color(0.345098, 0.54902, 0.494118, 1)
+bg_color = Color(0.646232, 0.451203, 0.326315, 1)
 border_width_left = 5
 border_width_top = 5
 border_width_right = 5
