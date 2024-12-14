@@ -75,7 +75,7 @@ func _ready():
 	SceneManager.load_start.connect(_on_load_start)
 	SceneManager.scene_added.connect(_on_level_added)
 	#Zum Village zurück (braucht signal mit path)
-	#current_character.connect("going_back", Callable(self, "scene_change"))
+	current_character.connect("going_back", Callable(self, "scene_change"))
 	get_node("Pause_Menu/UiManager").connect("give_user", Callable(self, "give_user"))
 
 func give_user():
@@ -111,7 +111,7 @@ func load_saved_scene():
 		if saved_scene_path != null:
 			current_character.position = save_user.position_of_character
 			current_character.coins = user_save.gold
-			life_time = user_save.life
+			life_time = 50
 			all_stats_in_dict = user_save.stats
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
 		current_character.connect("going_back", Callable(self, "scene_change"))
@@ -245,9 +245,10 @@ func restart_life_timer():
 
 #Zum Menü zurück
 #func scene_change():
+	
 	#SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
 
 #Zum Village zurück
 func scene_change():
 	emit_signal("back_to_village")
-	SceneManager.swap_scenes("res://scenes/Village.tscn",level_holder,current_level,"transition_type")
+	SceneManager.swap_scenes("res://scenes/Village.tscn",level_holder,current_level,"fade_to_white")

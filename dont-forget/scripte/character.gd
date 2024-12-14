@@ -393,10 +393,10 @@ func _on_animation_player_animation_finished(anim_name):
 		$AnimationPlayer.stop()
 
 		#Zum Village zurück
-		#emit_signal("going_back")
+		emit_signal("going_back")
 		#Zum Village zurück
-		var path = "res://scenes/village.tscn"
-		emit_signal("going_back", path)
+		#var path = "res://scenes/Village.tscn"
+		#emit_signal("going_back", path)
 
 func new_spawn_position():
 	if Global.new_position != null:

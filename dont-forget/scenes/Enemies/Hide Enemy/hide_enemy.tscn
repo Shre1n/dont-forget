@@ -669,8 +669,6 @@ radius = 3115.95
 radius = 20.1505
 
 [node name="hide_enemy" instance=ExtResource("1_worv2")]
-collision_layer = 8
-collision_mask = 121
 script = ExtResource("2_800ox")
 stats_file = "res://gegner/hide.json"
 

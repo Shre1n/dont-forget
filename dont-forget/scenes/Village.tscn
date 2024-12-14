@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=61 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://q7ikoiew26od" path="res://assets/NPC/Owl/2.png" id="27_wlgfp"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="31_hehs4"]
 [ext_resource type="Script" path="res://scenes/no_attack_area.gd" id="32_l4m7q"]
+[ext_resource type="PackedScene" uid="uid://ihipi7rph5xc" path="res://scenes/Enemies/Hide Enemy/hide_enemy.tscn" id="33_ji7qk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2ado"]
 texture = ExtResource("2_cj6i5")
@@ -403,7 +404,7 @@ sources/6 = SubResource("TileSetAtlasSource_hiuga")
 shader = ExtResource("5_cj87q")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c043q"]
-size = Vector2(0.653341, 3.99572)
+size = Vector2(0.33718, 1.53347)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7ntwp"]
 animations = [{
@@ -694,8 +695,8 @@ z_index = 6
 tile_map_data = PackedByteArray("AAD0/xgACAAGAAgAAAD7/xkACAAIABEAAABWABoACAAGAAgAAABfABoACAAGAAgAAABmABkACAAGAAwAAABuABkACAAGAAgAAAACABgACAAGAAgAAAAQABgACAAGAAgAAAAaABgACAAGAAgAAAAhABcACAAGAAwAAAAIABgACAAIABEAAAAqABYACAAGAAwAAAAuABcACAAIABEAAAAlABcACAAIABEAAAA4ABgACAAGAAgAAAAwABgACAAGAAgAAAA=")
 tile_set = SubResource("TileSet_oiqi6")
 
-[node name="Door2" type="Area2D" parent="."]
-position = Vector2(3844, 741)
+[node name="Door Well" type="Area2D" parent="."]
+position = Vector2(3744, 770)
 rotation = 3.14159
 scale = Vector2(570.912, -77.5204)
 collision_layer = 0
@@ -706,7 +707,9 @@ transition_type = "wipe_to_right"
 path_to_new_scene = "res://scenes/cave.tscn"
 newRound = true
 
-[node name="Doorcollision" type="CollisionShape2D" parent="Door2"]
+[node name="Doorcollision" type="CollisionShape2D" parent="Door Well"]
+position = Vector2(-0.158081, 1.23113)
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_c043q")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -987,6 +990,7 @@ transition_type = "fade_to_white"
 menu = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(-6.51448, -0.304878)
 scale = Vector2(2.02004, 1)
 shape = SubResource("WorldBoundaryShape2D_bdhh3")
 
@@ -1080,7 +1084,11 @@ shape = SubResource("RectangleShape2D_nfvmh")
 position = Vector2(115, 73)
 shape = SubResource("RectangleShape2D_nfvmh")
 
-[connection signal="body_entered" from="Door2" to="Door2" method="_on_body_entered"]
+[node name="hide_enemy" parent="." instance=ExtResource("33_ji7qk")]
+position = Vector2(-847, 749)
+scale = Vector2(0.3, 0.3)
+
+[connection signal="body_entered" from="Door Well" to="Door Well" method="_on_body_entered"]
 [connection signal="body_entered" from="Door" to="Door" method="_on_body_entered"]
 [connection signal="body_entered" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_entered"]
 [connection signal="body_exited" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_exited"]
