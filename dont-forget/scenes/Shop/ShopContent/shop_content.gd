@@ -236,7 +236,9 @@ func cal_new_value():
 	
 	# Zufällige Menge innerhalb des Bereichs generieren
 	var menge = round(randf_range(min_value, max_value))
+	print(menge)
 	return menge
+	
 
 func find_game_manager():
 	var root = get_tree().root  # Root-Node des Scene Trees

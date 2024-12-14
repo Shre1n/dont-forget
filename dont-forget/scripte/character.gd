@@ -147,6 +147,7 @@ func adjust_stats(changes: Array) -> void:
 		var stat_name = change.get("stat", "")
 		var amount = change.get("amount", 0)
 		if stat_name in self:
+			print(stat_name, amount,self.get(stat_name), "LOL1")
 			var new_value = self.get(stat_name) + amount
 			# Optional: Min-/Max-Grenzen berücksichtigen
 			match stat_name:
@@ -167,21 +168,21 @@ func adjust_stats(changes: Array) -> void:
 				"pierce_stat":
 					new_value = clamp(new_value, min_stats, max_stats)
 				"knockback_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"knockback_res_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"cooldown_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"attack_speed_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"extra_weight_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"dash_cooldown_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"dash_speed_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"extra_weight_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				# Hier einfach neue hinzufügen, falls nötig
 			self.set(stat_name, new_value)
 	save_stats()
@@ -202,6 +203,7 @@ func save_stats():
 	game_manager.dash_cooldown_stat = dash_cooldown_stat
 	game_manager.dash_speed_stat = dash_speed_stat
 	game_manager.extra_weight_stat = extra_weight_stat
+	print(cooldown_stat,"LOL")
 	update_status()
 
 func update_status():
