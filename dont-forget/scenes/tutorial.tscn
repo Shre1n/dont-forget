@@ -1069,7 +1069,6 @@ animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(950, 993)
-test_on = true
 sword = false
 camera_limit_left = -1080
 camera_limit_top = 0
