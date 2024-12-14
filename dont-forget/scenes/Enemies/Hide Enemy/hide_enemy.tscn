@@ -669,6 +669,8 @@ radius = 3115.95
 radius = 20.1505
 
 [node name="hide_enemy" instance=ExtResource("1_worv2")]
+collision_layer = 8
+collision_mask = 121
 script = ExtResource("2_800ox")
 stats_file = "res://gegner/hide.json"
 
@@ -702,6 +704,8 @@ shape = SubResource("CircleShape2D_ma3va")
 
 [node name="AttackArea" type="Area2D" parent="." index="6"]
 scale = Vector2(0.243583, 0.210545)
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("18_a6wgo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" index="0"]
@@ -710,6 +714,8 @@ shape = SubResource("CircleShape2D_1g7te")
 
 [node name="DetectionArea" type="Area2D" parent="." index="7"]
 scale = Vector2(-51.3119, 46.1155)
+collision_layer = 0
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
 scale = Vector2(1.93517, 1.94888)

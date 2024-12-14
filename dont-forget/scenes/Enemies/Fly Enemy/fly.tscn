@@ -424,6 +424,8 @@ position = Vector2(-338, -100)
 shape = SubResource("CircleShape2D_wc2ka")
 
 [node name="AttackArea" type="Area2D" parent="." index="5"]
+collision_layer = 8
+collision_mask = 121
 script = ExtResource("12_8qs1o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" index="0"]
@@ -433,6 +435,8 @@ shape = SubResource("CircleShape2D_nkbdt")
 [node name="DetectionArea" type="Area2D" parent="." index="6"]
 position = Vector2(-307, -129)
 scale = Vector2(-140.025, 129.228)
+collision_layer = 0
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" index="0"]
 scale = Vector2(1.93517, 1.94888)
@@ -451,5 +455,5 @@ shape = SubResource("CircleShape2D_r850h")
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
-[connection signal="body_entered" from="DetectionArea" to="." method="_handle_on_detection_area_entered"]
+[connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]

@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://Templates/Enemy_Template/enemy_template.gd" id="1_k7rkf"]
 
 [node name="EnemyTemplate" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 121
 script = ExtResource("1_k7rkf")
 
 [node name="Direction_Timer" type="Timer" parent="."]
