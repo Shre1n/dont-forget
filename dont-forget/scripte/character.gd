@@ -204,7 +204,6 @@ func save_stats():
 	game_manager.dash_cooldown_stat = dash_cooldown_stat
 	game_manager.dash_speed_stat = dash_speed_stat
 	game_manager.extra_weight_stat = extra_weight_stat
-	print(cooldown_stat,"LOL")
 	update_status()
 
 func update_status():

@@ -30,7 +30,7 @@ func _on_quit_pressed():
 	var current_scene = game_manager.get_child(0).get_child(0).scene_file_path
 	var time_left = game_manager.life.time_left
 
-	var gold = current_player.coins
+	var gold = game_manager.current_character.coins
 	
 	var character_position = game_manager.current_character.position
 	
@@ -39,7 +39,6 @@ func _on_quit_pressed():
 	user_save.gold = gold
 	user_save.position_of_character = character_position
 	user_save.stats = game_manager.get_all_stats()
-	print(game_manager.get_all_stats())
 	
 	var root_children = get_tree().root.get_children()
 	for child in root_children:

@@ -51,23 +51,7 @@ var extra_weight_stat = 0
 
 var user_save = save_User.load_save()
 
-var all_stats_in_dict = {
-	"damage_stat": damage_stat,
-	"crit_dmg_stat": crit_dmg_stat,
-	"res_stat": res_stat,
-	"speed_stat": speed_stat,
-	"jump_stat": jump_stat,
-	"imunity_stat": imunity_stat,
-	"attack_speed_stat": attack_speed_stat,
-	"cooldown_stat": cooldown_stat,
-	"pierce_stat": pierce_stat,
-	"crit_stat": crit_stat,
-	"knockback_stat": knockback_stat,
-	"knockback_res_stat": knockback_res_stat,
-	"dash_cooldown_stat": dash_cooldown_stat,
-	"dash_speed_stat": dash_speed_stat,
-	"extra_weight_stat": extra_weight_stat
-}
+var all_stats_in_dict: Dictionary = {}
 
 var all_stats = damage_stat + crit_dmg_stat + res_stat + speed_stat + jump_stat + imunity_stat + attack_speed_stat + cooldown_stat + pierce_stat + crit_stat + knockback_stat + knockback_res_stat + dash_cooldown_stat+ dash_speed_stat
 
@@ -79,13 +63,29 @@ func _ready():
 	#Zum Village zurück (braucht signal mit path)
 	current_character.connect("going_back", Callable(self, "scene_change"))
 	get_node("Pause_Menu/UiManager").connect("give_user", Callable(self, "give_user"))
-	
-
 
 func give_user():
 	emit_signal("current_user", current_character)
 
 func get_all_stats() -> Dictionary:
+	var all_stats_in_dict = {
+		"damage_stat": damage_stat,
+		"crit_dmg_stat": crit_dmg_stat,
+		"res_stat": res_stat,
+		"speed_stat": speed_stat,
+		"jump_stat": jump_stat,
+		"imunity_stat": imunity_stat,
+		"attack_speed_stat": attack_speed_stat,
+		"cooldown_stat": cooldown_stat,
+		"pierce_stat": pierce_stat,
+		"crit_stat": crit_stat,
+		"knockback_stat": knockback_stat,
+		"knockback_res_stat": knockback_res_stat,
+		"dash_cooldown_stat": dash_cooldown_stat,
+		"dash_speed_stat": dash_speed_stat,
+		"extra_weight_stat": extra_weight_stat
+	}
+	print(all_stats_in_dict)
 	return all_stats_in_dict
 
 func load_saved_scene():
@@ -130,6 +130,7 @@ func load_saved_scene():
 			print(save_user.life)
 			life.start(save_user.life)
 			all_stats_in_dict = user_save.stats
+	print(all_stats_in_dict)
 		
 
 	# Renew Bag
