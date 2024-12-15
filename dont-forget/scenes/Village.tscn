@@ -32,7 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://q7ikoiew26od" path="res://assets/NPC/Owl/2.png" id="27_wlgfp"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="31_hehs4"]
 [ext_resource type="Script" path="res://scenes/no_attack_area.gd" id="32_l4m7q"]
-[ext_resource type="PackedScene" uid="uid://ihipi7rph5xc" path="res://scenes/Enemies/Hide Enemy/hide_enemy.tscn" id="33_ji7qk"]
+[ext_resource type="PackedScene" uid="uid://m2it2ky3jo3g" path="res://scenes/wegweiser/wegweiser.tscn" id="33_mqqcs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2ado"]
 texture = ExtResource("2_cj6i5")
@@ -773,7 +773,7 @@ texture = SubResource("GradientTexture2D_s3wgf")
 modulate = Color(1, 1, 0.384314, 1)
 self_modulate = Color(0.576471, 0.74902, 0.929412, 1)
 z_index = -1
-position = Vector2(739, 561)
+position = Vector2(739, 568)
 scale = Vector2(0.521, 0.5)
 sprite_frames = SubResource("SpriteFrames_7ntwp")
 frame_progress = 0.761755
@@ -1083,9 +1083,15 @@ shape = SubResource("RectangleShape2D_nfvmh")
 position = Vector2(115, 73)
 shape = SubResource("RectangleShape2D_nfvmh")
 
-[node name="hide_enemy" parent="." instance=ExtResource("33_ji7qk")]
-position = Vector2(-847, 749)
-scale = Vector2(0.3, 0.3)
+[node name="Wegweiser Welcome" parent="." instance=ExtResource("33_mqqcs")]
+position = Vector2(-1068, 770)
+scale = Vector2(0.2, 0.2)
+hintText = "Welcome in Golden Valley"
+
+[node name="Wegweiser Well" parent="." instance=ExtResource("33_mqqcs")]
+position = Vector2(3436, 768)
+scale = Vector2(0.2, 0.2)
+hintText = "Start the adventure and jump into the Well"
 
 [connection signal="body_entered" from="Door Well" to="Door Well" method="_on_body_entered"]
 [connection signal="body_entered" from="Out_Door" to="Out_Door" method="_on_body_entered"]
