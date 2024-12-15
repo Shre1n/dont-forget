@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c5a4u1d5vk647" path="res://assets/drops/gold.png" id="4_gtkkb"]
 [ext_resource type="PackedScene" uid="uid://cspyht3ytgvhx" path="res://ui/options.tscn" id="4_v2ckv"]
 [ext_resource type="PackedScene" uid="uid://tva2dh5gu8b0" path="res://ui/Controls.tscn" id="7_s0dk2"]
+[ext_resource type="PackedScene" uid="uid://bos25twpmtbll" path="res://scenes/UI_Manager/UIManager.tscn" id="7_ldwnw"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hijv6"]
 bg_color = Color(0.203922, 0.203922, 0.286275, 1)
@@ -54,6 +55,9 @@ process_mode = 1
 
 [node name="Pause_Menu" type="CanvasLayer" parent="."]
 process_mode = 3
+
+[node name="UiManager" parent="Pause_Menu" instance=ExtResource("7_ldwnw")]
+visible = false
 
 [node name="UI" type="Control" parent="Pause_Menu"]
 layout_mode = 3

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://be5ajis6jfcki"]
+
+[ext_resource type="Script" path="res://death_pit.gd" id="1_nc1wu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gd6e0"]
+
+[node name="Death_Pit" type="Area2D"]
+script = ExtResource("1_nc1wu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gd6e0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
