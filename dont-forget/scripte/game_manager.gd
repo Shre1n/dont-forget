@@ -13,7 +13,7 @@ signal back_to_village
 @onready var life: Timer = $Life_Timer
 @onready var gold: Label = $Pause_Menu/UI/GridContainer/Menge
 @export var life_time:float = 10.0
-@export var max_time: float = 100.0
+@export var max_time: float = 300.0
 
 @onready var canvaslayer = $Pause_Menu
 
