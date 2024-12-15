@@ -112,6 +112,7 @@ func load_saved_scene():
 		if saved_scene_path != null:
 			current_character.position = save_user.position_of_character
 			current_character.coins = user_save.gold
+			gold.text = str(user_save.gold)
 			life_time = user_save.life
 			all_stats_in_dict = user_save.stats
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
@@ -181,7 +182,7 @@ func save_scene():
 	user_save.scene_path = load(String(current_scene)) # Get the current scene's path
 	save_user.position_of_character = current_character.position
 	user_save.life = life_time
-	user_save.gold = gold.text
+	user_save.gold = current_character.coins
 	user_save.save()
 
 
