@@ -23,6 +23,7 @@ var save_user: save_User
 var current_level:Level
 var current_character
 var options_open = false
+var controls_open = false
 var game_paused : bool = false:
 	get:
 		return game_paused
@@ -111,6 +112,7 @@ func load_saved_scene():
 		if saved_scene_path != null:
 			current_character.position = save_user.position_of_character
 			current_character.coins = user_save.gold
+			gold.text = str(user_save.gold)
 			life_time = user_save.life
 			all_stats_in_dict = user_save.stats
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
@@ -169,6 +171,8 @@ func _input(event : InputEvent):
 			$Pause_Menu/UiManager.close()
 		elif(options_open):
 			options_closed()
+		elif (controls_open):
+			controls_closed()
 		else:
 			game_paused = !game_paused
 
@@ -178,7 +182,7 @@ func save_scene():
 	user_save.scene_path = load(String(current_scene)) # Get the current scene's path
 	save_user.position_of_character = current_character.position
 	user_save.life = life_time
-	user_save.gold = gold.text
+	user_save.gold = current_character.coins
 	user_save.save()
 
 
@@ -216,6 +220,13 @@ func options_closed():
 	options_open = false
 	get_node("Pause_Menu/Options").hide()
 
+func controls_closed():
+	controls_open = false
+	get_node("Pause_Menu/Controls").hide()
+
+func controls_opend():
+	controls_open = true
+	get_node("Pause_Menu/Controls").show()
 
 func _on_life_timer_timeout() -> void:
 	if save_user:
