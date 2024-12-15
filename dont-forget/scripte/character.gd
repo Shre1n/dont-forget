@@ -108,6 +108,7 @@ var open = false
 
 func _ready():
 	new_spawn_position()
+	hit_flash_anim_player.play("RESET")
 	camera.limit_left = camera_limit_left
 	camera.limit_top = camera_limit_top
 	camera.limit_right = camera_limit_right
@@ -371,13 +372,15 @@ func die():
 	drop_bag()
 	velocity = Vector2.ZERO
 	alive = false
+	var col2a = 0
+	$CollisionShape2D2/Damage_Area.collision_mask = col2a
 	Global.price_multi = 1
 	animation_player.play("death")
-	await (animation_player.animation_finished)
+	#await (animation_player.animation_finished)
 
 func drop_bag():
 	var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
-	call_deferred("_add_new_bag", bag_scene)
+	_add_new_bag(bag_scene)
 
 func _add_new_bag(bag_scene):
 	emit_signal("resetCoins")
@@ -388,9 +391,7 @@ func _add_new_bag(bag_scene):
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "death" and !alive:
-		#Zum Menu zurück
 		alive = false
-		$AnimationPlayer.stop()
 
 		#Zum Village zurück
 		emit_signal("going_back")

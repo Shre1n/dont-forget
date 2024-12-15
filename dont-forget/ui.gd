@@ -20,6 +20,7 @@ func _ready():
 	game_manager.connect("current_user", Callable(self, "save_user_location"))
 	game_manager.connect("back_to_village", Callable(self, "total_reset"))
 	game_manager.connect("lifetimer", Callable(self, "update_lifetime_display"))
+	set_time_bar_full()
 	
 	amount_label.text = str(coins)
 	
@@ -49,10 +50,13 @@ func coin_reset():
 	amount_label.text = "0"
 
 func update_lifetime_display(time):
-	print(time,"test im UI")
 	if sand_display:
 		#var percentage = time/ max_time
 		sand_display.scale.x = time
+
+func set_time_bar_full():
+	sand_display.value = sand_display.max_value
+
 
 
 func find_game_manager():

@@ -18,7 +18,9 @@ signal back_to_village
 @onready var canvaslayer = $Pause_Menu
 
 var tutorial = preload("res://scenes/tutorial.tscn")
+var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
 var save_user: save_User
+
 
 var current_level:Level
 var current_character
@@ -77,6 +79,8 @@ func _ready():
 	#Zum Village zurück (braucht signal mit path)
 	current_character.connect("going_back", Callable(self, "scene_change"))
 	get_node("Pause_Menu/UiManager").connect("give_user", Callable(self, "give_user"))
+	
+
 
 func give_user():
 	emit_signal("current_user", current_character)
@@ -89,10 +93,12 @@ func load_saved_scene():
 	save_user = user_save
 	var saved_scene_path = save_user.scene_path
 	var bag_scene = save_user.bag_scene
-
+	
+	#Entfernt alle alten Level-Inhalte
 	for child in level_holder.get_children():
 			child.queue_free()
 	
+	# Loads save or Fallback
 	if saved_scene_path != null:
 		var saved_scene_instance = saved_scene_path.instantiate() as Level
 		if saved_scene_instance:
@@ -107,16 +113,26 @@ func load_saved_scene():
 	current_level = level_holder.get_child(0) as Level
 	current_character = find_character(current_level)
 	find_Itemholder(current_level)
+	
+	# Player init
 	if current_character:
-		if saved_scene_path != null:
-			current_character.position = save_user.position_of_character
-			current_character.coins = user_save.gold
-			life.start(save_user.life)
-			all_stats_in_dict = user_save.stats
+		# Renew the connections
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
 		current_character.connect("going_back", Callable(self, "scene_change"))
 		current_character.connect("add_bag", Callable(self, "add_bag"))
+		
+		if saved_scene_path != null:
+			current_character.position = save_user.position_of_character
+			current_character.coins = user_save.gold
+			
+			# Timer starts if all values are set
+			await get_tree().process_frame
+			print(save_user.life)
+			life.start(save_user.life)
+			all_stats_in_dict = user_save.stats
+		
 
+	# Renew Bag
 	if user_save.bag_scene:
 		var bag_instance = user_save.bag_scene.instantiate()
 		get_tree().root.add_child(bag_instance)
@@ -207,7 +223,6 @@ func _on_load_start(_loading_screen):
 func _process(delta):
 	if !life.is_stopped():
 		var percentage = life.time_left/ max_time
-		print( life.time_left,"test im Gamemanager")
 		emit_signal("lifetimer", percentage)
 
 func options_opend():
@@ -220,12 +235,7 @@ func options_closed():
 
 
 func _on_life_timer_timeout() -> void:
-	if save_user:
-		save_user.scene_path = load(current_level.scene_file_path)
-		save_user.bag_position = current_character.position
-		var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
-		add_bag(bag_scene)
-		save_user.save()
+	save_bag_with_user()
 	emit_signal("death")
 	#SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
 
@@ -234,8 +244,11 @@ func life_timer_update(amount):
 	if life.is_stopped():
 		return
 	if life.time_left + amount <= 0:
+		print(life.time_left)
 		life.stop()
+		save_bag_with_user()
 		emit_signal("death")
+		emit_signal("lifetimer", 1)
 	elif	life.time_left + amount < max_time:
 		life.start(life.time_left + amount)
 	else:
@@ -244,6 +257,14 @@ func life_timer_update(amount):
 
 func restart_life_timer():
 	life.start(max_time)
+	
+func save_bag_with_user():
+	if save_user:
+		save_user.scene_path = load(current_level.scene_file_path)
+		save_user.bag_position = current_character.position
+		
+		add_bag(bag_scene)
+		save_user.save()
 
 #Zum Menü zurück
 #func scene_change():
@@ -254,3 +275,5 @@ func restart_life_timer():
 func scene_change():
 	emit_signal("back_to_village")
 	SceneManager.swap_scenes("res://scenes/Village.tscn",level_holder,current_level,"fade_to_white")
+	for child in level_holder.get_children():
+		print(child)

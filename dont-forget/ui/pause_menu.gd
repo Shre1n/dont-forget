@@ -28,7 +28,7 @@ func _on_options_pressed():
 func _on_quit_pressed():
 	var user_save = save_User.load_save()
 	var current_scene = game_manager.get_child(0).get_child(0).scene_file_path
-	var time_left = game_manager.life_time
+	var time_left = game_manager.life.time_left
 
 	var gold = current_player.coins
 	
