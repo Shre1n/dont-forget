@@ -5,6 +5,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd6e0"]
 
 [node name="Death_Pit" type="Area2D"]
+collision_layer = 0
+collision_mask = 32
 script = ExtResource("1_nc1wu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

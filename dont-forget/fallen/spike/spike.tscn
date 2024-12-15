@@ -11,6 +11,8 @@ size = Vector2(116, 45)
 script = ExtResource("1_n81ty")
 
 [node name="Attack_Area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("2_m7foe")
 damage = 0
 pierce_multi = 0
