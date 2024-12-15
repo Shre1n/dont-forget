@@ -2,7 +2,7 @@
 	"profiles": {
 		"default": {
 			"stats": {
-				"life_stat": 100,
+				"life_stat": 20,
 				"amor_stat": 0,
 				"imunity_stat": 0
 			},
@@ -11,7 +11,7 @@
 				"time": 0
 			},
 			"max_drops": {
-				"gold": 0,
+				"gold": 1,
 				"time": 0
 			},
 			"extra_data": {
@@ -19,7 +19,7 @@
 		},
 		"stone_block": {
 			"stats": {
-				"life_stat": 600,
+				"life_stat": 300,
 				"amor_stat": 50,
 				"imunity_stat": 10
 			},
@@ -172,8 +172,8 @@
 		},
 		"diamand_treasure_chest": {
 			"stats": {
-				"life_stat": 100,
-				"amor_stat": 16,
+				"life_stat": 200,
+				"amor_stat": 32,
 				"imunity_stat": 25
 			},
 			"min_drops": {

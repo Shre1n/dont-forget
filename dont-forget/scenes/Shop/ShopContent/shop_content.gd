@@ -188,8 +188,8 @@ func _on_buy_button_pressed(key):
 	# Access the item using its key
 	var item = shop_data[key]
 	#print(current_player.coins, -item["price"])
-	current_player.get_coins(-item["price"])
-	emit_signal("item_purchase", item["price"])
+	current_player.get_coins(-item["price"] * Global.price_multi)
+	emit_signal("item_purchase", item["price"] * Global.price_multi)
 	#print("Purchased: ", item["name"])
 	var test = cal_new_value()
 	var changes = [{"stat": item["stat"], "amount": test}]
