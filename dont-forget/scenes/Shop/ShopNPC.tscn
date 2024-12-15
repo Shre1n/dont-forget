@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ksfxsfjbv20j"]
+[gd_scene load_steps=15 format=3 uid="uid://rwcbxprdm3p4"]
 
 [ext_resource type="Script" path="res://scenes/Shop/shop_npc.gd" id="1_wbcvt"]
 [ext_resource type="Texture2D" uid="uid://ceyvvqa5e7bvx" path="res://scenes/Shop/händler/idle/1.png" id="2_a7umw"]
