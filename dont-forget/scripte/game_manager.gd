@@ -146,7 +146,7 @@ func add_bag(bag_scene):
 		if child.name == "Bag":
 			child.queue_free()
 			child.call_deferred("free")
-			print("Removed existing Bag instance:", child)
+			#print("Removed existing Bag instance:", child)
 	call_deferred("add_child_as_bag", bag_scene)
 
 func add_child_as_bag(bag_scene):

@@ -45,7 +45,7 @@ func _on_quit_pressed():
 		if child.name == "Bag":
 			user_save.bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")  # Assign it to the save resource
 			user_save.bag_position = child.position
-			print("Bag instance saved in user save.")
+			#print("Bag instance saved in user save.")
 			break
 	user_save.save()
 	get_tree().quit()
