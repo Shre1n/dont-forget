@@ -61,7 +61,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
-          tag: Release ${{ github.ref_name }}
+          tag: ${{ github.ref_name }}
+          name: Dont-Forget Alpha v0.0.1
           artifacts:
             ${{ steps.export.outputs.archive_directory }}/Windows.zip
             ${{ steps.export.outputs.archive_directory }}/Mac OSX.zip
