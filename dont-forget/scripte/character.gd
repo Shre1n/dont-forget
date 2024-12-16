@@ -148,7 +148,6 @@ func adjust_stats(changes: Array) -> void:
 		var stat_name = change.get("stat", "")
 		var amount = change.get("amount", 0)
 		if stat_name in self:
-			print(stat_name, amount,self.get(stat_name), "LOL1")
 			var new_value = self.get(stat_name) + amount
 			# Optional: Min-/Max-Grenzen berücksichtigen
 			match stat_name:
@@ -384,8 +383,6 @@ func drop_bag():
 func _add_new_bag(bag_scene):
 	emit_signal("resetCoins")
 	#emit_signal("add_bag", bag_scene)
-	print(get_tree().root.get_children())
-	print("New Bag instance:", bag_scene)
 
 
 func _on_animation_player_animation_finished(anim_name):
