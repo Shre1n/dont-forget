@@ -9,6 +9,9 @@ jobs:
   export_game:
     # Always use ubuntu-latest for this action
     runs-on: ubuntu-latest
+    env:
+      DEV-STEP: Alpha
+      VERSION: 1.0.0
     # Add permission for release creation. Can be made narrower according to your needs
     permissions: write-all
     # Job name, can be anything
@@ -51,7 +54,7 @@ jobs:
       - name: Upload Linux Build
         uses: actions/upload-artifact@v4
         with:
-          name: macOS
+          name: Linux
           path: ${{ steps.export.outputs.archive_directory }}/Linux.zip
 
         # This release action has worked well for me. However, you can most likely use any release action of your choosing.
@@ -61,10 +64,10 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
-          tag: ${{ github.ref_name }}
-          name: Dont-Forget Alpha v0.0.1
+          tag: ${{ DEV-STEP }}-${{ VERSION }}
+          name: Dont-Forget ${{ DEV-STEP }}-${{ VERSION }}
           artifacts:
-            ${{ steps.export.outputs.archive_directory }}/Windows.zip
-            ${{ steps.export.outputs.archive_directory }}/Mac OSX.zip
+            ${{ steps.export.outputs.archive_directory }}/Windows Desktop.zip
+            ${{ steps.export.outputs.archive_directory }}/macOS.zip
             ${{ steps.export.outputs.archive_directory }}/Linux.zip
           allowUpdates: true
