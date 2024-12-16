@@ -6,9 +6,8 @@ on:
     branches:
       - "**"
       - "!main"
-  pull_request:
-    branches:
-      - "development"
+      - "!feature/releases"
+      - "!development"
 
 jobs:
   unitTests:
@@ -33,7 +32,7 @@ jobs:
         run: |
           godot --headless --path dont-forget -s addons/gut/gut_cmdln.gd -ginclude_subdirs -gdir=res://Test -gexit -gprefix=test_ > test_results.log
 
-      - name:
+      - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: test-results
