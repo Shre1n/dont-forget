@@ -6,7 +6,7 @@ on:
     branches:
       - "**"
       - "!main"
-      - "!feature/IP2WS2425G3-507-Release-Builds"
+      - "!feature/releases"
       - "!development"
 
 jobs:
