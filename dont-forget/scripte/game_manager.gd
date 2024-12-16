@@ -85,7 +85,6 @@ func get_all_stats() -> Dictionary:
 		"dash_speed_stat": dash_speed_stat,
 		"extra_weight_stat": extra_weight_stat
 	}
-	print(all_stats_in_dict)
 	return all_stats_in_dict
 
 func load_saved_scene():
@@ -104,11 +103,11 @@ func load_saved_scene():
 		if saved_scene_instance:
 			level_holder.add_child(saved_scene_instance)
 		else:
-			print("failed to instance saved scene. Loading Tutorial.")
+			#print("failed to instance saved scene. Loading Tutorial.")
 			level_holder.add_child(tutorial.instantiate() as Level)
 	else:
 		level_holder.add_child(tutorial.instantiate() as Level)
-		print("Fallback to tutorial.")
+		#print("Fallback to tutorial.")
 	
 	current_level = level_holder.get_child(0) as Level
 	current_character = find_character(current_level)
@@ -127,10 +126,8 @@ func load_saved_scene():
 			
 			# Timer starts if all values are set
 			await get_tree().process_frame
-			print(save_user.life)
 			life.start(save_user.life)
 			all_stats_in_dict = user_save.stats
-	print(all_stats_in_dict)
 		
 
 	# Renew Bag
@@ -139,10 +136,10 @@ func load_saved_scene():
 		get_tree().root.add_child(bag_instance)
 		if user_save.bag_position:
 			bag_instance.position = user_save.bag_position  # Restore the position
-		print("Bag instance restored at position ", bag_instance.position)
-		print("Bag instance restored.")
-	else:
-		print("No Bag scene saved. Skipping Bag restoration.")
+		#print("Bag instance restored at position ", bag_instance.position)
+		#print("Bag instance restored.")
+	#else:
+		#print("No Bag scene saved. Skipping Bag restoration.")
 
 func add_bag(bag_scene):
 	for child in get_tree().root.get_children():
@@ -245,7 +242,6 @@ func life_timer_update(amount):
 	if life.is_stopped():
 		return
 	if life.time_left + amount <= 0:
-		print(life.time_left)
 		life.stop()
 		save_bag_with_user()
 		emit_signal("death")
@@ -276,5 +272,3 @@ func save_bag_with_user():
 func scene_change():
 	emit_signal("back_to_village")
 	SceneManager.swap_scenes("res://scenes/Village.tscn",level_holder,current_level,"fade_to_white")
-	for child in level_holder.get_children():
-		print(child)
