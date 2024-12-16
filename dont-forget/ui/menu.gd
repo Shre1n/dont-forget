@@ -6,11 +6,15 @@ class_name StartScreen extends Control
 var user_save: save_User
 
 var options_open: bool = false
+var controls_open: bool = false
 
 func _input(event : InputEvent):
 	if(event.is_action_pressed("ui_cancel") and options_open):
 		options_open = false
 		get_node("Options").hide()
+	elif (event.is_action_pressed("ui_cancel") and controls_open):
+		controls_open =false
+		get_node("Controls").hide()
 
 func _ready():
 	if !FileAccess.file_exists("user://user_save_point.tres"):
@@ -45,9 +49,16 @@ func _on_options_button_pressed():
 	get_node("Options").show()
 
 
+
+
 func _on_credits_button_pressed():
 	pass # Replace with function body.
 
 
 func _on_quit_button_pressed():
 	get_tree().quit()
+
+
+func _on_controls_pressed() :
+	controls_open = true
+	get_node("Controls").show()

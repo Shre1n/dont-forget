@@ -2,6 +2,8 @@ class_name Pause_Menu extends Control
 
 @export var game_manager : Game_Manager
 var current_player
+var controls_open: bool = false
+
 
 func _ready() -> void:
 	hide()
@@ -23,7 +25,10 @@ func _on_resume_pressed():
 
 func _on_options_pressed():
 	game_manager.options_opend()
+	
 
+func _on_controls_pressed():
+	game_manager.controls_opend()
 
 func _on_quit_pressed():
 	var user_save = save_User.load_save()
