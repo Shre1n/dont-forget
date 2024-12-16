@@ -33,6 +33,7 @@ jobs:
           cache: true
           relative_project_path: ./dont-forget
           archive_output: true
+          presets_to_export: 'Windows Desktop, macOS, Linux'
 
           # Step 3: Verify Export Output and Upload Artifact
       - name: Verify Export Output
