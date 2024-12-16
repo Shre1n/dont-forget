@@ -2,6 +2,8 @@ class_name Pause_Menu extends Control
 
 @export var game_manager : Game_Manager
 var current_player
+var controls_open: bool = false
+
 
 func _ready() -> void:
 	hide()
@@ -23,14 +25,17 @@ func _on_resume_pressed():
 
 func _on_options_pressed():
 	game_manager.options_opend()
+	
 
+func _on_controls_pressed():
+	game_manager.controls_opend()
 
 func _on_quit_pressed():
 	var user_save = save_User.load_save()
 	var current_scene = game_manager.get_child(0).get_child(0).scene_file_path
-	var time_left = game_manager.life_time
+	var time_left = game_manager.life.time_left
 
-	var gold = current_player.coins
+	var gold = game_manager.current_character.coins
 	
 	var character_position = game_manager.current_character.position
 	
@@ -39,14 +44,13 @@ func _on_quit_pressed():
 	user_save.gold = gold
 	user_save.position_of_character = character_position
 	user_save.stats = game_manager.get_all_stats()
-	print(game_manager.get_all_stats())
 	
 	var root_children = get_tree().root.get_children()
 	for child in root_children:
 		if child.name == "Bag":
 			user_save.bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")  # Assign it to the save resource
 			user_save.bag_position = child.position
-			print("Bag instance saved in user save.")
+			#print("Bag instance saved in user save.")
 			break
 	user_save.save()
 	get_tree().quit()

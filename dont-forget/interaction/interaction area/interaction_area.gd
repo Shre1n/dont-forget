@@ -5,6 +5,7 @@ class_name InteractionArea
 @export var action_name: String = "interact"
 @export var body_of_character: Character 
 
+
 var interact: Callable = func():
 	pass
 

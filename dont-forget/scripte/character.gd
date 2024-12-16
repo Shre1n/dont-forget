@@ -71,7 +71,7 @@ var dash_cooldown_reduction
 var current_dash_speed = 1
 var dashing = false
 
-var coins = 0
+@export var coins = 0
 
 var start_position: Vector2
 
@@ -108,6 +108,7 @@ var open = false
 
 func _ready():
 	new_spawn_position()
+	hit_flash_anim_player.play("RESET")
 	camera.limit_left = camera_limit_left
 	camera.limit_top = camera_limit_top
 	camera.limit_right = camera_limit_right
@@ -167,21 +168,21 @@ func adjust_stats(changes: Array) -> void:
 				"pierce_stat":
 					new_value = clamp(new_value, min_stats, max_stats)
 				"knockback_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"knockback_res_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"cooldown_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"attack_speed_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"extra_weight_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"dash_cooldown_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"dash_speed_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				"extra_weight_stat":
-					new_value = max(new_value, min_stats, max_stats)
+					new_value = clamp(new_value, min_stats, max_stats)
 				# Hier einfach neue hinzufügen, falls nötig
 			self.set(stat_name, new_value)
 	save_stats()
@@ -334,8 +335,8 @@ func dash():
 	collision_mask = col1a
 	var col2a = 0
 	$CollisionShape2D2/Damage_Area.collision_mask = col2a
-	#var col3a = 0
-	#collision_layer = col3a
+	var col3a = 0
+	collision_layer = col3a
 	dash_timer.start()
 
 
@@ -346,8 +347,8 @@ func _on_dash_timer_timeout():
 	collision_mask = col1b
 	var col2b = 2
 	$CollisionShape2D2/Damage_Area.collision_mask = col2b
-	#var col3b = 32
-	#collision_layer = col3b
+	var col3b = 32
+	collision_layer = col3b
 
 func update_animation():
 	if alive:
@@ -369,31 +370,30 @@ func die():
 	drop_bag()
 	velocity = Vector2.ZERO
 	alive = false
+	var col2a = 0
+	$CollisionShape2D2/Damage_Area.collision_mask = col2a
+	Global.price_multi = 1
 	animation_player.play("death")
-	await (animation_player.animation_finished)
+	#await (animation_player.animation_finished)
 
 func drop_bag():
 	var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
-	call_deferred("_add_new_bag", bag_scene)
+	_add_new_bag(bag_scene)
 
 func _add_new_bag(bag_scene):
 	emit_signal("resetCoins")
 	#emit_signal("add_bag", bag_scene)
-	print(get_tree().root.get_children())
-	print("New Bag instance:", bag_scene)
 
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "death" and !alive:
-		#Zum Menu zurück
 		alive = false
-		$AnimationPlayer.stop()
 
 		#Zum Village zurück
-		#emit_signal("going_back")
+		emit_signal("going_back")
 		#Zum Village zurück
-		var path = "res://scenes/village.tscn"
-		emit_signal("going_back", path)
+		#var path = "res://scenes/Village.tscn"
+		#emit_signal("going_back", path)
 
 func new_spawn_position():
 	if Global.new_position != null:

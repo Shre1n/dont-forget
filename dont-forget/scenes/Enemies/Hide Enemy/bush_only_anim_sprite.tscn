@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://nengj2xymijl"]
+
+[ext_resource type="Texture2D" uid="uid://ckcxpvmh564fq" path="res://assets/enemy/hide/idle/1.png" id="1_41jho"]
+[ext_resource type="Texture2D" uid="uid://be4cnrnd88djt" path="res://assets/enemy/hide/idle/2.png" id="2_v5ujw"]
+[ext_resource type="Texture2D" uid="uid://cy285tcxfbdjg" path="res://assets/enemy/hide/idle/3.png" id="3_8rl7w"]
+[ext_resource type="Texture2D" uid="uid://bc8ujiqu5fiwn" path="res://assets/enemy/hide/idle/4.png" id="4_pk4nw"]
+[ext_resource type="Script" path="res://scenes/Enemies/Hide Enemy/bush_only_anim_sprite.gd" id="5_jxmkl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m2yis"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_41jho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v5ujw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8rl7w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_pk4nw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
+
+[node name="BushOnlyAnimSprite" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_m2yis")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.395319
+script = ExtResource("5_jxmkl")

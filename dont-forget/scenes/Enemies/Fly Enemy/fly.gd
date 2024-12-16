@@ -39,7 +39,7 @@ func _ready():
 	max_pos.x += 10
 	min_pos.y -= 10
 	max_pos.y += 10
-	chase_range = detection_area.scale.x*100
+	chase_range = detection_area.scale.x*5
 	animationPlayer.play("idle")
 	# Connect detection area signals
 	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
@@ -71,7 +71,7 @@ func _physics_process(delta):
 			velocity = Vector2.ZERO
 
 	# If player is within range, start chasing
-	if player and global_position.distance_to(player.global_position) <= chase_range:
+	if player and global_position.distance_to(player.global_position) >= chase_range:
 		chase_player()
 
 	# Call the parent's handle_knockback() to manage knockback behavior

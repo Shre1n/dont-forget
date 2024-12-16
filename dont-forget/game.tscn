@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cvi4bctnbdpax"]
+[gd_scene load_steps=16 format=3 uid="uid://cvi4bctnbdpax"]
 
 [ext_resource type="Script" path="res://scripte/game_manager.gd" id="1_brvfy"]
 [ext_resource type="PackedScene" uid="uid://cpylfpo14s0l2" path="res://ui/pause_menu.tscn" id="3_5oodd"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://ba1vr60upkeqc" path="res://assets/Life/Ui_Time_.png" id="4_03et5"]
 [ext_resource type="Texture2D" uid="uid://c5a4u1d5vk647" path="res://assets/drops/gold.png" id="4_gtkkb"]
 [ext_resource type="PackedScene" uid="uid://cspyht3ytgvhx" path="res://ui/options.tscn" id="4_v2ckv"]
+[ext_resource type="PackedScene" uid="uid://bos25twpmtbll" path="res://scenes/UI_Manager/UIManager.tscn" id="7_ldwnw"]
+[ext_resource type="PackedScene" path="res://ui/Controls.tscn" id="7_s0dk2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hijv6"]
 bg_color = Color(0.203922, 0.203922, 0.286275, 1)
@@ -38,9 +40,276 @@ cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
 cache/0/16/0/underline_thickness = 0.0
 cache/0/16/0/scale = 1.0
+cache/0/17/0/ascent = 0.0
+cache/0/17/0/descent = 0.0
+cache/0/17/0/underline_position = 0.0
+cache/0/17/0/underline_thickness = 0.0
+cache/0/17/0/scale = 1.0
+cache/0/18/0/ascent = 0.0
+cache/0/18/0/descent = 0.0
+cache/0/18/0/underline_position = 0.0
+cache/0/18/0/underline_thickness = 0.0
+cache/0/18/0/scale = 1.0
+cache/0/19/0/ascent = 0.0
+cache/0/19/0/descent = 0.0
+cache/0/19/0/underline_position = 0.0
+cache/0/19/0/underline_thickness = 0.0
+cache/0/19/0/scale = 1.0
+cache/0/20/0/ascent = 0.0
+cache/0/20/0/descent = 0.0
+cache/0/20/0/underline_position = 0.0
+cache/0/20/0/underline_thickness = 0.0
+cache/0/20/0/scale = 1.0
+cache/0/21/0/ascent = 0.0
+cache/0/21/0/descent = 0.0
+cache/0/21/0/underline_position = 0.0
+cache/0/21/0/underline_thickness = 0.0
+cache/0/21/0/scale = 1.0
+cache/0/22/0/ascent = 0.0
+cache/0/22/0/descent = 0.0
+cache/0/22/0/underline_position = 0.0
+cache/0/22/0/underline_thickness = 0.0
+cache/0/22/0/scale = 1.0
+cache/0/23/0/ascent = 0.0
+cache/0/23/0/descent = 0.0
+cache/0/23/0/underline_position = 0.0
+cache/0/23/0/underline_thickness = 0.0
+cache/0/23/0/scale = 1.0
+cache/0/24/0/ascent = 0.0
+cache/0/24/0/descent = 0.0
+cache/0/24/0/underline_position = 0.0
+cache/0/24/0/underline_thickness = 0.0
+cache/0/24/0/scale = 1.0
+cache/0/25/0/ascent = 0.0
+cache/0/25/0/descent = 0.0
+cache/0/25/0/underline_position = 0.0
+cache/0/25/0/underline_thickness = 0.0
+cache/0/25/0/scale = 1.0
+cache/0/26/0/ascent = 0.0
+cache/0/26/0/descent = 0.0
+cache/0/26/0/underline_position = 0.0
+cache/0/26/0/underline_thickness = 0.0
+cache/0/26/0/scale = 1.0
+cache/0/27/0/ascent = 0.0
+cache/0/27/0/descent = 0.0
+cache/0/27/0/underline_position = 0.0
+cache/0/27/0/underline_thickness = 0.0
+cache/0/27/0/scale = 1.0
+cache/0/28/0/ascent = 0.0
+cache/0/28/0/descent = 0.0
+cache/0/28/0/underline_position = 0.0
+cache/0/28/0/underline_thickness = 0.0
+cache/0/28/0/scale = 1.0
+cache/0/29/0/ascent = 0.0
+cache/0/29/0/descent = 0.0
+cache/0/29/0/underline_position = 0.0
+cache/0/29/0/underline_thickness = 0.0
+cache/0/29/0/scale = 1.0
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+cache/0/129/0/ascent = 0.0
+cache/0/129/0/descent = 0.0
+cache/0/129/0/underline_position = 0.0
+cache/0/129/0/underline_thickness = 0.0
+cache/0/129/0/scale = 1.0
+cache/0/149/0/ascent = 0.0
+cache/0/149/0/descent = 0.0
+cache/0/149/0/underline_position = 0.0
+cache/0/149/0/underline_thickness = 0.0
+cache/0/149/0/scale = 1.0
+cache/0/169/0/ascent = 0.0
+cache/0/169/0/descent = 0.0
+cache/0/169/0/underline_position = 0.0
+cache/0/169/0/underline_thickness = 0.0
+cache/0/169/0/scale = 1.0
+cache/0/199/0/ascent = 0.0
+cache/0/199/0/descent = 0.0
+cache/0/199/0/underline_position = 0.0
+cache/0/199/0/underline_thickness = 0.0
+cache/0/199/0/scale = 1.0
+cache/0/219/0/ascent = 0.0
+cache/0/219/0/descent = 0.0
+cache/0/219/0/underline_position = 0.0
+cache/0/219/0/underline_thickness = 0.0
+cache/0/219/0/scale = 1.0
+cache/0/229/0/ascent = 0.0
+cache/0/229/0/descent = 0.0
+cache/0/229/0/underline_position = 0.0
+cache/0/229/0/underline_thickness = 0.0
+cache/0/229/0/scale = 1.0
+cache/0/249/0/ascent = 0.0
+cache/0/249/0/descent = 0.0
+cache/0/249/0/underline_position = 0.0
+cache/0/249/0/underline_thickness = 0.0
+cache/0/249/0/scale = 1.0
+cache/0/259/0/ascent = 0.0
+cache/0/259/0/descent = 0.0
+cache/0/259/0/underline_position = 0.0
+cache/0/259/0/underline_thickness = 0.0
+cache/0/259/0/scale = 1.0
+cache/0/269/0/ascent = 0.0
+cache/0/269/0/descent = 0.0
+cache/0/269/0/underline_position = 0.0
+cache/0/269/0/underline_thickness = 0.0
+cache/0/269/0/scale = 1.0
+cache/0/289/0/ascent = 0.0
+cache/0/289/0/descent = 0.0
+cache/0/289/0/underline_position = 0.0
+cache/0/289/0/underline_thickness = 0.0
+cache/0/289/0/scale = 1.0
+cache/0/309/0/ascent = 0.0
+cache/0/309/0/descent = 0.0
+cache/0/309/0/underline_position = 0.0
+cache/0/309/0/underline_thickness = 0.0
+cache/0/309/0/scale = 1.0
+cache/0/349/0/ascent = 0.0
+cache/0/349/0/descent = 0.0
+cache/0/349/0/underline_position = 0.0
+cache/0/349/0/underline_thickness = 0.0
+cache/0/349/0/scale = 1.0
+cache/0/379/0/ascent = 0.0
+cache/0/379/0/descent = 0.0
+cache/0/379/0/underline_position = 0.0
+cache/0/379/0/underline_thickness = 0.0
+cache/0/379/0/scale = 1.0
+cache/0/399/0/ascent = 0.0
+cache/0/399/0/descent = 0.0
+cache/0/399/0/underline_position = 0.0
+cache/0/399/0/underline_thickness = 0.0
+cache/0/399/0/scale = 1.0
+cache/0/409/0/ascent = 0.0
+cache/0/409/0/descent = 0.0
+cache/0/409/0/underline_position = 0.0
+cache/0/409/0/underline_thickness = 0.0
+cache/0/409/0/scale = 1.0
+cache/0/419/0/ascent = 0.0
+cache/0/419/0/descent = 0.0
+cache/0/419/0/underline_position = 0.0
+cache/0/419/0/underline_thickness = 0.0
+cache/0/419/0/scale = 1.0
+cache/0/429/0/ascent = 0.0
+cache/0/429/0/descent = 0.0
+cache/0/429/0/underline_position = 0.0
+cache/0/429/0/underline_thickness = 0.0
+cache/0/429/0/scale = 1.0
+cache/0/299/0/ascent = 0.0
+cache/0/299/0/descent = 0.0
+cache/0/299/0/underline_position = 0.0
+cache/0/299/0/underline_thickness = 0.0
+cache/0/299/0/scale = 1.0
+cache/0/179/0/ascent = 0.0
+cache/0/179/0/descent = 0.0
+cache/0/179/0/underline_position = 0.0
+cache/0/179/0/underline_thickness = 0.0
+cache/0/179/0/scale = 1.0
+cache/0/109/0/ascent = 0.0
+cache/0/109/0/descent = 0.0
+cache/0/109/0/underline_position = 0.0
+cache/0/109/0/underline_thickness = 0.0
+cache/0/109/0/scale = 1.0
+cache/0/49/0/ascent = 0.0
+cache/0/49/0/descent = 0.0
+cache/0/49/0/underline_position = 0.0
+cache/0/49/0/underline_thickness = 0.0
+cache/0/49/0/scale = 1.0
+cache/0/1/0/ascent = 0.0
+cache/0/1/0/descent = 0.0
+cache/0/1/0/underline_position = 0.0
+cache/0/1/0/underline_thickness = 0.0
+cache/0/1/0/scale = 1.0
+cache/0/9/0/ascent = 0.0
+cache/0/9/0/descent = 0.0
+cache/0/9/0/underline_position = 0.0
+cache/0/9/0/underline_thickness = 0.0
+cache/0/9/0/scale = 1.0
+cache/0/39/0/ascent = 0.0
+cache/0/39/0/descent = 0.0
+cache/0/39/0/underline_position = 0.0
+cache/0/39/0/underline_thickness = 0.0
+cache/0/39/0/scale = 1.0
+cache/0/59/0/ascent = 0.0
+cache/0/59/0/descent = 0.0
+cache/0/59/0/underline_position = 0.0
+cache/0/59/0/underline_thickness = 0.0
+cache/0/59/0/scale = 1.0
+cache/0/69/0/ascent = 0.0
+cache/0/69/0/descent = 0.0
+cache/0/69/0/underline_position = 0.0
+cache/0/69/0/underline_thickness = 0.0
+cache/0/69/0/scale = 1.0
+cache/0/79/0/ascent = 0.0
+cache/0/79/0/descent = 0.0
+cache/0/79/0/underline_position = 0.0
+cache/0/79/0/underline_thickness = 0.0
+cache/0/79/0/scale = 1.0
+cache/0/89/0/ascent = 0.0
+cache/0/89/0/descent = 0.0
+cache/0/89/0/underline_position = 0.0
+cache/0/89/0/underline_thickness = 0.0
+cache/0/89/0/scale = 1.0
+cache/0/99/0/ascent = 0.0
+cache/0/99/0/descent = 0.0
+cache/0/99/0/underline_position = 0.0
+cache/0/99/0/underline_thickness = 0.0
+cache/0/99/0/scale = 1.0
+cache/0/51/0/ascent = 0.0
+cache/0/51/0/descent = 0.0
+cache/0/51/0/underline_position = 0.0
+cache/0/51/0/underline_thickness = 0.0
+cache/0/51/0/scale = 1.0
+cache/0/61/0/ascent = 0.0
+cache/0/61/0/descent = 0.0
+cache/0/61/0/underline_position = 0.0
+cache/0/61/0/underline_thickness = 0.0
+cache/0/61/0/scale = 1.0
+cache/0/71/0/ascent = 0.0
+cache/0/71/0/descent = 0.0
+cache/0/71/0/underline_position = 0.0
+cache/0/71/0/underline_thickness = 0.0
+cache/0/71/0/scale = 1.0
+cache/0/81/0/ascent = 0.0
+cache/0/81/0/descent = 0.0
+cache/0/81/0/underline_position = 0.0
+cache/0/81/0/underline_thickness = 0.0
+cache/0/81/0/scale = 1.0
+cache/0/91/0/ascent = 0.0
+cache/0/91/0/descent = 0.0
+cache/0/91/0/underline_position = 0.0
+cache/0/91/0/underline_thickness = 0.0
+cache/0/91/0/scale = 1.0
+cache/0/41/0/ascent = 0.0
+cache/0/41/0/descent = 0.0
+cache/0/41/0/underline_position = 0.0
+cache/0/41/0/underline_thickness = 0.0
+cache/0/41/0/scale = 1.0
+cache/0/31/0/ascent = 0.0
+cache/0/31/0/descent = 0.0
+cache/0/31/0/underline_position = 0.0
+cache/0/31/0/underline_thickness = 0.0
+cache/0/31/0/scale = 1.0
+cache/0/11/0/ascent = 0.0
+cache/0/11/0/descent = 0.0
+cache/0/11/0/underline_position = 0.0
+cache/0/11/0/underline_thickness = 0.0
+cache/0/11/0/scale = 1.0
+cache/0/101/0/ascent = 0.0
+cache/0/101/0/descent = 0.0
+cache/0/101/0/underline_position = 0.0
+cache/0/101/0/underline_thickness = 0.0
+cache/0/101/0/scale = 1.0
+cache/0/111/0/ascent = 0.0
+cache/0/111/0/descent = 0.0
+cache/0/111/0/underline_position = 0.0
+cache/0/111/0/underline_thickness = 0.0
+cache/0/111/0/scale = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_gbgn7"]
+line_spacing = 0.0
 font = SubResource("FontFile_bgfe0")
+font_size = 71
 font_color = Color(1, 1, 0.372549, 1)
 
 [node name="Game_Manager" type="Node2D" groups=["game_manager"]]
@@ -54,7 +323,11 @@ process_mode = 1
 [node name="Pause_Menu" type="CanvasLayer" parent="."]
 process_mode = 3
 
+[node name="UiManager" parent="Pause_Menu" instance=ExtResource("7_ldwnw")]
+visible = false
+
 [node name="UI" type="Control" parent="Pause_Menu"]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -83,12 +356,12 @@ grow_vertical = 2
 [node name="SandDisplay" type="ProgressBar" parent="Pause_Menu/UI"]
 modulate = Color(1, 1, 0.317647, 1)
 layout_mode = 0
-offset_left = 36.0
+offset_left = 32.0
 offset_top = 25.0
-offset_right = 577.0
+offset_right = 661.0
 offset_bottom = 78.0
 theme = SubResource("Theme_n3kn5")
-max_value = 10.0
+value = 100.0
 fill_mode = 1
 show_percentage = false
 
@@ -104,24 +377,20 @@ expand_mode = 2
 [node name="GridContainer" type="GridContainer" parent="Pause_Menu/UI"]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 2.438
 anchor_bottom = 1.0
 offset_left = 1700.0
-offset_right = 1680.48
-offset_bottom = -1.0
-scale = Vector2(2.84, 2.24)
+offset_right = 1771.48
+offset_bottom = 59.0
 columns = 2
 
 [node name="TextureRect" type="TextureRect" parent="Pause_Menu/UI/GridContainer"]
 layout_mode = 2
 texture = ExtResource("4_gtkkb")
 expand_mode = 2
-stretch_mode = 4
 flip_h = true
 
 [node name="Menge" type="Label" parent="Pause_Menu/UI/GridContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 30
 text = "0"
@@ -137,8 +406,12 @@ process_mode = 3
 visible = false
 game_manager = NodePath("../..")
 
+[node name="Controls" parent="Pause_Menu" instance=ExtResource("7_s0dk2")]
+visible = false
+
 [node name="Life_Timer" type="Timer" parent="."]
-wait_time = 5.0
+process_mode = 1
+wait_time = 100.0
 one_shot = true
 
 [connection signal="timeout" from="Life_Timer" to="." method="_on_life_timer_timeout"]

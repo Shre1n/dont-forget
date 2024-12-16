@@ -68,6 +68,8 @@ func _load_content(content_path:String) -> void:
 	
 	get_tree().root.add_child(_load_progress_timer)
 	_load_progress_timer.start()
+	
+	
 
 func _monitor_load_status() -> void:
 	var load_progress = []

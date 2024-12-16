@@ -1,0 +1,18 @@
+{
+	"profiles": {
+		"default": {
+			"shop_data": {
+				"damage_stat": { "name": "Damage", "price": 7, "stat": "damage_stat" },
+				"speed_stat": { "name": "Speed", "price": 4, "stat": "speed_stat" },
+				"jump_stat": { "name": "Jump Height", "price": 3, "stat": "jump_stat"}
+			}
+		},
+		"second_shop": {
+			"shop_data": {
+				"crit_stat": { "name": "Crit Chance", "price": 4, "stat": "crit_stat" },
+				"cooldown_stat": { "name": "Cooldown", "price": 2, "stat": "cooldown_stat" },
+				"pierce_stat": { "name": "Pierce", "price": 5, "stat": "pierce_stat"}
+			}
+		}
+	}
+}

@@ -14,3 +14,4 @@ var new_position
 var new_direction
 
 var coins: int
+var price_multi: float = 1
