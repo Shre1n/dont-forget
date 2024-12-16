@@ -64,8 +64,8 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           generateReleaseNotes: true
-          tag: ${{ DEV-STEP }}-${{ VERSION }}
-          name: Dont-Forget ${{ DEV-STEP }}-${{ VERSION }}
+          tag: ${{ env.DEV-STEP }}-${{ env.VERSION }}
+          name: Dont-Forget ${{ env.DEV-STEP }}-${{ env.VERSION }}
           artifacts:
             ${{ steps.export.outputs.archive_directory }}/Windows Desktop.zip
             ${{ steps.export.outputs.archive_directory }}/macOS.zip
