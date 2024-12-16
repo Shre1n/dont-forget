@@ -174,8 +174,8 @@ func update_status():
 		weapon.crit_chance = crit_stat
 		weapon.crit_multi = max(1, crit_dmg_stat)
 		weapon.knockback = knockback_stat
-	else:
-		print("No weapon")
+	#else:
+		#print("No weapon")
 
 func calculate_stats_to_value(stat: int, span_start: float, span_end: float, min_value: float, max_value: float, divider: float = 1000.0) -> float:
 	var stat_factor = clamp(stat / divider, span_start, span_end)
@@ -273,7 +273,6 @@ func _on_detection_area_body_entered(body):
 func _on_detection_area_body_exited(body):
 	# Triggered when the player exits the detection area
 	if body is Character and character == body:
-		print("Body existed")
 		character = null
 		character_chase = false
 		start_new_behavior()

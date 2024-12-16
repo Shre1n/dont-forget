@@ -16,6 +16,7 @@ hintText = "ICH LIEBE SIE und ich hab hunger und ich will nicht mehr robin stink
 texture = ExtResource("2_a7yf8")
 
 [node name="InteractionArea" parent="." instance=ExtResource("3_464gb")]
+action_name = "read"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(84, 185.25)

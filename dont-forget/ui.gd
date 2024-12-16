@@ -16,17 +16,18 @@ var frequency: float = 2.0   # Adjust for speed of oscillation
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sand_display.size.x = 60
+	#sand_display.size.x = 60
 	game_manager.connect("current_user", Callable(self, "save_user_location"))
 	game_manager.connect("back_to_village", Callable(self, "total_reset"))
 	game_manager.connect("lifetimer", Callable(self, "update_lifetime_display"))
+	set_time_bar_full()
 	
 	amount_label.text = str(coins)
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	update_lifetime_display(max_time)
+#func _process(delta):
+	#update_lifetime_display(max_time)
 
 func save_user_location(path):
 	current_player = path
@@ -50,8 +51,12 @@ func coin_reset():
 
 func update_lifetime_display(time):
 	if sand_display:
-		var percentage = time/ max_time
-		sand_display.scale.x = percentage
+		#var percentage = time/ max_time
+		sand_display.scale.x = time
+
+func set_time_bar_full():
+	sand_display.value = sand_display.max_value
+
 
 
 func find_game_manager():

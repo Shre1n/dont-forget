@@ -89,8 +89,6 @@ func apply_button_style(theme: Theme):
 	theme.set_stylebox("pressed", "Button", button_style)
 
 func populate_shopbackup():
-	print(shop_data)
-	print(shop_data.keys())
 	for key in shop_data.keys():
 		var item = shop_data[key]
 		#print(key)
@@ -130,8 +128,6 @@ func populate_shopbackup():
 		vbox_container.add_child(HSeparator.new())
 
 func populate_shop():
-	print(shop_data)
-	print(shop_data.keys())
 	for key in shop_data.keys():
 		var item = shop_data[key]
 		var new_item_price = round(item["price"] * Global.price_multi)
@@ -188,8 +184,8 @@ func _on_buy_button_pressed(key):
 	# Access the item using its key
 	var item = shop_data[key]
 	#print(current_player.coins, -item["price"])
-	current_player.get_coins(-item["price"])
-	emit_signal("item_purchase", item["price"])
+	current_player.get_coins(-item["price"] * Global.price_multi)
+	emit_signal("item_purchase", item["price"] * Global.price_multi)
 	#print("Purchased: ", item["name"])
 	var test = cal_new_value()
 	var changes = [{"stat": item["stat"], "amount": test}]
@@ -236,7 +232,6 @@ func cal_new_value():
 	
 	# Zufällige Menge innerhalb des Bereichs generieren
 	var menge = round(randf_range(min_value, max_value))
-	print(menge)
 	return menge
 	
 

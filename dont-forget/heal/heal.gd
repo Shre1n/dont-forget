@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var interaction_area: InteractionArea = $InteractionArea
 @onready var sprite = $Sprite
-@onready var character = $"../Character"
+@onready var character = $"../../Character"
 @onready var col = $InteractionArea/CollisionShape2D
 
 @export_category("Einstellungen")

@@ -311,6 +311,7 @@ theme_override_font_sizes/font_size = 30
 text = "Options"
 
 [node name="Credits_Button" type="Button" parent="Panel/Panel/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Shows the developers"
