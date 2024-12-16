@@ -15,7 +15,6 @@ func _ready():
 func open_hint():
 	ui_manager.load_content(scene_of_Hint)
 	var text = ui_manager.get_child(0).get_child(0).get_child(0).get_child(0).get_child(0)
-	print(text)
 	text.text = hintText
 	ui_manager_container.get_child(0).connect("closing", Callable(self, "close_area"))
 

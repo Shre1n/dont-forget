@@ -21,10 +21,10 @@ var tutorial = preload("res://scenes/tutorial.tscn")
 var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
 var save_user: save_User
 
-
 var current_level:Level
 var current_character
 var options_open = false
+var controls_open = false
 var game_paused : bool = false:
 	get:
 		return game_paused
@@ -85,7 +85,6 @@ func get_all_stats() -> Dictionary:
 		"dash_speed_stat": dash_speed_stat,
 		"extra_weight_stat": extra_weight_stat
 	}
-	print(all_stats_in_dict)
 	return all_stats_in_dict
 
 func load_saved_scene():
@@ -93,7 +92,7 @@ func load_saved_scene():
 	save_user = user_save
 	var saved_scene_path = save_user.scene_path
 	var bag_scene = save_user.bag_scene
-	
+
 	#Entfernt alle alten Level-Inhalte
 	for child in level_holder.get_children():
 			child.queue_free()
@@ -104,34 +103,34 @@ func load_saved_scene():
 		if saved_scene_instance:
 			level_holder.add_child(saved_scene_instance)
 		else:
-			print("failed to instance saved scene. Loading Tutorial.")
+			#print("failed to instance saved scene. Loading Tutorial.")
 			level_holder.add_child(tutorial.instantiate() as Level)
 	else:
 		level_holder.add_child(tutorial.instantiate() as Level)
-		print("Fallback to tutorial.")
+		#print("Fallback to tutorial.")
 	
 	current_level = level_holder.get_child(0) as Level
 	current_character = find_character(current_level)
 	find_Itemholder(current_level)
-	
+
 	# Player init
 	if current_character:
 		# Renew the connections
 		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
 		current_character.connect("going_back", Callable(self, "scene_change"))
 		current_character.connect("add_bag", Callable(self, "add_bag"))
-		
+
 		if saved_scene_path != null:
 			current_character.position = save_user.position_of_character
 			current_character.coins = user_save.gold
-			
+			gold.text = str(user_save.gold)
+			life_time = user_save.life
+
 			# Timer starts if all values are set
 			await get_tree().process_frame
-			print(save_user.life)
 			life.start(save_user.life)
 			all_stats_in_dict = user_save.stats
-	print(all_stats_in_dict)
-		
+
 
 	# Renew Bag
 	if user_save.bag_scene:
@@ -139,17 +138,17 @@ func load_saved_scene():
 		get_tree().root.add_child(bag_instance)
 		if user_save.bag_position:
 			bag_instance.position = user_save.bag_position  # Restore the position
-		print("Bag instance restored at position ", bag_instance.position)
-		print("Bag instance restored.")
-	else:
-		print("No Bag scene saved. Skipping Bag restoration.")
+		#print("Bag instance restored at position ", bag_instance.position)
+		#print("Bag instance restored.")
+	#else:
+		#print("No Bag scene saved. Skipping Bag restoration.")
 
 func add_bag(bag_scene):
 	for child in get_tree().root.get_children():
 		if child.name == "Bag":
 			child.queue_free()
 			child.call_deferred("free")
-			print("Removed existing Bag instance:", child)
+			#print("Removed existing Bag instance:", child)
 	call_deferred("add_child_as_bag", bag_scene)
 
 func add_child_as_bag(bag_scene):
@@ -186,6 +185,8 @@ func _input(event : InputEvent):
 			$Pause_Menu/UiManager.close()
 		elif(options_open):
 			options_closed()
+		elif (controls_open):
+			controls_closed()
 		else:
 			game_paused = !game_paused
 
@@ -196,6 +197,7 @@ func save_scene():
 	save_user.position_of_character = current_character.position
 	user_save.life = life.time_left
 	user_save.gold = gold.text
+	user_save.gold = current_character.coins
 	user_save.save()
 
 
@@ -234,6 +236,13 @@ func options_closed():
 	options_open = false
 	get_node("Pause_Menu/Options").hide()
 
+func controls_closed():
+	controls_open = false
+	get_node("Pause_Menu/Controls").hide()
+
+func controls_opend():
+	controls_open = true
+	get_node("Pause_Menu/Controls").show()
 
 func _on_life_timer_timeout() -> void:
 	save_bag_with_user()
@@ -245,7 +254,6 @@ func life_timer_update(amount):
 	if life.is_stopped():
 		return
 	if life.time_left + amount <= 0:
-		print(life.time_left)
 		life.stop()
 		save_bag_with_user()
 		emit_signal("death")
@@ -258,23 +266,21 @@ func life_timer_update(amount):
 
 func restart_life_timer():
 	life.start(max_time)
-	
+
 func save_bag_with_user():
 	if save_user:
 		save_user.scene_path = load(current_level.scene_file_path)
 		save_user.bag_position = current_character.position
-		
+
 		add_bag(bag_scene)
 		save_user.save()
 
 #Zum Menü zurück
 #func scene_change():
-	
+
 	#SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,self,"transition_type")
 
 #Zum Village zurück
 func scene_change():
 	emit_signal("back_to_village")
 	SceneManager.swap_scenes("res://scenes/Village.tscn",level_holder,current_level,"fade_to_white")
-	for child in level_holder.get_children():
-		print(child)
