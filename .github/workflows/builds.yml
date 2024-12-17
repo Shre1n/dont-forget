@@ -55,10 +55,6 @@ jobs:
         with:
           name: Imported-Project
           path: ./dont-forget
-
-      - name: Import Godot Project
-        run: |
-          godot --headless --import --path dont-forget  
       
 
       - name: export game
