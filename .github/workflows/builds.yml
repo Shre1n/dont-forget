@@ -22,6 +22,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      - name: Import Godot Project
+        run: |
+          godot --headless --import --path dont-forget  
+      
+
       - name: export game
         id: export
         # Use latest version (see releases for all versions)
@@ -33,7 +38,7 @@ jobs:
           cache: true
           relative_project_path: ./dont-forget
           archive_output: true
-          presets_to_export: win, macOS, Linux
+          presets_to_export: "win, macOS, Linux"
 
           # Step 3: Verify Export Output and Upload Artifact
       - name: Verify Export Output
@@ -67,7 +72,7 @@ jobs:
           generateReleaseNotes: true
           tag: ${{ env.DEV-STEP }}-${{ env.VERSION }}
           name: Dont-Forget ${{ env.DEV-STEP }}-${{ env.VERSION }}
-          artifacts:
+          artifacts: |
             ${{ steps.export.outputs.archive_directory }}/Windows Desktop.zip
             ${{ steps.export.outputs.archive_directory }}/macOS.zip
             ${{ steps.export.outputs.archive_directory }}/Linux.zip
