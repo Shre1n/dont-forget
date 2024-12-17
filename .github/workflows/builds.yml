@@ -5,10 +5,34 @@ on:
       - "main"
 
 jobs:
+
+  import_project:
+    runs-on: ubuntu-22.04
+    container:
+      image: barichello/godot-ci:4.3
+
+    name: Import Godot Project
+    outputs:
+      build_path: ${{ steps.set_output.outputs.build_path }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Import Godot Project
+        run: |
+          godot --headless --import --path dont-forget
+
+      - name: Upload Imported Project
+        uses: actions/upload-artifact@v4
+        with:
+          name: Imported-Project
+          path: ./dont-forget
+
   # job id, can be anything
   export_game:
     # Always use ubuntu-latest for this action
     runs-on: ubuntu-latest
+    needs: import_project
     env:
       DEV-STEP: Alpha
       VERSION: 1.0.0
@@ -17,14 +41,20 @@ jobs:
     # Job name, can be anything
     name: Export Game
 
-    container:
-      image: barichello/godot-ci:4.3
+
 
     steps:
       # Always include the checkout step so that 
       # your project is available for Godot to export
       - name: checkout
         uses: actions/checkout@v4
+
+      # Download the imported project from the previous job
+      - name: Download Imported Project
+        uses: actions/download-artifact@v4
+        with:
+          name: Imported-Project
+          path: ./dont-forget
 
       - name: Import Godot Project
         run: |
