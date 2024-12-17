@@ -16,6 +16,10 @@ jobs:
     permissions: write-all
     # Job name, can be anything
     name: Export Game
+
+    container:
+      image: barichello/godot-ci:4.3
+
     steps:
       # Always include the checkout step so that 
       # your project is available for Godot to export
