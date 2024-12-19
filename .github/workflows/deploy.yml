@@ -1,6 +1,12 @@
 name: Deploy on Comment
 
-on: issue_comment
+
+on:
+  issue_comment:
+    types: [ created ]
+    branches:
+      - main
+      - gimmick-on-PR
 
 jobs:
   pr_commented:
