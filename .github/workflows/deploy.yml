@@ -1,0 +1,13 @@
+name: Deploy on Comment
+
+on: issue_comment
+
+
+jobs:
+  pr_commented:
+    name: PR Comment
+    if: ${{ github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo A comment on PR ${{ github.event.issue.number }}
