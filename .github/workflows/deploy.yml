@@ -2,12 +2,23 @@ name: Deploy on Comment
 
 on: issue_comment
 
-
 jobs:
   pr_commented:
     name: PR Comment
     if: ${{ github.event.issue.pull_request }}
     runs-on: ubuntu-latest
+
     steps:
-      - run: |
-          echo A comment on PR ${{ github.event.issue.number }}
+      - name: Checkout Default Branch (main)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Debug Event Data
+        run: |
+          echo "Comment on PR ${{ github.event.issue.number }}"
+          echo "Event data: ${{ toJSON(github.event) }}"
+
+      - name: Add Logic or Deploy Step
+        run: |
+          echo "You can add your deployment logic here."
