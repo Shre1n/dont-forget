@@ -18,12 +18,6 @@ func load_content(scene_path: String, profile: String = ""):
 	content_holder.add_child(scene)
 	emit_signal("give_user")
 	show()
-	
-	
-
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact"):
-		_on_close_button_pressed()
 
 func _on_close_button_pressed(): 
 	extra_close()
