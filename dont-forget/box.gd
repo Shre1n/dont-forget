@@ -13,6 +13,8 @@ var max_drops: Dictionary
 var extra_data: Dictionary
 var profiles_data: Dictionary
 
+@onready var anim_player: AnimationPlayer = $AnimationPlayer
+
 var drop := preload("res://scenes/drop.tscn")
 var current_Itemholder
 
@@ -74,8 +76,10 @@ func find_game_manager():
 
 func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	life = life - ((max(0, damage-amor) + pierce) * imunity)
+	anim_player.play("damage")
 	if life <= 0:
 		die()
+		
 
 func die():
 	add_new_drop(global_position)
