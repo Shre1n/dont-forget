@@ -5,8 +5,9 @@ on:
   issue_comment:
     types: [ created ]
     branches:
-      - main
-      - gimmick-on-PR
+      - "main"
+      - "gimmick-on-PR"
+      - "development"
 
 jobs:
   pr_commented:
