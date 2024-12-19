@@ -5,8 +5,6 @@ on:
   issue_comment:
     types: [ created ]
     branches:
-      - "main"
-      - "gimmick-on-PR"
       - "development"
 
 jobs:
@@ -19,7 +17,7 @@ jobs:
       - name: Checkout Default Branch (main)
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Debug Event Data
         run: |
