@@ -4,6 +4,8 @@ class_name Pause_Menu extends Control
 var current_player
 var controls_open: bool = false
 
+@onready var resume = $Control/Panel/Control2/VBoxContainer/Resume
+
 
 func _ready() -> void:
 	hide()
@@ -13,6 +15,7 @@ func _ready() -> void:
 func _on_game_manager_toggle_game_paused(is_paused : bool):
 	if(is_paused):
 		show()
+		resume.grab_focus()
 	else:
 		hide()
 

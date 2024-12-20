@@ -134,6 +134,7 @@ text = "Escape"
 horizontal_alignment = 1
 
 [node name="SPACE" type="Label" parent="Control/Panel"]
+layout_mode = 0
 offset_left = 854.0
 offset_top = 750.0
 offset_right = 903.0

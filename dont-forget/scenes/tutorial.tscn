@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=35 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cuaxdf0m8gk3r" path="res://assets/Tilemap/Tilemap2.png" id="4_nasg4"]
 [ext_resource type="Texture2D" uid="uid://bvsyg0uhfdf5" path="res://assets/Tilemap/Bg_2.png" id="6_wqrb5"]
 [ext_resource type="Shader" path="res://shader/Tilemap/layer1.gdshader" id="7_iab1c"]
+[ext_resource type="Script" path="res://scenes/control_labels.gd" id="8_625dm"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="8_h547o"]
 [ext_resource type="Script" path="res://scenes/sword_interact.gd" id="9_8mqe6"]
 [ext_resource type="Texture2D" uid="uid://dqrs5p51f6oii" path="res://assets/Sword.png" id="10_e8qmx"]
@@ -1029,6 +1030,33 @@ sources/1 = SubResource("TileSetAtlasSource_7lyfh")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tu7ao"]
 shader = ExtResource("7_iab1c")
 
+[sub_resource type="FontFile" id="FontFile_6i08n"]
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/41/0/ascent = 0.0
+cache/0/41/0/descent = 0.0
+cache/0/41/0/underline_position = 0.0
+cache/0/41/0/underline_thickness = 0.0
+cache/0/41/0/scale = 1.0
+
+[sub_resource type="FontVariation" id="FontVariation_xd5pg"]
+base_font = SubResource("FontFile_6i08n")
+
+[sub_resource type="FontFile" id="FontFile_i15kw"]
+cache/0/41/0/ascent = 0.0
+cache/0/41/0/descent = 0.0
+cache/0/41/0/underline_position = 0.0
+cache/0/41/0/underline_thickness = 0.0
+cache/0/41/0/scale = 1.0
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+
 [sub_resource type="Environment" id="Environment_2cxkj"]
 background_mode = 3
 glow_enabled = true
@@ -1161,7 +1189,10 @@ motion_mirroring = Vector2(2160, 0)
 texture = ExtResource("6_wqrb5")
 centered = false
 
-[node name="Move" type="Label" parent="."]
+[node name="Control Labels" type="Node2D" parent="."]
+script = ExtResource("8_625dm")
+
+[node name="Move" type="Label" parent="Control Labels"]
 offset_left = 568.0
 offset_top = 971.0
 offset_right = 1310.0
@@ -1172,7 +1203,7 @@ text = "Press A or D to move"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Jump" type="Label" parent="."]
+[node name="Jump" type="Label" parent="Control Labels"]
 offset_left = 1685.0
 offset_top = 907.0
 offset_right = 2427.0
@@ -1180,6 +1211,30 @@ offset_bottom = 1253.0
 theme_override_fonts/font = ExtResource("8_h547o")
 theme_override_font_sizes/font_size = 41
 text = "Press W to jump"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Attack" type="Label" parent="Control Labels"]
+visible = false
+offset_left = 3705.0
+offset_top = 939.0
+offset_right = 4447.0
+offset_bottom = 1285.0
+theme_override_fonts/font = SubResource("FontVariation_xd5pg")
+theme_override_font_sizes/font_size = 41
+text = "Press SPACE to attack"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Stats_popup" type="Label" parent="Control Labels"]
+offset_left = 5541.0
+offset_top = 900.0
+offset_right = 6283.0
+offset_bottom = 1246.0
+theme_override_fonts/font = SubResource("FontFile_i15kw")
+theme_override_font_sizes/font_size = 41
+text = "Press I to discover
+or hide your stats"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1194,18 +1249,6 @@ text = "Pick up your sword"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Attack" type="Label" parent="."]
-visible = false
-offset_left = 3705.0
-offset_top = 939.0
-offset_right = 4447.0
-offset_bottom = 1285.0
-theme_override_fonts/font = ExtResource("8_h547o")
-theme_override_font_sizes/font_size = 41
-text = "Press SPACE to attack"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Hint" type="Label" parent="."]
 offset_left = 4463.0
 offset_top = 854.0
@@ -1215,18 +1258,6 @@ theme_override_fonts/font = ExtResource("8_h547o")
 theme_override_font_sizes/font_size = 41
 text = "Face the enemy or
  leap past—your call"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Stats_popup" type="Label" parent="."]
-offset_left = 5541.0
-offset_top = 900.0
-offset_right = 6283.0
-offset_bottom = 1246.0
-theme_override_fonts/font = ExtResource("8_h547o")
-theme_override_font_sizes/font_size = 41
-text = "Press I to discover
-or hide your stats"
 horizontal_alignment = 1
 vertical_alignment = 1
 

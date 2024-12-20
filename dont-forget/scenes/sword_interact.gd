@@ -5,7 +5,7 @@ extends Node2D
 @onready var sword = $Sword
 @onready var character = $"../Character"
 @onready var block = $"../Block/Block"
-@onready var attack_label = $"../Attack"
+@onready var attack_label = $"../Control Labels/Attack"
 @onready var pickup_label = $"../PickUp"
 
 func _ready():
