@@ -22,7 +22,7 @@ signal going_back(path)  # Zurück zum Dorf
 @export var imunity_stat = 0
 @export var attack_speed_stat = 250
 @export var extra_weight_stat = 0
-@export var cooldown_stat = 250
+@export var cooldown_stat = 100
 @export var pierce_stat = 0  # Durchschlagskraft (Prozent)
 @export var crit_stat = 0  # Kritische Trefferchance (0–1000 = 0–100%)
 @export var knockback_stat = 50  # Knockback-Stärke
