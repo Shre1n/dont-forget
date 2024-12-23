@@ -7,7 +7,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	container.hide()
+	panel.hide()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,5 +34,5 @@ func _on_margin_container_visibility_changed() -> void:
 func _on_visibility_changed() -> void:
 	if visible:
 		container.show()
-	else:
-		container.hide()
+	#else:
+		#container.hide()

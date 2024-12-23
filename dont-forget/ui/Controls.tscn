@@ -68,7 +68,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="Panel" type="Panel" parent="Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -257,6 +256,7 @@ theme_override_font_sizes/font_size = 20
 text = "Select"
 
 [node name="Set_Controls" type="Button" parent="Control/Panel"]
+layout_mode = 0
 offset_left = 1602.0
 offset_top = 967.0
 offset_right = 1894.0
@@ -272,7 +272,6 @@ text = "Set Controls
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 unique_name_in_owner = true
-visible = false
 layout_mode = 0
 offset_right = 1952.0
 offset_bottom = 1095.0

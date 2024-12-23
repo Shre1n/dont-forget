@@ -37,7 +37,6 @@ func _on_quit_button_pressed() -> void:
 
 func _on_return_to_game_pressed() -> void:
 	hide()
-	
 
 
 func create_action_remap_items() -> void:

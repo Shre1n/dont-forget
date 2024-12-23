@@ -5,8 +5,8 @@ extends Node2D
 @onready var sword = $Sword
 @onready var character = $"../Character"
 @onready var block = $"../Block/Block"
-@onready var attack_label = $"../Attack"
-@onready var pickup_label = $"../PickUp"
+@onready var attack_label = $"../Labels/Attack"
+@onready var pickup_label = $"../Labels/PickUp"
 
 func _ready():
 	interaction_area.interact = Callable(self, "on_pick_up")

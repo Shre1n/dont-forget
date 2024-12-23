@@ -4,6 +4,7 @@ class_name Level extends Node2D
 var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
 var save_user: save_User
 
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var user_save = save_User.load_save()
