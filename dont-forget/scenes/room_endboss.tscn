@@ -1,10 +1,15 @@
-[gd_scene load_steps=8 format=4 uid="uid://b0qfl47a32cy1"]
+[gd_scene load_steps=15 format=4 uid="uid://b0qfl47a32cy1"]
 
 [ext_resource type="Script" path="res://scenes/room_endboss.gd" id="1_2auqf"]
-[ext_resource type="Texture2D" uid="uid://dbrlv8vf74ndu" path="res://assets/Tilemap/cave/Cave_with_door.png" id="2_agkf0"]
+[ext_resource type="Texture2D" uid="uid://g4lpqig36fpi" path="res://assets/Tilemap/cave/Cave_with_door.png" id="2_agkf0"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_qk2tt"]
-[ext_resource type="Texture2D" uid="uid://dy3rdercpjru4" path="res://assets/Tilemap/cave/Cave_BG 2.png" id="4_jkuxs"]
+[ext_resource type="Texture2D" uid="uid://c86lnxx7pyfu5" path="res://assets/Tilemap/cave/Cave_BG 2.png" id="4_jkuxs"]
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="5_0umlr"]
+[ext_resource type="Texture2D" uid="uid://db0caf34q8rfk" path="res://assets/NPC/Bruder/help/1.png" id="6_d4jqp"]
+[ext_resource type="Texture2D" uid="uid://c7fv3kprd3lma" path="res://assets/NPC/Bruder/help/2.png" id="7_gaplt"]
+[ext_resource type="Texture2D" uid="uid://35xpsewm7uci" path="res://assets/NPC/Bruder/sad/1.png" id="8_nnq4v"]
+[ext_resource type="Texture2D" uid="uid://cdenmsrq64b1q" path="res://assets/NPC/Bruder/sad/2.png" id="9_6fcxd"]
+[ext_resource type="Texture2D" uid="uid://csrpcvr6k0s5n" path="res://assets/NPC/Bruder/Gefängnis_.png" id="10_nnkul"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k4vpq"]
 texture = ExtResource("2_agkf0")
@@ -4563,6 +4568,42 @@ texture = ExtResource("2_agkf0")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_k4vpq")
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_inabi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_d4jqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gaplt")
+}],
+"loop": true,
+"name": &"help",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_nnq4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6fcxd")
+}],
+"loop": true,
+"name": &"sad",
+"speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o423f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_nnkul")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
 [node name="RoomEndboss" type="Node2D"]
 script = ExtResource("1_2auqf")
 
@@ -4593,3 +4634,20 @@ scale = Vector2(5.99996, 18.64)
 transition_type = "fade_to_black"
 path_to_new_scene = "res://scenes/cave.tscn"
 new_position = Vector2(6600, -3736)
+
+[node name="Brother" type="Node2D" parent="."]
+
+[node name="Brother" type="AnimatedSprite2D" parent="Brother"]
+position = Vector2(-854, 176)
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_inabi")
+animation = &"help"
+autoplay = "help"
+
+[node name="prison" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="prison"]
+position = Vector2(-875, 200)
+scale = Vector2(0.193287, 0.231173)
+sprite_frames = SubResource("SpriteFrames_o423f")
+animation = &"idle"
