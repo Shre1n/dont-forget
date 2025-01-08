@@ -3,6 +3,7 @@ extends RigidBody2D
 @export var life = 500
 @export var amor = 0
 @export var imunity = 1 #1-0
+@onready var sprite = $Sprite2D
 
 @export var stats_file_path: String = "res://objekte/kiste/reg.json"
 @export_enum("default","stone_block","metal_block","gold_block","wall_block","simple_treasure_chest","wood_treasure_chest","iron_treasure_chest","bronze_treasure_chest","gold_treasure_chest","diamand_treasure_chest") var selected_profile: String = "default"
@@ -18,6 +19,17 @@ var profiles_data: Dictionary
 var drop := preload("res://scenes/drop.tscn")
 var current_Itemholder
 
+
+
+func update_sprite():
+	if extra_data.has("sprite"):
+		var sprite_path = extra_data["sprite"]
+		if ResourceLoader.exists(sprite_path):  # Überprüfen, ob die Ressource existiert
+			sprite.texture = load(sprite_path)
+			print("Sprite loaded: ", sprite_path)
+		else:
+			print("Sprite path does not exist: ", sprite_path)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var gamemanager = find_game_manager()
@@ -27,7 +39,9 @@ func _ready():
 	apply_profile_data()
 	if !test:
 		update_start_stats()
+		update_sprite()
 
+		
 func load_stats_from_file():
 	var file = FileAccess.open(stats_file_path, FileAccess.READ)
 	if file:
