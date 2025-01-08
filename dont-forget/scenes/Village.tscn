@@ -1014,7 +1014,7 @@ shape = SubResource("RectangleShape2D_wo80w")
 
 [node name="tresaure" parent="kisten" instance=ExtResource("31_hehs4")]
 position = Vector2(9214, 831)
-selected_profile = "simple_treasure_chest"
+selected_profile = "wood_treasure_chest"
 
 [node name="wall5" parent="kisten" instance=ExtResource("31_hehs4")]
 position = Vector2(6366, 831)

@@ -8,7 +8,7 @@
 absorbent = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1qr5b"]
-size = Vector2(139, 137)
+size = Vector2(140.5, 126.5)
 
 [sub_resource type="Animation" id="Animation_mrqu8"]
 length = 0.001
@@ -94,20 +94,19 @@ constant_force = Vector2(0, 1000)
 script = ExtResource("1_jinl7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(3.5, 10)
+position = Vector2(4, 10)
 scale = Vector2(0.2, 0.194)
 texture = ExtResource("2_ei3sn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0.672, 0)
+position = Vector2(4, 17)
 shape = SubResource("RectangleShape2D_1qr5b")
 
 [node name="Damage_Area" type="Area2D" parent="."]
 script = ExtResource("2_0teo7")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Damage_Area"]
-position = Vector2(2, 7)
+position = Vector2(2, 12)
 shape = SubResource("RectangleShape2D_1qr5b")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
