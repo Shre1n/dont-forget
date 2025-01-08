@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://pv1yyyinaqp7" path="res://assets/NPC/Oma/1.png" id="1_pa2qc"]
 [ext_resource type="Script" path="res://assets/NPC/Oma/oma_npc.gd" id="1_tdxt7"]
 [ext_resource type="Texture2D" uid="uid://b6bwuwexdk3hb" path="res://assets/NPC/Oma/2.png" id="2_62i1l"]
-[ext_resource type="Script" path="res://interaction/interaction area/interaction_area.gd" id="3_ul8ov"]
+[ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="4_3kb7n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kpwks"]
 animations = [{
@@ -152,8 +152,7 @@ libraries = {
 "": SubResource("AnimationLibrary_8m5km")
 }
 
-[node name="InteractionArea" type="Area2D" parent="."]
-script = ExtResource("3_ul8ov")
+[node name="InteractionArea" parent="." instance=ExtResource("4_3kb7n")]
 action_name = "talk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
