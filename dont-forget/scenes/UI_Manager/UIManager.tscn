@@ -111,4 +111,5 @@ rotation = 1.52237
 scale = Vector2(1.06317, 1.05129)
 texture = ExtResource("3_mwk8y")
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]
