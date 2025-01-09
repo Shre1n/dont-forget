@@ -462,12 +462,12 @@ background_mode = 3
 glow_enabled = true
 glow_blend_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_haw71"]
+[sub_resource type="Gradient" id="Gradient_udsio"]
 offsets = PackedFloat32Array(0.1, 0.827778)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_v8peb"]
-gradient = SubResource("Gradient_haw71")
+gradient = SubResource("Gradient_udsio")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.948718, 0.0641026)

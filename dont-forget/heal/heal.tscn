@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dhx18cj8fwfgg"]
+[gd_scene load_steps=7 format=3 uid="uid://dhx18cj8fwfgg"]
 
 [ext_resource type="Script" path="res://heal/heal.gd" id="1_13lt1"]
 [ext_resource type="Script" path="res://interaction/interaction area/interaction_area.gd" id="2_7br43"]
@@ -6,6 +6,16 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qcmv8"]
 radius = 117.068
+
+[sub_resource type="Gradient" id="Gradient_010j0"]
+offsets = PackedFloat32Array(0.1, 0.827778)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_op6sf"]
+gradient = SubResource("Gradient_010j0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.948718, 0.0641026)
 
 [node name="heal" type="Node2D"]
 script = ExtResource("1_13lt1")
@@ -20,6 +30,15 @@ shape = SubResource("CircleShape2D_qcmv8")
 [node name="Sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("3_nx1ii")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(4.76837e-07, 1)
+rotation = -2.17164
+scale = Vector2(4.86831, 4.44795)
+color = Color(0.841163, 0.721841, 0.826023, 1)
+energy = 3.17
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_op6sf")
 
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]
