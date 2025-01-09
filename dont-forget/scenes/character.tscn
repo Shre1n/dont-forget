@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://diqm35oue5hsl"]
+[gd_scene load_steps=60 format=3 uid="uid://diqm35oue5hsl"]
 
 [ext_resource type="Script" path="res://scripte/character.gd" id="1_gaw86"]
 [ext_resource type="Texture2D" uid="uid://b4vvbedrqye3e" path="res://assets/dead/1.png" id="3_1nauj"]
@@ -30,6 +30,7 @@
 [ext_resource type="PackedScene" uid="uid://dnu6va4x16qlb" path="res://scenes/damage_area.tscn" id="24_i5vbm"]
 [ext_resource type="PackedScene" uid="uid://cmgf1s540hgqi" path="res://scenes/attack_area.tscn" id="24_u5kue"]
 [ext_resource type="PackedScene" uid="uid://byy056hrby4p5" path="res://stats_popup.tscn" id="30_pbvn4"]
+[ext_resource type="Texture2D" uid="uid://bgpmxtn8wl05i" path="res://scenes/2d_lights_and_shadows_neutral_point_light.png" id="31_d44a5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gevhk"]
 radius = 36.2338
@@ -959,6 +960,12 @@ libraries = {
 [node name="Dash_Timer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="Light" type="PointLight2D" parent="."]
+visible = false
+energy = 0.5
+texture = ExtResource("31_d44a5")
+texture_scale = 2.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]
