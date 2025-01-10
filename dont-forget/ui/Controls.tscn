@@ -129,6 +129,7 @@ expand_margin_right = 100.0
 OptionButton/styles/normal = SubResource("StyleBoxFlat_luntu")
 
 [node name="Controls" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_v5aba")
@@ -341,7 +342,8 @@ theme_override_font_sizes/font_size = 50
 text = "Set Controls
 "
 
-[node name="Panel2" type="Panel" parent="Control"]
+[node name="Panel_Set_Controls" type="Panel" parent="Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -353,7 +355,7 @@ offset_bottom = 1059.0
 grow_vertical = 0
 theme = SubResource("Theme_1i6qi")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/Panel2"]
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel_Set_Controls"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 1.0
@@ -365,7 +367,7 @@ theme = SubResource("Theme_06pbv")
 script = ExtResource("3_jmbnk")
 action_items = Array[String](["left", "right", "attack", "jump"])
 
-[node name="return_to_game" type="Button" parent="Control/Panel2/MarginContainer"]
+[node name="return_to_game" type="Button" parent="Control/Panel_Set_Controls/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
@@ -377,7 +379,7 @@ theme_override_font_sizes/font_size = 50
 text = "return to game
 "
 
-[node name="Label" type="Label" parent="Control/Panel2/MarginContainer"]
+[node name="Label" type="Label" parent="Control/Panel_Set_Controls/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -385,43 +387,45 @@ theme = SubResource("Theme_c8d0e")
 text = "Controls
 "
 
-[node name="ButtonVBoxContainer" type="VBoxContainer" parent="Control/Panel2/MarginContainer"]
+[node name="ButtonVBoxContainer" type="VBoxContainer" parent="Control/Panel_Set_Controls/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = SubResource("Theme_8wdwq")
 theme_override_constants/separation = 20
 
-[node name="SettingsGridContainer" type="GridContainer" parent="Control/Panel2/MarginContainer/ButtonVBoxContainer"]
+[node name="SettingsGridContainer" type="GridContainer" parent="Control/Panel_Set_Controls/MarginContainer/ButtonVBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
 theme_override_constants/h_separation = 2
 columns = 2
 
-[node name="InputTypeLabel" type="Label" parent="Control/Panel2/MarginContainer/ButtonVBoxContainer/SettingsGridContainer"]
+[node name="InputTypeLabel" type="Label" parent="Control/Panel_Set_Controls/MarginContainer/ButtonVBoxContainer/SettingsGridContainer"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 theme = SubResource("Theme_3nu1c")
 
-[node name="InputTypeButton" type="OptionButton" parent="Control/Panel2/MarginContainer/ButtonVBoxContainer/SettingsGridContainer"]
+[node name="InputTypeButton" type="OptionButton" parent="Control/Panel_Set_Controls/MarginContainer/ButtonVBoxContainer/SettingsGridContainer"]
 visible = false
 layout_mode = 2
 theme = SubResource("Theme_0glhh")
 button_mask = 3
 
-[node name="Main_Button" type="Button" parent="Control/Panel2/MarginContainer"]
+[node name="Main_Button" type="Button" parent="Control/Panel_Set_Controls/MarginContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 
-[node name="Quit_Button" type="Button" parent="Control/Panel2/MarginContainer"]
+[node name="Quit_Button" type="Button" parent="Control/Panel_Set_Controls/MarginContainer"]
 visible = false
 layout_mode = 2
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Control/Panel/Close_btn" to="." method="_on_close_btn_pressed"]
 [connection signal="pressed" from="Control/Panel/Set_Controls" to="." method="_on_set_controls_pressed"]
-[connection signal="visibility_changed" from="Control/Panel2/MarginContainer" to="." method="_on_margin_container_visibility_changed"]
-[connection signal="pressed" from="Control/Panel2/MarginContainer/return_to_game" to="Control/Panel2/MarginContainer" method="_on_return_to_game_pressed"]
-[connection signal="item_selected" from="Control/Panel2/MarginContainer/ButtonVBoxContainer/SettingsGridContainer/InputTypeButton" to="." method="_on_input_type_button_item_selected"]
+[connection signal="visibility_changed" from="Control/Panel_Set_Controls/MarginContainer" to="." method="_on_margin_container_visibility_changed"]
+[connection signal="pressed" from="Control/Panel_Set_Controls/MarginContainer/return_to_game" to="Control/Panel_Set_Controls/MarginContainer" method="_on_return_to_game_pressed"]
+[connection signal="item_selected" from="Control/Panel_Set_Controls/MarginContainer/ButtonVBoxContainer/SettingsGridContainer/InputTypeButton" to="." method="_on_input_type_button_item_selected"]

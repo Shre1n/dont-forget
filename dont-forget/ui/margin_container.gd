@@ -2,7 +2,7 @@ extends Control
 
 @export var game_manager : Game_Manager
 @onready var panel: Panel = $"../Panel"
-@onready var panel2: Panel =$".."
+@onready var panel_set_controls: Panel = $".."
 @export var action_items: Array[String]
 
 
@@ -24,21 +24,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-	
-func _on_set_controls_pressed() -> void:
-	panel2.hide()
-	panel.hide()
-	margin_container.show()
 
 
-func _on_quit_button_pressed() -> void:
-	panel.show()
-	panel2.show()
-	margin_container.hide()
+
 
 
 func _on_return_to_game_pressed() -> void:
-	hide()
+	$"../../..".hide()
 
 
 func create_action_remap_items() -> void:
