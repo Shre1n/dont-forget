@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=32 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
+[ext_resource type="PackedScene" uid="uid://bp5u4prb7gwrr" path="res://partikel_leaf.tscn" id="16_dtlgh"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
@@ -1290,3 +1291,24 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block/Slime_Block"]
 position = Vector2(0, -549)
 shape = SubResource("RectangleShape2D_q71vo")
+
+[node name="Partikel-Leaf" parent="." instance=ExtResource("16_dtlgh")]
+position = Vector2(-947, 349)
+
+[node name="Partikel-Leaf2" parent="." instance=ExtResource("16_dtlgh")]
+position = Vector2(65, 516)
+
+[node name="Partikel-Leaf3" parent="." instance=ExtResource("16_dtlgh")]
+position = Vector2(1223, 255)
+
+[node name="Partikel-Leaf4" parent="." instance=ExtResource("16_dtlgh")]
+position = Vector2(2456, 370)
+
+[node name="Partikel-Leaf5" parent="." instance=ExtResource("16_dtlgh")]
+position = Vector2(3840, 410)
+
+[node name="Partikel-Leaf6" parent="." instance=ExtResource("16_dtlgh")]
+position = Vector2(2295, 571)
+
+[node name="Partikel-Leaf7" parent="." instance=ExtResource("16_dtlgh")]
+position = Vector2(4291, 710)
