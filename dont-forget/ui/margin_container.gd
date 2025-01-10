@@ -2,7 +2,7 @@ extends Control
 
 @export var game_manager : Game_Manager
 @onready var panel: Panel = $"../Panel"
-
+@onready var panel2: Panel =$".."
 @export var action_items: Array[String]
 
 
@@ -26,12 +26,14 @@ func _process(delta: float) -> void:
 	pass
 	
 func _on_set_controls_pressed() -> void:
+	panel2.hide()
 	panel.hide()
 	margin_container.show()
 
 
 func _on_quit_button_pressed() -> void:
 	panel.show()
+	panel2.show()
 	margin_container.hide()
 
 

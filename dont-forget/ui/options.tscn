@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/options.gd" id="1_sxokr"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ux76x"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clsuc"]
 bg_color = Color(0.135851, 0.15073, 0.189834, 1)
 border_width_left = 5
 border_width_top = 5
@@ -14,35 +14,35 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="Theme" id="Theme_g4wqp"]
-Panel/styles/panel = SubResource("StyleBoxFlat_ux76x")
+Panel/styles/panel = SubResource("StyleBoxFlat_clsuc")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kd76n"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hnx6"]
 bg_color = Color(0.770791, 0.511126, 0.614406, 1)
 
 [sub_resource type="Theme" id="Theme_p7iw0"]
-Panel/styles/panel = SubResource("StyleBoxFlat_kd76n")
+Panel/styles/panel = SubResource("StyleBoxFlat_5hnx6")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebwff"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwvlx"]
 bg_color = Color(0.288852, 0.262479, 0.331737, 1)
 draw_center = false
 
 [sub_resource type="Theme" id="Theme_ccqy4"]
-Label/styles/normal = SubResource("StyleBoxFlat_ebwff")
+Label/styles/normal = SubResource("StyleBoxFlat_uwvlx")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfebg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_du5x8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehqm5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awh32"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_112xp"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kuiyy"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 
 [sub_resource type="Theme" id="Theme_joij3"]
-Button/styles/normal = SubResource("StyleBoxFlat_dfebg")
-HSlider/styles/grabber_area = SubResource("StyleBoxFlat_ehqm5")
-HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_112xp")
+Button/styles/normal = SubResource("StyleBoxFlat_du5x8")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_awh32")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_kuiyy")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tstbd"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11t8t"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 border_width_left = 2
 border_width_top = 2
@@ -50,9 +50,9 @@ border_width_right = 2
 border_width_bottom = 2
 
 [sub_resource type="Theme" id="Theme_dmn8s"]
-CheckButton/styles/normal = SubResource("StyleBoxFlat_tstbd")
+CheckButton/styles/normal = SubResource("StyleBoxFlat_11t8t")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7cf1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncavb"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 border_width_left = 2
 border_width_top = 2
@@ -65,11 +65,11 @@ corner_radius_bottom_left = 5
 shadow_size = 3
 
 [sub_resource type="Theme" id="Theme_bd22v"]
-Button/styles/normal = SubResource("StyleBoxFlat_d7cf1")
+Button/styles/normal = SubResource("StyleBoxFlat_ncavb")
 
 [sub_resource type="ImageTexture" id="ImageTexture_lgjsh"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1oktc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d62m4"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 border_width_left = 2
 border_width_top = 2
@@ -82,7 +82,7 @@ corner_radius_bottom_left = 5
 shadow_size = 3
 
 [sub_resource type="Theme" id="Theme_42qfs"]
-Button/styles/normal = SubResource("StyleBoxFlat_1oktc")
+Button/styles/normal = SubResource("StyleBoxFlat_d62m4")
 
 [node name="Options" type="Control"]
 layout_mode = 3
