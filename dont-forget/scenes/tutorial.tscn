@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=31 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -14,7 +14,6 @@
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
-[ext_resource type="PackedScene" uid="uid://6m885qrym3py" path="res://scenes/spawner.tscn" id="16_n1j67"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
@@ -1070,7 +1069,6 @@ animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(950, 993)
-test_on = true
 sword = false
 damage_stat = 100
 camera_limit_left = -1080
@@ -1294,25 +1292,3 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block/Slime_Block"]
 position = Vector2(0, -549)
 shape = SubResource("RectangleShape2D_q71vo")
-
-[node name="spawner" parent="." instance=ExtResource("16_n1j67")]
-position = Vector2(2167, 837)
-enemy_types = [{
-"loners": false,
-"max_count": 3,
-"new_scale": 0.2,
-"path": "res://enemy.tscn",
-"selected_profile": "default"
-}, {
-"loners": false,
-"max_count": 2,
-"new_scale": 0.8,
-"path": "res://enemy.tscn",
-"selected_profile": "strong_enemy"
-}, {
-"loners": true,
-"max_count": 1,
-"new_scale": 0.2,
-"path": "res://scenes/Enemies/Hide Enemy/hide_enemy.tscn",
-"selected_profile": "default"
-}]
