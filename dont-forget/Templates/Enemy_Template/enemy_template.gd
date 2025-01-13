@@ -301,7 +301,7 @@ func knockback(knockback, damage_position):
 func die():
 	# Handle the death of the enemy
 	alive = false
-	add_new_drop(position)
+	add_new_drop(global_position)
 
 func _on_animation_player_animation_finished(anim_name: String):
 	# Check when the death animation is finished to drop items and remove the enemy
