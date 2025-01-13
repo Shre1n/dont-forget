@@ -462,12 +462,12 @@ background_mode = 3
 glow_enabled = true
 glow_blend_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_haw71"]
+[sub_resource type="Gradient" id="Gradient_udsio"]
 offsets = PackedFloat32Array(0.1, 0.827778)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_v8peb"]
-gradient = SubResource("Gradient_haw71")
+gradient = SubResource("Gradient_udsio")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.948718, 0.0641026)
@@ -1014,7 +1014,7 @@ shape = SubResource("RectangleShape2D_wo80w")
 
 [node name="tresaure" parent="kisten" instance=ExtResource("31_hehs4")]
 position = Vector2(9214, 831)
-selected_profile = "simple_treasure_chest"
+selected_profile = "wood_treasure_chest"
 
 [node name="wall5" parent="kisten" instance=ExtResource("31_hehs4")]
 position = Vector2(6366, 831)
@@ -1084,20 +1084,21 @@ shape = SubResource("RectangleShape2D_nfvmh")
 position = Vector2(115, 73)
 shape = SubResource("RectangleShape2D_nfvmh")
 
-[node name="Wegweiser Welcome" parent="." instance=ExtResource("33_mqqcs")]
-position = Vector2(-1068, 770)
-scale = Vector2(0.2, 0.2)
-hintText = "Welcome in Golden Valley"
-
-[node name="Wegweiser Well" parent="." instance=ExtResource("33_mqqcs")]
-position = Vector2(3436, 768)
-scale = Vector2(0.2, 0.2)
-hintText = "Start the adventure and jump into the Well"
-
 [node name="WellFront" type="Sprite2D" parent="."]
 position = Vector2(3855, 700.5)
 scale = Vector2(0.4, 0.417901)
 texture = ExtResource("34_6igsi")
+
+[node name="Wegweiser willcome" parent="." instance=ExtResource("33_mqqcs")]
+position = Vector2(-1017, 773)
+scale = Vector2(0.2, 0.2)
+hintText = "Welcome to Golden Valley"
+
+[node name="Wegweiser well" parent="." instance=ExtResource("33_mqqcs")]
+z_index = 1
+position = Vector2(3481, 771)
+scale = Vector2(0.2, 0.2)
+hintText = "Start the adventure and jump into the Well"
 
 [connection signal="body_entered" from="Door Well" to="Door Well" method="_on_body_entered"]
 [connection signal="body_entered" from="Out_Door" to="Out_Door" method="_on_body_entered"]

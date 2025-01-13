@@ -60,12 +60,17 @@ func _ready():
 	SceneManager.load_complete.connect(_on_level_loaded)
 	SceneManager.load_start.connect(_on_load_start)
 	SceneManager.scene_added.connect(_on_level_added)
+	#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	#Zum Village zurück (braucht signal mit path)
 	current_character.connect("going_back", Callable(self, "scene_change"))
 	get_node("Pause_Menu/UiManager").connect("give_user", Callable(self, "give_user"))
 
 func give_user():
 	emit_signal("current_user", current_character)
+	
+func show_light():
+	if current_level.level_nr == 2 and current_character and current_level.name != "Village":
+		current_character.get_node("Light").show()
 
 func get_all_stats() -> Dictionary:
 	var all_stats_in_dict = {
@@ -130,6 +135,8 @@ func load_saved_scene():
 			await get_tree().process_frame
 			life.start(save_user.life)
 			all_stats_in_dict = user_save.stats
+	
+	show_light()
 
 
 	# Renew Bag
@@ -212,6 +219,7 @@ func _on_level_loaded(level) -> void:
 		current_character.connect("going_back", Callable(self, "scene_change"))
 		#Zum Village zurück (braucht signal mit path)
 		#current_character.connect("going_back", Callable(self, "scene_change"))
+		show_light()
 		save_scene()
 
 func new_Itemholder_Shout():
