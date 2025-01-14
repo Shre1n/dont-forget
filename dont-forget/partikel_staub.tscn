@@ -13,7 +13,7 @@ width = 1080
 curve = SubResource("Curve_76lpv")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d0scu"]
-lifetime_randomness = 0.18
+lifetime_randomness = 1.0
 emission_shape_offset = Vector3(50, 0, 0)
 emission_shape = 1
 emission_sphere_radius = 0.01
@@ -22,8 +22,10 @@ angle_max = 689.0
 angle_curve = SubResource("CurveTexture_memy8")
 direction = Vector3(0.5, 0, 0)
 initial_velocity_max = 1000.0
-angular_velocity_min = -638.71
-angular_velocity_max = 534.19
+angular_velocity_min = -720.0
+angular_velocity_max = 452.9
+orbit_velocity_min = -1.405
+orbit_velocity_max = 1.068
 gravity = Vector3(0, 0, 0)
 tangential_accel_min = -100.0
 tangential_accel_max = -2.23517e-06
@@ -35,10 +37,9 @@ scale_max = 0.2
 
 [node name="blinks" type="GPUParticles2D" parent="."]
 position = Vector2(590, 311)
-amount = 30
-amount_ratio = 0.2356
+amount = 100
 process_material = SubResource("ParticleProcessMaterial_d0scu")
 texture = ExtResource("1_7x3eb")
-lifetime = 11.25
+lifetime = 30.0
 speed_scale = 0.5
 randomness = 1.0
