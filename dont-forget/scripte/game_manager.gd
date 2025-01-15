@@ -45,7 +45,7 @@ var pierce_stat = 0
 var crit_stat = 0
 var knockback_stat = 50
 var knockback_res_stat = 0
-var dash_cooldown_stat = 0
+var dash_cooldown_stat = 250
 var dash_speed_stat = 0
 var extra_weight_stat = 0
 
