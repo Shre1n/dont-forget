@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cspyht3ytgvhx" path="res://ui/options.tscn" id="2_mc7cj"]
 [ext_resource type="Texture2D" uid="uid://ddeipc8fvbhe0" path="res://ui/background/leaf.png" id="2_x4tpf"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="3_1jn53"]
-[ext_resource type="PackedScene" path="res://ui/Controls.tscn" id="7_2l5kn"]
+[ext_resource type="PackedScene" uid="uid://tva2dh5gu8b0" path="res://ui/Controls.tscn" id="7_2l5kn"]
 
 [sub_resource type="Curve" id="Curve_tf0c3"]
 min_value = -612.84
