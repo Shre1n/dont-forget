@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://tva2dh5gu8b0"]
+[gd_scene load_steps=25 format=3 uid="uid://tva2dh5gu8b0"]
 
 [ext_resource type="Script" path="res://ui/controls.gd" id="1_v5aba"]
 [ext_resource type="Texture2D" uid="uid://c0ptm03l665qd" path="res://assets/Controls.png" id="2_qdwpu"]
+[ext_resource type="Script" path="res://ui/margin_container.gd" id="3_jmbnk"]
+[ext_resource type="FontFile" uid="uid://bhjgpy1dovmyq" path="res://addons/gut/fonts/CourierPrime-Bold.ttf" id="4_4aum3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he3xc"]
 bg_color = Color(0.137255, 0.14902, 0.188235, 1)
@@ -46,6 +48,7 @@ corner_radius_bottom_left = 5
 shadow_size = 3
 
 [sub_resource type="Theme" id="Theme_sto77"]
+Button/font_sizes/font_size = 30
 Button/styles/hover = SubResource("StyleBoxFlat_n0w2k")
 Button/styles/hover_pressed = SubResource("StyleBoxFlat_pyvyu")
 Button/styles/normal = SubResource("StyleBoxFlat_578u4")
@@ -55,6 +58,75 @@ draw_center = false
 
 [sub_resource type="Theme" id="Theme_5ojh6"]
 Label/styles/normal = SubResource("StyleBoxFlat_qhj62")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50oya"]
+bg_color = Color(0.137255, 0.14902, 0.188235, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_1i6qi"]
+Panel/styles/panel = SubResource("StyleBoxFlat_50oya")
+
+[sub_resource type="Theme" id="Theme_06pbv"]
+OptionButton/font_sizes/font_size = 50
+
+[sub_resource type="Theme" id="Theme_c8d0e"]
+Label/font_sizes/font_size = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h41q2"]
+bg_color = Color(0.258824, 0.145098, 0.654902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tuw1"]
+bg_color = Color(0.25838, 0.146714, 0.653302, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf1j5"]
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="Theme" id="Theme_8wdwq"]
+default_font = ExtResource("4_4aum3")
+default_font_size = 50
+Button/font_sizes/font_size = 40
+Button/styles/hover = SubResource("StyleBoxFlat_h41q2")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_7tuw1")
+Button/styles/normal = SubResource("StyleBoxFlat_tf1j5")
+TooltipLabel/font_sizes/font_size = 30
+TooltipLabel/styles/normal = null
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lpny5"]
+
+[sub_resource type="Theme" id="Theme_3nu1c"]
+Label/font_sizes/font_size = 40
+Label/styles/normal = SubResource("StyleBoxFlat_lpny5")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_luntu"]
+expand_margin_right = 100.0
+
+[sub_resource type="Theme" id="Theme_0glhh"]
+OptionButton/styles/normal = SubResource("StyleBoxFlat_luntu")
 
 [node name="Controls" type="Control"]
 layout_mode = 3
@@ -88,6 +160,8 @@ offset_top = 53.0
 offset_right = 241.0
 offset_bottom = 146.0
 tooltip_text = "It Close the Controls"
+focus_neighbor_right = NodePath("../Set_Controls")
+focus_neighbor_bottom = NodePath("../Set_Controls")
 theme = SubResource("Theme_sto77")
 theme_override_font_sizes/font_size = 50
 text = "close
@@ -95,13 +169,13 @@ text = "close
 
 [node name="Controls" type="Label" parent="Control/Panel"]
 layout_mode = 0
-offset_left = 639.0
-offset_top = 30.0
-offset_right = 1228.0
-offset_bottom = 177.0
+offset_left = 606.0
+offset_top = 28.0
+offset_right = 1347.0
+offset_bottom = 175.0
 theme = SubResource("Theme_5ojh6")
 theme_override_font_sizes/font_size = 100
-text = "Controls
+text = "Default Controls
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -130,10 +204,11 @@ offset_top = -188.0
 offset_right = 56.0
 offset_bottom = -163.0
 theme_override_font_sizes/font_size = 20
-text = "Escape"
+text = "Escape or Pause"
 horizontal_alignment = 1
 
 [node name="SPACE" type="Label" parent="Control/Panel"]
+layout_mode = 0
 offset_left = 854.0
 offset_top = 750.0
 offset_right = 903.0
@@ -147,7 +222,7 @@ offset_top = 226.0
 offset_right = 51.0
 offset_bottom = 246.0
 theme_override_font_sizes/font_size = 20
-text = "Attack"
+text = "Jump"
 
 [node name="Shift" type="Label" parent="Control/Panel"]
 layout_mode = 0
@@ -216,12 +291,12 @@ horizontal_alignment = 1
 
 [node name="Walking" type="Label" parent="Control/Panel/D"]
 layout_mode = 0
-offset_left = -101.0
+offset_left = -137.0
 offset_top = 269.0
-offset_right = -22.0
+offset_right = 9.0
 offset_bottom = 294.0
 theme_override_font_sizes/font_size = 20
-text = "Walk"
+text = "Walk or look up"
 
 [node name="E" type="Label" parent="Control/Panel"]
 layout_mode = 0
@@ -249,6 +324,108 @@ offset_top = 299.0
 offset_right = 1614.0
 offset_bottom = 324.0
 theme_override_font_sizes/font_size = 20
-text = "Select"
+text = "Select or Attack
+"
 
+[node name="Set_Controls" type="Button" parent="Control/Panel"]
+layout_mode = 0
+offset_left = 1602.0
+offset_top = 967.0
+offset_right = 1894.0
+offset_bottom = 1060.0
+tooltip_text = "Setup your own Controls
+"
+focus_neighbor_left = NodePath("../Close_btn")
+focus_neighbor_top = NodePath("../Close_btn")
+theme = SubResource("Theme_sto77")
+theme_override_font_sizes/font_size = 50
+text = "Set Controls
+"
+
+[node name="Panel_Set_Controls" type="Panel" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -17.0
+offset_top = -48.0
+offset_right = 1945.0
+offset_bottom = 1059.0
+grow_vertical = 0
+theme = SubResource("Theme_1i6qi")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel_Set_Controls"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1.0
+offset_top = 6.0
+offset_right = 1992.0
+offset_bottom = 1092.0
+scale = Vector2(0.984061, 0.98964)
+theme = SubResource("Theme_06pbv")
+script = ExtResource("3_jmbnk")
+action_items = Array[String](["left", "right", "attack", "jump"])
+
+[node name="return_to_game" type="Button" parent="Control/Panel_Set_Controls/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+tooltip_text = "It Close the Controls"
+focus_neighbor_right = NodePath("../Set_Controls")
+focus_neighbor_bottom = NodePath("../Set_Controls")
+theme = SubResource("Theme_sto77")
+theme_override_font_sizes/font_size = 50
+text = "return to game
+"
+
+[node name="Label" type="Label" parent="Control/Panel_Set_Controls/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme = SubResource("Theme_c8d0e")
+text = "Controls
+"
+
+[node name="ButtonVBoxContainer" type="VBoxContainer" parent="Control/Panel_Set_Controls/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_8wdwq")
+theme_override_constants/separation = 20
+
+[node name="SettingsGridContainer" type="GridContainer" parent="Control/Panel_Set_Controls/MarginContainer/ButtonVBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 2
+theme_override_constants/h_separation = 2
+columns = 2
+
+[node name="InputTypeLabel" type="Label" parent="Control/Panel_Set_Controls/MarginContainer/ButtonVBoxContainer/SettingsGridContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+theme = SubResource("Theme_3nu1c")
+
+[node name="InputTypeButton" type="OptionButton" parent="Control/Panel_Set_Controls/MarginContainer/ButtonVBoxContainer/SettingsGridContainer"]
+visible = false
+layout_mode = 2
+theme = SubResource("Theme_0glhh")
+button_mask = 3
+
+[node name="Main_Button" type="Button" parent="Control/Panel_Set_Controls/MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Quit_Button" type="Button" parent="Control/Panel_Set_Controls/MarginContainer"]
+visible = false
+layout_mode = 2
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Control/Panel/Close_btn" to="." method="_on_close_btn_pressed"]
+[connection signal="pressed" from="Control/Panel/Set_Controls" to="." method="_on_set_controls_pressed"]
+[connection signal="visibility_changed" from="Control/Panel_Set_Controls/MarginContainer" to="." method="_on_margin_container_visibility_changed"]
+[connection signal="pressed" from="Control/Panel_Set_Controls/MarginContainer/return_to_game" to="Control/Panel_Set_Controls/MarginContainer" method="_on_return_to_game_pressed"]
+[connection signal="item_selected" from="Control/Panel_Set_Controls/MarginContainer/ButtonVBoxContainer/SettingsGridContainer/InputTypeButton" to="." method="_on_input_type_button_item_selected"]

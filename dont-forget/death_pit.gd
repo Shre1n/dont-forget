@@ -19,4 +19,4 @@ func _on_body_entered(body):
 	if body.name == "Character":
 		body.position = new_pos
 		if falle:
-			body.get_time(damage)
+			body.get_time(-damage)

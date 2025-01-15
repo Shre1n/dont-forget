@@ -34,6 +34,7 @@ func _on_body_entered(body: Node2D) -> void:
 		Global.new_position = new_position
 		evaluate_direction()
 		Global.new_direction = new_direction
+		#Global.coins = body.coins
 	
 		var gameplay_node:Game_Manager = get_tree().get_nodes_in_group("game_manager")[0] as Game_Manager
 		var unload:Node = gameplay_node.current_level	# we're now responsible for tracking this 

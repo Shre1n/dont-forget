@@ -10,6 +10,11 @@ size = Vector2(116, 45)
 [node name="Spike" type="Node2D"]
 script = ExtResource("1_n81ty")
 
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = -0.0174533
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_50hnd")
+
 [node name="Attack_Area" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 2
@@ -22,8 +27,3 @@ knockback = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area"]
 position = Vector2(-1, 16.5)
 shape = SubResource("RectangleShape2D_vx1mn")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-rotation = -0.0174533
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_50hnd")

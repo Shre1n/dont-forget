@@ -5,6 +5,7 @@ extends CharacterBody2D
 signal coinsChange(amount)
 signal lifeChange(amount)
 signal resetCoins
+signal getCoins
 signal add_bag(bag_instance)
 signal going_back(path)  # Zurück zum Dorf
 
@@ -107,6 +108,7 @@ var open = false
 # --- Funktionen ---
 
 func _ready():
+	#coins = Global.coins
 	new_spawn_position()
 	hit_flash_anim_player.play("RESET")
 	camera.limit_left = camera_limit_left
@@ -324,7 +326,10 @@ func attack():
 	attacking = true
 	cooldown = cooldown_duration_base + cooldown_duration * cooldown_reduction
 	animation_player.speed_scale = attack_speed
-	animation_player.play("fight")
+	if Input.is_action_pressed("up"):
+		animation_player.play("attack_up")
+	else:
+		animation_player.play("fight")
 
 func dash():
 	dashing = true
@@ -353,15 +358,16 @@ func _on_dash_timer_timeout():
 func update_animation():
 	if alive:
 		if !attacking:
-			if velocity.x != 0:
-				animation_player.play("walk")
+			if is_on_floor():
+				if velocity.x != 0:
+					animation_player.play("walk")
+				else:
+					animation_player.play("idle")
 			else:
-				animation_player.play("idle")
-
-			if velocity.y < 0:
-				animation_player.play("jump")
-			if velocity.y > 0:
-				animation_player.play("idle") #später fall
+				if velocity.y < 0:
+					animation_player.play("jump")
+				if velocity.y > 0:
+					animation_player.play("fall") #später fall
 
 func _on_jump_timer_timeout():
 	JumpAvailability = false
@@ -373,6 +379,7 @@ func die():
 	var col2a = 0
 	$CollisionShape2D2/Damage_Area.collision_mask = col2a
 	Global.price_multi = 1
+	#Global.coins = 0
 	animation_player.play("death")
 	#await (animation_player.animation_finished)
 
