@@ -1,43 +1,58 @@
-[gd_scene load_steps=15 format=3 uid="uid://cspyht3ytgvhx"]
+[gd_scene load_steps=19 format=3 uid="uid://cspyht3ytgvhx"]
 
 [ext_resource type="Script" path="res://ui/options.gd" id="1_sxokr"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebwff"]
-bg_color = Color(0.288852, 0.262479, 0.331737, 1)
-draw_center = false
-
-[sub_resource type="Theme" id="Theme_ccqy4"]
-Label/styles/normal = SubResource("StyleBoxFlat_ebwff")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfebg"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehqm5"]
-bg_color = Color(0.305882, 0.207843, 0.494118, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_112xp"]
-bg_color = Color(0.305882, 0.207843, 0.494118, 1)
-
-[sub_resource type="Theme" id="Theme_joij3"]
-Button/styles/normal = SubResource("StyleBoxFlat_dfebg")
-HSlider/styles/grabber_area = SubResource("StyleBoxFlat_ehqm5")
-HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_112xp")
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tstbd"]
-draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clsuc"]
+bg_color = Color(0.135851, 0.15073, 0.189834, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-shadow_size = 3
+
+[sub_resource type="Theme" id="Theme_g4wqp"]
+Panel/styles/panel = SubResource("StyleBoxFlat_clsuc")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hnx6"]
+bg_color = Color(0.770791, 0.511126, 0.614406, 1)
+
+[sub_resource type="Theme" id="Theme_p7iw0"]
+Panel/styles/panel = SubResource("StyleBoxFlat_5hnx6")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwvlx"]
+bg_color = Color(0.288852, 0.262479, 0.331737, 1)
+draw_center = false
+
+[sub_resource type="Theme" id="Theme_ccqy4"]
+Label/styles/normal = SubResource("StyleBoxFlat_uwvlx")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_du5x8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awh32"]
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kuiyy"]
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
+
+[sub_resource type="Theme" id="Theme_joij3"]
+Button/styles/normal = SubResource("StyleBoxFlat_du5x8")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_awh32")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_kuiyy")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11t8t"]
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 
 [sub_resource type="Theme" id="Theme_dmn8s"]
-CheckButton/styles/normal = SubResource("StyleBoxFlat_tstbd")
+CheckButton/styles/normal = SubResource("StyleBoxFlat_11t8t")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7cf1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncavb"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 border_width_left = 2
 border_width_top = 2
@@ -50,11 +65,11 @@ corner_radius_bottom_left = 5
 shadow_size = 3
 
 [sub_resource type="Theme" id="Theme_bd22v"]
-Button/styles/normal = SubResource("StyleBoxFlat_d7cf1")
+Button/styles/normal = SubResource("StyleBoxFlat_ncavb")
 
 [sub_resource type="ImageTexture" id="ImageTexture_lgjsh"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1oktc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d62m4"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 border_width_left = 2
 border_width_top = 2
@@ -67,7 +82,7 @@ corner_radius_bottom_left = 5
 shadow_size = 3
 
 [sub_resource type="Theme" id="Theme_42qfs"]
-Button/styles/normal = SubResource("StyleBoxFlat_1oktc")
+Button/styles/normal = SubResource("StyleBoxFlat_d62m4")
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -88,13 +103,17 @@ grow_vertical = 2
 
 [node name="Panel" type="Panel" parent="Panel"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = -1
+anchor_left = 0.505729
+anchor_top = 0.150926
+anchor_right = 0.505729
+anchor_bottom = 0.150926
+offset_left = -443.0
+offset_right = 443.0
+offset_bottom = 363.0
 grow_horizontal = 2
-grow_vertical = 2
+theme = SubResource("Theme_g4wqp")
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/Panel"]
 layout_mode = 1
@@ -109,6 +128,7 @@ offset_right = 337.0
 offset_bottom = 131.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_p7iw0")
 theme_override_constants/separation = 30
 
 [node name="HSplitContainer" type="HSplitContainer" parent="Panel/Panel/VBoxContainer"]
@@ -131,15 +151,17 @@ text = "Volume
 "
 
 [node name="Volume" type="HSlider" parent="Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(124, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-tooltip_text = "Verschiebe um die Gesamtlautstärke anzupassen"
+tooltip_text = "Slide to adjust the overall volume
+"
 theme = SubResource("Theme_joij3")
 value = 100.0
 
 [node name="Mute" type="CheckButton" parent="Panel/Panel/VBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(124, 0)
 layout_mode = 2
 size_flags_vertical = 8
 tooltip_text = "Muting the game"
@@ -168,7 +190,7 @@ icon = SubResource("ImageTexture_lgjsh")
 [node name="Reset_Btn" type="Button" parent="Panel/Panel/VBoxContainer/HSplitContainer3"]
 layout_mode = 2
 size_flags_horizontal = 3
-tooltip_text = "Setzt die Einstellungen zurück auf den Standart"
+tooltip_text = "Resets the settings to default"
 theme = SubResource("Theme_42qfs")
 theme_override_font_sizes/font_size = 30
 keep_pressed_outside = true

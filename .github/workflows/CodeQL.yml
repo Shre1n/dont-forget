@@ -5,10 +5,8 @@ on:
     branches:
       - "**"
       - "!main"
-  pull_request:
-    branches:
-      - "development"
-      - "!main"
+      - "!feature/releases"
+      - "!development"
 
 
 jobs:

@@ -1,0 +1,115 @@
+[gd_scene load_steps=9 format=3 uid="uid://4v3mtijto1jp"]
+
+[ext_resource type="Script" path="res://box.gd" id="1_jinl7"]
+[ext_resource type="Script" path="res://scenes/damage_area.gd" id="2_0teo7"]
+[ext_resource type="Texture2D" uid="uid://b835ifn3mhksa" path="res://objekte/kiste/Kiste.png" id="2_ei3sn"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mx01k"]
+absorbent = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qr5b"]
+size = Vector2(140.5, 126.5)
+
+[sub_resource type="Animation" id="Animation_mrqu8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.2, 0.194)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Damage_Area:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_rtalh"]
+resource_name = "damage"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.837167, 0.41598, 0.00176813, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1.55872, 1),
+"update": 0,
+"values": [Vector2(0.2, 0.194), Vector2(0.21, 0.203), Vector2(0.2, 0.194)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Damage_Area:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1.56917, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.07665, 1.04054), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2nfkw"]
+_data = {
+"RESET": SubResource("Animation_mrqu8"),
+"damage": SubResource("Animation_rtalh")
+}
+
+[node name="box" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 23
+mass = 9999.0
+physics_material_override = SubResource("PhysicsMaterial_mx01k")
+gravity_scale = 3.0
+sleeping = true
+freeze_mode = 1
+constant_force = Vector2(0, 1000)
+script = ExtResource("1_jinl7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4, 10)
+scale = Vector2(0.2, 0.194)
+texture = ExtResource("2_ei3sn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 17)
+shape = SubResource("RectangleShape2D_1qr5b")
+
+[node name="Damage_Area" type="Area2D" parent="."]
+script = ExtResource("2_0teo7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Damage_Area"]
+position = Vector2(2, 12)
+shape = SubResource("RectangleShape2D_1qr5b")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2nfkw")
+}

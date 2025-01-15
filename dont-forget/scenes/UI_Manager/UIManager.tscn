@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=3 uid="uid://bos25twpmtbll"]
+
+[ext_resource type="Script" path="res://scenes/UI_Manager/ui_manager.gd" id="1_v3nap"]
+[ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="2_1ejbi"]
+[ext_resource type="Texture2D" uid="uid://bk62c81llp5aq" path="res://scenes/UI_Manager/Shop_assets/Shopranke.png" id="2_7ww5b"]
+[ext_resource type="Texture2D" uid="uid://h6any8wuwqdl" path="res://scenes/UI_Manager/Shop_assets/Shopranke_klein.png" id="3_mwk8y"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2grv"]
+bg_color = Color(0.646232, 0.451203, 0.326315, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Theme" id="Theme_7opii"]
+Panel/styles/panel = SubResource("StyleBoxFlat_i2grv")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h41q2"]
+bg_color = Color(0.258824, 0.145098, 0.654902, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7tuw1"]
+bg_color = Color(0.25838, 0.146714, 0.653302, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tf1j5"]
+bg_color = Color(0.305882, 0.207843, 0.494118, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 3
+
+[sub_resource type="Theme" id="Theme_ex68q"]
+default_font = ExtResource("2_1ejbi")
+Button/styles/hover = SubResource("StyleBoxFlat_h41q2")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_7tuw1")
+Button/styles/normal = SubResource("StyleBoxFlat_tf1j5")
+TooltipLabel/font_sizes/font_size = 30
+TooltipLabel/styles/normal = null
+
+[node name="UiManager" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_v3nap")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 114.0
+offset_right = 1059.0
+offset_bottom = 713.0
+scale = Vector2(1.36654, 1.45226)
+theme = SubResource("Theme_7opii")
+
+[node name="Container" type="Container" parent="Panel"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+anchor_left = 0.114
+anchor_top = 0.097
+anchor_right = 0.899
+anchor_bottom = 0.799
+offset_left = 0.264641
+offset_top = 0.164379
+offset_right = -0.0603638
+offset_bottom = -0.18161
+size_flags_vertical = 3
+
+[node name="CloseButton" type="Button" parent="Panel"]
+layout_mode = 2
+offset_left = 342.471
+offset_top = 542.603
+offset_right = 469.471
+offset_bottom = 584.603
+theme = SubResource("Theme_ex68q")
+theme_override_font_sizes/font_size = 30
+text = "Close"
+
+[node name="Shopranke" type="Sprite2D" parent="Panel"]
+position = Vector2(822.515, 370.457)
+rotation = -0.742994
+scale = Vector2(0.2216, 0.225536)
+texture = ExtResource("2_7ww5b")
+
+[node name="ShoprankeKlein" type="Sprite2D" parent="Panel"]
+position = Vector2(51.2243, 535.717)
+rotation = -1.57117
+scale = Vector2(0.09, 0.09)
+texture = ExtResource("3_mwk8y")
+
+[node name="ShoprankeKlein" type="Sprite2D" parent="Panel/ShoprankeKlein"]
+position = Vector2(5332.61, 197.135)
+rotation = 1.52237
+scale = Vector2(1.06317, 1.05129)
+texture = ExtResource("3_mwk8y")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]

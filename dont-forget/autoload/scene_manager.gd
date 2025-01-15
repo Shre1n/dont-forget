@@ -17,6 +17,7 @@ var _load_scene_into:Node
 var _scene_to_unload:Node
 var _loading_in_progress:bool = false
 
+
 func _ready() -> void:
 	var screen_size = DisplayServer.screen_get_size()
 	DisplayServer.window_set_size(screen_size)
@@ -36,6 +37,7 @@ func _add_loading_screen(transition_type:String="fade_to_black"):
 	
 
 func swap_scenes(scene_to_load:String, load_into:Node=null, scene_to_unload:Node=null, transition_type:String="fade_to_black") -> void:
+	
 	if _loading_in_progress:
 		push_warning("SceneManager is already loading something")
 		return
@@ -46,7 +48,9 @@ func swap_scenes(scene_to_load:String, load_into:Node=null, scene_to_unload:Node
 	_scene_to_unload = scene_to_unload
 	
 	_add_loading_screen(transition_type)
-	_load_content(scene_to_load)	
+	_load_content(scene_to_load)
+
+
 
 func _load_content(content_path:String) -> void:
 	load_start.emit(_loading_screen)
@@ -64,6 +68,8 @@ func _load_content(content_path:String) -> void:
 	
 	get_tree().root.add_child(_load_progress_timer)
 	_load_progress_timer.start()
+	
+	
 
 func _monitor_load_status() -> void:
 	var load_progress = []
@@ -88,7 +94,7 @@ func _monitor_load_status() -> void:
 			return
 
 func _on_content_failed_to_load(path:String) -> void:
-	printerr("error: Failed to load resource: '%s'" % [path])	
+	printerr("error: Failed to load resource: '%s'" % [path])
 
 func _on_content_invalid(path:String) -> void:
 	printerr("error: Cannot load resource: '%s'" % [path])

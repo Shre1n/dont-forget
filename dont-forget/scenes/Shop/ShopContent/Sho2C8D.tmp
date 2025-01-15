@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://bo8mgkkqub1hw"]
+
+[ext_resource type="Script" path="res://scenes/Shop/ShopContent/shop_content.gd" id="1_kx0si"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmy37"]
+bg_color = Color(0.67451, 0.737255, 0.541176, 1)
+
+[sub_resource type="Theme" id="Theme_nr8y0"]
+Panel/styles/panel = SubResource("StyleBoxFlat_vmy37")
+
+[node name="ShopContent" type="Control"]
+layout_mode = 3
+anchor_left = 0.05
+anchor_top = 0.056
+anchor_right = 0.396
+anchor_bottom = 0.461
+offset_left = 0.595001
+offset_top = 0.114998
+offset_right = -0.725098
+offset_bottom = -0.285065
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kx0si")
+font_path = null
+stats_file_path = null
+selected_profile = null
+price_adder = null
+weights = null
+min_values = null
+max_values = null
+is_enabled = null
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -74.0
+offset_top = -5.0
+offset_right = 669.0
+offset_bottom = 454.0
+theme = SubResource("Theme_nr8y0")
+
+[node name="title" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -20.595
+offset_top = -48.595
+offset_right = -20.595
+offset_bottom = 1.405
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Lucky Pete's Shop"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+offset_left = -74.0
+offset_top = -6.0
+offset_right = 670.0
+offset_bottom = 469.0
+theme_override_constants/separation = 30

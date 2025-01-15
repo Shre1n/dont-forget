@@ -1,0 +1,75 @@
+name: Deploy on Comment
+
+on:
+  issue_comment:
+    types: [ created ]
+
+
+jobs:
+  deploy:
+    if: ${{ github.event.comment.body == '/deploy' && github.event.issue.pull_request }}
+    runs-on: ubuntu-latest
+
+    env:
+      DEV_STEP: PR-Build
+      VERSION: ${{ github.event.comment.id }}
+    permissions:
+      contents: write
+      pull-requests: write
+    name: Export and Deploy Game
+
+    steps:
+
+      - name: Add Reaction to Trigger Comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          comment-id: ${{ github.event.comment.id }}
+          reactions: rocket
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Export Game
+        id: export
+        uses: firebelley/godot-export@v6.0.0
+        with:
+          godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.3/Godot_v4.3-stable_export_templates.tpz
+          relative_project_path: ./dont-forget
+          archive_output: true
+          cache: true
+          export_debug: true
+          presets_to_export: 'win, macOS, Linux'
+
+      - name: Upload Windows Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Windows
+          path: ${{ steps.export.outputs.archive_directory }}/win.zip
+
+      - name: Upload Mac Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: macOS
+          path: ${{ steps.export.outputs.archive_directory }}/macOS.zip
+
+      - name: Upload Linux Build
+        uses: actions/upload-artifact@v4
+        with:
+          name: Linux
+          path: ${{ steps.export.outputs.archive_directory }}/Linux.zip
+
+      # Step 6: Create a Temporary Release (Optional)
+      - name: Create Temporary Release
+        uses: ncipollo/release-action@v1.14.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          generateReleaseNotes: true
+          tag: deploy-${{ github.event.comment.id }}
+          name: PR Deployment - ${{ github.event.comment.body }}
+          artifacts: |
+            ${{ steps.export.outputs.archive_directory }}/Windows Desktop.zip
+            ${{ steps.export.outputs.archive_directory }}/macOS.zip
+            ${{ steps.export.outputs.archive_directory }}/Linux.zip
+          allowUpdates: true
