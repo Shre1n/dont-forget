@@ -16,6 +16,7 @@ var orientation_left: bool = false
 var character: Character = null
 var character_chase: bool = false
 var direction: int = 0
+@export var bomb = false
 
 signal boss_defeated(boss_name: String)
 signal boss_engaged(boss_name: String)
@@ -47,7 +48,7 @@ func start_phase_2():
 	print("Boss entered Phase 2")
 
 func update_animation():
-	if !alive or damaged:
+	if !alive or damaged or bomb:
 		return
 		
 	if attacking:
@@ -75,6 +76,7 @@ func apply_gravity(delta):
 	if !is_on_floor():
 		velocity.y += ProjectSettings.get_setting("physics/2d/default_gravity") * delta
 	else:
+		bomb = false
 		velocity.y = 0
 
 func on_hit(damage: int = 10):
@@ -105,10 +107,11 @@ func perform_attack():
 
 func perform_phase_2_attack():
 	var random_action = randi() % 2
-	if random_action == 0:
-		perform_combo_attack()
-	else:
-		perform_bomb_attack()
+	if is_on_floor():
+		if random_action == 0:
+			perform_combo_attack()
+		else:
+			perform_bomb_attack()
 
 func perform_combo_attack():
 	combo_phase = 0
@@ -117,34 +120,19 @@ func perform_combo_attack():
 
 func perform_bomb_attack():
 	# Make the boss jump towards the player
+	bomb = true
 	var direction_to_character = (character.global_position - global_position).normalized()
 	
 	# Calculate horizontal direction
 	direction = direction_calcX(direction_to_character)
 	velocity.x = direction * speed
-	
-	# Determine vertical direction (jumping towards the player)
-	var jump_height = character.global_position.y - global_position.y
-	print("Jump H: ", jump_height)
-	if jump_height > 0:
-		# Character is below the boss (boss needs to jump up)
-		velocity.y = -1000 # Adjust this value to control the jump strength
-		print("Boss jumps up towards player")
-	else:
-		# Character is above the boss (boss needs to jump down)
-		velocity.y = 400  # Adjust this value to control downward velocity
-		print("Boss jumps down towards player")
+	velocity.y = -100
 	
 	# Play the bomb animation after the jump is initiated
 	animationPlayer.play("bombe")
-	print("Boss drops bombs towards player!")
 	
 	if is_on_floor():
 		animationPlayer.play("idle")
-	# The attack animation should not override the jump or movement logic,
-	# so we'll make sure to sync the jump and bomb dropping.
-
-
 
 func die():
 	alive = false
@@ -161,14 +149,15 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 func chase_character():
 	if character:
 		var direction_to_character = (character.global_position - global_position).normalized()
-		direction = direction_calcX(direction_to_character)
+		if !bomb:
+			direction = direction_calcX(direction_to_character)
 		velocity.x = direction * speed
-		attacking = false
 		# Spieler-Distanz prüfen und angreifen, wenn nah genug
-		var distance_to_character = character.global_position.distance_to(global_position)
-		if distance_to_character <= attack_range and !attacking:
-			velocity.x = 0
-			attack()
+		if !bomb:
+			var distance_to_character = character.global_position.distance_to(global_position)
+			if distance_to_character <= attack_range and !attacking:
+				velocity.x = 0
+				attack()
 
 func direction_calcX(new_goal):
 	if new_goal.x > 0:

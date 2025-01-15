@@ -1296,5 +1296,4 @@ shape = SubResource("RectangleShape2D_q71vo")
 [node name="Manager" parent="." instance=ExtResource("17_065xf")]
 
 [node name="Endboss" parent="." instance=ExtResource("18_eudvh")]
-position = Vector2(4339, 1109)
 scale = Vector2(0.5, 1.752)

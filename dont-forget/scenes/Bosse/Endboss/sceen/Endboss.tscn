@@ -296,6 +296,42 @@ tracks/15/keys = {
 "update": 0,
 "values": [0.0]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath(".:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath(".:bomb")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath(".:attacking")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_8edyb"]
 resource_name = "attack"
@@ -446,6 +482,18 @@ tracks/11/keys = {
 "update": 0,
 "values": [0.0, 0.0, 0.0, 0.0]
 }
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath(".:attacking")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0.7),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_dyts3"]
 resource_name = "bombe"
@@ -557,6 +605,18 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(0.916753, 1.04729), Vector2(0.916753, 1.04729), Vector2(0.916753, 1.04729), Vector2(0.916753, 1.04729)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath(".:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_u5yrv"]
@@ -830,6 +890,18 @@ tracks/9/keys = {
 "update": 0,
 "values": [Vector2(1.61351, 1.04045), Vector2(1.61351, 1.04045)]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".:bomb")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_5o5i0"]
 resource_name = "run"
@@ -1011,6 +1083,8 @@ size = Vector2(2086.79, 410.51)
 
 [node name="Endboss" type="CharacterBody2D"]
 scale = Vector2(5.73895, 20.1067)
+collision_layer = 8
+collision_mask = 57
 script = ExtResource("1_4st5j")
 
 [node name="Boss" type="AnimatedSprite2D" parent="."]
@@ -1032,7 +1106,6 @@ scale = Vector2(26.636, 8.67404)
 polygon = PackedVector2Array(-2.11204, 7.91814, -2.55944, 8.59585, -2.82263, 8.30623, -3.29636, 7.3447, -3.38189, 6.5106, -3.41479, 5.78656, -3.05949, 5.34055, -3.23714, 4.72077, -3.09239, 4.11836, -2.91474, 3.80557, -2.76341, 2.68765, -2.3818, 2.09104, -2.11204, 1.33803, -1.81596, 0.973114, -1.81596, 0.220108, -1.81596, -0.173771, -1.40802, 0.0115833, -1.13826, 0.167978, -0.993515, -0.225903, -1.40802, -0.532898, -1.93439, -0.822515, -2.14494, -1.23956, -2.55944, -1.39596, -3.21082, -1.367, -4.53989, -1.44809, -4.68464, -1.00208, -5.48077, -1.00208, -5.65841, -1.41913, -6.10582, -1.47126, -5.95449, -0.301203, -6.48743, -0.770384, -6.86905, -0.278034, -7.31646, 1.46546, -7.52042, -0.225903, -7.87572, -0.353334, -8.73106, 0.191147, -8.11258, -1.00208, -8.34945, -1.367, -9.32322, -0.874645, -8.29023, -2.20109, -8.23102, -2.69345, -8.84949, -3.89246, -8.07969, -3.31902, -7.61254, -3.8635, -7.46121, -5.21891, -7.16513, -4.12416, -6.48743, -3.57967, -4.86229, -5.27104, -6.21767, -3.00623, -6.13214, -2.25323, -5.80974, -2.90197, -5.18468, -3.18579, -4.80307, -3.44645, -4.27013, -3.94459, -4.27013, -4.6165, -4.03326, -5.27104, -3.65165, -5.607, -3.65165, -6.25574, -3.55954, -6.85235, -2.76341, -6.02405, -2.14494, -5.6823, -1.76332, -5.607, -2.52655, -6.5164, -2.64498, -7.3505, -2.28968, -8.05137, -1.61199, -8.78121, -0.934296, -9.0129, -1.55278, -8.05137, -1.37513, -7.06088, -0.901398, -6.41213, -0.0197411, -6.2847, 0.723747, -6.33683, 1.04615, -6.98558, 1.40144, -7.84285, 1.22379, -8.62481, 0.901398, -9.14612, 1.75674, -8.88547, 2.3489, -8.1035, 2.57918, -7.2694, 2.3489, -6.62066, 2.69761, -6.72492, 3.32267, -7.58219, 3.34899, -6.93345, 3.26345, -6.54536, 3.58585, -5.81552, 3.85561, -5.16678, 4.05958, -4.33268, 4.73727, -3.99672, 5.18468, -3.91563, 5.5663, -3.39432, 5.80316, -2.8788, 5.82948, -2.06787, 5.82948, -1.75508, 6.15845, -1.80721, 6.33611, -1.62765, 6.33611, -1.1353, 6.04002, -0.897816, 5.77026, -1.08317, 5.32943, -1.08317, 4.61884, -0.926777, 4.32276, -1.34383, 3.58585, -1.29169, 2.75683, -1.2106, 2.40812, -1.2106, 2.05282, -0.718252, 1.69752, -0.301203, 1.69752, 0.220108, 2.37522, 0.0347538, 2.90816, -0.225903, 2.87526, 0.29541, 2.78973, 0.944153, 3.20424, 1.49443, 3.55954, 2.45596, 3.94115, 3.41749, 4.17801, 4.0141, 4.44119, 3.54492, 4.55963, 4.22262, 4.65174, 5.18415, 4.8886, 5.65334, 4.94782, 6.71913, 5.00703, 7.78492, 4.71096, 8.4105, 4.53331, 8.64219, 3.7964, 7.86601, 3.4082, 7.11301, 3.11213, 5.86186, 3.46742, 5.47377, 2.52655, 5.13202, 1.78306, 3.85771, 1.57909, 3.1047, 1.40144, 2.50809, 0.927715, 4.8482, 0.546101, 4.14732, 0.27634, 3.15683, 0.0394745, 2.79191, -0.138172, 3.85771, -0.723751, 4.58754, -1.34881, 5.23629, -1.76332, 5.47377, -1.84885, 6.35421)
 
 [node name="Attack_Area" type="Area2D" parent="."]
-visible = false
 monitorable = false
 script = ExtResource("20_kw2np")
 
@@ -1043,7 +1116,6 @@ scale = Vector2(3.50917, 0.712211)
 shape = SubResource("CapsuleShape2D_72ea0")
 
 [node name="Damage_Area" parent="." instance=ExtResource("19_pc17t")]
-visible = false
 position = Vector2(21.6068, 3.03381)
 scale = Vector2(26.4833, 8.58626)
 
@@ -1058,10 +1130,13 @@ libraries = {
 }
 
 [node name="Detection Area" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection Area"]
+visible = false
 position = Vector2(89.7377, 29.0948)
-scale = Vector2(0.999999, 0.999999)
+scale = Vector2(2, 2)
 shape = SubResource("RectangleShape2D_yifdr")
 
 [node name="ComboTimer" type="Timer" parent="."]
