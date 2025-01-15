@@ -84,9 +84,13 @@ var weight
 var elite = false
 var mini_boss = false
 
+#var spawner = false
+
 func _ready():
+	#if !spawner:
 	var gamemanager = find_game_manager()
-	current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
+	#current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
+	find_item_holder()
 	randomize()
 	load_stats_from_file()
 	apply_profile_data()
@@ -339,3 +343,7 @@ func instantiate_drop_items(drop_count, death_pos, is_time_item):
 
 func save_user_location(path):
 	current_Itemholder = path
+	print(current_Itemholder)
+
+func find_item_holder():
+	current_Itemholder = $"../../Itemholder"

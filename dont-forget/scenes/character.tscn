@@ -15,7 +15,6 @@
 [ext_resource type="Texture2D" uid="uid://vljoe56syh4o" path="res://assets/jump/1.png" id="5_v0m88"]
 [ext_resource type="Texture2D" uid="uid://dyu5yqmgspe36" path="res://assets/attack_up/3.png" id="6_2oksr"]
 [ext_resource type="Texture2D" uid="uid://cnpkp6od8hym8" path="res://assets/jump/2.png" id="6_e5323"]
-[ext_resource type="Texture2D" uid="uid://642xgafgegr4" path="res://assets/fight/4.png" id="6_wvsum"]
 [ext_resource type="Texture2D" uid="uid://bcyuroxurw3hi" path="res://assets/dead/4.png" id="6_xeyef"]
 [ext_resource type="Texture2D" uid="uid://sgibng2nq44j" path="res://assets/fight/5.png" id="7_1v3np"]
 [ext_resource type="Texture2D" uid="uid://d02qbpr8674f1" path="res://assets/jump/3.png" id="7_ikxlm"]
@@ -26,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://d283gfs8ghb5w" path="res://assets/run/1.png" id="9_ik30i"]
 [ext_resource type="Texture2D" uid="uid://dw1mmij7bgt52" path="res://assets/fight/8.png" id="10_4dwdh"]
 [ext_resource type="Texture2D" uid="uid://d05lkcreanw75" path="res://assets/run/2.png" id="10_rjre6"]
+[ext_resource type="Texture2D" uid="uid://c6c31nnv0te4x" path="res://assets/fight/Fight.png" id="11_kgaol"]
 [ext_resource type="Texture2D" uid="uid://ce70ajker56s2" path="res://assets/run/3.png" id="11_ot434"]
 [ext_resource type="Texture2D" uid="uid://c824ew21hm8xt" path="res://assets/run/4.png" id="12_pd3hq"]
 [ext_resource type="Texture2D" uid="uid://dj372g4hbi8ug" path="res://assets/run/5.png" id="13_hxmp5"]
@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://dnu6va4x16qlb" path="res://scenes/damage_area.tscn" id="24_i5vbm"]
 [ext_resource type="PackedScene" uid="uid://cmgf1s540hgqi" path="res://scenes/attack_area.tscn" id="24_u5kue"]
 [ext_resource type="PackedScene" path="res://stats_popup.tscn" id="30_pbvn4"]
+[ext_resource type="Texture2D" uid="uid://bgpmxtn8wl05i" path="res://scenes/2d_lights_and_shadows_neutral_point_light.png" id="31_d44a5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gevhk"]
 radius = 36.2338
@@ -867,8 +868,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_ai3dy")
 }, {
-"duration": 1.0,
-"texture": ExtResource("6_wvsum")
+"duration": 2.5,
+"texture": ExtResource("11_kgaol")
 }, {
 "duration": 1.0,
 "texture": ExtResource("7_1v3np")
@@ -1076,7 +1077,7 @@ position = Vector2(10, -23)
 scale = Vector2(0.13, 0.13)
 sprite_frames = SubResource("SpriteFrames_xhvvv")
 animation = &"idle2.0"
-autoplay = "attack_up"
+autoplay = "idle2.0"
 frame = 1
 speed_scale = 0.7
 
@@ -1123,6 +1124,12 @@ libraries = {
 [node name="Dash_Timer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="Light" type="PointLight2D" parent="."]
+visible = false
+energy = 0.5
+texture = ExtResource("31_d44a5")
+texture_scale = 2.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]
