@@ -324,7 +324,10 @@ func attack():
 	attacking = true
 	cooldown = cooldown_duration_base + cooldown_duration * cooldown_reduction
 	animation_player.speed_scale = attack_speed
-	animation_player.play("fight")
+	if Input.is_action_pressed("up"):
+		animation_player.play("attack_up")
+	else:
+		animation_player.play("fight")
 
 func dash():
 	dashing = true

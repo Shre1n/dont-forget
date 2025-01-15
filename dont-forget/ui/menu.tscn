@@ -334,6 +334,7 @@ visible = false
 layout_mode = 1
 
 [node name="Controls" parent="." instance=ExtResource("7_2l5kn")]
+visible = false
 
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Start_Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Load_Button" to="." method="_on_load_button_pressed"]

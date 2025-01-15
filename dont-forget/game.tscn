@@ -407,6 +407,7 @@ visible = false
 game_manager = NodePath("../..")
 
 [node name="Controls" parent="Pause_Menu" instance=ExtResource("7_s0dk2")]
+visible = false
 
 [node name="Life_Timer" type="Timer" parent="."]
 process_mode = 1
