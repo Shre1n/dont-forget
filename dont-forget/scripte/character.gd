@@ -46,7 +46,7 @@ signal going_back(path)  # Zurück zum Dorf
 @export_subgroup("Balancing")
 @export var dash_price: float = 30.0
 @export var dashtime: float = 0.2
-@export var cooldown_duration: float = 1.0
+@export var cooldown_duration: float = 0.7
 @export var dash_cooldown_duration: float = 5.0
 @export var dash_duration: float = 0.2
 @export var dash_cooldown_duration_base: float = 0.1
