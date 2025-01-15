@@ -79,10 +79,13 @@ var weight
 var elite = false
 var mini_boss = false
 
+#var spawner = false
+
 func _ready():
 	# Initialize references and start behavior
 	var gamemanager = find_game_manager()
-	current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
+	#current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
+	find_item_holder()
 	randomize()
 	load_stats_from_file(stats_file_path)
 	apply_profile_data()
@@ -298,7 +301,7 @@ func knockback(knockback, damage_position):
 func die():
 	# Handle the death of the enemy
 	alive = false
-	add_new_drop(position)
+	add_new_drop(global_position)
 
 func _on_animation_player_animation_finished(anim_name: String):
 	# Check when the death animation is finished to drop items and remove the enemy
@@ -338,3 +341,6 @@ func instantiate_drop_items(drop_count, death_pos, is_time_item):
 func save_user_location(path):
 	# Save the location of the item holder (optional)
 	current_Itemholder = path
+
+func find_item_holder():
+	current_Itemholder = $"../../Itemholder"

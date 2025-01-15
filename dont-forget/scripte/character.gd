@@ -5,6 +5,7 @@ extends CharacterBody2D
 signal coinsChange(amount)
 signal lifeChange(amount)
 signal resetCoins
+signal getCoins
 signal add_bag(bag_instance)
 signal going_back(path)  # Zurück zum Dorf
 
@@ -107,6 +108,7 @@ var open = false
 # --- Funktionen ---
 
 func _ready():
+	#coins = Global.coins
 	new_spawn_position()
 	hit_flash_anim_player.play("RESET")
 	camera.limit_left = camera_limit_left
@@ -373,6 +375,7 @@ func die():
 	var col2a = 0
 	$CollisionShape2D2/Damage_Area.collision_mask = col2a
 	Global.price_multi = 1
+	#Global.coins = 0
 	animation_player.play("death")
 	#await (animation_player.animation_finished)
 

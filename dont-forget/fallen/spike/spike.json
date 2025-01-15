@@ -11,6 +11,17 @@
 				"collision_size": [116, 45]
 			}
 		},
+		"sponge": {
+			"data": {
+				"damage": 30,
+				"pierce": 150,
+				"crit_chance": 150,
+				"crit_multi": 150,
+				"knockback": 600,
+				"sprite": "res://fallen/spike/Falle_2.png",
+				"collision_size": [116, 70]
+			}
+		},
 		"very_sharp": {
 			"data": {
 				"damage": 90,

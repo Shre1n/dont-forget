@@ -17,7 +17,7 @@ extends Node2D
 @export_subgroup("Script")
 @export var stats_file_path: String = "res://fallen/spike/spike.json"
 @export_subgroup("")
-@export_enum("default","very_sharp") var selected_profile: String = "default"
+@export_enum("default", "sponge", "very_sharp") var selected_profile: String = "default"
 
 var data: Dictionary
 var profiles_data: Dictionary

@@ -222,6 +222,9 @@ func _on_level_loaded(level) -> void:
 		show_light()
 		save_scene()
 
+func new_Itemholder_Shout():
+	find_Itemholder(current_level)
+
 func _on_level_added(_level,_loading_screen) -> void:
 	if _loading_screen != null:
 		var loading_parent: Node = _loading_screen.get_parent() as Node
