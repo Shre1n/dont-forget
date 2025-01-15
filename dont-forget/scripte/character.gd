@@ -358,15 +358,16 @@ func _on_dash_timer_timeout():
 func update_animation():
 	if alive:
 		if !attacking:
-			if velocity.x != 0:
-				animation_player.play("walk")
+			if is_on_floor():
+				if velocity.x != 0:
+					animation_player.play("walk")
+				else:
+					animation_player.play("idle")
 			else:
-				animation_player.play("idle")
-
-			if velocity.y < 0:
-				animation_player.play("jump")
-			if velocity.y > 0:
-				animation_player.play("idle") #später fall
+				if velocity.y < 0:
+					animation_player.play("jump")
+				if velocity.y > 0:
+					animation_player.play("fall") #später fall
 
 func _on_jump_timer_timeout():
 	JumpAvailability = false
