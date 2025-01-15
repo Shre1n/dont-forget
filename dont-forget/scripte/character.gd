@@ -23,7 +23,7 @@ signal going_back(path)  # Zurück zum Dorf
 @export var imunity_stat = 0
 @export var attack_speed_stat = 250
 @export var extra_weight_stat = 0
-@export var cooldown_stat = 250
+@export var cooldown_stat = 100
 @export var pierce_stat = 0  # Durchschlagskraft (Prozent)
 @export var crit_stat = 0  # Kritische Trefferchance (0–1000 = 0–100%)
 @export var knockback_stat = 50  # Knockback-Stärke
@@ -47,7 +47,7 @@ signal going_back(path)  # Zurück zum Dorf
 @export_subgroup("Balancing")
 @export var dash_price: float = 30.0
 @export var dashtime: float = 0.2
-@export var cooldown_duration: float = 1.0
+@export var cooldown_duration: float = 0.7
 @export var dash_cooldown_duration: float = 5.0
 @export var dash_duration: float = 0.2
 @export var dash_cooldown_duration_base: float = 0.1
