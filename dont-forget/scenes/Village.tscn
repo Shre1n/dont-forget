@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=63 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
@@ -34,6 +34,7 @@
 [ext_resource type="Script" path="res://scenes/no_attack_area.gd" id="32_l4m7q"]
 [ext_resource type="PackedScene" uid="uid://m2it2ky3jo3g" path="res://scenes/wegweiser/wegweiser.tscn" id="33_mqqcs"]
 [ext_resource type="Texture2D" uid="uid://pf06a58h0gk5" path="res://assets/Village/Well_front_.png" id="34_6igsi"]
+[ext_resource type="PackedScene" uid="uid://b0qdjpw5krqeb" path="res://cutscenes/Village/cutscene_end.tscn" id="35_hjl0o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2ado"]
 texture = ExtResource("2_cj6i5")
@@ -1099,6 +1100,10 @@ z_index = 1
 position = Vector2(3481, 771)
 scale = Vector2(0.2, 0.2)
 hintText = "Start the adventure and jump into the Well"
+
+[node name="Cutscene_End" parent="." instance=ExtResource("35_hjl0o")]
+position = Vector2(-1591, 754)
+scale = Vector2(0.3, 0.3)
 
 [connection signal="body_entered" from="Door Well" to="Door Well" method="_on_body_entered"]
 [connection signal="body_entered" from="Out_Door" to="Out_Door" method="_on_body_entered"]

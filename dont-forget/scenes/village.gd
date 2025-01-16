@@ -26,3 +26,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+	
+## If signal cutszene from cave with saving of brother is finished than render Cutscene_End with transition
+## Position???
+##
