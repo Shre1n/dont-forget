@@ -15,6 +15,8 @@ signal back_to_village
 @export var life_time:float = 10.0
 @export var max_time: float = 300.0
 
+@export var audio: AudioStreamPlayer2D
+
 @onready var canvaslayer = $Pause_Menu
 
 var tutorial = preload("res://scenes/tutorial.tscn")
@@ -64,6 +66,12 @@ func _ready():
 	#Zum Village zurück (braucht signal mit path)
 	current_character.connect("going_back", Callable(self, "scene_change"))
 	get_node("Pause_Menu/UiManager").connect("give_user", Callable(self, "give_user"))
+	
+
+
+func play_bg_music_Village():
+	var sound = preload("res://Sounds/Musik/BG_Musik.mp3")
+	
 
 func give_user():
 	emit_signal("current_user", current_character)

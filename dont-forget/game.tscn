@@ -312,10 +312,11 @@ font = SubResource("FontFile_bgfe0")
 font_size = 71
 font_color = Color(1, 1, 0.372549, 1)
 
-[node name="Game_Manager" type="Node2D" groups=["game_manager"]]
+[node name="Game_Manager" type="Node2D" node_paths=PackedStringArray("audio") groups=["game_manager"]]
 process_mode = 3
 script = ExtResource("1_brvfy")
 life_time = 2.0
+audio = NodePath("AudioStreamPlayer2D")
 
 [node name="Level_Folder" type="Node2D" parent="."]
 process_mode = 1
@@ -413,5 +414,7 @@ visible = false
 process_mode = 1
 wait_time = 100.0
 one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="timeout" from="Life_Timer" to="." method="_on_life_timer_timeout"]
