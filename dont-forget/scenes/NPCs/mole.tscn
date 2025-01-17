@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ishqh8px52v"]
+[gd_scene load_steps=8 format=3 uid="uid://ishqh8px52v"]
 
 [ext_resource type="Texture2D" uid="uid://bql1s4ckbx2y3" path="res://assets/NPC/Mole/1.png" id="1_66yyu"]
 [ext_resource type="Script" path="res://scenes/NPCs/mole.gd" id="1_xyvug"]
 [ext_resource type="Texture2D" uid="uid://68lvlstwpn50" path="res://assets/NPC/Mole/2.png" id="2_ch2jd"]
 [ext_resource type="AudioStream" uid="uid://dq378voamnmhb" path="res://Sounds/NPC/Maulwurf_Sound.mp3" id="4_tmu65"]
+[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="5_ukl35"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vemkf"]
 animations = [{
@@ -41,7 +42,8 @@ position = Vector2(2, -3)
 scale = Vector2(7.77242, -19.0043)
 shape = SubResource("RectangleShape2D_d3jgv")
 
-[node name="Mole" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("4_tmu65")
-max_distance = 5000.0
+[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+max_distance = 3000.0
 attenuation = 3.0
+script = ExtResource("5_ukl35")
+maulwurf = ExtResource("4_tmu65")

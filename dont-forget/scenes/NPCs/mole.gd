@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var mole_audio = $Mole
+@onready var mole_audio = $Audio_Stream
 
 @onready var anim = $AnimatedSprite2D
 @export var max_distance_audio: float 
@@ -9,7 +9,7 @@ extends Node2D
 func _ready() -> void:
 	anim.play("idle")
 	mole_audio.max_distance = max_distance_audio
-	mole_audio.play()
+	mole_audio.maulwurf_audio()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

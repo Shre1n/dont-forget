@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://0qutpmchax1b"]
+[gd_scene load_steps=33 format=3 uid="uid://0qutpmchax1b"]
 
 [ext_resource type="PackedScene" uid="uid://drwrxl4akk264" path="res://Templates/Enemy_Template/Enemy_Template.tscn" id="1_s8poh"]
 [ext_resource type="Script" path="res://scenes/Enemies/Fly Enemy/fly.gd" id="2_4o5g4"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripte/attack_area.gd" id="12_8qs1o"]
 [ext_resource type="AudioStream" uid="uid://co2hvu8x5g8kb" path="res://Sounds/Enemy/FLy/fly_hit_Sound.mp3" id="13_er8rr"]
 [ext_resource type="AudioStream" uid="uid://dqm46lrr5gm71" path="res://Sounds/Enemy/FLy/Fly_Sound.mp3" id="14_r3a87"]
+[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="15_2xc1l"]
 
 [sub_resource type="Animation" id="Animation_7560b"]
 length = 0.001
@@ -435,6 +436,7 @@ position = Vector2(-349, -47)
 shape = SubResource("CircleShape2D_nkbdt")
 
 [node name="DetectionArea" type="Area2D" parent="." index="6"]
+visible = false
 position = Vector2(-307, -129)
 scale = Vector2(-140.025, 129.228)
 collision_layer = 0
@@ -455,12 +457,21 @@ scale = Vector2(10.1754, 9.82616)
 shape = SubResource("CircleShape2D_r850h")
 
 [node name="Hit" type="AudioStreamPlayer2D" parent="." index="9"]
+visible = false
 stream = ExtResource("13_er8rr")
 
 [node name="Fly" type="AudioStreamPlayer2D" parent="." index="10"]
+visible = false
 stream = ExtResource("14_r3a87")
 pitch_scale = 0.9
 attenuation = 3.0
+
+[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="." index="11"]
+max_distance = 3000.0
+attenuation = 3.0
+script = ExtResource("15_2xc1l")
+fly_sound = ExtResource("14_r3a87")
+fly_hit_sound = ExtResource("13_er8rr")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

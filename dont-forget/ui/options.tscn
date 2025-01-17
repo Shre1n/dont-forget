@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=3 uid="uid://cspyht3ytgvhx"]
+[gd_scene load_steps=21 format=3 uid="uid://cspyht3ytgvhx"]
 
 [ext_resource type="Script" path="res://ui/options.gd" id="1_sxokr"]
 [ext_resource type="AudioStream" uid="uid://dymju3ui20qbi" path="res://Sounds/Objekte/Buttons_Sound.mp3" id="2_3pjbs"]
+[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="3_nwfhl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clsuc"]
 bg_color = Color(0.135851, 0.15073, 0.189834, 1)
@@ -95,6 +96,7 @@ grow_vertical = 2
 script = ExtResource("1_sxokr")
 
 [node name="Button" type="AudioStreamPlayer2D" parent="."]
+visible = false
 position = Vector2(936, 554)
 stream = ExtResource("2_3pjbs")
 
@@ -200,6 +202,10 @@ theme = SubResource("Theme_42qfs")
 theme_override_font_sizes/font_size = 30
 keep_pressed_outside = true
 text = "Factory settings"
+
+[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("3_nwfhl")
+button_sound = ExtResource("2_3pjbs")
 
 [connection signal="drag_started" from="Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume" to="." method="_on_volume_drag_started"]
 [connection signal="value_changed" from="Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume" to="." method="_on_volume_value_changed"]

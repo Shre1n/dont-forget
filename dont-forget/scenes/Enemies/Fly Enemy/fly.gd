@@ -12,8 +12,7 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 
 @export var stats_file: String = "res://gegner/fly.json"
 
-@onready var hit_audio = $Hit
-@onready var fly_audio = $Fly
+@onready var audio = $Audio_Stream
 
 @onready var chase: AnimationPlayer = $Chase
 @onready var hit: AnimationPlayer = $HitFlashPlayer
@@ -31,6 +30,7 @@ var min_pos: Vector2
 var max_pos: Vector2
 
 func _ready():
+	audio.fly_audio()
 	super._ready()
 	super.set_weapon(child_weapon)
 	load_stats()
@@ -101,7 +101,7 @@ func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	super.take_damage(damage, pierce, knockback_power_in, damage_position, falle)
 	hit.play("hit_flash")
 	
-	hit_audio.play()
+	audio.fly_hit_audio()
 	
 	if life <= 0:
 		animationPlayer.play("dead")
@@ -118,7 +118,6 @@ func _on_detection_area_body_entered(body):
 	# Triggered when the player enters the detection area
 	if body is Character:
 		super.flip_sprite(body)
-		fly_audio.play()
 		chase.play("chase")
 		player = body  # Set player reference
 		chase_player()  # Start chasing the player immediately
@@ -126,7 +125,6 @@ func _on_detection_area_body_entered(body):
 func _on_detection_area_body_exited(body):
 	# Triggered when the player exits the detection area
 	if body is Character and body == player:
-		fly_audio.stop()
 		chase.play("lost")
 		player = null  # Stop chasing the player
 		velocity = Vector2.ZERO  # Stop moving when the player leaves the range

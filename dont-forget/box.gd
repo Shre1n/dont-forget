@@ -8,7 +8,7 @@ extends RigidBody2D
 @export var stats_file_path: String = "res://objekte/kiste/reg.json"
 @export_enum("default","stone_block","metal_block","gold_block","wall_block","simple_treasure_chest","wood_treasure_chest","iron_treasure_chest","bronze_treasure_chest","gold_treasure_chest","diamand_treasure_chest") var selected_profile: String = "default"
 
-@onready var box_break_audio = $Break_Box
+@onready var box_break_audio = $Audio_Stream
 
 var stats: Dictionary
 var min_drops: Dictionary

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ihipi7rph5xc"]
+[gd_scene load_steps=38 format=3 uid="uid://ihipi7rph5xc"]
 
 [ext_resource type="PackedScene" uid="uid://drwrxl4akk264" path="res://Templates/Enemy_Template/Enemy_Template.tscn" id="1_worv2"]
 [ext_resource type="Texture2D" uid="uid://b0e2j3psouax8" path="res://assets/enemy/hide/awake/1.png" id="2_2fbaj"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://scenes/damage_area.gd" id="17_mmfbp"]
 [ext_resource type="Script" path="res://scripte/attack_area.gd" id="18_a6wgo"]
 [ext_resource type="AudioStream" uid="uid://q5gbhyrm6ooy" path="res://Sounds/Enemy/Hide/Hide_Damage_Hit_Sound.mp3" id="21_o7pa8"]
+[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="22_m0owq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bnhh3"]
 radius = 7.50532
@@ -766,6 +767,13 @@ attenuation = 3.0
 [node name="Damage" type="AudioStreamPlayer2D" parent="." index="9"]
 stream = ExtResource("21_o7pa8")
 attenuation = 3.0
+
+[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="." index="10"]
+max_distance = 3500.0
+attenuation = 3.0
+script = ExtResource("22_m0owq")
+hide_death_sound = ExtResource("3_ryf11")
+hide_damage = ExtResource("21_o7pa8")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

@@ -13,6 +13,8 @@ extends Control
 @onready var quit_button: Button = $Quit_Button
 @onready var margin_container: MarginContainer = %MarginContainer
 
+@onready var audio = $"../../../Audio_Stream"
+
 func _on_close_btn_pressed():
 	hide()
 

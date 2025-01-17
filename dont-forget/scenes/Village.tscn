@@ -1039,7 +1039,7 @@ scale = Vector2(0.2, 0.2)
 hintText = "Start the adventure and jump into the Well"
 
 [node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-3383, -187)
+position = Vector2(3449, -990)
 max_distance = 14000.0
 script = ExtResource("35_8mgwi")
 bg_music = ExtResource("36_xb4qg")

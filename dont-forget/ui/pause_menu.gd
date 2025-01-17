@@ -3,6 +3,7 @@ class_name Pause_Menu extends Control
 @export var game_manager : Game_Manager
 var current_player
 var controls_open: bool = false
+@onready var audio = $Audio_Stream
 
 
 func _ready() -> void:
@@ -21,16 +22,20 @@ func _process(delta):
 
 
 func _on_resume_pressed():
+	audio.button_audio()
 	game_manager.game_paused = false
 
 func _on_options_pressed():
+	audio.button_audio()
 	game_manager.options_opend()
 	
 
 func _on_controls_pressed():
+	audio.button_audio()
 	game_manager.controls_opend()
 
 func _on_quit_pressed():
+	audio.button_audio()
 	var user_save = save_User.load_save()
 	var current_scene = game_manager.get_child(0).get_child(0).scene_file_path
 	var time_left = game_manager.life.time_left

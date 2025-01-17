@@ -3,7 +3,7 @@ extends Control
 @export var game_manager : Game_Manager
 @onready var volume_slider = $Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume
 @onready var mute_toggler = $Panel/Panel/VBoxContainer/HSplitContainer/Mute
-@onready var button_audio = $Button
+@onready var button_audio = $Audio_Stream
 
 #Standartwerte
 const basic_volume = 100
@@ -29,14 +29,14 @@ func _process(delta):
 	pass
 
 func _on_close_btn_pressed():
-	button_audio.play()
+	button_audio.button_audio()
 	if (game_manager != null):
 		game_manager.options_closed()
 		return
 	hide()
 
 func _on_volume_value_changed(value):
-	button_audio.play()
+	button_audio.button_audio()
 	save_value_from_slider = value
 	var volume_db = lerp(-20.0, max_volume_db, value / 100.0)
 	AudioServer.set_bus_volume_db(0, volume_db)
@@ -48,7 +48,7 @@ func _on_mute_toggled(toggled_on):
 	AudioServer.set_bus_mute(0, toggled_on)
 	if toggled_on:
 		volume_slider.editable = false
-		button_audio.play()
+		button_audio.button_audio()
 		volume_slider.tooltip_text = "Stumm geschaltet"
 	else:
 		volume_slider.editable = true
@@ -59,11 +59,11 @@ func _on_mute_toggled(toggled_on):
 
 
 func _on_reset_btn_pressed():
-	button_audio.play()
+	button_audio.button_audio()
 	reset_settings()
 
 func reset_settings():
-	button_audio.play()
+	button_audio.button_audio()
 	var volume_db = lerp(-20.0, max_volume_db, save_value_from_slider / 100.0)
 	AudioServer.set_bus_volume_db(0, volume_db)
 	volume_slider.value = basic_volume
@@ -73,4 +73,4 @@ func reset_settings():
 
 
 func _on_volume_drag_started() -> void:
-	button_audio.play()
+	button_audio.button_audio()

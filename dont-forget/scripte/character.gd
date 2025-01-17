@@ -13,6 +13,8 @@ signal going_back(path)  # Zurück zum Dorf
 @export var dash_audio: AudioStream
 @onready var mc_get_hit_sound: AudioStreamPlayer2D = $mc_get_hit
 
+@onready var audio: Audio_Stream = $Audio_Stream2
+
 @export_category("Einstellungen")
 @export var test_on: bool = false
 @export var sword: bool = true
@@ -273,6 +275,7 @@ func _physics_process(delta):
 	if alive:
 		# Handle jump.
 		if Input.is_action_just_pressed("jump") and JumpAvailability:
+			audio.mc_jump_audio()
 			velocity.y = jump_height
 			JumpAvailability = false
 			
@@ -318,7 +321,7 @@ func knockback(knockback, damage_position):
 	is_knocked_back = true
 
 func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
-	mc_get_hit_sound.play()
+	audio.mc_is_hit_audio()
 	var effective_damage = ceil((max(0, damage - resistenz) + pierce) * imunity)
 	var knockback_effect = knockback_power_in * knockback_res
 	if (knockback_effect) > weight:
@@ -328,6 +331,7 @@ func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 		emit_signal("lifeChange", -effective_damage)
 
 func attack():
+	audio.mc_hit_audio()
 	attacking = true
 	cooldown = cooldown_duration_base + cooldown_duration * cooldown_reduction
 	animation_player.speed_scale = attack_speed
@@ -337,7 +341,7 @@ func attack():
 		animation_player.play("fight")
 
 func dash():
-	audio_player.play_audio(dash_audio)
+	audio.mc_dash_audio()
 	dashing = true
 	get_time(-dash_price)
 	dash_cooldown = dash_cooldown_duration_base + dash_cooldown_duration * dash_cooldown_reduction # +dashtime
@@ -378,6 +382,7 @@ func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func die():
+	audio.gong_audio()
 	drop_bag()
 	velocity = Vector2.ZERO
 	alive = false
@@ -389,6 +394,7 @@ func die():
 	#await (animation_player.animation_finished)
 
 func drop_bag():
+	audio.bag_audio()
 	var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
 	_add_new_bag(bag_scene)
 

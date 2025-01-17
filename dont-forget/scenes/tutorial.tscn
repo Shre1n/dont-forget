@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=35 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
 [ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="17_2jobv"]
 [ext_resource type="AudioStream" uid="uid://bfyfhx1jkhx38" path="res://Sounds/Musik/light_BG_Sound.mp3" id="18_jihcl"]
+[ext_resource type="PackedScene" uid="uid://m2it2ky3jo3g" path="res://scenes/wegweiser/wegweiser.tscn" id="19_ityxx"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -1296,3 +1297,7 @@ bg_music = ExtResource("18_jihcl")
 [node name="box" parent="." instance=ExtResource("16_ten56")]
 position = Vector2(531, 1225)
 selected_profile = "simple_treasure_chest"
+
+[node name="Wegweiser" parent="." instance=ExtResource("19_ityxx")]
+position = Vector2(1280, 1204)
+scale = Vector2(0.2, 0.2)
