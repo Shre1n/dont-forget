@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://diqm35oue5hsl"]
+[gd_scene load_steps=72 format=3 uid="uid://diqm35oue5hsl"]
 
 [ext_resource type="Script" path="res://scripte/character.gd" id="1_gaw86"]
 [ext_resource type="AudioStream" uid="uid://8v3pyhdw6pvm" path="res://Sounds/MC/Dash_Sound.mp3" id="2_hcs4i"]
@@ -22,6 +22,7 @@
 [ext_resource type="AudioStream" uid="uid://dtdotiilp0hyf" path="res://Sounds/MC/Walk_Sound.mp3" id="6_lutok"]
 [ext_resource type="Texture2D" uid="uid://bcyuroxurw3hi" path="res://assets/dead/4.png" id="6_xeyef"]
 [ext_resource type="Texture2D" uid="uid://sgibng2nq44j" path="res://assets/fight/5.png" id="7_1v3np"]
+[ext_resource type="AudioStream" uid="uid://dwgrsfo3fo8e" path="res://Sounds/Objekte/Gong_Sound.mp3" id="7_8u7tw"]
 [ext_resource type="Texture2D" uid="uid://d02qbpr8674f1" path="res://assets/jump/3.png" id="7_ikxlm"]
 [ext_resource type="Texture2D" uid="uid://bk3vejh228d3" path="res://assets/attack_up/4.png" id="7_uivkc"]
 [ext_resource type="Texture2D" uid="uid://dx6a10m4ioxqc" path="res://assets/fight/6.png" id="8_baq1l"]
@@ -388,9 +389,25 @@ tracks/11/keys = {
 "update": 1,
 "values": [1.5]
 }
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Audio_Stream")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_bh6qb")
+}],
+"times": PackedFloat32Array(0.153476)
+}
+tracks/12/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ir2i7"]
 resource_name = "death"
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -427,6 +444,21 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Audio_Stream")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 6.68991,
+"start_offset": 3.24689,
+"stream": ExtResource("7_8u7tw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = false
 
 [sub_resource type="Animation" id="Animation_fltf1"]
 resource_name = "fall"
@@ -678,6 +710,21 @@ tracks/13/keys = {
 "update": 1,
 "values": [1.5]
 }
+tracks/14/type = "audio"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Audio_Stream")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_bh6qb")
+}],
+"times": PackedFloat32Array(0.288889)
+}
+tracks/14/use_blend = true
 
 [sub_resource type="Animation" id="Animation_4n2gy"]
 resource_name = "idle"
@@ -820,11 +867,25 @@ tracks/5/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Audio_Stream")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.739106,
+"start_offset": 0.0,
+"stream": ExtResource("4_fgxah")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
 
 [sub_resource type="Animation" id="Animation_g5w5e"]
 resource_name = "walk"
 length = 0.7438
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -885,6 +946,21 @@ tracks/4/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Audio_Stream")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.924892,
+"start_offset": 0.0,
+"stream": ExtResource("6_lutok")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1iwtg"]
 _data = {
@@ -1207,10 +1283,6 @@ collision_layer = 32
 collision_mask = 153
 script = ExtResource("1_gaw86")
 dash_audio = ExtResource("2_hcs4i")
-hit_audio = ExtResource("3_bh6qb")
-jump_audio = ExtResource("4_fgxah")
-mc_hit_audio = ExtResource("5_rvoyd")
-walk_audio = ExtResource("6_lutok")
 jump_stat = 2500
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1294,6 +1366,10 @@ texture_scale = 2.0
 
 [node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
 script = ExtResource("36_e47br")
+
+[node name="mc_get_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_rvoyd")
+pitch_scale = 0.9
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]

@@ -9,14 +9,9 @@ signal getCoins
 signal add_bag(bag_instance)
 signal going_back(path)  # Zurück zum Dorf
 
-@onready var audio = $Audio_Stream
-
 @onready var audio_player = $Audio_Stream
 @export var dash_audio: AudioStream
-@export var hit_audio: AudioStream
-@export var jump_audio: AudioStream
-@export var mc_hit_audio: AudioStream
-@export var walk_audio: AudioStream
+@onready var mc_get_hit_sound: AudioStreamPlayer2D = $mc_get_hit
 
 @export_category("Einstellungen")
 @export var test_on: bool = false
@@ -323,6 +318,7 @@ func knockback(knockback, damage_position):
 	is_knocked_back = true
 
 func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
+	mc_get_hit_sound.play()
 	var effective_damage = ceil((max(0, damage - resistenz) + pierce) * imunity)
 	var knockback_effect = knockback_power_in * knockback_res
 	if (knockback_effect) > weight:

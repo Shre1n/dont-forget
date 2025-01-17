@@ -1,6 +1,6 @@
 extends Level
 
-@onready var audio = $Audio_Stream
+@onready var audio_ = $Audio_Stream
 
 func _ready() -> void:
-	audio.play_cave_bg_music()
+	audio_.play_cave_bg_music()
