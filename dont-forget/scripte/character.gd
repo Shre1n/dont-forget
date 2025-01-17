@@ -9,6 +9,15 @@ signal getCoins
 signal add_bag(bag_instance)
 signal going_back(path)  # Zurück zum Dorf
 
+@onready var audio = $Audio_Stream
+
+@onready var audio_player = $Audio_Stream
+@export var dash_audio: AudioStream
+@export var hit_audio: AudioStream
+@export var jump_audio: AudioStream
+@export var mc_hit_audio: AudioStream
+@export var walk_audio: AudioStream
+
 @export_category("Einstellungen")
 @export var test_on: bool = false
 @export var sword: bool = true
@@ -332,6 +341,7 @@ func attack():
 		animation_player.play("fight")
 
 func dash():
+	audio_player.play_audio(dash_audio)
 	dashing = true
 	get_time(-dash_price)
 	dash_cooldown = dash_cooldown_duration_base + dash_cooldown_duration * dash_cooldown_reduction # +dashtime
@@ -343,7 +353,6 @@ func dash():
 	var col3a = 0
 	collision_layer = col3a
 	dash_timer.start()
-
 
 func _on_dash_timer_timeout():
 	dashing = false
