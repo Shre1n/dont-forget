@@ -761,9 +761,11 @@ scale = Vector2(1.93517, 1.94888)
 shape = SubResource("CircleShape2D_bnhh3")
 
 [node name="Death" type="AudioStreamPlayer2D" parent="." index="8"]
+attenuation = 3.0
 
 [node name="Damage" type="AudioStreamPlayer2D" parent="." index="9"]
 stream = ExtResource("21_o7pa8")
+attenuation = 3.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

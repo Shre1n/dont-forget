@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
 [ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="17_2jobv"]
 [ext_resource type="AudioStream" uid="uid://bfyfhx1jkhx38" path="res://Sounds/Musik/light_BG_Sound.mp3" id="18_jihcl"]
-[ext_resource type="PackedScene" uid="uid://0qutpmchax1b" path="res://scenes/Enemies/Fly Enemy/fly.tscn" id="19_2faj0"]
+[ext_resource type="PackedScene" uid="uid://rwcbxprdm3p4" path="res://scenes/Shop/ShopNPC.tscn" id="19_l3em0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -1298,6 +1298,6 @@ max_distance = 8500.0
 script = ExtResource("17_2jobv")
 bg_music = ExtResource("18_jihcl")
 
-[node name="Fly_Enemy" parent="." instance=ExtResource("19_2faj0")]
-position = Vector2(1629, 1079)
+[node name="ShopNpc" parent="." instance=ExtResource("19_l3em0")]
+position = Vector2(1715, 1199)
 scale = Vector2(0.3, 0.3)

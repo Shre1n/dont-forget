@@ -460,6 +460,7 @@ stream = ExtResource("13_er8rr")
 [node name="Fly" type="AudioStreamPlayer2D" parent="." index="10"]
 stream = ExtResource("14_r3a87")
 pitch_scale = 0.9
+attenuation = 3.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

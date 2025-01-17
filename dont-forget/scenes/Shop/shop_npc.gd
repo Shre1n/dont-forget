@@ -11,6 +11,9 @@ extends Node2D
 var shop_content: Control = null
 var scene_of_Shop: String = "res://scenes/Shop/ShopContent/ShopContent.tscn"
 
+@onready var pete_audio = $Pete_Audio
+@onready var pete_on_interact_audio = $Pete_Sound_On_Interact
+
 @onready var game_manager = find_game_manager()
 var current_player: Character
 
@@ -37,7 +40,8 @@ func open_shopbackup():
 func open_shop():
 	if is_shop_open:
 		return  # Verhindert das Öffnen des Shops, wenn er bereits geöffnet ist
-	
+	pete_audio.stop()
+	pete_on_interact_audio.play()
 	is_shop_open = true  # Markiert den Shop als geöffnet
 	show_shop_ui()  # Zeigt das Shop UI
 	#print($Leave.monitoring, "2")
@@ -55,6 +59,7 @@ func show_shop_ui():
 
 func close_area():
 	if $Leave.monitoring == true:
+		pete_on_interact_audio.stop()
 		anim_moni.play("hide_it")
 		#print($Leave.monitoring, "4")
 	#print($Leave.monitoring, "1")
@@ -80,3 +85,12 @@ func find_game_manager():
 		if child.name == "Game_Manager":
 			return child
 	return null
+
+
+func _on_audio_body_entered(body: Node2D) -> void:
+	if body.name == "Character":
+		pete_audio.play()
+		
+func _on_audio_body_exited(body: Node2D) -> void:
+	if body.name == "Character":
+		pete_audio.stop()

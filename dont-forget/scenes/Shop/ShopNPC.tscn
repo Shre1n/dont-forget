@@ -1,9 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://rwcbxprdm3p4"]
+[gd_scene load_steps=18 format=3 uid="uid://rwcbxprdm3p4"]
 
 [ext_resource type="Script" path="res://scenes/Shop/shop_npc.gd" id="1_wbcvt"]
 [ext_resource type="Texture2D" uid="uid://ceyvvqa5e7bvx" path="res://scenes/Shop/händler/idle/1.png" id="2_a7umw"]
 [ext_resource type="Script" path="res://interaction/interaction area/interaction_area.gd" id="2_ic4y6"]
 [ext_resource type="Texture2D" uid="uid://bhsek7ublf00m" path="res://scenes/Shop/händler/idle/2.png" id="3_fpllr"]
+[ext_resource type="AudioStream" uid="uid://dl8rr2cqlar8v" path="res://Sounds/NPC/Lucky_Pete_Sound02.mp3" id="5_wuhtw"]
+[ext_resource type="AudioStream" uid="uid://bn7ssyj711bp2" path="res://Sounds/NPC/Lucky_Pete_Sound.mp3" id="6_lkghp"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1j6r7"]
 animations = [{
@@ -235,6 +237,9 @@ _data = {
 "show_it": SubResource("Animation_vgmt6")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnikv"]
+size = Vector2(1383, 1165)
+
 [node name="ShopNpc" type="Node2D"]
 script = ExtResource("1_wbcvt")
 
@@ -271,6 +276,26 @@ libraries = {
 "": SubResource("AnimationLibrary_nr281")
 }
 
+[node name="Pete_Audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_wuhtw")
+attenuation = 3.0
+
+[node name="Pete_Sound_On_Interact" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_lkghp")
+pitch_scale = 0.9
+
+[node name="Audio" type="Area2D" parent="."]
+position = Vector2(700, -20)
+scale = Vector2(4.98145, 1.26247)
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Audio"]
+position = Vector2(-178, 77)
+shape = SubResource("RectangleShape2D_tnikv")
+
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]
+[connection signal="body_entered" from="Leave" to="." method="_on_leave_body_entered"]
 [connection signal="body_exited" from="Leave" to="." method="_on_leave_body_exited"]
+[connection signal="body_entered" from="Audio" to="." method="_on_audio_body_entered"]
+[connection signal="body_exited" from="Audio" to="." method="_on_audio_body_exited"]
