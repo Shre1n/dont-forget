@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqts7u5x5t2o3"]
+
+[ext_resource type="Texture2D" uid="uid://nhb6ni0fxa6p" path="res://assets/NPC/Käfer/1.png" id="1_0l45p"]
+[ext_resource type="Script" path="res://scenes/NPCs/bugs.gd" id="1_qio2f"]
+[ext_resource type="Texture2D" uid="uid://1q5k2ynwbhox" path="res://assets/NPC/Käfer/2.png" id="2_yd8b4"]
+[ext_resource type="AudioStream" uid="uid://ckw7n1cbyq0jl" path="res://Sounds/NPC/Käfer_Sound.mp3" id="4_lghgw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s3h58"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0l45p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_yd8b4")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6la2"]
+size = Vector2(20, 115.552)
+
+[node name="Bugs" type="Node2D"]
+script = ExtResource("1_qio2f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s3h58")
+animation = &"idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+position = Vector2(-1875, -19)
+scale = Vector2(5, 1)
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(448.6, 166)
+scale = Vector2(102.637, 9)
+shape = SubResource("RectangleShape2D_j6la2")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(360, 144)
+stream = ExtResource("4_lghgw")
+max_distance = 1020.0
+attenuation = 3.0

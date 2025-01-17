@@ -8,6 +8,8 @@ extends Level
 @onready var houseAnim5 = $"Environment/Homes/Home 5"
 @onready var houseAnim6 = $"Environment/Homes/Home 6"
 
+@onready var left_bug = $Environment/bugs/Bugs2
+
 @onready var audio_play = $Audio_Stream
 
 
@@ -20,6 +22,8 @@ func _ready():
 	houseAnim5.play("default")
 	houseAnim6.play("default")
 	audio_play.play_village_bg_music()
+
+	left_bug.get_node("AnimatedSprite2D").flip_h
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
