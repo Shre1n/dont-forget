@@ -20,6 +20,7 @@ func _process(delta):
 
 
 func on_pick_up():
+	audio_bag.play()
 	$RigidBody2D.freeze = false
 	character = interaction_area.body_of_character
 	character.get_coins(bag_coins)

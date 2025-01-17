@@ -1270,10 +1270,6 @@ position = Vector2(5090, 1264)
 scale = Vector2(0.15, 0.152)
 tutorial = true
 
-[node name="box" parent="." instance=ExtResource("16_ten56")]
-position = Vector2(381, 1170)
-scale = Vector2(1.5296, 1.03802)
-
 [node name="Block" type="Node2D" parent="."]
 
 [node name="Block" type="StaticBody2D" parent="Block"]
@@ -1296,3 +1292,7 @@ shape = SubResource("RectangleShape2D_q71vo")
 max_distance = 8500.0
 script = ExtResource("17_2jobv")
 bg_music = ExtResource("18_jihcl")
+
+[node name="box" parent="." instance=ExtResource("16_ten56")]
+position = Vector2(531, 1225)
+selected_profile = "simple_treasure_chest"

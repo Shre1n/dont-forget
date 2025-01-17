@@ -6,6 +6,16 @@ var user_prefs: UserPreferences
 
 @export var bg_music: AudioStream
 
+## All MC Sounds
+
+## All NPC Sounds
+
+## All Enemy Sounds
+
+## All Objects
+
+@export var button_sound: AudioStream
+
 func _ready():
 	user_prefs = UserPreferences.load_or_create()
 	set_volume_based_on_preferences()
@@ -30,6 +40,9 @@ func play_turorial_bg_music():
 	stop_music()
 	play_audio(bg_music)
 	audio.bus = &"tutorial"
+	
+func button_audio():
+	play_audio(button_sound)
 	
 func stop_music():
 	audio.stop()  # Stoppt die aktuell abgespielte Musik

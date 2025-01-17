@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://4v3mtijto1jp"]
+[gd_scene load_steps=10 format=3 uid="uid://4v3mtijto1jp"]
 
 [ext_resource type="Script" path="res://box.gd" id="1_jinl7"]
 [ext_resource type="Script" path="res://scenes/damage_area.gd" id="2_0teo7"]
 [ext_resource type="Texture2D" uid="uid://b835ifn3mhksa" path="res://objekte/kiste/Kiste.png" id="2_ei3sn"]
+[ext_resource type="AudioStream" uid="uid://buk0oi8xpvxl7" path="res://Sounds/Objekte/Break_Box_Sound.mp3" id="4_vdjyl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mx01k"]
 absorbent = true
@@ -113,3 +114,6 @@ shape = SubResource("RectangleShape2D_1qr5b")
 libraries = {
 "": SubResource("AnimationLibrary_2nfkw")
 }
+
+[node name="Break_Box" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vdjyl")
