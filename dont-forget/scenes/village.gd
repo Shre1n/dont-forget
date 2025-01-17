@@ -8,7 +8,7 @@ extends Level
 @onready var houseAnim5 = $"Environment/Homes/Home 5"
 @onready var houseAnim6 = $"Environment/Homes/Home 6"
 
-
+@onready var audio_play = $Audio_Stream
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,8 +19,7 @@ func _ready():
 	houseAnim4.play("default")
 	houseAnim5.play("default")
 	houseAnim6.play("default")
-	
-	
+	audio_play.play_village_bg_music()
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

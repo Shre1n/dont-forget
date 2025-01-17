@@ -9,12 +9,13 @@ const basic_volume = 100
 const basic_mute = false
 const basic_res = Vector2i(1920,1080)
 const basic_fullscreen = false
+const max_volume_db = 0.0
 
 var user_prefs: UserPreferences
 
 func _ready():
 	user_prefs = UserPreferences.load_or_create()
-	if	volume_slider:
+	if	volume_slider && user_prefs.volume:
 		volume_slider.value = user_prefs.volume
 	if	mute_toggler:
 		mute_toggler.set_pressed(user_prefs.check_mute)
@@ -31,7 +32,8 @@ func _on_close_btn_pressed():
 	hide()
 
 func _on_volume_value_changed(value):
-	AudioServer.set_bus_volume_db(0, value)
+	var volume_db = lerp(-20.0, max_volume_db, value / 100.0)
+	AudioServer.set_bus_volume_db(0, volume_db)
 	if user_prefs:
 		user_prefs.volume = value
 		user_prefs.save()

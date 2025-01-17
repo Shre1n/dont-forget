@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=64 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
@@ -34,6 +34,8 @@
 [ext_resource type="Script" path="res://scenes/no_attack_area.gd" id="32_l4m7q"]
 [ext_resource type="PackedScene" uid="uid://m2it2ky3jo3g" path="res://scenes/wegweiser/wegweiser.tscn" id="33_mqqcs"]
 [ext_resource type="Texture2D" uid="uid://pf06a58h0gk5" path="res://assets/Village/Well_front_.png" id="34_6igsi"]
+[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="35_8mgwi"]
+[ext_resource type="AudioStream" uid="uid://cop3uibsfrrwm" path="res://Sounds/Musik/BG_Musik.mp3" id="36_xb4qg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2ado"]
 texture = ExtResource("2_cj6i5")
@@ -1095,10 +1097,15 @@ scale = Vector2(0.2, 0.2)
 hintText = "Welcome to Golden Valley"
 
 [node name="Wegweiser well" parent="." instance=ExtResource("33_mqqcs")]
-z_index = 1
 position = Vector2(3481, 771)
 scale = Vector2(0.2, 0.2)
 hintText = "Start the adventure and jump into the Well"
+
+[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-3383, -187)
+max_distance = 14000.0
+script = ExtResource("35_8mgwi")
+bg_music = ExtResource("36_xb4qg")
 
 [connection signal="body_entered" from="Door Well" to="Door Well" method="_on_body_entered"]
 [connection signal="body_entered" from="Out_Door" to="Out_Door" method="_on_body_entered"]

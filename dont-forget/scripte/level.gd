@@ -4,6 +4,8 @@ class_name Level extends Node2D
 var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
 var save_user: save_User
 
+@onready var audio = $Audio_Stream
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -18,6 +20,8 @@ func _ready():
 			bag.show_interaction(true)
 			bag.position = user_save.bag_position
 			bag.get_child(0).freeze = false
+	
+	audio.play_turorial_bg_music()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
