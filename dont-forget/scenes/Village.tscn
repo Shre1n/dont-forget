@@ -1097,7 +1097,6 @@ scale = Vector2(0.2, 0.2)
 hintText = "Welcome to Golden Valley"
 
 [node name="Wegweiser well" parent="." instance=ExtResource("33_mqqcs")]
-z_index = 1
 position = Vector2(3481, 771)
 scale = Vector2(0.2, 0.2)
 hintText = "Start the adventure and jump into the Well"

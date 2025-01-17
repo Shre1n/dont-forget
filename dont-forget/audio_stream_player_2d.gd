@@ -26,6 +26,11 @@ func play_cave_bg_music():
 	play_audio(bg_music)
 	audio.bus = &"Cave"
 
+func play_turorial_bg_music():
+	stop_music()
+	play_audio(bg_music)
+	audio.bus = &"tutorial"
+	
 func stop_music():
 	audio.stop()  # Stoppt die aktuell abgespielte Musik
 
