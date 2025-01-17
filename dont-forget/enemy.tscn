@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://dheorcfj6bf44"]
+[gd_scene load_steps=32 format=3 uid="uid://dheorcfj6bf44"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_kt7s3"]
+[ext_resource type="AudioStream" uid="uid://d3kwcowsq5o3x" path="res://Sounds/Enemy/Slime/Slime_Move_Sound.mp3" id="2_2i4of"]
 [ext_resource type="Texture2D" uid="uid://bvqqkjm70mf4g" path="res://assets/Slime/dead/1.png" id="2_by64i"]
 [ext_resource type="Texture2D" uid="uid://c1p04djugyv16" path="res://assets/Slime/dead/2.png" id="3_f3q62"]
 [ext_resource type="Texture2D" uid="uid://dm4cau6f66ka" path="res://assets/Slime/dead/3.png" id="4_mo2hc"]
@@ -17,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://wgibmyjqxcw5" path="res://assets/Slime/walk/6.png" id="16_0gyc0"]
 [ext_resource type="PackedScene" uid="uid://dnu6va4x16qlb" path="res://scenes/damage_area.tscn" id="16_olr1l"]
 [ext_resource type="PackedScene" uid="uid://cmgf1s540hgqi" path="res://scenes/attack_area.tscn" id="17_fxlaf"]
+[ext_resource type="AudioStream" uid="uid://dj1ds6tg1ucjb" path="res://Sounds/Enemy/Slime/Slime_Death_Sound.mp3" id="19_j653h"]
 
 [sub_resource type="Animation" id="Animation_i7tg6"]
 length = 0.001
@@ -145,6 +147,21 @@ tracks/0/keys = {
 "update": 1,
 "values": [&"dead"]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Death")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.201942,
+"start_offset": 0.234252,
+"stream": ExtResource("19_j653h")
+}],
+"times": PackedFloat32Array(1.25)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_02olc"]
 resource_name = "hurt"
@@ -696,6 +713,11 @@ collision_mask = 32
 position = Vector2(-16, -191)
 rotation = -1.56524
 shape = SubResource("CapsuleShape2D_v4vrp")
+
+[node name="Move" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_2i4of")
+
+[node name="Death" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Direction_Timer" to="." method="_on_direction_timer_timeout"]

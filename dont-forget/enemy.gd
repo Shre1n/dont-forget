@@ -5,6 +5,9 @@ extends CharacterBody2D
 @export var stats_file_path: String = "res://gegner/slime/slime.json"
 @export_enum("default","strong_enemy") var selected_profile: String = "default"
 
+@onready var move_audio = $Move
+@onready var death_audio = $Death
+
 # -- Variablen für Min/Max-Stats und Drops --
 var min_stats: Dictionary
 var max_stats: Dictionary
@@ -227,6 +230,7 @@ func chase_character():
 		var direction_to_character = (character.global_position - global_position).normalized()
 		direction = direction_calcX(direction_to_character)
 		velocity.x = direction * speed
+		
 
 func direction_calcX(newGoal):
 	var new_direction
@@ -274,12 +278,14 @@ func flip_sprite():
 func _on_detection_area_body_entered(body):
 	if body is Character:
 		chase_anim.play("chase")
+		move_audio.play()
 		character = body
 		character_chase = true
 		direction_timer.stop()
 
 func _on_detection_area_body_exited(body):
 	if body is Character and character == body:
+		move_audio.stop()
 		chase_anim.play("lost")
 		character = null
 		character_chase = false
@@ -307,6 +313,8 @@ func knockback(knockback, damage_position):
 func die():
 	alive = false
 	animated_player.play("death")
+
+
 
 func _on_animation_player_animation_finished(anim_name: String):
 	if anim_name == "death":
