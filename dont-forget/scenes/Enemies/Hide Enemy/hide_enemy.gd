@@ -5,6 +5,8 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 @export var stats_file: String = "res://gegner/hide.json"
 
 
+@onready var damage_audio = $Damage
+
 @onready var hit: AnimationPlayer = $HitFlashPlayer
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var detection_area: CollisionShape2D = $DetectionArea/CollisionShape2D
@@ -68,6 +70,7 @@ func load_stats():
 func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	super.take_damage(damage, pierce, knockback_power_in, damage_position, falle)
 	hit.play("hit_flash")
+	damage_audio.play()
 	
 	if life <= 0:
 		alive = false

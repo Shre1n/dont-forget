@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=35 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
 [ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="17_2jobv"]
 [ext_resource type="AudioStream" uid="uid://bfyfhx1jkhx38" path="res://Sounds/Musik/light_BG_Sound.mp3" id="18_jihcl"]
+[ext_resource type="PackedScene" uid="uid://0qutpmchax1b" path="res://scenes/Enemies/Fly Enemy/fly.tscn" id="19_2faj0"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -1072,7 +1073,6 @@ animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(950, 993)
-sword = false
 camera_limit_left = -1080
 camera_limit_top = 0
 camera_limit_right = 7343
@@ -1297,3 +1297,7 @@ shape = SubResource("RectangleShape2D_q71vo")
 max_distance = 8500.0
 script = ExtResource("17_2jobv")
 bg_music = ExtResource("18_jihcl")
+
+[node name="Fly_Enemy" parent="." instance=ExtResource("19_2faj0")]
+position = Vector2(1629, 1079)
+scale = Vector2(0.3, 0.3)
