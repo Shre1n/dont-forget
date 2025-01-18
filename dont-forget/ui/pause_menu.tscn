@@ -135,6 +135,7 @@ theme_override_font_sizes/font_size = 30
 text = "Save and Quit"
 
 [node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(963, 559)
 script = ExtResource("3_p46w7")
 button_sound = ExtResource("4_s7yne")
 

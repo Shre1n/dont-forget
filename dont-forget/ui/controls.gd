@@ -33,3 +33,11 @@ func _on_close_btn_pressed() -> void:
 
 func _on_margin_container_visibility_changed() -> void:
 	pass
+
+
+func _on_input_type_button_toggled(toggled_on: bool) -> void:
+	audio.button_audio()
+
+
+func _on_input_type_button_item_focused(index: int) -> void:
+	audio.button_audio()

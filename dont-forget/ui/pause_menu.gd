@@ -26,13 +26,13 @@ func _on_resume_pressed():
 	game_manager.game_paused = false
 
 func _on_options_pressed():
-	audio.button_audio()
 	game_manager.options_opend()
+	audio.button_audio()
 	
 
 func _on_controls_pressed():
-	audio.button_audio()
 	game_manager.controls_opend()
+	audio.button_audio()
 
 func _on_quit_pressed():
 	audio.button_audio()

@@ -426,6 +426,7 @@ visible = false
 layout_mode = 2
 
 [node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(919, 557)
 script = ExtResource("5_5n776")
 button_sound = ExtResource("6_pnh8g")
 
@@ -434,4 +435,3 @@ button_sound = ExtResource("6_pnh8g")
 [connection signal="pressed" from="Control/Panel/Set_Controls" to="." method="_on_set_controls_pressed"]
 [connection signal="visibility_changed" from="Control/Panel_Set_Controls/MarginContainer" to="." method="_on_margin_container_visibility_changed"]
 [connection signal="pressed" from="Control/Panel_Set_Controls/MarginContainer/return_to_game" to="Control/Panel_Set_Controls/MarginContainer" method="_on_return_to_game_pressed"]
-[connection signal="item_selected" from="Control/Panel_Set_Controls/MarginContainer/ButtonVBoxContainer/SettingsGridContainer/InputTypeButton" to="." method="_on_input_type_button_item_selected"]

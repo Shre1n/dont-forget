@@ -32,6 +32,7 @@ func _process(delta: float) -> void:
 
 
 func _on_return_to_game_pressed() -> void:
+	audio.button_audio()
 	$"../../..".hide()
 
 
@@ -44,6 +45,7 @@ func create_action_remap_items() -> void:
 		settings_grid_container.add_child(label)
 		
 		var button = RemapButton.new()
+		button.button_sound = preload("res://Sounds/Objekte/Buttons_Sound.mp3")
 		button.action = action
 		button.focus_neighbor_top = previous_item.get_path()
 		previous_item.focus_neighbor_bottom = button.get_path()
@@ -53,7 +55,3 @@ func create_action_remap_items() -> void:
 			button.focus_neighbor_bottom = main_menu_button.get_path()
 		previous_item = button
 		settings_grid_container.add_child(button)
-
-
-func _on_input_type_button_item_selected(index: int) -> void:
-	pass

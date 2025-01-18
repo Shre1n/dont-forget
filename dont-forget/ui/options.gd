@@ -36,7 +36,6 @@ func _on_close_btn_pressed():
 	hide()
 
 func _on_volume_value_changed(value):
-	button_audio.button_audio()
 	save_value_from_slider = value
 	var volume_db = lerp(-20.0, max_volume_db, value / 100.0)
 	AudioServer.set_bus_volume_db(0, volume_db)

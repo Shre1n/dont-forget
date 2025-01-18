@@ -204,6 +204,7 @@ keep_pressed_outside = true
 text = "Factory settings"
 
 [node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(987, 535)
 script = ExtResource("3_nwfhl")
 button_sound = ExtResource("2_3pjbs")
 
