@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://b5n44yfdxue7d" path="res://assets/NPC/Owl/1.png" id="26_cxjl8"]
 [ext_resource type="Script" path="res://scenes/mole.gd" id="27_4ojhx"]
 [ext_resource type="Texture2D" uid="uid://q7ikoiew26od" path="res://assets/NPC/Owl/2.png" id="27_wlgfp"]
-[ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="31_hehs4"]
+[ext_resource type="PackedScene" path="res://scenes/box.tscn" id="31_hehs4"]
 [ext_resource type="Script" path="res://scenes/no_attack_area.gd" id="32_l4m7q"]
 [ext_resource type="PackedScene" uid="uid://m2it2ky3jo3g" path="res://scenes/wegweiser/wegweiser.tscn" id="33_mqqcs"]
 [ext_resource type="Texture2D" uid="uid://pf06a58h0gk5" path="res://assets/Village/Well_front_.png" id="34_6igsi"]
