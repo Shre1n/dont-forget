@@ -467,6 +467,7 @@ pitch_scale = 0.9
 attenuation = 3.0
 
 [node name="Audio_Stream" type="AudioStreamPlayer2D" parent="." index="11"]
+visible = false
 max_distance = 3000.0
 attenuation = 3.0
 script = ExtResource("15_2xc1l")

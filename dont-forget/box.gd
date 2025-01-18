@@ -9,6 +9,7 @@ extends RigidBody2D
 @export_enum("default","stone_block","metal_block","gold_block","wall_block","simple_treasure_chest","wood_treasure_chest","iron_treasure_chest","bronze_treasure_chest","gold_treasure_chest","diamand_treasure_chest") var selected_profile: String = "default"
 
 @onready var box_break_audio = $Audio_Stream
+@onready var timer = $Timer
 
 var stats: Dictionary
 var min_drops: Dictionary
@@ -99,7 +100,9 @@ func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 
 func die():
 	add_new_drop(global_position)
-	queue_free()
+	timer.start()
+	box_break_audio.break_box_audio()
+
 
 func add_new_drop(death_pos):
 	var gold_drop = randi_range(min_drops["gold"], max_drops["gold"])
@@ -122,3 +125,7 @@ func instantiate_drop_items(drop_count, death_pos, is_time_item):
 
 func save_user_location(path):
 	current_Itemholder = path
+
+
+func _on_timer_timeout() -> void:
+	queue_free()

@@ -60,6 +60,7 @@ func show_shop_ui():
 func close_area():
 	if $Leave.monitoring == true:
 		anim_moni.play("hide_it")
+		pete_audio.popUp_audio()
 		#print($Leave.monitoring, "4")
 	#print($Leave.monitoring, "1")
 	is_shop_open = false 

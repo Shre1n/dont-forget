@@ -725,6 +725,7 @@ visible = false
 attenuation = 3.0
 
 [node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+visible = false
 max_distance = 3500.0
 attenuation = 3.0
 script = ExtResource("20_2q22j")

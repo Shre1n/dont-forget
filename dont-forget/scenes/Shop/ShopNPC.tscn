@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://rwcbxprdm3p4"]
+[gd_scene load_steps=20 format=3 uid="uid://rwcbxprdm3p4"]
 
 [ext_resource type="Script" path="res://scenes/Shop/shop_npc.gd" id="1_wbcvt"]
 [ext_resource type="Texture2D" uid="uid://ceyvvqa5e7bvx" path="res://scenes/Shop/händler/idle/1.png" id="2_a7umw"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://dl8rr2cqlar8v" path="res://Sounds/NPC/Lucky_Pete_Sound02.mp3" id="5_wuhtw"]
 [ext_resource type="AudioStream" uid="uid://bn7ssyj711bp2" path="res://Sounds/NPC/Lucky_Pete_Sound.mp3" id="6_lkghp"]
 [ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="7_g61vg"]
+[ext_resource type="AudioStream" uid="uid://col48xmby65t6" path="res://Sounds/Objekte/Pop_Up_Sound.mp3" id="8_g66v2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1j6r7"]
 animations = [{
@@ -303,6 +304,7 @@ attenuation = 3.0
 script = ExtResource("7_g61vg")
 lucky_pete_frog = ExtResource("5_wuhtw")
 lucky_pete_money = ExtResource("6_lkghp")
+popUp_sound = ExtResource("8_g66v2")
 
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

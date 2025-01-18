@@ -2,7 +2,9 @@ class_name StartScreen extends Control
 
 #@export var game_manager : Game_Manager
 @onready var load_button: Button = $Panel/Panel/VBoxContainer/Load_Button
-@onready var button_audio: Audio_Stream = $Audio_Stream
+#@onready var button_audio: Audio_Stream = $Audio_Stream
+
+@export var button_audio: AudioStream
 
 
 var user_save: save_User
@@ -19,6 +21,7 @@ func _input(event : InputEvent):
 		get_node("Controls").hide()
 
 func _ready():
+	#button_audio.leaves_audio()
 	if !FileAccess.file_exists("user://user_save_point.tres"):
 		load_button.disabled = true
 		load_button.focus_mode = Control.FOCUS_NONE
@@ -31,14 +34,14 @@ func _process(delta):
 
 
 func _on_start_button_pressed():
-	button_audio.button_audio()
+	button_audio.instantiate_playback()
 	var user_save = save_User.create()
 	user_save.save()
 	SceneManager.swap_scenes("res://game.tscn",get_tree().root,self,"wipe_to_right")
 
 
 func _on_load_button_pressed():
-	button_audio.button_audio()
+	button_audio.instantiate_playback()
 	var user_save = save_User.load_save()
 	
 	if user_save.scene_path != null:
@@ -48,7 +51,7 @@ func _on_load_button_pressed():
 		_on_start_button_pressed()
 	
 func _on_options_button_pressed():
-	button_audio.button_audio()
+	button_audio.instantiate_playback()
 	options_open = true
 	get_node("Options").show()
 
@@ -56,16 +59,16 @@ func _on_options_button_pressed():
 
 
 func _on_credits_button_pressed():
-	button_audio.button_audio()
+	button_audio.instantiate_playback()
 	pass # Replace with function body.
 
 
 func _on_quit_button_pressed():
-	button_audio.button_audio()
+	button_audio.instantiate_playback()
 	get_tree().quit()
 
 
 func _on_controls_pressed() :
-	button_audio.button_audio()
+	button_audio.instantiate_playback()
 	controls_open = true
 	get_node("Controls").show()

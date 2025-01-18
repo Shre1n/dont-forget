@@ -34,3 +34,7 @@ func _process(delta):
 ## If signal cutszene from cave with saving of brother is finished than render Cutscene_End with transition
 ## Position???
 ##
+
+
+func _on_sound_off_body_entered(body: Node2D) -> void:
+	audio_play.delete_audio()

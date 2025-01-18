@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://diqm35oue5hsl"]
+[gd_scene load_steps=74 format=3 uid="uid://diqm35oue5hsl"]
 
 [ext_resource type="Script" path="res://scripte/character.gd" id="1_gaw86"]
 [ext_resource type="AudioStream" uid="uid://8v3pyhdw6pvm" path="res://Sounds/MC/Dash_Sound.mp3" id="2_hcs4i"]
@@ -42,6 +42,8 @@
 [ext_resource type="PackedScene" uid="uid://byy056hrby4p5" path="res://stats_popup.tscn" id="30_pbvn4"]
 [ext_resource type="Texture2D" uid="uid://bgpmxtn8wl05i" path="res://scenes/2d_lights_and_shadows_neutral_point_light.png" id="31_d44a5"]
 [ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="36_e47br"]
+[ext_resource type="AudioStream" uid="uid://omhijahjvkhb" path="res://Sounds/Objekte/Coins_Sound.mp3" id="42_sst8d"]
+[ext_resource type="AudioStream" uid="uid://dvvokm4telo7a" path="res://Sounds/Objekte/Uhr_Sound.mp3" id="44_hmk0c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gevhk"]
 radius = 36.2338
@@ -1208,7 +1210,40 @@ collision_layer = 32
 collision_mask = 153
 script = ExtResource("1_gaw86")
 dash_audio = ExtResource("2_hcs4i")
+test_on = null
+sword = null
+damage_stat = null
+crit_dmg_stat = null
+res_stat = null
+speed_stat = null
 jump_stat = 2500
+imunity_stat = null
+attack_speed_stat = null
+extra_weight_stat = null
+cooldown_stat = null
+pierce_stat = null
+crit_stat = null
+knockback_stat = null
+knockback_res_stat = null
+dash_cooldown_stat = null
+dash_speed_stat = null
+camera_limit_left = null
+camera_limit_top = null
+camera_limit_right = null
+camera_limit_bottom = null
+input_enabled = null
+orientation_left = null
+can_attack = null
+alive = null
+dash_price = null
+dashtime = null
+cooldown_duration = null
+dash_cooldown_duration = null
+dash_duration = null
+dash_cooldown_duration_base = null
+knockback_duration = null
+post_knockback_duration = null
+coins = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1290,20 +1325,25 @@ texture = ExtResource("31_d44a5")
 texture_scale = 2.0
 
 [node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+visible = false
 script = ExtResource("36_e47br")
 
 [node name="mc_get_hit" type="AudioStreamPlayer2D" parent="."]
+visible = false
 stream = ExtResource("5_rvoyd")
 pitch_scale = 0.9
 
 [node name="Audio_Stream2" type="AudioStreamPlayer2D" parent="."]
+visible = false
 script = ExtResource("36_e47br")
 mc_dash_sound = ExtResource("2_hcs4i")
 mc_hit_sound = ExtResource("3_bh6qb")
 mc_jump_sound = ExtResource("4_fgxah")
 mc_is_hit_sound = ExtResource("5_rvoyd")
 mc_walk = ExtResource("6_lutok")
+coins_sound = ExtResource("42_sst8d")
 gong_sound = ExtResource("7_8u7tw")
+uhr_sound = ExtResource("44_hmk0c")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]

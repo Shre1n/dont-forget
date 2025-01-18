@@ -24,7 +24,7 @@ func toggle_hint():
 func close_hint():
 	ui_manager_container.get_child(0).disconnect("closing", Callable(self, "close_area"))
 	ui_manager.hide()  # Hide the UIManager
-	audio.Cutscene_book_audio()
+	audio.popUp_audio()
 	var child = ui_manager_container.get_child(0)
 	print(child)
 	child.queue_free()

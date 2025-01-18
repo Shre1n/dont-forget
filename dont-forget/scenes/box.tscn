@@ -117,5 +117,12 @@ libraries = {
 }
 
 [node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+visible = false
 script = ExtResource("5_spgga")
 break_box_sound = ExtResource("4_vdjyl")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -15,10 +15,12 @@ signal share_current_character
 @export var wait_time: float = 0.2
 @onready var respawn_timer = $Respawn_Timer
 var current_Itemholder
+@onready var audio = $Audio_Stream
 
 var loner_spawned = false
 
 func _ready():
+	audio.spawner_audio()
 	var gamemanager = find_game_manager()
 	current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
 	respawn_timer.wait_time = respawn_delay

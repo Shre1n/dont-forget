@@ -762,13 +762,16 @@ scale = Vector2(1.93517, 1.94888)
 shape = SubResource("CircleShape2D_bnhh3")
 
 [node name="Death" type="AudioStreamPlayer2D" parent="." index="8"]
+visible = false
 attenuation = 3.0
 
 [node name="Damage" type="AudioStreamPlayer2D" parent="." index="9"]
+visible = false
 stream = ExtResource("21_o7pa8")
 attenuation = 3.0
 
 [node name="Audio_Stream" type="AudioStreamPlayer2D" parent="." index="10"]
+visible = false
 max_distance = 3500.0
 attenuation = 3.0
 script = ExtResource("22_m0owq")

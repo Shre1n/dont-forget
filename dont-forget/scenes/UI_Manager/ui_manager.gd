@@ -13,7 +13,7 @@ func _ready():
 	hide()
 
 func load_content(scene_path: String, profile: String = ""):
-	audio.Cutscene_book_audio()
+	audio.popUp_audio()
 	var scene = load(scene_path).instantiate()
 	if profile.length():
 		scene.selected_profile = profile
@@ -22,18 +22,18 @@ func load_content(scene_path: String, profile: String = ""):
 	show()
 
 func _on_close_button_pressed(): 
-	audio.Cutscene_book_audio()
+	audio.popUp_audio()
 	extra_close()
 	close()
 
 func close():
-	audio.Cutscene_book_audio()
+	audio.popUp_audio()
 	hide()
 	for child in content_holder.get_children():
 		child.queue_free()
 
 func extra_close():
-	audio.Cutscene_book_audio()
+	audio.popUp_audio()
 	if content_holder.get_child(0).has_method("close_npc"):
 		content_holder.get_child(0).close_npc()
 

@@ -22,7 +22,7 @@ func _ready() -> void:
 func _toggled(toggled_on: bool) -> void:
 	set_process_unhandled_input(toggled_on)
 	if toggled_on:
-		play_button_sound()
+		
 		text = "... Awaiting Input ..."
 		release_focus()
 	else:

@@ -3,6 +3,7 @@ extends Node2D
 @onready var sprite = $Sprite
 @onready var col = $Attack_Area/CollisionShape2D
 @onready var weapon = $Attack_Area
+@onready var audio = $Audio_Stream
 
 @export_category("Einstellungen")
 @export var test = false

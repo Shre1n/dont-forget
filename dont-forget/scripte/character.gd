@@ -13,7 +13,7 @@ signal going_back(path)  # Zurück zum Dorf
 @export var dash_audio: AudioStream
 @onready var mc_get_hit_sound: AudioStreamPlayer2D = $mc_get_hit
 
-@onready var audio: Audio_Stream = $Audio_Stream2
+#@onready var audio: Audio_Stream = $Audio_Stream2
 
 @export_category("Einstellungen")
 @export var test_on: bool = false
@@ -275,7 +275,6 @@ func _physics_process(delta):
 	if alive:
 		# Handle jump.
 		if Input.is_action_just_pressed("jump") and JumpAvailability:
-			audio.mc_jump_audio()
 			velocity.y = jump_height
 			JumpAvailability = false
 			
@@ -355,6 +354,7 @@ func dash():
 	dash_timer.start()
 
 func _on_dash_timer_timeout():
+	audio_player.gong_audio()
 	dashing = false
 	current_dash_speed = 1
 	var col1b = 1 + 8 + 16 +128
@@ -427,10 +427,12 @@ func enable():
 	visible = true
 
 func get_time(value):
+	audio_player.uhr_audio()
 	emit_signal("lifeChange", value)
 
 
 func get_coins(value):
+	audio_player.coins_audio()
 	coins += value
 	emit_signal("coinsChange", value)
 

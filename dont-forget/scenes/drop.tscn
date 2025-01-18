@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bsvg8hvpepc70"]
+[gd_scene load_steps=17 format=3 uid="uid://bsvg8hvpepc70"]
 
 [ext_resource type="Script" path="res://drop.gd" id="1_4gpbv"]
 [ext_resource type="Texture2D" uid="uid://c5a4u1d5vk647" path="res://assets/drops/gold.png" id="2_d2rxu"]
 [ext_resource type="Texture2D" uid="uid://8yjymhny3cfh" path="res://assets/drops/time.png" id="3_btvxa"]
+[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="4_3t23j"]
+[ext_resource type="AudioStream" uid="uid://omhijahjvkhb" path="res://Sounds/Objekte/Coins_Sound.mp3" id="5_4a0po"]
+[ext_resource type="AudioStream" uid="uid://dvvokm4telo7a" path="res://Sounds/Objekte/Uhr_Sound.mp3" id="6_gi2wf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6qefl"]
 bounce = 0.5
@@ -511,4 +514,13 @@ libraries = {
 "": SubResource("AnimationLibrary_qxuf3")
 }
 
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+visible = false
+script = ExtResource("4_3t23j")
+coins_sound = ExtResource("5_4a0po")
+uhr_sound = ExtResource("6_gi2wf")
+
 [connection signal="body_entered" from="detection_area" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

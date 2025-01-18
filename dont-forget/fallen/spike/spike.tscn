@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b6w1e4uoa60j5"]
+[gd_scene load_steps=7 format=3 uid="uid://b6w1e4uoa60j5"]
 
 [ext_resource type="Script" path="res://spike.gd" id="1_n81ty"]
 [ext_resource type="Script" path="res://scripte/attack_area.gd" id="2_m7foe"]
 [ext_resource type="Texture2D" uid="uid://b6j4qqaj1ge77" path="res://fallen/spike/Spikes_.png" id="3_50hnd"]
+[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="4_64jq3"]
+[ext_resource type="AudioStream" uid="uid://c7q4cxf45r5j4" path="res://Sounds/Objekte/Trap_Sound.mp3" id="5_r3gui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vx1mn"]
 size = Vector2(116, 45)
@@ -27,3 +29,7 @@ knockback = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack_Area"]
 position = Vector2(-1, 16.5)
 shape = SubResource("RectangleShape2D_vx1mn")
+
+[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("4_64jq3")
+trap_sound = ExtResource("5_r3gui")

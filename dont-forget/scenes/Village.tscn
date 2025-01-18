@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=56 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
@@ -400,6 +400,9 @@ sources/6 = SubResource("TileSetAtlasSource_hiuga")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x1f4y"]
 shader = ExtResource("5_cj87q")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp78q"]
+size = Vector2(87.3242, 44.7793)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c043q"]
 size = Vector2(0.33718, 1.10777)
 
@@ -650,6 +653,15 @@ z_index = 6
 tile_map_data = PackedByteArray("AAD0/xgACAAGAAgAAAD7/xkACAAIABEAAABWABoACAAGAAgAAABfABoACAAGAAgAAABmABkACAAGAAwAAABuABkACAAGAAgAAAACABgACAAGAAgAAAAQABgACAAGAAgAAAAaABgACAAGAAgAAAAhABcACAAGAAwAAAAIABgACAAIABEAAAAqABYACAAGAAwAAAAuABcACAAIABEAAAAlABcACAAIABEAAAA4ABgACAAGAAgAAAAwABgACAAGAAgAAAA=")
 tile_set = SubResource("TileSet_oiqi6")
 
+[node name="Sound_Off" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sound_Off"]
+position = Vector2(3840, 846)
+scale = Vector2(1.7071, 0.891335)
+shape = SubResource("RectangleShape2D_cp78q")
+
 [node name="Door Well" type="Area2D" parent="."]
 position = Vector2(3744, 770)
 rotation = 3.14159
@@ -682,10 +694,39 @@ centered = false
 
 [node name="Character" parent="." instance=ExtResource("7_jeyt0")]
 position = Vector2(2992, 756)
+test_on = null
+sword = null
+damage_stat = null
+crit_dmg_stat = null
+res_stat = null
+speed_stat = null
+imunity_stat = null
+attack_speed_stat = null
+extra_weight_stat = null
+cooldown_stat = null
+pierce_stat = null
+crit_stat = null
+knockback_stat = null
+knockback_res_stat = null
+dash_cooldown_stat = null
+dash_speed_stat = null
 camera_limit_left = -3344
 camera_limit_top = -1057
 camera_limit_right = 9927
 camera_limit_bottom = 990
+input_enabled = null
+orientation_left = null
+can_attack = null
+alive = null
+dash_price = null
+dashtime = null
+cooldown_duration = null
+dash_cooldown_duration = null
+dash_duration = null
+dash_cooldown_duration_base = null
+knockback_duration = null
+post_knockback_duration = null
+coins = null
 
 [node name="Environment" type="Node2D" parent="."]
 
@@ -1039,11 +1080,13 @@ scale = Vector2(0.2, 0.2)
 hintText = "Start the adventure and jump into the Well"
 
 [node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+visible = false
 position = Vector2(3449, -990)
 max_distance = 14000.0
 script = ExtResource("35_8mgwi")
 bg_music = ExtResource("36_xb4qg")
 
+[connection signal="body_entered" from="Sound_Off" to="." method="_on_sound_off_body_entered"]
 [connection signal="body_entered" from="Door Well" to="Door Well" method="_on_body_entered"]
 [connection signal="body_entered" from="Out_Door" to="Out_Door" method="_on_body_entered"]
 [connection signal="body_entered" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_entered"]

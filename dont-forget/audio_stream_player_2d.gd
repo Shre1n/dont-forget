@@ -1,4 +1,4 @@
-class_name Audio_Stream extends AudioStreamPlayer2D
+class_name AudioManager extends AudioStreamPlayer2D
 
 var audio: AudioStreamPlayer2D = self
 
@@ -207,7 +207,10 @@ func uhr_audio():
 	play_audio(uhr_sound)
 	
 func stop_music():
-	audio.stop()  # Stoppt die aktuell abgespielte Musik
+	self.stop()  # Stoppt die aktuell abgespielte Musik
+	
+func delete_audio():
+	self.queue_free()
 
 func change_music(new_music: AudioStream):
 	stop_music()
