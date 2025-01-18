@@ -543,6 +543,7 @@ size = Vector2(299, 1316)
 size = Vector2(57, 93)
 
 [node name="Village" type="Node2D"]
+visible = false
 script = ExtResource("1_5at0l")
 level_nr = 2
 

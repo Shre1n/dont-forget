@@ -123,8 +123,9 @@ _data = {
 "idle": SubResource("Animation_0rfcg")
 }
 
-[node name="Dummie" type="Node2D"]
+[node name="Dummie" type="Node2D" node_paths=PackedStringArray("visible_")]
 script = ExtResource("1_oh5b8")
+visible_ = NodePath("VisibleOnScreenEnabler2D")
 
 [node name="Damage_Area" type="Area2D" parent="."]
 script = ExtResource("2_i17sn")
@@ -142,3 +143,7 @@ texture = ExtResource("3_2bd5h")
 libraries = {
 "": SubResource("AnimationLibrary_qrb2t")
 }
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(17.5, -135)
+scale = Vector2(14.85, 14.5)

@@ -6,7 +6,6 @@ var save_user: save_User
 
 @onready var audio = $Audio_Stream
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var user_save = save_User.load_save()
@@ -26,6 +25,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
 
 func find_child_bag():
 	var root = get_tree().root  # Root-Node des Scene Trees
