@@ -1,9 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://caxsqxj21isxy"]
+[gd_scene load_steps=3 format=3 uid="uid://caxsqxj21isxy"]
 
 [ext_resource type="Script" path="res://death_pit.gd" id="1_nc1wu"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="2_lf3bd"]
-[ext_resource type="AudioStream" uid="uid://bbe48eoqx2u08" path="res://Sounds/Objekte/Teleporter_Sound.mp3" id="3_6pmpu"]
-[ext_resource type="AudioStream" uid="uid://c7q4cxf45r5j4" path="res://Sounds/Objekte/Trap_Sound.mp3" id="4_muu52"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd6e0"]
 
@@ -14,11 +11,5 @@ script = ExtResource("1_nc1wu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gd6e0")
-
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-visible = false
-script = ExtResource("2_lf3bd")
-teleporter_sound = ExtResource("3_6pmpu")
-trap_sound = ExtResource("4_muu52")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -3,8 +3,6 @@ class_name RemapButton
 
 @export var action: String
 
-@onready var audio_player: Audio_Stream = Audio_Stream.new()
-
 @export var button_sound: AudioStream
 
 func _init() -> void:
@@ -14,8 +12,6 @@ func _init() -> void:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	add_child(audio_player)
-	audio_player.stream = button_sound
 	set_process_unhandled_input(false)
 	update_key_text()
 
@@ -41,4 +37,4 @@ func update_key_text():
 	
 func play_button_sound() -> void:
 	if button_sound:
-		audio_player.play()
+		pass

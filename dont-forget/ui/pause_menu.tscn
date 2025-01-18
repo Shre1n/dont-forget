@@ -1,8 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://cpylfpo14s0l2"]
+[gd_scene load_steps=8 format=3 uid="uid://cpylfpo14s0l2"]
 
 [ext_resource type="Script" path="res://ui/pause_menu.gd" id="1_u5ic6"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="2_wn8c1"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="3_p46w7"]
 [ext_resource type="AudioStream" uid="uid://dymju3ui20qbi" path="res://Sounds/Objekte/Buttons_Sound.mp3" id="4_s7yne"]
 
 [sub_resource type="Theme" id="Theme_curup"]
@@ -134,11 +133,8 @@ theme = SubResource("Theme_6byat")
 theme_override_font_sizes/font_size = 30
 text = "Save and Quit"
 
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-visible = false
-position = Vector2(963, 559)
-script = ExtResource("3_p46w7")
-button_sound = ExtResource("4_s7yne")
+[node name="button_pressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_s7yne")
 
 [connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="Control/Panel/Control2/VBoxContainer/Controls" to="." method="_on_controls_pressed"]

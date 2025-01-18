@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=33 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="17_2jobv"]
 [ext_resource type="AudioStream" uid="uid://bfyfhx1jkhx38" path="res://Sounds/Musik/light_BG_Sound.mp3" id="18_jihcl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
@@ -1072,39 +1071,10 @@ animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(950, 993)
-test_on = null
-sword = null
-damage_stat = null
-crit_dmg_stat = null
-res_stat = null
-speed_stat = null
-imunity_stat = null
-attack_speed_stat = null
-extra_weight_stat = null
-cooldown_stat = null
-pierce_stat = null
-crit_stat = null
-knockback_stat = null
-knockback_res_stat = null
-dash_cooldown_stat = null
-dash_speed_stat = null
 camera_limit_left = -1080
 camera_limit_top = 0
 camera_limit_right = 7343
 camera_limit_bottom = 1510
-input_enabled = null
-orientation_left = null
-can_attack = null
-alive = null
-dash_price = null
-dashtime = null
-cooldown_duration = null
-dash_cooldown_duration = null
-dash_duration = null
-dash_cooldown_duration_base = null
-knockback_duration = null
-post_knockback_duration = null
-coins = null
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
@@ -1317,12 +1287,10 @@ collision_mask = 0
 position = Vector2(0, -549)
 shape = SubResource("RectangleShape2D_q71vo")
 
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-visible = false
-max_distance = 8500.0
-script = ExtResource("17_2jobv")
-bg_music = ExtResource("18_jihcl")
-
 [node name="box" parent="." instance=ExtResource("16_ten56")]
 position = Vector2(531, 1225)
 selected_profile = "iron_treasure_chest"
+
+[node name="Background" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_jihcl")
+parameters/looping = true

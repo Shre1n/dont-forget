@@ -1,10 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://kkajxue5d771"]
+[gd_scene load_steps=6 format=3 uid="uid://kkajxue5d771"]
 
 [ext_resource type="Texture2D" uid="uid://b5n44yfdxue7d" path="res://assets/NPC/Owl/1.png" id="1_0ndw4"]
 [ext_resource type="Script" path="res://scenes/NPCs/owl.gd" id="1_kyhhx"]
 [ext_resource type="Texture2D" uid="uid://q7ikoiew26od" path="res://assets/NPC/Owl/2.png" id="2_pcr2s"]
-[ext_resource type="AudioStream" uid="uid://dyfj0t361jr8e" path="res://Sounds/NPC/Eule_Sound.mp3" id="3_1yugg"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="5_2hb42"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_yckqk"]
 animations = [{
@@ -38,17 +36,3 @@ collision_mask = 33
 position = Vector2(9.99998, 347)
 scale = Vector2(12.5676, -18.6141)
 shape = SubResource("RectangleShape2D_0sopc")
-
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-visible = false
-stream = ExtResource("3_1yugg")
-pitch_scale = 0.8
-max_distance = 1300.0
-attenuation = 3.0
-
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-visible = false
-max_distance = 500.0
-attenuation = 3.0
-script = ExtResource("5_2hb42")
-eule_sound = ExtResource("3_1yugg")

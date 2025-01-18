@@ -9,11 +9,15 @@ signal getCoins
 signal add_bag(bag_instance)
 signal going_back(path)  # Zurück zum Dorf
 
-@onready var audio_player = $Audio_Stream
-@export var dash_audio: AudioStream
-@onready var mc_get_hit_sound: AudioStreamPlayer2D = $mc_get_hit
 
 #@onready var audio: Audio_Stream = $Audio_Stream2
+
+@onready var dash_audio = $sword_audio
+@onready var is_hit = $mc_is_hit_sound
+@onready var jump_audio = $jump_sound
+@onready var walk_audio = $walk
+@onready var sword_audio = $sword_audio
+@onready var dead_audio = $dead
 
 @export_category("Einstellungen")
 @export var test_on: bool = false
@@ -320,7 +324,7 @@ func knockback(knockback, damage_position):
 	is_knocked_back = true
 
 func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
-	audio.mc_is_hit_audio()
+	is_hit.play()
 	var effective_damage = ceil((max(0, damage - resistenz) + pierce) * imunity)
 	var knockback_effect = knockback_power_in * knockback_res
 	if (knockback_effect) > weight:
@@ -330,7 +334,7 @@ func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 		emit_signal("lifeChange", -effective_damage)
 
 func attack():
-	audio.mc_hit_audio()
+	sword_audio.play()
 	attacking = true
 	cooldown = cooldown_duration_base + cooldown_duration * cooldown_reduction
 	animation_player.speed_scale = attack_speed
@@ -340,7 +344,7 @@ func attack():
 		animation_player.play("fight")
 
 func dash():
-	audio.mc_dash_audio()
+	dash_audio.play()
 	dashing = true
 	get_time(-dash_price)
 	dash_cooldown = dash_cooldown_duration_base + dash_cooldown_duration * dash_cooldown_reduction # +dashtime
@@ -353,8 +357,8 @@ func dash():
 	collision_layer = col3a
 	dash_timer.start()
 
-func _on_dash_timer_timeout():
-	audio_player.gong_audio()
+func _on_dash_timer_timeout():	
+	dash_audio.stop()
 	dashing = false
 	current_dash_speed = 1
 	var col1b = 1 + 8 + 16 +128
@@ -382,7 +386,7 @@ func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func die():
-	audio.gong_audio()
+	dash_audio.play()
 	drop_bag()
 	velocity = Vector2.ZERO
 	alive = false
@@ -394,7 +398,6 @@ func die():
 	#await (animation_player.animation_finished)
 
 func drop_bag():
-	audio.bag_audio()
 	var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
 	_add_new_bag(bag_scene)
 
@@ -427,12 +430,10 @@ func enable():
 	visible = true
 
 func get_time(value):
-	audio_player.uhr_audio()
 	emit_signal("lifeChange", value)
 
 
 func get_coins(value):
-	audio_player.coins_audio()
 	coins += value
 	emit_signal("coinsChange", value)
 

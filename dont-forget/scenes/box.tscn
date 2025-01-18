@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://4v3mtijto1jp"]
+[gd_scene load_steps=10 format=3 uid="uid://4v3mtijto1jp"]
 
 [ext_resource type="Script" path="res://box.gd" id="1_jinl7"]
 [ext_resource type="Script" path="res://scenes/damage_area.gd" id="2_0teo7"]
 [ext_resource type="Texture2D" uid="uid://b835ifn3mhksa" path="res://objekte/kiste/Kiste.png" id="2_ei3sn"]
 [ext_resource type="AudioStream" uid="uid://buk0oi8xpvxl7" path="res://Sounds/Objekte/Break_Box_Sound.mp3" id="4_vdjyl"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="5_spgga"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mx01k"]
 absorbent = true
@@ -116,13 +115,11 @@ libraries = {
 "": SubResource("AnimationLibrary_2nfkw")
 }
 
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-visible = false
-script = ExtResource("5_spgga")
-break_box_sound = ExtResource("4_vdjyl")
-
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.15
 one_shot = true
+
+[node name="Break" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vdjyl")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

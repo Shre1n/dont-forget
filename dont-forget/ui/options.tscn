@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://ui/options.gd" id="1_sxokr"]
 [ext_resource type="AudioStream" uid="uid://dymju3ui20qbi" path="res://Sounds/Objekte/Buttons_Sound.mp3" id="2_3pjbs"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="3_nwfhl"]
+[ext_resource type="Script" path="res://ui/volume_slider.gd" id="3_q8kpv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clsuc"]
 bg_color = Color(0.135851, 0.15073, 0.189834, 1)
@@ -94,12 +94,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sxokr")
-button_audio = ExtResource("2_3pjbs")
-
-[node name="Button" type="AudioStreamPlayer2D" parent="."]
-visible = false
-position = Vector2(936, 554)
-stream = ExtResource("2_3pjbs")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -166,7 +160,9 @@ size_flags_vertical = 3
 tooltip_text = "Slide to adjust the overall volume
 "
 theme = SubResource("Theme_joij3")
-value = 100.0
+min_value = -20.0
+max_value = 0.0
+script = ExtResource("3_q8kpv")
 
 [node name="Mute" type="CheckButton" parent="Panel/Panel/VBoxContainer/HSplitContainer"]
 custom_minimum_size = Vector2(124, 0)
@@ -204,14 +200,10 @@ theme_override_font_sizes/font_size = 30
 keep_pressed_outside = true
 text = "Factory settings"
 
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-visible = false
-position = Vector2(987, 535)
-script = ExtResource("3_nwfhl")
-button_sound = ExtResource("2_3pjbs")
+[node name="button_pressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3pjbs")
 
 [connection signal="drag_started" from="Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume" to="." method="_on_volume_drag_started"]
-[connection signal="value_changed" from="Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume" to="." method="_on_volume_value_changed"]
 [connection signal="toggled" from="Panel/Panel/VBoxContainer/HSplitContainer/Mute" to="." method="_on_mute_toggled"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/HSplitContainer3/Close_Btn" to="." method="_on_close_btn_pressed"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/HSplitContainer3/Reset_Btn" to="." method="_on_reset_btn_pressed"]

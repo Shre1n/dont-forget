@@ -9,9 +9,7 @@ extends Level
 @onready var houseAnim6 = $"Environment/Homes/Home 6"
 
 @onready var left_bug = $Environment/bugs/Bugs2
-
-@onready var audio_play = $Audio_Stream
-
+@onready var bg_music_ = $Background
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,7 +19,7 @@ func _ready():
 	houseAnim4.play("default")
 	houseAnim5.play("default")
 	houseAnim6.play("default")
-	audio_play.play_village_bg_music()
+	bg_music_.play()
 
 	left_bug.get_node("AnimatedSprite2D").flip_h
 	
@@ -37,4 +35,4 @@ func _process(delta):
 
 
 func _on_sound_off_body_entered(body: Node2D) -> void:
-	audio_play.delete_audio()
+	pass

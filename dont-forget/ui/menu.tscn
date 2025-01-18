@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://cqm7cwb02ir77"]
+[gd_scene load_steps=29 format=3 uid="uid://cqm7cwb02ir77"]
 
 [ext_resource type="Script" path="res://ui/menu.gd" id="1_myn0o"]
 [ext_resource type="Texture2D" uid="uid://s0ok8hdyv6fa" path="res://ui/background/background.png" id="2_epbqx"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://ddeipc8fvbhe0" path="res://ui/background/leaf.png" id="2_x4tpf"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="3_1jn53"]
 [ext_resource type="PackedScene" uid="uid://tva2dh5gu8b0" path="res://ui/Controls.tscn" id="7_2l5kn"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="9_4n82o"]
 [ext_resource type="AudioStream" uid="uid://blb0ga5ilsim8" path="res://Sounds/Objekte/leaves.mp3" id="10_ulh0n"]
 
 [sub_resource type="Curve" id="Curve_tf0c3"]
@@ -201,12 +200,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_myn0o")
-button_audio = ExtResource("2_l57k8")
-
-[node name="Button" type="AudioStreamPlayer2D" parent="."]
-visible = false
-position = Vector2(936, 554)
-stream = ExtResource("2_l57k8")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -345,12 +338,12 @@ layout_mode = 1
 [node name="Controls" parent="." instance=ExtResource("7_2l5kn")]
 visible = false
 
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-visible = false
-position = Vector2(933, 552)
-script = ExtResource("9_4n82o")
-button_sound = ExtResource("2_l57k8")
-leaves_sound = ExtResource("10_ulh0n")
+[node name="button_pressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l57k8")
+
+[node name="leaves" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ulh0n")
+autoplay = true
 
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Start_Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Load_Button" to="." method="_on_load_button_pressed"]

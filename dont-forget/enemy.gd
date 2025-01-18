@@ -5,7 +5,6 @@ extends CharacterBody2D
 @export var stats_file_path: String = "res://gegner/slime/slime.json"
 @export_enum("default","strong_enemy") var selected_profile: String = "default"
 
-@onready var audio = $Audio_Stream
 
 # -- Variablen für Min/Max-Stats und Drops --
 var min_stats: Dictionary
@@ -89,7 +88,6 @@ var mini_boss = false
 #var spawner = false
 
 func _ready():
-	audio.slime_move_audio()
 	#if !spawner:
 	var gamemanager = find_game_manager()
 	#current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
@@ -296,7 +294,6 @@ func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	damaged = true
 	animated_player.play("hurt")
 	if life <= 0:
-		audio.slime_death_audio()
 		die()
 	elif (knockback_effect) > weight:
 		knockback(knockback_effect, damage_position)

@@ -3,12 +3,12 @@ extends Control
 @export var game_manager : Game_Manager
 @onready var volume_slider = $Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume
 @onready var mute_toggler = $Panel/Panel/VBoxContainer/HSplitContainer/Mute
-#@onready var button_audio = $Audio_Stream
 
-@export var button_audio: AudioStream
+@onready var button_pressed_audio = $button_pressed
+
 
 #Standartwerte
-const basic_volume = 10
+const basic_volume = 100
 const basic_mute = false
 const basic_res = Vector2i(1920,1080)
 const basic_fullscreen = false
@@ -31,23 +31,16 @@ func _process(delta):
 	pass
 
 func _on_close_btn_pressed():
-	button_audio.instantiate_playback()
+	button_pressed_audio.play()
 	if (game_manager != null):
 		game_manager.options_closed()
 		return
 	hide()
 
-func _on_volume_value_changed(value):
-	AudioServer.set_bus_volume_db(0, basic_volume)
-	if user_prefs:
-		user_prefs.volume = value
-		user_prefs.save()
-
 func _on_mute_toggled(toggled_on):
-	AudioServer.set_bus_mute(0, toggled_on)
 	if toggled_on:
 		volume_slider.editable = false
-		button_audio.button_audio()
+		button_pressed_audio.play()
 		volume_slider.tooltip_text = "Stumm geschaltet"
 	else:
 		volume_slider.editable = true
@@ -58,18 +51,12 @@ func _on_mute_toggled(toggled_on):
 
 
 func _on_reset_btn_pressed():
-	button_audio.instantiate_playback()
+	button_pressed_audio.play()
 	reset_settings()
 
 func reset_settings():
-	button_audio.instantiate_playback()
-	var volume_db = lerp(-20.0, max_volume_db, save_value_from_slider / 100.0)
-	AudioServer.set_bus_volume_db(0, volume_db)
 	volume_slider.value = basic_volume
-	
-	AudioServer.set_bus_mute(0, basic_mute)
+	var volume_db = lerp(-80.0, 0.0, basic_volume / 100.0)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), volume_db)
+	AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), basic_mute)
 	mute_toggler.set_pressed(basic_mute)
-
-
-func _on_volume_drag_started() -> void:
-	button_audio.instantiate_playback()

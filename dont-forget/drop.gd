@@ -11,7 +11,6 @@ var player_body
 @onready var sprite = $AnimatedSprite2D
 @onready var animation = $AnimationPlayer
 @onready var timer = $Timer
-@onready var audio = $Audio_Stream
 
 
 func _ready():
@@ -23,9 +22,9 @@ func _ready():
 func _process(delta: float) -> void:
 	if linear_velocity.x > 0:
 		if time:
-			audio.uhr_audio()
+			pass
 		else:
-			audio.coins_audio()
+			pass
 		
 		
 		

@@ -1,7 +1,6 @@
-[gd_scene load_steps=74 format=3 uid="uid://diqm35oue5hsl"]
+[gd_scene load_steps=70 format=3 uid="uid://diqm35oue5hsl"]
 
 [ext_resource type="Script" path="res://scripte/character.gd" id="1_gaw86"]
-[ext_resource type="AudioStream" uid="uid://8v3pyhdw6pvm" path="res://Sounds/MC/Dash_Sound.mp3" id="2_hcs4i"]
 [ext_resource type="Texture2D" uid="uid://b4vvbedrqye3e" path="res://assets/dead/1.png" id="3_1nauj"]
 [ext_resource type="AudioStream" uid="uid://628vgq8qouqx" path="res://Sounds/MC/hit_sound.mp3" id="3_bh6qb"]
 [ext_resource type="Texture2D" uid="uid://b6q74e1gciskk" path="res://assets/fight/1.png" id="3_luolo"]
@@ -41,9 +40,6 @@
 [ext_resource type="PackedScene" uid="uid://cmgf1s540hgqi" path="res://scenes/attack_area.tscn" id="24_u5kue"]
 [ext_resource type="PackedScene" uid="uid://byy056hrby4p5" path="res://stats_popup.tscn" id="30_pbvn4"]
 [ext_resource type="Texture2D" uid="uid://bgpmxtn8wl05i" path="res://scenes/2d_lights_and_shadows_neutral_point_light.png" id="31_d44a5"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="36_e47br"]
-[ext_resource type="AudioStream" uid="uid://omhijahjvkhb" path="res://Sounds/Objekte/Coins_Sound.mp3" id="42_sst8d"]
-[ext_resource type="AudioStream" uid="uid://dvvokm4telo7a" path="res://Sounds/Objekte/Uhr_Sound.mp3" id="44_hmk0c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gevhk"]
 radius = 36.2338
@@ -243,6 +239,54 @@ tracks/15/keys = {
 "update": 0,
 "values": [Vector2(0.13, 0.13)]
 }
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("sword_audio:bus")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("jump_sound:bus")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("walk:bus")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("dead:bus")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
 
 [sub_resource type="Animation" id="Animation_q7mgt"]
 resource_name = "attack_up"
@@ -391,6 +435,33 @@ tracks/11/keys = {
 "update": 1,
 "values": [1.5]
 }
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("sword_audio")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_bh6qb")
+}],
+"times": PackedFloat32Array(0.475839)
+}
+tracks/12/use_blend = true
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("sword_audio:bus")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
 
 [sub_resource type="Animation" id="Animation_ir2i7"]
 resource_name = "death"
@@ -430,6 +501,33 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("dead")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 7.17231,
+"start_offset": 2.75736,
+"stream": ExtResource("7_8u7tw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("dead:bus")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
 }
 
 [sub_resource type="Animation" id="Animation_fltf1"]
@@ -682,6 +780,33 @@ tracks/13/keys = {
 "update": 1,
 "values": [1.5]
 }
+tracks/14/type = "audio"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("sword_audio")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_bh6qb")
+}],
+"times": PackedFloat32Array(0.266667)
+}
+tracks/14/use_blend = true
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("sword_audio:bus")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
 
 [sub_resource type="Animation" id="Animation_4n2gy"]
 resource_name = "idle"
@@ -824,6 +949,33 @@ tracks/5/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("jump_sound")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.613101,
+"start_offset": 0.109809,
+"stream": ExtResource("4_fgxah")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("jump_sound:bus")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
 
 [sub_resource type="Animation" id="Animation_g5w5e"]
 resource_name = "walk"
@@ -887,6 +1039,33 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("walk")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.503292,
+"start_offset": 0.0,
+"stream": ExtResource("6_lutok")
+}],
+"times": PackedFloat32Array(0.2)
+}
+tracks/5/use_blend = true
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("walk:bus")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1iwtg"]
@@ -1198,6 +1377,21 @@ tracks/0/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mc_is_hit_sound")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.103899,
+"start_offset": 0.183225,
+"stream": ExtResource("5_rvoyd")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vwtqs"]
 _data = {
@@ -1209,41 +1403,7 @@ _data = {
 collision_layer = 32
 collision_mask = 153
 script = ExtResource("1_gaw86")
-dash_audio = ExtResource("2_hcs4i")
-test_on = null
-sword = null
-damage_stat = null
-crit_dmg_stat = null
-res_stat = null
-speed_stat = null
 jump_stat = 2500
-imunity_stat = null
-attack_speed_stat = null
-extra_weight_stat = null
-cooldown_stat = null
-pierce_stat = null
-crit_stat = null
-knockback_stat = null
-knockback_res_stat = null
-dash_cooldown_stat = null
-dash_speed_stat = null
-camera_limit_left = null
-camera_limit_top = null
-camera_limit_right = null
-camera_limit_bottom = null
-input_enabled = null
-orientation_left = null
-can_attack = null
-alive = null
-dash_price = null
-dashtime = null
-cooldown_duration = null
-dash_cooldown_duration = null
-dash_duration = null
-dash_cooldown_duration_base = null
-knockback_duration = null
-post_knockback_duration = null
-coins = null
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1324,26 +1484,17 @@ energy = 0.5
 texture = ExtResource("31_d44a5")
 texture_scale = 2.0
 
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-visible = false
-script = ExtResource("36_e47br")
+[node name="dash_audio" type="AudioStreamPlayer" parent="."]
 
-[node name="mc_get_hit" type="AudioStreamPlayer2D" parent="."]
-visible = false
-stream = ExtResource("5_rvoyd")
-pitch_scale = 0.9
+[node name="mc_is_hit_sound" type="AudioStreamPlayer" parent="."]
 
-[node name="Audio_Stream2" type="AudioStreamPlayer2D" parent="."]
-visible = false
-script = ExtResource("36_e47br")
-mc_dash_sound = ExtResource("2_hcs4i")
-mc_hit_sound = ExtResource("3_bh6qb")
-mc_jump_sound = ExtResource("4_fgxah")
-mc_is_hit_sound = ExtResource("5_rvoyd")
-mc_walk = ExtResource("6_lutok")
-coins_sound = ExtResource("42_sst8d")
-gong_sound = ExtResource("7_8u7tw")
-uhr_sound = ExtResource("44_hmk0c")
+[node name="jump_sound" type="AudioStreamPlayer" parent="."]
+
+[node name="walk" type="AudioStreamPlayer" parent="."]
+
+[node name="sword_audio" type="AudioStreamPlayer" parent="."]
+
+[node name="dead" type="AudioStreamPlayer" parent="."]
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Jump_Timer" to="." method="_on_jump_timer_timeout"]

@@ -15,7 +15,6 @@ extends Node2D
 var data: Dictionary
 var profiles_data: Dictionary
 
-@onready var audio = $Audio_Stream
 
 func _ready():
 	load_stats_from_file()
@@ -25,7 +24,6 @@ func _ready():
 	interaction_area.interact = Callable(self, "on_pick_up")
 	
 func on_pick_up():
-	audio.kristall_audio()
 	character.get_time(value)
 	sprite.queue_free()
 	interaction_area.queue_free()
