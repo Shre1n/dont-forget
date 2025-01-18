@@ -15,9 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
-[ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
-[ext_resource type="PackedScene" uid="uid://c5bhu2ll1r458" path="res://scenes/Bosse/Manager.tscn" id="17_065xf"]
-[ext_resource type="PackedScene" uid="uid://bbtj81n70c8tm" path="res://scenes/Bosse/Endboss/sceen/Endboss.tscn" id="18_eudvh"]
+[ext_resource type="PackedScene" path="res://scenes/box.tscn" id="16_ten56"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -1072,7 +1070,15 @@ animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(950, 993)
+test_on = true
 sword = false
+damage_stat = 1000
+speed_stat = 1500
+jump_stat = 2000
+attack_speed_stat = 3500
+cooldown_stat = 3500
+dash_cooldown_stat = 3500
+dash_speed_stat = 1000
 camera_limit_left = -1080
 camera_limit_top = 0
 camera_limit_right = 7343
@@ -1292,8 +1298,3 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block/Slime_Block"]
 position = Vector2(0, -549)
 shape = SubResource("RectangleShape2D_q71vo")
-
-[node name="Manager" parent="." instance=ExtResource("17_065xf")]
-
-[node name="Endboss" parent="." instance=ExtResource("18_eudvh")]
-scale = Vector2(0.5, 1.752)

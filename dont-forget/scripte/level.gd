@@ -1,7 +1,5 @@
 class_name Level extends Node2D
 
-@onready var boss_manager: Node2D = $Manager
-
 @export var level_nr = 1
 var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
 var save_user: save_User
@@ -9,7 +7,6 @@ var save_user: save_User
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	boss_manager.spawn_boss("Drexus", Vector2(1000,6000))
 	var user_save = save_User.load_save()
 	var bag = find_child_bag()
 	if bag:

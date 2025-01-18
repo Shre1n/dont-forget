@@ -283,7 +283,7 @@ func _on_detection_area_body_exited(body):
 func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	var effective_damage = ceil((max(1, damage - resistenz) + pierce) * imunity)
 	var knockback_effect = knockback_power_in * knockback_res
-	life -= damage
+	life -= effective_damage
 	damaged = true
 	if life <= 0:
 		die()

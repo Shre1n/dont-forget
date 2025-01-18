@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://b0qfl47a32cy1"]
+[gd_scene load_steps=17 format=4 uid="uid://b0qfl47a32cy1"]
 
 [ext_resource type="Script" path="res://scenes/room_endboss.gd" id="1_2auqf"]
 [ext_resource type="Texture2D" uid="uid://g4lpqig36fpi" path="res://assets/Tilemap/cave/Cave_with_door.png" id="2_agkf0"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://35xpsewm7uci" path="res://assets/NPC/Bruder/sad/1.png" id="8_nnq4v"]
 [ext_resource type="Texture2D" uid="uid://cdenmsrq64b1q" path="res://assets/NPC/Bruder/sad/2.png" id="9_6fcxd"]
 [ext_resource type="Texture2D" uid="uid://csrpcvr6k0s5n" path="res://assets/NPC/Bruder/Gefängnis_.png" id="10_nnkul"]
+[ext_resource type="PackedScene" uid="uid://c5bhu2ll1r458" path="res://scenes/Bosse/Manager.tscn" id="11_oei0f"]
+[ext_resource type="PackedScene" uid="uid://bbtj81n70c8tm" path="res://scenes/Bosse/Endboss/sceen/Endboss.tscn" id="12_8h0cc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k4vpq"]
 texture = ExtResource("2_agkf0")
@@ -4629,8 +4631,11 @@ texture = ExtResource("4_jkuxs")
 position = Vector2(-1377, 630)
 
 [node name="Door_Boss" parent="." instance=ExtResource("5_0umlr")]
+visible = false
 position = Vector2(1034, 748)
 scale = Vector2(5.99996, 18.64)
+monitoring = false
+monitorable = false
 transition_type = "fade_to_black"
 path_to_new_scene = "res://scenes/cave.tscn"
 new_position = Vector2(6600, -3736)
@@ -4651,3 +4656,9 @@ position = Vector2(-875, 200)
 scale = Vector2(0.193287, 0.231173)
 sprite_frames = SubResource("SpriteFrames_o423f")
 animation = &"idle"
+
+[node name="Endboss" parent="." instance=ExtResource("12_8h0cc")]
+scale = Vector2(0.5, 1.752)
+
+[node name="Manager" parent="." instance=ExtResource("11_oei0f")]
+position = Vector2(2, 2)
