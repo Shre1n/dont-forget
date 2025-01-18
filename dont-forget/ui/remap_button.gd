@@ -3,6 +3,8 @@ class_name RemapButton
 
 @export var action: String
 
+@onready var audio_player: AudioStreamPlayer = AudioStreamPlayer.new()
+
 @export var button_sound: AudioStream
 
 func _init() -> void:
@@ -14,11 +16,17 @@ func _init() -> void:
 func _ready() -> void:
 	set_process_unhandled_input(false)
 	update_key_text()
+	
+	if not audio_player.get_parent():
+		add_child(audio_player)
+	
+	if button_sound:
+		audio_player.stream = button_sound
 
 func _toggled(toggled_on: bool) -> void:
 	set_process_unhandled_input(toggled_on)
 	if toggled_on:
-		
+		play_button_sound()
 		text = "... Awaiting Input ..."
 		release_focus()
 	else:
@@ -36,5 +44,5 @@ func update_key_text():
 	text = "%s" % InputMap.action_get_events(action)[0].as_text()
 	
 func play_button_sound() -> void:
-	if button_sound:
-		pass
+	if audio_player and button_sound:
+		audio_player.play()

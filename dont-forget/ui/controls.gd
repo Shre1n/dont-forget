@@ -5,7 +5,7 @@ extends Control
 @onready var panel: Panel = $Control/Panel
 @onready var panel_set_controls: Panel = $Control/Panel_Set_Controls
 
-@onready var audio = $Audio_Stream
+@onready var audio = $button_pressed
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	pass
 	
 func _on_set_controls_pressed() -> void:
-	audio.button_audio()
+	audio.play()
 	panel.hide()
 	panel_set_controls.show()
 	
@@ -26,18 +26,10 @@ func _on_set_controls_pressed() -> void:
 
 
 func _on_close_btn_pressed() -> void:
-	audio.button_audio()
+	audio.play()
 	hide()
 	
 
 
 func _on_margin_container_visibility_changed() -> void:
 	pass
-
-
-func _on_input_type_button_toggled(toggled_on: bool) -> void:
-	audio.button_audio()
-
-
-func _on_input_type_button_item_focused(index: int) -> void:
-	audio.button_audio()

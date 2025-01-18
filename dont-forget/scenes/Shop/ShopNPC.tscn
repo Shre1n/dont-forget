@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://rwcbxprdm3p4"]
+[gd_scene load_steps=18 format=3 uid="uid://rwcbxprdm3p4"]
 
 [ext_resource type="Script" path="res://scenes/Shop/shop_npc.gd" id="1_wbcvt"]
 [ext_resource type="Texture2D" uid="uid://ceyvvqa5e7bvx" path="res://scenes/Shop/händler/idle/1.png" id="2_a7umw"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://bhsek7ublf00m" path="res://scenes/Shop/händler/idle/2.png" id="3_fpllr"]
 [ext_resource type="AudioStream" uid="uid://dl8rr2cqlar8v" path="res://Sounds/NPC/Lucky_Pete_Sound02.mp3" id="5_wuhtw"]
 [ext_resource type="AudioStream" uid="uid://bn7ssyj711bp2" path="res://Sounds/NPC/Lucky_Pete_Sound.mp3" id="6_lkghp"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="7_g61vg"]
-[ext_resource type="AudioStream" uid="uid://col48xmby65t6" path="res://Sounds/Objekte/Pop_Up_Sound.mp3" id="8_g66v2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1j6r7"]
 animations = [{
@@ -97,10 +95,22 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Pete_audio:bus")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
 
 [sub_resource type="Animation" id="Animation_m0nxu"]
 resource_name = "idle"
-length = 2.0
+length = 2.7
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -173,6 +183,33 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Pete_audio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 1.05897,
+"start_offset": 0.0,
+"stream": ExtResource("5_wuhtw")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Pete_audio:bus")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f1pkp"]
@@ -278,16 +315,6 @@ libraries = {
 "": SubResource("AnimationLibrary_nr281")
 }
 
-[node name="Pete_Audio" type="AudioStreamPlayer2D" parent="."]
-visible = false
-stream = ExtResource("5_wuhtw")
-attenuation = 3.0
-
-[node name="Pete_Sound_On_Interact" type="AudioStreamPlayer2D" parent="."]
-visible = false
-stream = ExtResource("6_lkghp")
-pitch_scale = 0.9
-
 [node name="Audio" type="Area2D" parent="."]
 visible = false
 position = Vector2(700, -20)
@@ -298,13 +325,12 @@ collision_mask = 33
 position = Vector2(-178, 77)
 shape = SubResource("RectangleShape2D_tnikv")
 
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-max_distance = 2500.0
+[node name="Pete_interact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lkghp")
+
+[node name="Pete_audio" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-202, 68)
 attenuation = 3.0
-script = ExtResource("7_g61vg")
-lucky_pete_frog = ExtResource("5_wuhtw")
-lucky_pete_money = ExtResource("6_lkghp")
-popUp_sound = ExtResource("8_g66v2")
 
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

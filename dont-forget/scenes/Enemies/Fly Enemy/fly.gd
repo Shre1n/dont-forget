@@ -12,7 +12,7 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 
 @export var stats_file: String = "res://gegner/fly.json"
 
-@onready var audio = $Audio_Stream
+@onready var hit_audio = $Hit
 
 @onready var chase: AnimationPlayer = $Chase
 @onready var hit: AnimationPlayer = $HitFlashPlayer
@@ -30,7 +30,6 @@ var min_pos: Vector2
 var max_pos: Vector2
 
 func _ready():
-	audio.fly_audio()
 	super._ready()
 	super.set_weapon(child_weapon)
 	load_stats()
@@ -101,7 +100,7 @@ func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	super.take_damage(damage, pierce, knockback_power_in, damage_position, falle)
 	hit.play("hit_flash")
 	
-	audio.fly_hit_audio()
+	hit_audio.play()
 	
 	if life <= 0:
 		animationPlayer.play("dead")

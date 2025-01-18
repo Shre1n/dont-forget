@@ -13,7 +13,7 @@ extends Control
 @onready var quit_button: Button = $Quit_Button
 @onready var margin_container: MarginContainer = %MarginContainer
 
-@onready var audio = $"../../../Audio_Stream"
+@onready var audio = $"../../../button_pressed"
 
 func _on_close_btn_pressed():
 	hide()
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 
 
 func _on_return_to_game_pressed() -> void:
-	audio.button_audio()
+	audio.play()
 	$"../../..".hide()
 
 

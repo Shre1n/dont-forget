@@ -1,10 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://tva2dh5gu8b0"]
+[gd_scene load_steps=26 format=3 uid="uid://tva2dh5gu8b0"]
 
 [ext_resource type="Script" path="res://ui/controls.gd" id="1_v5aba"]
 [ext_resource type="Texture2D" uid="uid://c0ptm03l665qd" path="res://assets/Controls.png" id="2_qdwpu"]
 [ext_resource type="Script" path="res://ui/margin_container.gd" id="3_jmbnk"]
 [ext_resource type="FontFile" uid="uid://bhjgpy1dovmyq" path="res://addons/gut/fonts/CourierPrime-Bold.ttf" id="4_4aum3"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="5_5n776"]
 [ext_resource type="AudioStream" uid="uid://dymju3ui20qbi" path="res://Sounds/Objekte/Buttons_Sound.mp3" id="6_pnh8g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he3xc"]
@@ -425,10 +424,8 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(919, 557)
-script = ExtResource("5_5n776")
-button_sound = ExtResource("6_pnh8g")
+[node name="button_pressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pnh8g")
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Control/Panel/Close_btn" to="." method="_on_close_btn_pressed"]

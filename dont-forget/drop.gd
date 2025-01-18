@@ -12,6 +12,9 @@ var player_body
 @onready var animation = $AnimationPlayer
 @onready var timer = $Timer
 
+@onready var audio_gold = $gold
+@onready var audio_time = $time
+
 
 func _ready():
 	if time:
@@ -22,12 +25,9 @@ func _ready():
 func _process(delta: float) -> void:
 	if linear_velocity.x > 0:
 		if time:
-			pass
+			audio_gold.play()
 		else:
-			pass
-		
-		
-		
+			audio_time.play()
 
 func _on_area_2d_body_entered(body):
 	if body.name == "Character":

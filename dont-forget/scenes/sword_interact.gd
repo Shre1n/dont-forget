@@ -7,11 +7,13 @@ extends Node2D
 @onready var block = $"../Block/Block"
 @onready var attack_label = $"../Labels/Attack"
 @onready var pickup_label = $"../Labels/PickUp"
+@onready var audio_on_sword_pickup = $on_pickup
 
 func _ready():
 	interaction_area.interact = Callable(self, "on_pick_up")
 	
 func on_pick_up():
+	audio_on_sword_pickup.play()
 	character.sword = true
 	attack_label.show()
 	pickup_label.hide()
