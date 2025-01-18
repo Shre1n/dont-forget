@@ -12,12 +12,13 @@ signal going_back(path)  # Zurück zum Dorf
 
 #@onready var audio: Audio_Stream = $Audio_Stream2
 
-@onready var dash_audio = $sword_audio
+@onready var dash_audio = $dash_audio
 @onready var is_hit = $mc_is_hit_sound
 @onready var jump_audio = $jump_sound
 @onready var walk_audio = $walk
 @onready var sword_audio = $sword_audio
 @onready var dead_audio = $dead
+@onready var popup_stat = $PopUp
 
 @export_category("Einstellungen")
 @export var test_on: bool = false
@@ -251,6 +252,7 @@ func _process(delta):
 	elif Input.is_action_just_pressed("dash") && dash_cooldown <= 0 && Input.get_axis("left", "right"):
 		dash()
 	if Input.is_action_just_pressed("inventar"):
+		popup_stat.play()
 		open = !open
 		stats_popup.visible = open
 
@@ -324,7 +326,6 @@ func knockback(knockback, damage_position):
 	is_knocked_back = true
 
 func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
-	is_hit.play()
 	var effective_damage = ceil((max(0, damage - resistenz) + pierce) * imunity)
 	var knockback_effect = knockback_power_in * knockback_res
 	if (knockback_effect) > weight:
@@ -334,7 +335,6 @@ func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 		emit_signal("lifeChange", -effective_damage)
 
 func attack():
-	sword_audio.play()
 	attacking = true
 	cooldown = cooldown_duration_base + cooldown_duration * cooldown_reduction
 	animation_player.speed_scale = attack_speed
@@ -358,7 +358,6 @@ func dash():
 	dash_timer.start()
 
 func _on_dash_timer_timeout():	
-	dash_audio.stop()
 	dashing = false
 	current_dash_speed = 1
 	var col1b = 1 + 8 + 16 +128

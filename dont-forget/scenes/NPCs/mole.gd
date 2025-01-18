@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var mole_audio = $Audio_Stream
+@onready var mole_audio = $idle
 
 @onready var anim = $AnimationPlayer
 @export var max_distance_audio: float

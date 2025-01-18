@@ -1,8 +1,9 @@
 extends Node2D
 
-@onready var bugs_audio = $Audio_Stream
+@onready var bugs_audio = $idle
 
 @onready var animation = $AnimatedSprite2D
+@onready var anim_player = $AnimationPlayer
 @export var max_distance_audio: float 
 @export var flip_h: bool = false
 @export var audio_on: bool = true
@@ -11,11 +12,8 @@ extends Node2D
 func _ready() -> void:
 	if flip_h:
 		animation.flip_h = true
-	animation.play("idle")
+	anim_player.play("idle")
 	bugs_audio.max_distance = max_distance_audio
-	if max_distance_audio == 0:
-		bugs_audio.max_distance = 0
-	bugs_audio.kaefer_audio()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

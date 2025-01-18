@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://m2it2ky3jo3g"]
+[gd_scene load_steps=6 format=3 uid="uid://m2it2ky3jo3g"]
 
 [ext_resource type="Script" path="res://scenes/wegweiser/wegweiser.gd" id="1_uh4gq"]
 [ext_resource type="Texture2D" uid="uid://cvxsv7vursoh1" path="res://scenes/wegweiser/assets/Wegweiser.png" id="2_a7yf8"]
 [ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="3_464gb"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="4_36j36"]
 [ext_resource type="AudioStream" uid="uid://col48xmby65t6" path="res://Sounds/Objekte/Pop_Up_Sound.mp3" id="5_wb5wy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmjey"]
@@ -24,6 +23,5 @@ action_name = "read"
 position = Vector2(84, 185.25)
 shape = SubResource("RectangleShape2D_qmjey")
 
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-script = ExtResource("4_36j36")
-popUp_sound = ExtResource("5_wb5wy")
+[node name="PopUp_close" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_wb5wy")

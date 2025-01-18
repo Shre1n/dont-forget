@@ -903,11 +903,12 @@ z_index = -1
 [node name="Bugs" parent="Environment/bugs" instance=ExtResource("23_yva8d")]
 position = Vector2(144, 844)
 scale = Vector2(0.118, 0.118)
-max_distance_audio = 3000.0
+max_distance_audio = 4000.0
 
 [node name="Bugs2" parent="Environment/bugs" instance=ExtResource("23_yva8d")]
 position = Vector2(123, 845)
 scale = Vector2(0.118, 0.118)
+max_distance_audio = 2500.0
 flip_h = true
 audio_on = false
 

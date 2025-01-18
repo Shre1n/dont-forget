@@ -13,6 +13,7 @@ var scene_of_Shop: String = "res://scenes/Shop/ShopContent/ShopContent.tscn"
 
 @onready var pete_audio = $Pete_audio
 @onready var pete_audio_interact = $Pete_interact
+@onready var popup_ = $PopUp_close
 
 @onready var game_manager = find_game_manager()
 var current_player: Character
@@ -59,6 +60,7 @@ func show_shop_ui():
 	#ui_manager.close()
 
 func close_area():
+	popup_.play()
 	if $Leave.monitoring == true:
 		anim_moni.play("hide_it")
 		pete_audio.play()
