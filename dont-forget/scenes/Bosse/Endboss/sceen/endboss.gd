@@ -48,7 +48,7 @@ var mini_boss = false
 var combo_phase: int = 0
 var phase: int = 1  # Boss starting Phase
 var orientation_left: bool = true
-var character: Character = null
+@export var character: Character = null
 var character_chase: bool = false
 var direction: int = 0
 @export var bomb = false
@@ -104,10 +104,13 @@ func calculate_stats_to_value(stat: int, span_start: float, span_end: float, min
 	return lerp(min_value, max_value, stat_factor)
 
 func _physics_process(delta):
+	print(character)
+	print(character.position)
 	#print(velocity)
 	apply_gravity(delta)
+	print("attacking: ",attacking)
 	if !attacking:
-		print("test")
+		#print("test")
 		if is_knocked_back and !bomb:
 			handle_knockback(delta)
 		#elif is_on_floor() and bomb:
@@ -116,7 +119,7 @@ func _physics_process(delta):
 			#animationPlayer.play("idle")
 			#$Special_Attack_Timer.start()
 		elif bomb:
-			print("bombe")
+			#print("bombe")
 			move_in_direction()
 		elif !contact:
 			print("fangen")
@@ -312,7 +315,7 @@ func move_in_direction():
 		velocity.x = 0
 		return
 	# Move the enemy based on the direction (left, right, or idle)
-	velocity.x = direction * speed
+	velocity.x = direction * speed * 2 #oder höher looooool
 
 func die():
 	#alive = false
@@ -320,11 +323,11 @@ func die():
 	animationPlayer.play("dead")
 	queue_free()
 
-func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body is Character:
-		#print("how dare you")
-		animationPlayer.play("run")
-		character = body
+#func _on_detection_area_body_entered(body: Node2D) -> void:
+	#if body is Character:
+		##print("how dare you")
+		#animationPlayer.play("run")
+		##character = body
 
 func chase_character():
 	if character:
@@ -358,11 +361,13 @@ func _on_special_attack_timer_timeout():
 func _on_i_will_hit_area_body_entered(body):
 	if body is Character:
 		#print("fuuuckkking goooo bitch")
+		print("ist er schon drin")
 		contact = true
 		attack()
 
 func _on_i_will_hit_area_body_exited(body):
 	if body is Character:
+		print("exit")
 		contact = false
 		$Attack_Timer.stop()
 

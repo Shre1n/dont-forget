@@ -4657,8 +4657,12 @@ scale = Vector2(0.193287, 0.231173)
 sprite_frames = SubResource("SpriteFrames_o423f")
 animation = &"idle"
 
-[node name="Endboss" parent="." instance=ExtResource("12_8h0cc")]
+[node name="Endboss" parent="." node_paths=PackedStringArray("character") instance=ExtResource("12_8h0cc")]
 scale = Vector2(0.5, 1.752)
+character = NodePath("../Character")
 
 [node name="Manager" parent="." instance=ExtResource("11_oei0f")]
 position = Vector2(2, 2)
+
+[node name="Node2D4" type="Node2D" parent="."]
+position = Vector2(858, 636)

@@ -1,5 +1,4 @@
 {
-  "hide_enemy": {
 	"profiles": {
 	  "default": {
 		"min_stats": {
@@ -44,7 +43,7 @@
 		},
 		"max_drops": {
 		  "gold": 2,
-		  "time": 3
+		  "time": 2
 		},
 		"special_type": {
 		  "elite": false,
@@ -95,11 +94,11 @@
 		  "fear_stat": 40
 		},
 		"min_drops": {
-		  "gold": 1,
+		  "gold": 10,
 		  "time": 2
 		},
 		"max_drops": {
-		  "gold": 4,
+		  "gold": 40,
 		  "time": 5
 		},
 		"special_type": {
@@ -115,4 +114,3 @@
 	  }
 	}
   }
-}

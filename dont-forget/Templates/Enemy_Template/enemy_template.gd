@@ -129,9 +129,17 @@ func apply_profile_data():
 		extra_data = {}
 
 func special_load():
-	elite = special_type["elite"]
-	mini_boss = special_type["mini_boss"]
-	
+	#print("special_type contents: ", special_type)
+	if special_type.has("elite"):
+		elite = special_type["elite"]
+	else:
+		elite = false  # Standardwert, falls der Schlüssel fehlt
+		
+	if special_type.has("mini_boss"):
+		mini_boss = special_type["mini_boss"]
+	else:
+		mini_boss = false  # Standardwert, falls der Schlüssel fehlt
+
 func set_weapon(new_weapon: Node):
 	weapon = new_weapon
 	
@@ -178,7 +186,7 @@ func update_status():
 		weapon.crit_multi = max(1, crit_dmg_stat)
 		weapon.knockback = knockback_stat
 	#else:
-		#print("No weapon")
+		#print("No weapon enemy template")
 
 func calculate_stats_to_value(stat: int, span_start: float, span_end: float, min_value: float, max_value: float, divider: float = 1000.0) -> float:
 	var stat_factor = clamp(stat / divider, span_start, span_end)

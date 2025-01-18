@@ -1070,7 +1070,6 @@ animation = &""
 
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(950, 993)
-test_on = true
 sword = false
 damage_stat = 1000
 speed_stat = 1500
