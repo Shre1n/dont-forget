@@ -235,8 +235,9 @@ _data = {
 "show_it": SubResource("Animation_vgmt6")
 }
 
-[node name="ShopNpc" type="Node2D"]
+[node name="ShopNpc" type="Node2D" node_paths=PackedStringArray("visibleOnScreen")]
 script = ExtResource("1_wbcvt")
+visibleOnScreen = NodePath("VisibleOnScreenEnabler2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1j6r7")
@@ -271,6 +272,12 @@ libraries = {
 "": SubResource("AnimationLibrary_nr281")
 }
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-181, 161.5)
+scale = Vector2(283.3, 163.65)
+
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]
 [connection signal="body_exited" from="Leave" to="." method="_on_leave_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

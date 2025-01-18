@@ -11,6 +11,9 @@ extends Node2D
 var shop_content: Control = null
 var scene_of_Shop: String = "res://scenes/Shop/ShopContent/ShopContent.tscn"
 
+@export_category("Visible")
+@export var visibleOnScreen: VisibleOnScreenEnabler2D
+
 @onready var game_manager = find_game_manager()
 var current_player: Character
 
@@ -61,7 +64,7 @@ func close_area():
 	is_shop_open = false 
 
 func _process(delta):
-	animation_player.play("idle")
+	pass
 
 
 func _on_leave_body_exited(body):
@@ -80,3 +83,11 @@ func find_game_manager():
 		if child.name == "Game_Manager":
 			return child
 	return null
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	animation_player.play("idle")
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	visible = false

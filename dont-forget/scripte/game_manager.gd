@@ -218,7 +218,6 @@ func save_scene():
 
 func _on_level_loaded(level) -> void:
 	if level is Level:
-		level_holder.print_tree()
 		current_level = level
 		find_Itemholder(level)
 	#Signale zum Character neu verbinden nach einem Scene wechsel

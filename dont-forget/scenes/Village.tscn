@@ -542,9 +542,9 @@ size = Vector2(299, 1316)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfvmh"]
 size = Vector2(57, 93)
 
-[node name="Village" type="Node2D"]
-visible = false
+[node name="Village" type="Node2D" node_paths=PackedStringArray("visibleNotifier_")]
 script = ExtResource("1_5at0l")
+visibleNotifier_ = NodePath("VisibleOnScreenNotifier2D")
 level_nr = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -1109,7 +1109,15 @@ max_distance = 14000.0
 script = ExtResource("35_8mgwi")
 bg_music = ExtResource("36_xb4qg")
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[connection signal="area_entered" from="Door Well" to="." method="_on_door_well_area_entered"]
 [connection signal="body_entered" from="Door Well" to="Door Well" method="_on_body_entered"]
 [connection signal="body_entered" from="Out_Door" to="Out_Door" method="_on_body_entered"]
 [connection signal="body_entered" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_entered"]
 [connection signal="body_exited" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered_"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout_"]

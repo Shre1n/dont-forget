@@ -14,11 +14,11 @@ func _on_animation_finished(anim_name):
 		animation_player.play("idle")
 
 
-func _on_dummy_visible_screen_entered() -> void:
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
 	self.visible = true
 	animation_player.play("idle")
 
 
-func _on_dummy_visible_screen_exited() -> void:
-	self.visible = false
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
 	animation_player.stop()
