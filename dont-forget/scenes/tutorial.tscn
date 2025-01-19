@@ -1054,6 +1054,7 @@ size = Vector2(200, 1313)
 size = Vector2(200, 1298)
 
 [node name="tutorial" type="Node2D" node_paths=PackedStringArray("character", "visibleNotifier")]
+visible = false
 script = ExtResource("1_howbq")
 character = NodePath("Character")
 visibleNotifier = NodePath("VisibleOnScreenNotifier2D")

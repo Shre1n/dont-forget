@@ -1110,6 +1110,8 @@ script = ExtResource("35_8mgwi")
 bg_music = ExtResource("36_xb4qg")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(3039, 77)
+scale = Vector2(649.7, 87.7)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
