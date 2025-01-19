@@ -153,7 +153,6 @@ script = ExtResource("1_g4u1m")
 [node name="drexus" type="Node2D" parent="Animation"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animation/drexus"]
-position = Vector2(1086, 513)
 scale = Vector2(0.562037, 0.576543)
 sprite_frames = SubResource("SpriteFrames_osp6m")
 animation = &"drexus_versiegelung"
@@ -168,7 +167,6 @@ libraries = {
 [node name="MC" type="Node2D" parent="Animation"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animation/MC"]
-position = Vector2(1103, 580)
 scale = Vector2(0.612963, 0.585185)
 sprite_frames = SubResource("SpriteFrames_caxdx")
 animation = &"MC_versiegelung"
