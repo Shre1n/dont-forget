@@ -1,0 +1,14 @@
+~ start_BS
+Elder Saphira: [wait=10]Listen carefully, my child.[wait = 1] There are things you must know.[wait=2] Our village carries a great responsibility, one far greater than most can comprehend.[wait=5] For generations, we have watched over the cave at the edge of our home.
+
+Elder Saphira: a place that is more than just rock and shadow. [wait=2] It is a nexus of temporal magic, a source of ancient power that maintains the balance of the world. [wait=4] 
+But the stories, once our shield, have lost their weight. The villagers see them as mere myths, yet I tell you they are true. And now, with the cave stirring once more, it is clear how dangerous it is to lose sight of time.[wait=5]
+Within the cave dwells Drexus. He was once a guardian of balance, a mighty being created by the flow of time itself. [wait=7 ]His task was to preserve the course of time, ensuring that past, present, and future flowed in harmony. He walked the planes of reality, correcting disruptions and guarding the order of time. But this duty was a burden. With every intervention, the weight grew heavier, until it became unbearable.
+[wait=5] In the end, Drexus succumbed to his own power. He no longer sought to protect – he sought to dominate. Time itself was to bend to his will. He discovered the cave,[wait=7] a source of immense temporal magic, and made it his fortress. But this power was a curse. [wait=7] Drexus lost his humanity, becoming a being trapped between seconds and ages, unable to ever experience the present again. He has remained there for millennia, but now his strength seems to be growing. Magical creatures that once lurked deep within the cave are venturing out. Our village is no longer safe.
+And then… [wait=7] there is your brother. Even if he may not understand his abilities, his pure, innocent nature has drawn Drexus’ attention. Your brother carries something with him that is of immeasurable value to Drexus. Something that could help him escape his confinement.(9) Drexus has taken him, and now your brother is held captive within the cave.
+Listen well, child. Your heart may be strong, but time is deceitful. Trust your instincts, but beware of the shadows that hunt you. It is up to you to restore balance – and to save your brother. 
+[wait=7] You are not like others. Your magic, your connection to time, makes you special. It mirrors the powers Drexus once wielded before his fall. You must understand and learn how to harness them. In the cave, time behaves differently. It will confuse you, try to mislead you. Yet, if you are wise, it can also be your ally.
+Your mission is clear you must find your brother and bring him back. Learn all you can, but do not waste time. Stay vigilant – not everything is as it seems. You are our hope, not just for your brother, but for the balance of the world.
+[wait=7] I can offer guidance if you lose your way, but this path is yours to walk alone. Hurry, my child. Time is running out. 
+
+=> END
