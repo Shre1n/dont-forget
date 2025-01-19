@@ -11,8 +11,6 @@ func _ready() -> void:
 	ani_player.play("backstory")
 	DialogueManager.show_example_dialogue_balloon(dialog,"start_BS")
 
-	
-
 func simulate_button_pressed():
 	var event = InputEventMouseButton.new()
 	event.position = _position
@@ -26,8 +24,20 @@ func simulate_button_pressed():
 	release_event.button_index = MOUSE_BUTTON_LEFT
 	release_event.pressed = false
 	Input.parse_input_event(release_event)
+	
+	var touch_event = InputEventScreenTouch.new()
+	touch_event.position = _position
+	touch_event.button_index = MOUSE_BUTTON_LEFT
+	touch_event.pressed = true
+	Input.parse_input_event(touch_event)
 
-
+	# Zum Loslassen des Klicks sofort ein zweites Event senden
+	var touch_release_event = InputEventScreenTouch.new()
+	touch_release_event.position = _position
+	touch_release_event.button_index = MOUSE_BUTTON_LEFT
+	touch_release_event.pressed = false
+	Input.parse_input_event(touch_release_event)
+	
 func _on_animated_sprite_2d_frame_changed() -> void:
 	simulate_button_pressed()
 
