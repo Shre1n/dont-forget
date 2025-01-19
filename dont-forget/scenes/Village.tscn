@@ -1062,7 +1062,8 @@ position = Vector2(3039, 77)
 scale = Vector2(649.7, 87.7)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 20.0
+one_shot = true
 
 [connection signal="body_entered" from="Sound_Off" to="." method="_on_sound_off_body_entered"]
 [connection signal="area_entered" from="Door Well" to="." method="_on_door_well_area_entered"]

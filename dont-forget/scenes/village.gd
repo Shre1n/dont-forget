@@ -12,8 +12,6 @@ extends Level
 @onready var bg_music_ = $Background
 @onready var timer_ = $Timer
 
-@onready var audio_play = $Audio_Stream
-
 @export var visibleNotifier_: VisibleOnScreenNotifier2D
 
 
@@ -50,4 +48,4 @@ func _process(delta):
 
 
 func _on_sound_off_body_entered(body: Node2D) -> void:
-	pass
+	bg_music_.stop()
