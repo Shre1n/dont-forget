@@ -70,7 +70,6 @@ func load_stats():
 func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	super.take_damage(damage, pierce, knockback_power_in, damage_position, falle)
 	hit.play("hit_flash")
-	audio.hide_damage_audio()
 	
 	if life <= 0:
 		audio.hide_death_audio()

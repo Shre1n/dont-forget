@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://caxsqxj21isxy"]
+[gd_scene load_steps=5 format=3 uid="uid://caxsqxj21isxy"]
 
 [ext_resource type="Script" path="res://death_pit.gd" id="1_nc1wu"]
+[ext_resource type="AudioStream" uid="uid://bbe48eoqx2u08" path="res://Sounds/Objekte/Teleporter_Sound.mp3" id="3_8uf0b"]
 [ext_resource type="AudioStream" uid="uid://c7q4cxf45r5j4" path="res://Sounds/Objekte/Trap_Sound.mp3" id="4_muu52"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gd6e0"]
@@ -17,5 +18,6 @@ shape = SubResource("RectangleShape2D_gd6e0")
 stream = ExtResource("4_muu52")
 
 [node name="on_enter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_8uf0b")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

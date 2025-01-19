@@ -15,12 +15,14 @@ signal share_current_character
 @export var wait_time: float = 0.2
 @onready var respawn_timer = $Respawn_Timer
 var current_Itemholder
-@onready var audio = $Audio_Stream
+@export var audio_: AudioStreamMP3
+@onready var audio_player = $AudioStreamPlayer2D
+@onready var visible_ = $VisibleOnScreenNotifier2D
 
 var loner_spawned = false
 
 func _ready():
-	audio.spawner_audio()
+	audio_player.stream = audio_
 	var gamemanager = find_game_manager()
 	current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
 	respawn_timer.wait_time = respawn_delay
@@ -87,3 +89,13 @@ func find_game_manager():
 
 func save_user_location(path):
 	current_Itemholder = path
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	audio_player.play()
+	respawn_timer.start()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	audio_player.stop()
+	respawn_timer.stop()
