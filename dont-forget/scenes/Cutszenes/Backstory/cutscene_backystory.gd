@@ -10,6 +10,7 @@ var _position = Vector2(100,100)
 func _ready() -> void:
 	ani_player.play("backstory")
 	DialogueManager.show_example_dialogue_balloon(dialog,"start_BS")
+
 	
 
 func simulate_button_pressed():
@@ -29,3 +30,8 @@ func simulate_button_pressed():
 
 func _on_animated_sprite_2d_frame_changed() -> void:
 	simulate_button_pressed()
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "backstory":
+		self.queue_free()

@@ -284,4 +284,5 @@ animation = &"Backstory"
 
 [node name="Sounds" type="AudioStreamPlayer" parent="."]
 
+[connection signal="animation_finished" from="Bilder/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="frame_changed" from="Bilder/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
