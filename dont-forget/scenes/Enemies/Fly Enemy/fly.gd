@@ -21,6 +21,9 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 @onready var damage_area: CollisionShape2D = $DamageArea/CollisionShape2D
 @onready var child_weapon: Area2D = $AttackArea
 
+@export_category("Visible")
+@export var visibleOnScreen: VisibleOnScreenEnabler2D
+
 var angle: float = 0.0
 var start_position: Vector2
 
@@ -42,7 +45,6 @@ func _ready():
 	min_pos.y -= 10
 	max_pos.y += 10
 	chase_range = detection_area.scale.x*5
-	animationPlayer.play("idle")
 	# Connect detection area signals
 	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
 	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
@@ -127,3 +129,11 @@ func _on_detection_area_body_exited(body):
 		chase.play("lost")
 		player = null  # Stop chasing the player
 		velocity = Vector2.ZERO  # Stop moving when the player leaves the range
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+		animationPlayer.play("idle")
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	chase.play("lost")

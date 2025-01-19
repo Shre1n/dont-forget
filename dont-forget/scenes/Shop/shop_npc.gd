@@ -15,6 +15,9 @@ var scene_of_Shop: String = "res://scenes/Shop/ShopContent/ShopContent.tscn"
 @onready var pete_audio_interact = $Pete_interact
 @onready var popup_ = $PopUp_close
 
+@export_category("Visible")
+@export var visibleOnScreen: VisibleOnScreenEnabler2D
+
 @onready var game_manager = find_game_manager()
 var current_player: Character
 
@@ -88,3 +91,11 @@ func find_game_manager():
 		if child.name == "Game_Manager":
 			return child
 	return null
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	animation_player.play("idle")
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	visible = false

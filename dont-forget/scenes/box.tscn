@@ -83,7 +83,7 @@ _data = {
 "damage": SubResource("Animation_rtalh")
 }
 
-[node name="box" type="RigidBody2D"]
+[node name="box" type="RigidBody2D" node_paths=PackedStringArray("visible_notifier")]
 collision_layer = 16
 collision_mask = 23
 mass = 9999.0
@@ -93,6 +93,7 @@ sleeping = true
 freeze_mode = 1
 constant_force = Vector2(0, 1000)
 script = ExtResource("1_jinl7")
+visible_notifier = NodePath("VisibleOnScreenNotifier2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4, 10)
@@ -123,3 +124,11 @@ one_shot = true
 stream = ExtResource("4_vdjyl")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.500023, -21)
+scale = Vector2(45.15, 26.6)
+
+[connection signal="hidden" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_hidden"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

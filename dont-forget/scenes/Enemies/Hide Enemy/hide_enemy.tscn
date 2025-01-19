@@ -752,9 +752,10 @@ radius = 453.441
 [sub_resource type="CircleShape2D" id="CircleShape2D_1g7te"]
 radius = 3115.95
 
-[node name="hide_enemy" instance=ExtResource("1_worv2")]
+[node name="hide_enemy" node_paths=PackedStringArray("visibleOnScreen") instance=ExtResource("1_worv2")]
 script = ExtResource("2_800ox")
 stats_file = "res://gegner/hide.json"
+visibleOnScreen = NodePath("VisibleOnScreenEnabler2D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -803,6 +804,10 @@ collision_mask = 32
 scale = Vector2(1.93517, 1.94888)
 shape = SubResource("CircleShape2D_bnhh3")
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." index="8"]
+position = Vector2(-19, 16)
+scale = Vector2(268.6, 154.65)
+
 [node name="Damage" type="AudioStreamPlayer2D" parent="." index="8"]
 
 [node name="Dead" type="AudioStreamPlayer" parent="." index="9"]
@@ -812,3 +817,5 @@ shape = SubResource("CircleShape2D_bnhh3")
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

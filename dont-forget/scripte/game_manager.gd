@@ -62,12 +62,32 @@ func _ready():
 	SceneManager.load_complete.connect(_on_level_loaded)
 	SceneManager.load_start.connect(_on_load_start)
 	SceneManager.scene_added.connect(_on_level_added)
+	
+	level_holder.connect("child_entered_tree", Callable(self, "_on_child_added_to_level_holder"))
+	level_holder.connect("tree_exited", Callable(self, "_on_child_removed_from_level_holder"))
+	update_level_holder_visibility()
+	
 	#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	#Zum Village zurück (braucht signal mit path)
 	current_character.connect("going_back", Callable(self, "scene_change"))
 	get_node("Pause_Menu/UiManager").connect("give_user", Callable(self, "give_user"))
 	
 
+func _on_child_added_to_level_holder():
+	update_level_holder_visibility()
+
+# Methode, die aufgerufen wird, wenn ein Kind entfernt wird
+func _on_child_removed_from_level_holder():
+	update_level_holder_visibility()
+
+# Methode zur Aktualisierung der Sichtbarkeit basierend auf der Anzahl der Kinder
+func update_level_holder_visibility():
+	if level_holder.get_child_count() > 0:
+		level_holder.show()
+		var child: Level = level_holder.get_child(0)
+		child.show()
+	else:
+		level_holder.hide()
 
 func play_bg_music_Village():
 	var sound = preload("res://Sounds/Musik/BG_Musik.mp3")
@@ -218,6 +238,7 @@ func save_scene():
 
 func _on_level_loaded(level) -> void:
 	if level is Level:
+		update_level_holder_visibility()
 		current_level = level
 		find_Itemholder(level)
 	#Signale zum Character neu verbinden nach einem Scene wechsel

@@ -19,6 +19,9 @@ var profiles_data: Dictionary
 @export var tutorial: bool = false
 @export var level_nr: int = 1
 
+@export_category("Visible")
+@export var visibleEnabler: VisibleOnScreenEnabler2D
+
 @export_subgroup("Idle Timer")
 @export var idle_time_min: float = 1.0  # Mindestwartezeit im Idle-Zustand
 @export var idle_time_max: float = 5.0  # Maximalwartezeit im Idle-Zustand
@@ -60,6 +63,8 @@ var current_Itemholder
 @onready var chase_anim: AnimationPlayer = $Chase_Anim
 @onready var direction_timer: Timer = $Direction_Timer
 @onready var weapon = $CollisionPolygon2D/Attack_Area
+
+
 
 var direction: int = 0  # -1 für links, 1 für rechts, 0 für idle
 
@@ -351,3 +356,11 @@ func save_user_location(path):
 
 func find_item_holder():
 	current_Itemholder = $"../../Itemholder"
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	animated_player.play("walk")
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	animated_player.play("idle")

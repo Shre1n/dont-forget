@@ -712,10 +712,11 @@ _data = {
 "lost": SubResource("Animation_tndgn")
 }
 
-[node name="Slime" type="CharacterBody2D"]
+[node name="Slime" type="CharacterBody2D" node_paths=PackedStringArray("visibleEnabler")]
 collision_layer = 8
 collision_mask = 121
 script = ExtResource("1_kt7s3")
+visibleEnabler = NodePath("VisibleOnScreenEnabler2D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -765,6 +766,10 @@ position = Vector2(-16, -191)
 rotation = -1.56524
 shape = SubResource("CapsuleShape2D_v4vrp")
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-3.05176e-05, -356)
+scale = Vector2(245, 101)
+
 [node name="Death" type="AudioStreamPlayer" parent="."]
 
 [node name="Move" type="AudioStreamPlayer2D" parent="."]
@@ -775,3 +780,5 @@ attenuation = 3.0
 [connection signal="timeout" from="Direction_Timer" to="." method="_on_direction_timer_timeout"]
 [connection signal="body_entered" from="Detection_Area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Detection_Area" to="." method="_on_detection_area_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]
