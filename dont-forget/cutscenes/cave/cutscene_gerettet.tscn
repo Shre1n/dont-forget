@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bya3qcup2it4m"]
+[gd_scene load_steps=8 format=3 uid="uid://bya3qcup2it4m"]
 
 [ext_resource type="Texture2D" uid="uid://cete76w0lf0wl" path="res://assets/Bruder/happy/1.png" id="1_1xam2"]
 [ext_resource type="Script" path="res://cutscenes/cave/cutscene_gerettet.gd" id="1_7sq5o"]
@@ -18,8 +18,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_dge2d"]
-resource_name = "happy"
+[sub_resource type="Animation" id="Animation_o1ieo"]
+length = 0.16667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -27,14 +27,15 @@ tracks/0/path = NodePath("happy:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [1]
+"values": []
 }
 
-[sub_resource type="Animation" id="Animation_o1ieo"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_dge2d"]
+resource_name = "happy"
+length = 0.16667
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -42,37 +43,16 @@ tracks/0/path = NodePath("happy:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.0333333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [1]
+"values": [0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_n5aml"]
 _data = {
 "RESET": SubResource("Animation_o1ieo"),
 "happy": SubResource("Animation_dge2d")
-}
-
-[sub_resource type="Animation" id="Animation_yvf2k"]
-resource_name = "zoom"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera2D:zoom")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(1, 1), Vector2(0.4, 0.4)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3x453"]
-_data = {
-"zoom": SubResource("Animation_yvf2k")
 }
 
 [node name="CutsceneGerettet" type="Node2D"]
@@ -84,14 +64,8 @@ script = ExtResource("1_7sq5o")
 sprite_frames = SubResource("SpriteFrames_rf2ws")
 animation = &"happy"
 autoplay = "happy"
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Animation"]
 libraries = {
 "": SubResource("AnimationLibrary_n5aml")
-}
-
-[node name="Camera_Player" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_3x453")
 }
