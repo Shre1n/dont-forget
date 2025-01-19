@@ -1288,6 +1288,7 @@ tutorial = true
 [node name="box" parent="." instance=ExtResource("16_ten56")]
 position = Vector2(381, 1170)
 scale = Vector2(1.5296, 1.03802)
+selected_profile = "simple_treasure_chest"
 
 [node name="Block" type="Node2D" parent="."]
 visible = false

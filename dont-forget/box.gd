@@ -14,7 +14,11 @@ var max_drops: Dictionary
 var extra_data: Dictionary
 var profiles_data: Dictionary
 
+@export var visible_notifier: VisibleOnScreenNotifier2D
+
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var coll_shape = $CollisionShape2D
+@onready var dmg_area = $Damage_Area
 
 var drop := preload("res://scenes/drop.tscn")
 var current_Itemholder
@@ -120,3 +124,15 @@ func instantiate_drop_items(drop_count, death_pos, is_time_item):
 
 func save_user_location(path):
 	current_Itemholder = path
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	sprite.show()
+	coll_shape.show()
+	dmg_area.show()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	sprite.hide()
+	coll_shape.hide()
+	dmg_area.hide()
