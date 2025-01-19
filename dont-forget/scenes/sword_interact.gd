@@ -10,7 +10,7 @@ extends Node2D
 @onready var audio_on_sword_pickup = $on_pickup
 
 
-@onready var visible_load = $VisibleOnScreenNotifier2D
+@export var visible_load: VisibleOnScreenNotifier2D
 
 func _ready():
 	visible = false

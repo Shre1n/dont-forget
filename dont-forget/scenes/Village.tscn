@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=55 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
@@ -1057,7 +1057,6 @@ hintText = "Start the adventure and jump into the Well"
 stream = ExtResource("36_xb4qg")
 parameters/looping = true
 
-[connection signal="body_entered" from="Sound_Off" to="." method="_on_sound_off_body_entered"]
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(3039, 77)
 scale = Vector2(649.7, 87.7)
@@ -1065,6 +1064,7 @@ scale = Vector2(649.7, 87.7)
 [node name="Timer" type="Timer" parent="."]
 wait_time = 5.0
 
+[connection signal="body_entered" from="Sound_Off" to="." method="_on_sound_off_body_entered"]
 [connection signal="area_entered" from="Door Well" to="." method="_on_door_well_area_entered"]
 [connection signal="body_entered" from="Door Well" to="Door Well" method="_on_body_entered"]
 [connection signal="body_entered" from="Out_Door" to="Out_Door" method="_on_body_entered"]

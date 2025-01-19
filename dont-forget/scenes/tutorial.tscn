@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
 [ext_resource type="Script" path="res://scenes/gegner.gd" id="15_xeiq5"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="17_2jobv"]
 [ext_resource type="AudioStream" uid="uid://bfyfhx1jkhx38" path="res://Sounds/Musik/light_BG_Sound.mp3" id="18_jihcl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
@@ -1217,8 +1216,9 @@ vertical_alignment = 1
 position = Vector2(3320.5, 703.5)
 scale = Vector2(21.655, 64.421)
 
-[node name="Sword_Interact" type="Node2D" parent="."]
+[node name="Sword_Interact" type="Node2D" parent="." node_paths=PackedStringArray("visible_load")]
 script = ExtResource("9_8mqe6")
+visible_load = NodePath("../Sword_Visible")
 
 [node name="PickUp" type="Label" parent="Sword_Interact"]
 offset_left = 2980.0
@@ -1313,7 +1313,7 @@ collision_mask = 0
 position = Vector2(0, -549)
 shape = SubResource("RectangleShape2D_q71vo")
 
-[node name="box" parent="." instance=ExtResource("16_ten56")]
+[node name="box2" parent="." instance=ExtResource("16_ten56")]
 position = Vector2(531, 1225)
 selected_profile = "iron_treasure_chest"
 

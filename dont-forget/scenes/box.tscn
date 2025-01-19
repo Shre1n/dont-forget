@@ -123,12 +123,11 @@ one_shot = true
 [node name="Break" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_vdjyl")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
-
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0.500023, -21)
 scale = Vector2(45.15, 26.6)
 
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="hidden" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_hidden"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

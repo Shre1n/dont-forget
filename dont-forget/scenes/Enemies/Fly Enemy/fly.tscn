@@ -494,16 +494,16 @@ position = Vector2(-351, -46)
 scale = Vector2(10.1754, 9.82616)
 shape = SubResource("CircleShape2D_r850h")
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." index="9"]
-position = Vector2(-332, -46.0001)
-scale = Vector2(136.05, 110.35)
-
 [node name="idle_audio" type="AudioStreamPlayer2D" parent="." index="9"]
 max_distance = 2100.0
 attenuation = 3.0
 
 [node name="Hit" type="AudioStreamPlayer" parent="." index="10"]
 stream = ExtResource("13_er8rr")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." index="11"]
+position = Vector2(-332, -46.0001)
+scale = Vector2(136.05, 110.35)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

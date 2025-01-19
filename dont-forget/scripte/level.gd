@@ -5,7 +5,6 @@ var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
 var save_user: save_User
 
 @onready var bg_music = $Background
-@onready var audio = $Audio_Stream
 @onready var timer = $Timer
 @export var character: Character
 
