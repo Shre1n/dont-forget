@@ -22,21 +22,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_rl4ln"]
-resource_name = "drexus"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-
 [sub_resource type="Animation" id="Animation_gkpms"]
 length = 0.001
 tracks/0/type = "value"
@@ -46,10 +31,26 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.1, 1.26667),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [1]
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_rl4ln"]
+resource_name = "drexus"
+length = 1.53334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.466667, 1.13333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yymeq"]
@@ -78,21 +79,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Animation" id="Animation_50ok3"]
-resource_name = "mc"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"update": 1,
-"values": []
-}
-
 [sub_resource type="Animation" id="Animation_r0arv"]
 length = 0.001
 tracks/0/type = "value"
@@ -102,10 +88,26 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 1.06667, 2.13333, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [3]
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_50ok3"]
+resource_name = "mc"
+length = 1.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.633333, 1.06667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xdgd0"]
@@ -116,6 +118,27 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_mx06v"]
 resource_name = "ani"
+length = 1.66667
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("drexus/drexus")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("drexus"),
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MC/Mc")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("mc"),
+"times": PackedFloat32Array(0)
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mix58"]
 _data = {
@@ -130,6 +153,8 @@ script = ExtResource("1_g4u1m")
 [node name="drexus" type="Node2D" parent="Animation"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animation/drexus"]
+position = Vector2(1086, 513)
+scale = Vector2(0.562037, 0.576543)
 sprite_frames = SubResource("SpriteFrames_osp6m")
 animation = &"drexus_versiegelung"
 autoplay = "drexus_versiegelung"
@@ -143,9 +168,10 @@ libraries = {
 [node name="MC" type="Node2D" parent="Animation"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animation/MC"]
+position = Vector2(1103, 580)
+scale = Vector2(0.612963, 0.585185)
 sprite_frames = SubResource("SpriteFrames_caxdx")
 animation = &"MC_versiegelung"
-frame = 3
 
 [node name="Mc" type="AnimationPlayer" parent="Animation/MC"]
 libraries = {
