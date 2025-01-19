@@ -1,0 +1,287 @@
+[gd_scene load_steps=21 format=3 uid="uid://m8hhscyfvuea"]
+
+[ext_resource type="AudioStream" uid="uid://s5q6lq0l3ctw" path="res://Sounds/BS_Oma.mp3" id="1_1onok"]
+[ext_resource type="Script" path="res://scenes/Cutszenes/Backstory/cutscene_backystory.gd" id="1_8w53f"]
+[ext_resource type="Texture2D" uid="uid://cubdij8mh564j" path="res://Backstory/1_Höhleneingang.png" id="1_i82i6"]
+[ext_resource type="Texture2D" uid="uid://by076axjjc7ci" path="res://Backstory/2_Höhle.png" id="2_1vn8x"]
+[ext_resource type="Resource" uid="uid://cfr45u8n6ylab" path="res://scenes/Cutszenes/Backstory/dialogue_BS_Oma.dialogue" id="2_d3208"]
+[ext_resource type="AudioStream" uid="uid://mm0dw4k8np0h" path="res://Sounds/Objekte/Cutscene_Book_Sound.mp3" id="2_y50ny"]
+[ext_resource type="Texture2D" uid="uid://wik3t37kud3s" path="res://Backstory/3_Geschichten.png" id="3_swew1"]
+[ext_resource type="Texture2D" uid="uid://b3k577nyp70jr" path="res://Backstory/4_Drexus.png" id="4_nu3tl"]
+[ext_resource type="Texture2D" uid="uid://b0qurf3tvm2ey" path="res://Backstory/5_Drexus_Hüter_Der_Balance.png" id="5_dbxqh"]
+[ext_resource type="Texture2D" uid="uid://dufaclxblk2iw" path="res://Backstory/6_Drexus_Dominiert.png" id="6_e6qk1"]
+[ext_resource type="Texture2D" uid="uid://obk3jefclb7f" path="res://Backstory/7_Drexus_In_Höhle.png" id="7_jv2bi"]
+[ext_resource type="Texture2D" uid="uid://l8v2x3jrkdem" path="res://Backstory/8_Drexus_Verfällt_Seiner_Macht_.png" id="8_5eysi"]
+[ext_resource type="Texture2D" uid="uid://dqtebsex8rvcx" path="res://Backstory/9_Mc_Und_Bruder.png" id="9_jxkqw"]
+[ext_resource type="Texture2D" uid="uid://b1mmacv5dg7qu" path="res://Backstory/10_Bruder_Gefangen_.png" id="10_c2cr2"]
+[ext_resource type="Texture2D" uid="uid://nsaufoywnaax" path="res://Backstory/11_MC_Magie.png" id="11_bm6g0"]
+[ext_resource type="Texture2D" uid="uid://dbtikxdlbsr2a" path="res://Backstory/12_Mc_Mit_Oma.png" id="12_l5ug0"]
+
+[sub_resource type="Animation" id="Animation_cs6vy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BS_Oma:pitch_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sounds:volume_db")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sounds:pitch_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_jdt8t"]
+resource_name = "backstory"
+length = 214.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 23.3667, 34.6667, 51.2333, 62.3333, 83.3667, 94.4, 100.8, 123.867, 145.167, 164.633, 190.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../BS_Oma")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("1_1onok")
+}],
+"times": PackedFloat32Array(0.533333)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../BS_Oma:pitch_scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.01]
+}
+tracks/3/type = "audio"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sounds")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"clips": [{
+"end_offset": 0.868074,
+"start_offset": 1.16359,
+"stream": ExtResource("2_y50ny")
+}, {
+"end_offset": 0.868074,
+"start_offset": 1.16359,
+"stream": ExtResource("2_y50ny")
+}, {
+"end_offset": 0.868074,
+"start_offset": 1.16359,
+"stream": ExtResource("2_y50ny")
+}, {
+"end_offset": 0.868074,
+"start_offset": 1.16359,
+"stream": ExtResource("2_y50ny")
+}, {
+"end_offset": 0.868074,
+"start_offset": 1.16359,
+"stream": ExtResource("2_y50ny")
+}, {
+"end_offset": 0.868074,
+"start_offset": 1.16359,
+"stream": ExtResource("2_y50ny")
+}, {
+"end_offset": 0.868074,
+"start_offset": 1.16359,
+"stream": ExtResource("2_y50ny")
+}, {
+"end_offset": 0.868074,
+"start_offset": 1.16359,
+"stream": ExtResource("2_y50ny")
+}, {
+"end_offset": 0.868074,
+"start_offset": 1.16359,
+"stream": ExtResource("2_y50ny")
+}, {
+"end_offset": 0.868074,
+"start_offset": 1.16359,
+"stream": ExtResource("2_y50ny")
+}, {
+"end_offset": 0.868074,
+"start_offset": 1.16359,
+"stream": ExtResource("2_y50ny")
+}],
+"times": PackedFloat32Array(23.1, 34.6667, 51.2333, 62.3333, 83.3667, 94.4, 100.8, 123.867, 145.167, 164.633, 190.1)
+}
+tracks/3/use_blend = true
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Sounds:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(23.6333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-5.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../Sounds:pitch_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(23.6333),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.5]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AnimatedSprite2D:scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(-0.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.814, 0.675)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u6xmn"]
+_data = {
+"RESET": SubResource("Animation_cs6vy"),
+"backstory": SubResource("Animation_jdt8t")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k0vkh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i82i6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1vn8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_swew1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nu3tl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dbxqh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_e6qk1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jv2bi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5eysi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jxkqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_c2cr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bm6g0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_l5ug0")
+}],
+"loop": true,
+"name": &"Backstory",
+"speed": 5.0
+}]
+
+[node name="cutscene_Backystory" type="Node2D"]
+script = ExtResource("1_8w53f")
+dialog = ExtResource("2_d3208")
+
+[node name="Bilder" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bilder"]
+libraries = {
+"": SubResource("AnimationLibrary_u6xmn")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bilder"]
+position = Vector2(959.99, 536)
+sprite_frames = SubResource("SpriteFrames_k0vkh")
+animation = &"Backstory"
+
+[node name="BS_Oma" type="AudioStreamPlayer" parent="."]
+
+[node name="Sounds" type="AudioStreamPlayer" parent="."]
+
+[connection signal="frame_changed" from="Bilder/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

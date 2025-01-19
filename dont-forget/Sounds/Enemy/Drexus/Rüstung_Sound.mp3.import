@@ -3,12 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://b5e7duulhneh"
-path="res://.godot/imported/Rüstung_Sound.mp3-8ee9dbfa415f3539b07de9f92f482c61.mp3str"
+path="res://.godot/imported/Rüstung_Sound.mp3-3205d9fd610d126eecc758e6721f3b2c.mp3str"
 
 [deps]
 
-source_file="res://Sounds/Enemy/Drexus/Rüstung_Sound.mp3"
-dest_files=["res://.godot/imported/Rüstung_Sound.mp3-8ee9dbfa415f3539b07de9f92f482c61.mp3str"]
+source_file="res://Sounds/Enemy/Drexus/Rüstung_Sound.mp3"
+dest_files=["res://.godot/imported/Rüstung_Sound.mp3-3205d9fd610d126eecc758e6721f3b2c.mp3str"]
 
 [params]
 
