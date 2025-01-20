@@ -11,6 +11,13 @@ extends Node2D
 var shop_content: Control = null
 var scene_of_Shop: String = "res://scenes/Shop/ShopContent/ShopContent.tscn"
 
+@onready var pete_audio = $Pete_audio
+@onready var pete_audio_interact = $Pete_interact
+@onready var popup_ = $PopUp_close
+
+@export_category("Visible")
+@export var visibleOnScreen: VisibleOnScreenEnabler2D
+
 @onready var game_manager = find_game_manager()
 var current_player: Character
 
@@ -19,7 +26,8 @@ var is_shop_open : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	interaction_area.interact = Callable(self, "open_shop")
-	game_manager.connect("current_user", Callable(self, "self_user"))	
+	game_manager.connect("current_user", Callable(self, "self_user"))
+	pete_audio.play()
 
 func close_areabackup():
 	if $Leave.monitoring == true:
@@ -37,7 +45,8 @@ func open_shopbackup():
 func open_shop():
 	if is_shop_open:
 		return  # Verhindert das Öffnen des Shops, wenn er bereits geöffnet ist
-	
+	pete_audio.stop()
+	pete_audio_interact.play()
 	is_shop_open = true  # Markiert den Shop als geöffnet
 	show_shop_ui()  # Zeigt das Shop UI
 	#print($Leave.monitoring, "2")
@@ -54,8 +63,10 @@ func show_shop_ui():
 	#ui_manager.close()
 
 func close_area():
+	popup_.play()
 	if $Leave.monitoring == true:
 		anim_moni.play("hide_it")
+		pete_audio.play()
 		#print($Leave.monitoring, "4")
 	#print($Leave.monitoring, "1")
 	is_shop_open = false 
@@ -80,3 +91,11 @@ func find_game_manager():
 		if child.name == "Game_Manager":
 			return child
 	return null
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	animation_player.play("idle")
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	visible = false

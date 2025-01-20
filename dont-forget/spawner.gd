@@ -15,14 +15,25 @@ signal share_current_character
 @export var wait_time: float = 0.2
 @onready var respawn_timer = $Respawn_Timer
 var current_Itemholder
+@export var audio_: AudioStreamMP3
+@onready var audio_player = $AudioStreamPlayer2D
+@onready var visible_ = $VisibleOnScreenNotifier2D
+
+@export var supportNodesCount = 3
 
 var loner_spawned = false
 
+func _init() -> void:
+	print("Spawner")
+
 func _ready():
+	print("SpawnerReadyStart")
+	audio_player.stream = audio_
 	var gamemanager = find_game_manager()
 	current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
 	respawn_timer.wait_time = respawn_delay
 	spawn_enemies()
+	print("SpawnerReadyFinish")
 
 func get_enemy_limit() -> int:
 	var total = 0
@@ -31,23 +42,23 @@ func get_enemy_limit() -> int:
 	return total
 
 func spawn_enemies():
-	while get_child_count() < (max_limit + 1) and !loner_spawned:
+	while get_child_count() < (max_limit + supportNodesCount) and !loner_spawned:
 		var enemy_data = select_random_enemy_type()
 		if enemy_data != null:
 			var spawn_count = enemy_data["max_count"]
 			if enemy_data["loners"]:
 				loner_spawned = true
 			for i in range(spawn_count):
-				if get_child_count() >= (max_limit + 1):
+				if get_child_count() >= (max_limit + supportNodesCount):
 					break
-				if get_child_count() < max_limit + 1:
+				if get_child_count() < max_limit + supportNodesCount:
 					await get_tree().create_timer(wait_time).timeout
 					spawn_enemy(enemy_data)
 
 func select_random_enemy_type():
 	var valid_types = []
 	for enemy_data in enemy_types:
-		if get_child_count() == 1 or not enemy_data["loners"]:
+		if get_child_count() == supportNodesCount or not enemy_data["loners"]:
 			valid_types.append(enemy_data)
 	if valid_types.size() > 0:
 		return valid_types[randi() % valid_types.size()]
@@ -62,7 +73,7 @@ func spawn_enemy(enemy_data: Dictionary):
 	enemy_scene.current_Itemholder = current_Itemholder
 	
 	add_child(enemy_scene)
-	print(get_children())
+	#print(get_children())
 
 func _on_child_exiting_tree(node):
 	if not respawn_timer.is_stopped():
@@ -70,11 +81,11 @@ func _on_child_exiting_tree(node):
 	respawn_timer.start()
 
 func _on_respawn_timer_timeout():
-	if get_child_count() == 1:
+	if get_child_count() == supportNodesCount:
 		loner_spawned = false
-	if get_child_count() < (max_limit+1) and !loner_spawned:
+	if get_child_count() < (max_limit+supportNodesCount) and !loner_spawned:
 		spawn_enemies()
-		print("test")
+		#print("test")
 
 func find_game_manager():
 	var root = get_tree().root  # Root-Node des Scene Trees
@@ -85,3 +96,13 @@ func find_game_manager():
 
 func save_user_location(path):
 	current_Itemholder = path
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	audio_player.play()
+	respawn_timer.start()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	audio_player.stop()
+	respawn_timer.stop()

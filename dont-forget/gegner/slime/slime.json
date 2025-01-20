@@ -43,7 +43,7 @@
 			},
 			"max_drops": {
 				"gold": 4,
-				"time": 5
+				"time": 2
 			},
 			"special_type": {
 				"elite": false,
@@ -72,7 +72,7 @@
 				"fear_stat" : 0
 			},
 			"max_stats": {
-				"life_stat": 300,
+				"life_stat": 200,
 				"damage_stat": 50,
 				"crit_dmg_stat": 500,
 				"res_stat": 15,
@@ -90,12 +90,12 @@
 				"fear_stat" : 0
 			},
 			"min_drops": {
-				"gold": 2,
-				"time": 3
+				"gold": 35,
+				"time": 5
 			},
 			"max_drops": {
-				"gold": 6,
-				"time": 8
+				"gold": 100,
+				"time": 10
 			},
 			"special_type": {
 				"elite": true,
