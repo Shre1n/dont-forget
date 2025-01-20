@@ -1,12 +1,7 @@
 ~ start
 
-Saphira: Ah, my dear.[wait=1] You’ve finally arrived. I've been waiting for this moment for far longer than you can imagine.
-Saphira: The world you see now is but a fragile shadow of what it once was. Time itself has fallen out of balance.
-Saphira: Drexus, the Timekeeper...[wait=2] once a guardian, now a tyrant of time. He was created to protect the flow of past,[wait=1] present[wait=1], and future,[wait=1] but his purpose twisted. The weight of eternity shattered his soul.
-Saphira: He hides in the mystical cave, the heart of time's magic, where he seeks to reshape the very fabric of existence.
-Saphira: Your brother… yes,[wait=1] the child he took. It wasn’t an act of cruelty, but a desperate attempt to manipulate you. Drexus sees you as a danger, an anomaly in his perfect vision of time.
-Saphira: But you, my dear, are not a threat. You are the key. Your bond with time is unlike anything I’ve ever seen. The power within you can undo the chaos Drexus has unleashed.
-Saphira: Go now, and remember: the path forward is not just a battle against Drexus. It is a journey to understand yourself and the bond you share with the flow of time. Only then will you be able to reclaim your brother... and restore balance.
-
-
-=> END
+Elder Saphira: How can I help You?
+- Talk to Elder Saphira
+	Elder Saphira: [[ Sometimes, the right way is simply the right way. Trust your instincts! | There may be moments when you’ll need to take a leap — right through the middle. | Your powers are precious, but beware, overusing them might cost you dearly! | The place where you lost everything might hold the key to moving forward... | Crystals are more than just pretty objects, they can help you survive in unexpected ways. | Boxes aren’t just clutter — they might be essential for your journey! | Seek out Lucky Pete’s Shop. His knowledge of your powers could be the difference between success and failure! | I could listen to the Luminas sing all day. Their melodies are truly magical. | I still remember the first time I saw a Noctura. Such majestic creatures — they took my breath away. | Did you know Grumblings adore collecting strawberries? Odd little creatures, aren’t they? |People always call me old and wise. But between us, half the time I can’t even recall what I had for breakfast. ]] => start
+- Say Goodbye
+	Elder Saphira: Hurry Child, your Time is running out! => END

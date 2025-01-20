@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=37 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -19,8 +19,8 @@
 [ext_resource type="Script" path="res://scenes/gegner.gd" id="15_xeiq5"]
 [ext_resource type="PackedScene" uid="uid://tumpceqn5cd1" path="res://assets/NPC/Oma/Oma_NPC.tscn" id="16_alb86"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
-[ext_resource type="AudioStream" uid="uid://bfyfhx1jkhx38" path="res://Sounds/Musik/light_BG_Sound.mp3" id="18_jihcl"]
 [ext_resource type="Resource" uid="uid://cfyfc3tosgv7t" path="res://assets/NPC/Oma/dialogue.dialogue" id="17_x7ijp"]
+[ext_resource type="AudioStream" uid="uid://bfyfhx1jkhx38" path="res://Sounds/Musik/light_BG_Sound.mp3" id="18_jihcl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -1325,15 +1325,15 @@ parameters/looping = true
 position = Vector2(3026.5, 83.5002)
 scale = Vector2(394.15, 126.85)
 
+[node name="OmaNpc" parent="." instance=ExtResource("16_alb86")]
+z_index = -1
+position = Vector2(1640, 1148)
+scale = Vector2(0.2, 0.2)
+dialog_resource = ExtResource("17_x7ijp")
+
 [connection signal="screen_entered" from="Sword_Visible" to="Sword_Interact" method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="Sword_Visible" to="Sword_Interact" method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="area_entered" from="Door" to="." method="_on_door_area_entered"]
 [connection signal="screen_entered" from="Gegner/Enemy_visibility" to="Gegner" method="_on_enemy_visibility_screen_entered"]
 [connection signal="screen_exited" from="Gegner/Enemy_visibility" to="Gegner" method="_on_enemy_visibility_screen_exited"]
 [connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
-
-[node name="OmaNpc" parent="." instance=ExtResource("16_alb86")]
-z_index = -1
-position = Vector2(1640, 1148)
-scale = Vector2(0.2, 0.2)
-dialog_resource = ExtResource("17_x7ijp")
