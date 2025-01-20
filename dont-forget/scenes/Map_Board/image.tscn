@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://clxxqut6lhhh2"]
+
+[ext_resource type="Texture2D" uid="uid://bqs8bqo7saunp" path="res://scenes/Map_Board/Mapinhalt_.png" id="1_7c752"]
+
+[node name="image" type="Node2D"]
+
+[node name="Node2D" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 663.0
+offset_bottom = 420.152
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+scale = Vector2(0.306482, 0.259259)
+texture = ExtResource("1_7c752")
+centered = false
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(10, 10)
+offset_right = 10.0
+offset_bottom = 10.0
+color = Color(1, 0, 0, 1)
