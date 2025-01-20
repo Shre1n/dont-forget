@@ -36,7 +36,15 @@ func _ready():
 	print("FlyReadyStart")
 	super._ready()
 	super.set_weapon(child_weapon)
-	load_stats()
+	#load_stats()
+
+	super.load_stats_from_file(stats_file)
+	super.apply_profile_data()
+	super.special_load()
+	super.update_start_stats()
+	super.update_status()
+	super.start_new_behavior()
+
 	original_position = global_position
 	start_position = position
 	min_pos = start_position
@@ -105,8 +113,9 @@ func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	hit.play("hit_flash")
 	
 	hit_audio.play()
-	
+
 	if life <= 0:
+		$AttackArea.monitorable = false
 		animationPlayer.play("dead")
 		animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
 

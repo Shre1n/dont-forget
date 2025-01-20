@@ -73,7 +73,7 @@ func spawn_enemy(enemy_data: Dictionary):
 	enemy_scene.current_Itemholder = current_Itemholder
 	
 	add_child(enemy_scene)
-	print(get_children())
+	#print(get_children())
 
 func _on_child_exiting_tree(node):
 	if not respawn_timer.is_stopped():
@@ -85,7 +85,7 @@ func _on_respawn_timer_timeout():
 		loner_spawned = false
 	if get_child_count() < (max_limit+supportNodesCount) and !loner_spawned:
 		spawn_enemies()
-		print("test")
+		#print("test")
 
 func find_game_manager():
 	var root = get_tree().root  # Root-Node des Scene Trees

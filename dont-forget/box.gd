@@ -34,7 +34,7 @@ func update_sprite():
 		var sprite_path = extra_data["sprite"]
 		if ResourceLoader.exists(sprite_path):  # Überprüfen, ob die Ressource existiert
 			sprite.texture = load(sprite_path)
-			print("Sprite loaded: ", sprite_path)
+			#print("Sprite loaded: ", sprite_path)
 		else:
 			print("Sprite path does not exist: ", sprite_path)
 

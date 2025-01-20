@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=38 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -18,10 +18,8 @@
 [ext_resource type="AudioStream" uid="uid://628vgq8qouqx" path="res://Sounds/MC/hit_sound.mp3" id="13_r2ddc"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
 [ext_resource type="Script" path="res://scenes/gegner.gd" id="15_xeiq5"]
-[ext_resource type="PackedScene" uid="uid://tumpceqn5cd1" path="res://assets/NPC/Oma/Oma_NPC.tscn" id="16_alb86"]
 [ext_resource type="PackedScene" uid="uid://bp5u4prb7gwrr" path="res://partikel_leaf.tscn" id="16_dtlgh"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
-[ext_resource type="Resource" uid="uid://cfyfc3tosgv7t" path="res://assets/NPC/Oma/dialogue.dialogue" id="17_x7ijp"]
 [ext_resource type="AudioStream" uid="uid://bfyfhx1jkhx38" path="res://Sounds/Musik/light_BG_Sound.mp3" id="18_jihcl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
@@ -1082,6 +1080,13 @@ animation = &""
 [node name="Character" parent="." instance=ExtResource("3_gty3g")]
 position = Vector2(950, 993)
 sword = false
+damage_stat = 1000
+speed_stat = 1500
+jump_stat = 2000
+attack_speed_stat = 3500
+cooldown_stat = 3500
+dash_cooldown_stat = 3500
+dash_speed_stat = 1000
 camera_limit_left = -1080
 camera_limit_top = 0
 camera_limit_right = 7343
@@ -1356,12 +1361,6 @@ parameters/looping = true
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(3026.5, 83.5002)
 scale = Vector2(394.15, 126.85)
-
-[node name="OmaNpc" parent="." instance=ExtResource("16_alb86")]
-z_index = -1
-position = Vector2(1640, 1148)
-scale = Vector2(0.2, 0.2)
-dialog_resource = ExtResource("17_x7ijp")
 
 [connection signal="area_entered" from="Door" to="." method="_on_door_area_entered"]
 [connection signal="screen_entered" from="Gegner/Enemy_visibility" to="Gegner" method="_on_enemy_visibility_screen_entered"]
