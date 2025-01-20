@@ -24,7 +24,7 @@ func _ready():
 	
 	if Global.cutscene:
 		Global.cutscene = false
-		character.position = Global.talkpos
+		#character.position = Global.talkpos
 
 func _on_visible_on_screen_notifier_2d_screen_entered_() -> void:
 	self.show()
