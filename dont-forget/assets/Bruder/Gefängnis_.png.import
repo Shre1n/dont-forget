@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dc31xjtws6u08"
-path="res://.godot/imported/Gefängnis_.png-898be4e96c7cd14f03c906fb8bb37b57.ctex"
+uid="uid://bs27cmugrs3e3"
+path="res://.godot/imported/Gefängnis_.png-9ec7fc04f94b38407c302c0b3bd58705.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Bruder/Gefängnis_.png"
-dest_files=["res://.godot/imported/Gefängnis_.png-898be4e96c7cd14f03c906fb8bb37b57.ctex"]
+source_file="res://assets/Bruder/Gefängnis_.png"
+dest_files=["res://.godot/imported/Gefängnis_.png-9ec7fc04f94b38407c302c0b3bd58705.ctex"]
 
 [params]
 
