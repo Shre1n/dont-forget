@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://tumpceqn5cd1"]
+[gd_scene load_steps=11 format=3 uid="uid://tumpceqn5cd1"]
 
 [ext_resource type="Texture2D" uid="uid://pv1yyyinaqp7" path="res://assets/NPC/Oma/1.png" id="1_pa2qc"]
 [ext_resource type="Script" path="res://assets/NPC/Oma/oma_npc.gd" id="1_tdxt7"]
 [ext_resource type="Texture2D" uid="uid://b6bwuwexdk3hb" path="res://assets/NPC/Oma/2.png" id="2_62i1l"]
 [ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="4_3kb7n"]
+[ext_resource type="AudioStream" uid="uid://b32cedxu2xwit" path="res://Sounds/Oma_Sound1.mp3" id="4_hkl27"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kpwks"]
 animations = [{
@@ -77,6 +78,18 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(0, 0)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Oma_sound:volume_db")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [10.0]
+}
 
 [sub_resource type="Animation" id="Animation_d7p34"]
 resource_name = "talk"
@@ -129,6 +142,33 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0)]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Oma_sound")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.160702,
+"start_offset": 0.134332,
+"stream": ExtResource("4_hkl27")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Oma_sound:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8m5km"]
 _data = {
@@ -158,3 +198,6 @@ action_name = "talk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
 position = Vector2(-21, 110)
 shape = SubResource("CircleShape2D_fkst3")
+
+[node name="Oma_sound" type="AudioStreamPlayer2D" parent="."]
+volume_db = 10.0
