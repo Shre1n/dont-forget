@@ -1071,6 +1071,7 @@ scale = Vector2(5.73895, 20.1067)
 collision_layer = 8
 collision_mask = 57
 script = ExtResource("1_4st5j")
+phase2Test = true
 
 [node name="Boss" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_q2p7g")

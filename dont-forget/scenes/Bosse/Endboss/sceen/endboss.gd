@@ -104,11 +104,22 @@ func calculate_stats_to_value(stat: int, span_start: float, span_end: float, min
 	return lerp(min_value, max_value, stat_factor)
 
 func _physics_process(delta):
-	print(character)
-	print(character.position)
+	#print(character)
+	#print(character.position)
 	#print(velocity)
-	apply_gravity(delta)
+	
 	print("attacking: ",attacking)
+	print("Bomb: ",bomb)
+	print("contact: ",contact)
+	print("is_knocked_back: ",is_knocked_back)
+	print("alive: ",alive)
+	print("phase: ",phase)
+	print("Health: ",current_health)
+	print("player_head: ",player_head)
+	
+	
+	apply_gravity(delta)
+	#print("attacking: ",attacking)
 	if !attacking:
 		#print("test")
 		if is_knocked_back and !bomb:
@@ -122,7 +133,7 @@ func _physics_process(delta):
 			#print("bombe")
 			move_in_direction()
 		elif !contact:
-			print("fangen")
+			#print("fangen")
 			chase_character()
 	move_and_slide()
 	update_animation()
@@ -298,6 +309,7 @@ func perform_combo2_attack():
 
 func perform_bomb_attack():
 	bomb = true
+	attacking = false
 	player_head = false
 	#var direction_to_character = (character.global_position - global_position).normalized()
 	direction_to_character = Vector2(character.global_position.x - global_position.x, 0).normalized()
@@ -361,13 +373,13 @@ func _on_special_attack_timer_timeout():
 func _on_i_will_hit_area_body_entered(body):
 	if body is Character:
 		#print("fuuuckkking goooo bitch")
-		print("ist er schon drin")
+		#print("ist er schon drin")
 		contact = true
 		attack()
 
 func _on_i_will_hit_area_body_exited(body):
 	if body is Character:
-		print("exit")
+		#print("exit")
 		contact = false
 		$Attack_Timer.stop()
 

@@ -103,7 +103,7 @@ func _on_detection_area_body_entered(body):
 
 func _on_detection_area_body_exited(body):
 	if body is Character and body == player and alive:
-		print("haha i am alive")
+		print("haha i am alive, hide")
 		animationPlayer.play_backwards("awake")
 		start_new_behavior()
 		player = null  # Stop chasing the player
