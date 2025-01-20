@@ -9,6 +9,17 @@ signal getCoins
 signal add_bag(bag_instance)
 signal going_back(path)  # Zurück zum Dorf
 
+
+#@onready var audio: Audio_Stream = $Audio_Stream2
+
+@onready var dash_audio = $dash_audio
+@onready var is_hit = $mc_is_hit_sound
+@onready var jump_audio = $jump_sound
+@onready var walk_audio = $walk
+@onready var sword_audio = $sword_audio
+@onready var dead_audio = $dead
+@onready var popup_stat = $PopUp
+
 @export_category("Einstellungen")
 @export var test_on: bool = false
 @export var sword: bool = true
@@ -108,6 +119,7 @@ var open = false
 # --- Funktionen ---
 
 func _ready():
+	print("PlayerReadyStart")
 	#coins = Global.coins
 	new_spawn_position()
 	hit_flash_anim_player.play("RESET")
@@ -123,6 +135,7 @@ func _ready():
 		update_status()
 	else:
 		get_stats()
+	print("PlayerReadyFinish")
 
 func get_stats():
 	damage_stat = game_manager.damage_stat
@@ -241,6 +254,7 @@ func _process(delta):
 	elif Input.is_action_just_pressed("dash") && dash_cooldown <= 0 && Input.get_axis("left", "right"):
 		dash()
 	if Input.is_action_just_pressed("inventar"):
+		popup_stat.play()
 		open = !open
 		stats_popup.visible = open
 
@@ -332,6 +346,7 @@ func attack():
 		animation_player.play("fight")
 
 func dash():
+	dash_audio.play()
 	dashing = true
 	get_time(-dash_price)
 	dash_cooldown = dash_cooldown_duration_base + dash_cooldown_duration * dash_cooldown_reduction # +dashtime
@@ -344,8 +359,7 @@ func dash():
 	collision_layer = col3a
 	dash_timer.start()
 
-
-func _on_dash_timer_timeout():
+func _on_dash_timer_timeout():	
 	dashing = false
 	current_dash_speed = 1
 	var col1b = 1 + 8 + 16 +128
@@ -373,6 +387,7 @@ func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func die():
+	dash_audio.play()
 	drop_bag()
 	velocity = Vector2.ZERO
 	alive = false

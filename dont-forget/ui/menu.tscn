@@ -1,12 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://cqm7cwb02ir77"]
+[gd_scene load_steps=29 format=3 uid="uid://cqm7cwb02ir77"]
 
 [ext_resource type="Script" path="res://ui/menu.gd" id="1_myn0o"]
 [ext_resource type="Texture2D" uid="uid://s0ok8hdyv6fa" path="res://ui/background/background.png" id="2_epbqx"]
 [ext_resource type="Texture2D" uid="uid://b7rh0pu1dmj12" path="res://ui/background/mc_background.png" id="2_f547t"]
+[ext_resource type="AudioStream" uid="uid://dymju3ui20qbi" path="res://Sounds/Objekte/Buttons_Sound.mp3" id="2_l57k8"]
 [ext_resource type="PackedScene" uid="uid://cspyht3ytgvhx" path="res://ui/options.tscn" id="2_mc7cj"]
 [ext_resource type="Texture2D" uid="uid://ddeipc8fvbhe0" path="res://ui/background/leaf.png" id="2_x4tpf"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="3_1jn53"]
 [ext_resource type="PackedScene" uid="uid://tva2dh5gu8b0" path="res://ui/Controls.tscn" id="7_2l5kn"]
+[ext_resource type="AudioStream" uid="uid://blb0ga5ilsim8" path="res://Sounds/Objekte/leaves.mp3" id="10_ulh0n"]
 
 [sub_resource type="Curve" id="Curve_tf0c3"]
 min_value = -612.84
@@ -335,6 +337,13 @@ layout_mode = 1
 
 [node name="Controls" parent="." instance=ExtResource("7_2l5kn")]
 visible = false
+
+[node name="button_pressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_l57k8")
+
+[node name="leaves" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ulh0n")
+autoplay = true
 
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Start_Button" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/Load_Button" to="." method="_on_load_button_pressed"]

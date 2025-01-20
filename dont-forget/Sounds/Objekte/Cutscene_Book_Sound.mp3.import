@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/Cutscene_Book_Sound.mp3-c0ba5cf952b67208b970d
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=400.0
 beat_count=0
-bar_beats=4
+bar_beats=32

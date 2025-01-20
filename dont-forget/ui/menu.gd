@@ -2,6 +2,10 @@ class_name StartScreen extends Control
 
 #@export var game_manager : Game_Manager
 @onready var load_button: Button = $Panel/Panel/VBoxContainer/Load_Button
+#@onready var button_audio: Audio_Stream = $Audio_Stream
+
+@onready var button_pressed_audio = $button_pressed
+@onready var leaves_audio = $leaves
 
 var user_save: save_User
 
@@ -29,12 +33,14 @@ func _process(delta):
 
 
 func _on_start_button_pressed():
+	button_pressed_audio.play()
 	var user_save = save_User.create()
 	user_save.save()
 	SceneManager.swap_scenes("res://game.tscn",get_tree().root,self,"wipe_to_right")
 
 
 func _on_load_button_pressed():
+	button_pressed_audio.play()
 	var user_save = save_User.load_save()
 	
 	if user_save.scene_path != null:
@@ -42,9 +48,9 @@ func _on_load_button_pressed():
 	else:
 		push_warning("No saved game found! Start a new game.")
 		_on_start_button_pressed()
-
 	
 func _on_options_button_pressed():
+	button_pressed_audio.play()
 	options_open = true
 	get_node("Options").show()
 
@@ -52,13 +58,16 @@ func _on_options_button_pressed():
 
 
 func _on_credits_button_pressed():
+	button_pressed_audio.play()
 	pass # Replace with function body.
 
 
 func _on_quit_button_pressed():
+	button_pressed_audio.play()
 	get_tree().quit()
 
 
 func _on_controls_pressed() :
+	button_pressed_audio.play()
 	controls_open = true
 	get_node("Controls").show()

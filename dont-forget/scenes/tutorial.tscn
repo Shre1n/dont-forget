@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=35 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -14,9 +14,10 @@
 [ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="11_ye7re"]
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
+[ext_resource type="AudioStream" uid="uid://628vgq8qouqx" path="res://Sounds/MC/hit_sound.mp3" id="13_r2ddc"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
+[ext_resource type="Script" path="res://scenes/gegner.gd" id="15_xeiq5"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="17_2jobv"]
 [ext_resource type="AudioStream" uid="uid://bfyfhx1jkhx38" path="res://Sounds/Musik/light_BG_Sound.mp3" id="18_jihcl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
@@ -1052,8 +1053,9 @@ size = Vector2(200, 1313)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q71vo"]
 size = Vector2(200, 1298)
 
-[node name="tutorial" type="Node2D"]
+[node name="tutorial" type="Node2D" node_paths=PackedStringArray("visibleNotifier")]
 script = ExtResource("1_howbq")
+visibleNotifier = NodePath("VisibleOnScreenNotifier2D")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(3247, 305)
@@ -1187,17 +1189,6 @@ theme_override_font_sizes/font_size = 41
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PickUp" type="Label" parent="Labels"]
-offset_left = 2980.0
-offset_top = 886.0
-offset_right = 3722.0
-offset_bottom = 1232.0
-theme_override_fonts/font = ExtResource("8_h547o")
-theme_override_font_sizes/font_size = 41
-text = "Pick up your sword"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Attack" type="Label" parent="Labels"]
 visible = false
 offset_left = 3705.0
@@ -1206,18 +1197,6 @@ offset_right = 4447.0
 offset_bottom = 1285.0
 theme_override_fonts/font = ExtResource("8_h547o")
 theme_override_font_sizes/font_size = 41
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="Hint" type="Label" parent="Labels"]
-offset_left = 4463.0
-offset_top = 854.0
-offset_right = 5205.0
-offset_bottom = 1200.0
-theme_override_fonts/font = ExtResource("8_h547o")
-theme_override_font_sizes/font_size = 41
-text = "Face the enemy or
- leap past—your call"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1231,8 +1210,24 @@ theme_override_font_sizes/font_size = 41
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Sword_Interact" type="Node2D" parent="."]
+[node name="Sword_Visible" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(3320.5, 703.5)
+scale = Vector2(21.655, 64.421)
+
+[node name="Sword_Interact" type="Node2D" parent="." node_paths=PackedStringArray("visible_load")]
 script = ExtResource("9_8mqe6")
+visible_load = NodePath("../Sword_Visible")
+
+[node name="PickUp" type="Label" parent="Sword_Interact"]
+offset_left = 2980.0
+offset_top = 886.0
+offset_right = 3722.0
+offset_bottom = 1232.0
+theme_override_fonts/font = ExtResource("8_h547o")
+theme_override_font_sizes/font_size = 41
+text = "Pick up your sword"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Sword_Interact"]
 environment = SubResource("Environment_2cxkj")
@@ -1252,6 +1247,10 @@ position = Vector2(-4, -21)
 scale = Vector2(9.74282, 9.0481)
 shape = SubResource("CircleShape2D_3tx74")
 
+[node name="on_pickup" type="AudioStreamPlayer" parent="Sword_Interact"]
+stream = ExtResource("13_r2ddc")
+pitch_scale = 0.8
+
 [node name="Dummie" parent="." instance=ExtResource("12_aqci3")]
 position = Vector2(4030, 1336)
 
@@ -1264,7 +1263,25 @@ new_position = Vector2(-1839, 833)
 
 [node name="Itemholder" type="Node2D" parent="."]
 
-[node name="Gegner" type="Node2D" parent="."]
+[node name="Gegner" type="Node2D" parent="." node_paths=PackedStringArray("enemy_notifier")]
+script = ExtResource("15_xeiq5")
+enemy_notifier = NodePath("Enemy_visibility")
+
+[node name="Enemy_visibility" type="VisibleOnScreenNotifier2D" parent="Gegner"]
+position = Vector2(5091.1, 1138.5)
+scale = Vector2(53.29, 17.75)
+
+[node name="Hint" type="Label" parent="Gegner"]
+offset_left = 4463.0
+offset_top = 854.0
+offset_right = 5205.0
+offset_bottom = 1200.0
+theme_override_fonts/font = ExtResource("8_h547o")
+theme_override_font_sizes/font_size = 41
+text = "Face the enemy or
+ leap past—your call"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Slime" parent="Gegner" instance=ExtResource("14_vrtbd")]
 position = Vector2(5090, 1264)
@@ -1276,6 +1293,7 @@ position = Vector2(381, 1170)
 scale = Vector2(1.5296, 1.03802)
 
 [node name="Block" type="Node2D" parent="."]
+visible = false
 
 [node name="Block" type="StaticBody2D" parent="Block"]
 position = Vector2(3615, 1041)
@@ -1293,7 +1311,21 @@ collision_mask = 0
 position = Vector2(0, -549)
 shape = SubResource("RectangleShape2D_q71vo")
 
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-max_distance = 8500.0
-script = ExtResource("17_2jobv")
-bg_music = ExtResource("18_jihcl")
+[node name="box2" parent="." instance=ExtResource("16_ten56")]
+position = Vector2(531, 1225)
+selected_profile = "iron_treasure_chest"
+
+[node name="Background" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_jihcl")
+parameters/looping = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(3026.5, 83.5002)
+scale = Vector2(394.15, 126.85)
+
+[connection signal="screen_entered" from="Sword_Visible" to="Sword_Interact" method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="Sword_Visible" to="Sword_Interact" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="Door" to="." method="_on_door_area_entered"]
+[connection signal="screen_entered" from="Gegner/Enemy_visibility" to="Gegner" method="_on_enemy_visibility_screen_entered"]
+[connection signal="screen_exited" from="Gegner/Enemy_visibility" to="Gegner" method="_on_enemy_visibility_screen_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
