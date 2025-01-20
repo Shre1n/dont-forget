@@ -15,8 +15,8 @@ config/version="1"
 run/main_scene="res://ui/menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.225125, 0.00294623, 0.296668, 1)
-boot_splash/image="res://assets/drops/time.png"
-config/icon="res://assets/idle/1.png"
+boot_splash/image="res://assets/Dont Forget_Logo.png"
+config/icon="res://assets/Dont Forget_Logo.png"
 config/macos_native_icon="res://assets/idle/1.png"
 config/windows_native_icon="res://assets/idle/1.png"
 
