@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bya3qcup2it4m"]
+[gd_scene load_steps=9 format=3 uid="uid://bya3qcup2it4m"]
 
 [ext_resource type="Texture2D" uid="uid://cete76w0lf0wl" path="res://assets/Bruder/happy/1.png" id="1_1xam2"]
 [ext_resource type="Script" path="res://cutscenes/cave/cutscene_gerettet.gd" id="1_7sq5o"]
 [ext_resource type="Texture2D" uid="uid://caatobgsqa3am" path="res://assets/Bruder/happy/2.png" id="2_7wjlx"]
+[ext_resource type="Texture2D" uid="uid://c86lnxx7pyfu5" path="res://assets/Tilemap/cave/Cave_BG 2.png" id="2_8k0t7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rf2ws"]
 animations = [{
@@ -55,10 +56,16 @@ _data = {
 "happy": SubResource("Animation_dge2d")
 }
 
-[node name="CutsceneGerettet" type="Node2D"]
+[node name="CutsceneGerettet" type="Node2D" node_paths=PackedStringArray("ani_player")]
 script = ExtResource("1_7sq5o")
+ani_player = NodePath("Animation/AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1052, 294)
+texture = ExtResource("2_8k0t7")
 
 [node name="Animation" type="Node2D" parent="."]
+position = Vector2(1021, 731)
 
 [node name="happy" type="AnimatedSprite2D" parent="Animation"]
 sprite_frames = SubResource("SpriteFrames_rf2ws")
