@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://b0qdjpw5krqeb"]
+[gd_scene load_steps=21 format=3 uid="uid://b0qdjpw5krqeb"]
 
 [ext_resource type="Script" path="res://cutscenes/Village/cutscene_end.gd" id="1_7nw48"]
 [ext_resource type="Texture2D" uid="uid://c0gd6h2iq6nk0" path="res://assets/Bruder/kreuz_MC/1.png" id="1_e5oku"]
+[ext_resource type="Texture2D" uid="uid://bm12ilc12g8rc" path="res://ui/background/Dorf 3.png" id="2_82yxf"]
 [ext_resource type="Texture2D" uid="uid://rty41plxpja5" path="res://assets/Bruder/kreuz_MC/2.png" id="2_lefhh"]
 [ext_resource type="Texture2D" uid="uid://5khsohd0l6ox" path="res://assets/Bruder/sad/1.png" id="4_j3a4x"]
 [ext_resource type="Texture2D" uid="uid://fkvxcoxu7q2w" path="res://assets/Bruder/sad/2.png" id="5_rlbpp"]
+[ext_resource type="AudioStream" uid="uid://cqj0kyspy7bx4" path="res://Sounds/Musik/Song_Dont_Forget.mp3" id="7_2iwl4"]
 
 [sub_resource type="Animation" id="Animation_gxus8"]
 length = 0.001
@@ -115,7 +117,8 @@ length = 0.001
 
 [sub_resource type="Animation" id="Animation_77bv4"]
 resource_name = "anim"
-loop_mode = 1
+length = 112.001
+step = 0.0001
 tracks/0/type = "animation"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -136,6 +139,21 @@ tracks/1/keys = {
 "clips": PackedStringArray("idle"),
 "times": PackedFloat32Array(0)
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../AudioStreamPlayer")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_2iwl4")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_c1unk"]
 _data = {
@@ -169,7 +187,13 @@ script = ExtResource("1_7nw48")
 anim_player = NodePath("Animations2/AnimationPlayer")
 camera_player = NodePath("Camera_Player")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-309, -810)
+scale = Vector2(3, 3)
+texture = ExtResource("2_82yxf")
+
 [node name="Animations2" type="Node2D" parent="."]
+position = Vector2(17, 209)
 
 [node name="Kreuz" type="Node2D" parent="Animations2"]
 
@@ -208,3 +232,5 @@ scale = Vector2(1.78646, 0.836637)
 libraries = {
 "": SubResource("AnimationLibrary_3x453")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
