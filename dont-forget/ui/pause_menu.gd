@@ -4,6 +4,9 @@ class_name Pause_Menu extends Control
 var current_player
 var controls_open: bool = false
 
+@onready var button_pressed_audio = $button_pressed
+@onready var resume = $Control/Panel/Control2/VBoxContainer/Resume
+
 
 func _ready() -> void:
 	hide()
@@ -13,6 +16,7 @@ func _ready() -> void:
 func _on_game_manager_toggle_game_paused(is_paused : bool):
 	if(is_paused):
 		show()
+		resume.grab_focus()
 	else:
 		hide()
 
@@ -21,16 +25,20 @@ func _process(delta):
 
 
 func _on_resume_pressed():
+	button_pressed_audio.play()
 	game_manager.game_paused = false
 
 func _on_options_pressed():
+	button_pressed_audio.play()
 	game_manager.options_opend()
 	
 
 func _on_controls_pressed():
+	button_pressed_audio.play()
 	game_manager.controls_opend()
 
 func _on_quit_pressed():
+	button_pressed_audio.play()
 	var user_save = save_User.load_save()
 	var current_scene = game_manager.get_child(0).get_child(0).scene_file_path
 	var time_left = game_manager.life.time_left

@@ -19,16 +19,23 @@ extends Node2D
 @export_subgroup("")
 @export_enum("default", "sponge", "very_sharp") var selected_profile: String = "default"
 
+@export var visible_notifier : VisibleOnScreenNotifier2D
+
 var data: Dictionary
 var profiles_data: Dictionary
 
+func _init() -> void:
+	print("Spike")
+
 func _ready():
+	print("SpikeReadyStart")
 	load_stats_from_file()
 	apply_profile_data()
 	if !test:
 		update_start_stats()
 	else:
 		test_func()
+	print("SpikeReadyFinish")
 
 func load_stats_from_file():
 	var file = FileAccess.open(stats_file_path, FileAccess.READ)
@@ -91,3 +98,13 @@ func test_func():
 		#"collision_size": [100, 100]
 	#}
 #}
+
+
+func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	sprite.show()
+	$Attack_Area.show()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	sprite.hide()
+	$Attack_Area.hide()

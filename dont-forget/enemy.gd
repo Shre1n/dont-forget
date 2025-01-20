@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var stats_file_path: String = "res://gegner/slime/slime.json"
 @export_enum("default","strong_enemy") var selected_profile: String = "default"
 
+
 # -- Variablen für Min/Max-Stats und Drops --
 var min_stats: Dictionary
 var max_stats: Dictionary
@@ -17,6 +18,9 @@ var profiles_data: Dictionary
 @export_category("Einstellungen")
 @export var tutorial: bool = false
 @export var level_nr: int = 1
+
+@export_category("Visible")
+@export var visibleEnabler: VisibleOnScreenEnabler2D
 
 @export_subgroup("Idle Timer")
 @export var idle_time_min: float = 1.0  # Mindestwartezeit im Idle-Zustand
@@ -60,6 +64,8 @@ var current_Itemholder
 @onready var direction_timer: Timer = $Direction_Timer
 @onready var weapon = $CollisionPolygon2D/Attack_Area
 
+
+
 var direction: int = 0  # -1 für links, 1 für rechts, 0 für idle
 
 var character: Character = null
@@ -86,7 +92,11 @@ var mini_boss = false
 
 #var spawner = false
 
+func _init() -> void:
+	print("Slime")
+
 func _ready():
+	print("SlimeReadyStart")
 	#if !spawner:
 	var gamemanager = find_game_manager()
 	#current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
@@ -99,6 +109,7 @@ func _ready():
 		update_start_stats()
 	update_status()
 	start_new_behavior()
+	print("SlimeReadyFinish")
 
 func load_stats_from_file():
 	var file = FileAccess.open(stats_file_path, FileAccess.READ)
@@ -227,6 +238,7 @@ func chase_character():
 		var direction_to_character = (character.global_position - global_position).normalized()
 		direction = direction_calcX(direction_to_character)
 		velocity.x = direction * speed
+		
 
 func direction_calcX(newGoal):
 	var new_direction
@@ -308,6 +320,8 @@ func die():
 	alive = false
 	animated_player.play("death")
 
+
+
 func _on_animation_player_animation_finished(anim_name: String):
 	if anim_name == "death":
 		add_new_drop(global_position)
@@ -347,3 +361,11 @@ func save_user_location(path):
 
 func find_item_holder():
 	current_Itemholder = $"../../Itemholder"
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	animated_player.play("walk")
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	animated_player.play("idle")

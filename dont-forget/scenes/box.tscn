@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://4v3mtijto1jp"]
+[gd_scene load_steps=10 format=3 uid="uid://4v3mtijto1jp"]
 
 [ext_resource type="Script" path="res://box.gd" id="1_jinl7"]
 [ext_resource type="Script" path="res://scenes/damage_area.gd" id="2_0teo7"]
 [ext_resource type="Texture2D" uid="uid://b835ifn3mhksa" path="res://objekte/kiste/Kiste.png" id="2_ei3sn"]
+[ext_resource type="AudioStream" uid="uid://buk0oi8xpvxl7" path="res://Sounds/Objekte/Break_Box_Sound.mp3" id="4_vdjyl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_mx01k"]
 absorbent = true
@@ -82,7 +83,7 @@ _data = {
 "damage": SubResource("Animation_rtalh")
 }
 
-[node name="box" type="RigidBody2D"]
+[node name="box" type="RigidBody2D" node_paths=PackedStringArray("visible_notifier")]
 collision_layer = 16
 collision_mask = 23
 mass = 9999.0
@@ -92,6 +93,7 @@ sleeping = true
 freeze_mode = 1
 constant_force = Vector2(0, 1000)
 script = ExtResource("1_jinl7")
+visible_notifier = NodePath("VisibleOnScreenNotifier2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(4, 10)
@@ -113,3 +115,19 @@ shape = SubResource("RectangleShape2D_1qr5b")
 libraries = {
 "": SubResource("AnimationLibrary_2nfkw")
 }
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="Break" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vdjyl")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.500023, -21)
+scale = Vector2(45.15, 26.6)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="hidden" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_hidden"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

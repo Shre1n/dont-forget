@@ -12,12 +12,17 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 
 @export var stats_file: String = "res://gegner/fly.json"
 
+@onready var hit_audio = $Hit
+
 @onready var chase: AnimationPlayer = $Chase
 @onready var hit: AnimationPlayer = $HitFlashPlayer
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var detection_area: CollisionShape2D = $DetectionArea/CollisionShape2D
 @onready var damage_area: CollisionShape2D = $DamageArea/CollisionShape2D
 @onready var child_weapon: Area2D = $AttackArea
+
+@export_category("Visible")
+@export var visibleOnScreen: VisibleOnScreenEnabler2D
 
 var angle: float = 0.0
 var start_position: Vector2
@@ -28,17 +33,18 @@ var min_pos: Vector2
 var max_pos: Vector2
 
 func _ready():
+	print("FlyReadyStart")
 	super._ready()
 	super.set_weapon(child_weapon)
 	#load_stats()
-	
+
 	super.load_stats_from_file(stats_file)
 	super.apply_profile_data()
 	super.special_load()
 	super.update_start_stats()
 	super.update_status()
 	super.start_new_behavior()
-	
+
 	original_position = global_position
 	start_position = position
 	min_pos = start_position
@@ -48,13 +54,12 @@ func _ready():
 	min_pos.y -= 10
 	max_pos.y += 10
 	chase_range = detection_area.scale.x*5
-	animationPlayer.play("idle")
 	# Connect detection area signals
-	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
-	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
+	#detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
+	#detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
 	animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
-	
-	
+	print("FlyReadyFinish")
+
 func load_stats():
 	super.load_stats_from_file(stats_file)
 
@@ -107,6 +112,8 @@ func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	super.take_damage(damage, pierce, knockback_power_in, damage_position, falle)
 	hit.play("hit_flash")
 	
+	hit_audio.play()
+
 	if life <= 0:
 		$AttackArea.monitorable = false
 		animationPlayer.play("dead")
@@ -133,3 +140,11 @@ func _on_detection_area_body_exited(body):
 		chase.play("lost")
 		player = null  # Stop chasing the player
 		velocity = Vector2.ZERO  # Stop moving when the player leaves the range
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	animationPlayer.play("idle")
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	chase.play("lost")
