@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bvwx7xes7rbxb" path="res://assets/Boss/run/1.png" id="16_8b3u6"]
 [ext_resource type="Texture2D" uid="uid://ttekde0wbt12" path="res://assets/Boss/run/2.png" id="17_mu1m6"]
 [ext_resource type="Texture2D" uid="uid://cfm5kq3bus6jy" path="res://assets/Boss/run/3.png" id="18_rvt6r"]
-[ext_resource type="AudioStream" uid="uid://b5e7duulhneh" path="res://Sounds/Enemy/Drexus/Rüstung_Sound.mp3" id="19_akau8"]
+[ext_resource type="AudioStream" uid="uid://b5e7duulhneh" path="res://Sounds/Enemy/Drexus/Rüstung_Sound.mp3" id="19_akau8"]
 [ext_resource type="PackedScene" uid="uid://dnu6va4x16qlb" path="res://scenes/damage_area.tscn" id="19_pc17t"]
 [ext_resource type="AudioStream" uid="uid://rna37pas00i8" path="res://Sounds/Enemy/Drexus/Drexus_jump_Sound.mp3" id="20_hqkr7"]
 [ext_resource type="Script" path="res://scripte/attack_area.gd" id="20_kw2np"]

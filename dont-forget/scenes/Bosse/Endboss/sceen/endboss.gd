@@ -112,14 +112,14 @@ func _physics_process(delta):
 	#print(character.position)
 	#print(velocity)
 	
-	print("attacking: ",attacking)
-	print("Bomb: ",bomb)
-	print("contact: ",contact)
-	print("is_knocked_back: ",is_knocked_back)
-	print("alive: ",alive)
-	print("phase: ",phase)
-	print("Health: ",current_health)
-	print("player_head: ",player_head)
+	#print("attacking: ",attacking)
+	#print("Bomb: ",bomb)
+	#print("contact: ",contact)
+	#print("is_knocked_back: ",is_knocked_back)
+	#print("alive: ",alive)
+	#print("phase: ",phase)
+	#print("Health: ",current_health)
+	#print("player_head: ",player_head)
 	
 	
 	apply_gravity(delta)
@@ -334,7 +334,7 @@ func move_in_direction():
 	velocity.x = direction * speed * 2 #oder höher looooool
 
 func die():
-	#alive = false
+	alive = false
 	emit_signal("boss_defeated")
 	animationPlayer.play("dead")
 	
