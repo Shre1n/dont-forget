@@ -24,13 +24,18 @@ extends Node2D
 var data: Dictionary
 var profiles_data: Dictionary
 
+func _init() -> void:
+	print("Spike")
+
 func _ready():
+	print("SpikeReadyStart")
 	load_stats_from_file()
 	apply_profile_data()
 	if !test:
 		update_start_stats()
 	else:
 		test_func()
+	print("SpikeReadyFinish")
 
 func load_stats_from_file():
 	var file = FileAccess.open(stats_file_path, FileAccess.READ)

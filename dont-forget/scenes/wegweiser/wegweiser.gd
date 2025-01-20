@@ -9,6 +9,9 @@ var scene_of_Hint: String = "res://scenes/wegweiser/hint_content.tscn"
 
 @onready var audio = $PopUp_close
 
+func _init() -> void:
+	print("Schild")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	interaction_area.interact = Callable(self, "toggle_hint")

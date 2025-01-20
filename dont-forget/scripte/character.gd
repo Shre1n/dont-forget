@@ -119,6 +119,7 @@ var open = false
 # --- Funktionen ---
 
 func _ready():
+	print("PlayerReadyStart")
 	#coins = Global.coins
 	new_spawn_position()
 	hit_flash_anim_player.play("RESET")
@@ -134,6 +135,7 @@ func _ready():
 		update_status()
 	else:
 		get_stats()
+	print("PlayerReadyFinish")
 
 func get_stats():
 	damage_stat = game_manager.damage_stat

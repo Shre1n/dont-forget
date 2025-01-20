@@ -19,12 +19,14 @@ var profiles_data: Dictionary
 
 
 func _ready():
+	print("KisteReadyStart")
 	load_stats_from_file()
 	apply_profile_data()
 	if !test:
 		update_start_stats()
 	interaction_area.interact = Callable(self, "on_pick_up")
-	
+	print("KisteReadyFinish")
+
 func on_pick_up():
 	audio_on_pickup.play()
 	character.get_time(value)

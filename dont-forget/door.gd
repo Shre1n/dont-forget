@@ -13,7 +13,11 @@ signal player_entered_door(door:Door,transition_type:String)
 @export_enum("left", "right") var new_direction_word: String
 
 func _init() -> void:
-	print("a")
+	print("Door")
+
+func _ready():
+	print("DoorReadyStart")
+	print("DoorReadyFinish")
 
 func evaluate_direction():
 	match new_direction_word:

@@ -33,6 +33,7 @@ var min_pos: Vector2
 var max_pos: Vector2
 
 func _ready():
+	print("FlyReadyStart")
 	super._ready()
 	super.set_weapon(child_weapon)
 	load_stats()
@@ -49,7 +50,8 @@ func _ready():
 	#detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
 	#detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
 	animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
-	
+	print("FlyReadyFinish")
+
 func load_stats():
 	super.load_stats_from_file(stats_file)
 

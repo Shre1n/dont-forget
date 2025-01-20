@@ -92,7 +92,11 @@ var mini_boss = false
 
 #var spawner = false
 
+func _init() -> void:
+	print("Slime")
+
 func _ready():
+	print("SlimeReadyStart")
 	#if !spawner:
 	var gamemanager = find_game_manager()
 	#current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
@@ -105,6 +109,7 @@ func _ready():
 		update_start_stats()
 	update_status()
 	start_new_behavior()
+	print("SlimeReadyFinish")
 
 func load_stats_from_file():
 	var file = FileAccess.open(stats_file_path, FileAccess.READ)
