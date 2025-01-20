@@ -23,7 +23,6 @@ func _ready():
 	set_time_bar_full()
 	
 	amount_label.text = str(coins)
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

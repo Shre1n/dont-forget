@@ -40,14 +40,13 @@ func _on_quit_pressed():
 	var current_scene = game_manager.get_child(0).get_child(0).scene_file_path
 	var time_left = game_manager.life.time_left
 
-	var gold = game_manager.current_character.coins
-	
-	var character_position = game_manager.current_character.position
-	
 	user_save.scene_path = load(String(current_scene)) # Get the current scene's path
 	user_save.life = time_left
-	user_save.gold = gold
-	user_save.position_of_character = character_position
+	if game_manager.current_character != null:
+		var gold = game_manager.current_character.coins
+		user_save.gold = gold
+		var character_position = game_manager.current_character.position
+		user_save.position_of_character = character_position
 	user_save.stats = game_manager.get_all_stats()
 	
 	var root_children = get_tree().root.get_children()

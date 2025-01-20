@@ -11,15 +11,20 @@ extends Level
 @onready var left_bug = $Environment/bugs/Bugs2
 @onready var bg_music_ = $Background
 
+@onready var character = $Character
+
 @export var visibleNotifier_: VisibleOnScreenNotifier2D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	bg_music_.play()
-
+	
 	left_bug.get_node("AnimatedSprite2D").flip_h
 	
+	if Global.cutscene:
+		Global.cutscene = false
+		character.position = Global.talkpos
 
 func _on_visible_on_screen_notifier_2d_screen_entered_() -> void:
 	self.show()
