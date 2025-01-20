@@ -62,10 +62,10 @@ func _ready():
 	SceneManager.load_complete.connect(_on_level_loaded)
 	SceneManager.load_start.connect(_on_load_start)
 	SceneManager.scene_added.connect(_on_level_added)
-	
 	level_holder.connect("child_entered_tree", Callable(self, "_on_child_added_to_level_holder"))
 	level_holder.connect("tree_exited", Callable(self, "_on_child_removed_from_level_holder"))
 	update_level_holder_visibility()
+	
 	
 	#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	#Zum Village zurück (braucht signal mit path)
@@ -73,7 +73,8 @@ func _ready():
 	get_node("Pause_Menu/UiManager").connect("give_user", Callable(self, "give_user"))
 	
 
-func _on_child_added_to_level_holder():
+
+func _on_child_added_to_level_holder(child):
 	update_level_holder_visibility()
 
 # Methode, die aufgerufen wird, wenn ein Kind entfernt wird
@@ -88,6 +89,10 @@ func update_level_holder_visibility():
 		child.show()
 	else:
 		level_holder.hide()
+
+
+
+
 
 func play_bg_music_Village():
 	var sound = preload("res://Sounds/Musik/BG_Musik.mp3")
@@ -128,7 +133,7 @@ func load_saved_scene():
 
 	#Entfernt alle alten Level-Inhalte
 	for child in level_holder.get_children():
-			child.queue_free()
+		child.queue_free()
 	
 	# Loads save or Fallback
 	if saved_scene_path != null:

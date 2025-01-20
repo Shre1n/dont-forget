@@ -11309,7 +11309,6 @@ scale = Vector2(1.8, 1.5)
 [node name="WallLeft" type="TileMapLayer" parent="Node2D"]
 process_mode = 3
 visible = false
-position = Vector2(0, -16.2921)
 scale = Vector2(0.428, 0.5)
 tile_map_data = PackedByteArray("AAAIAAUAAAAJABYAAAAIABAAAAAJABYAAAA=")
 tile_set = SubResource("TileSet_srysn")
@@ -11317,7 +11316,6 @@ tile_set = SubResource("TileSet_srysn")
 [node name="WallRight" type="TileMapLayer" parent="Node2D"]
 process_mode = 3
 visible = false
-position = Vector2(0, -16.2921)
 scale = Vector2(0.5, 0.5)
 tile_map_data = PackedByteArray("AAAUAAUAAAAOABYAAAAUABAAAAAOABYAAAA=")
 tile_set = SubResource("TileSet_t86hl")

@@ -15,7 +15,7 @@
 				"time": 0
 			},
 			"extra_data": {
-				"sprite": "res://objekte/kiste/kisten_assets/kiste.png"
+				"sprite": "res://objekte/kiste/Kiste.png"
 			}
 		},
 		"stone_block": {

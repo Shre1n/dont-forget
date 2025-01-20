@@ -27,8 +27,8 @@ func _ready():
 	
 	animationPlayer.play("idle")
 	# Connect detection area signals
-	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
-	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
+	#detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
+	#detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
 	animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
 
 func _physics_process(delta: float) -> void:

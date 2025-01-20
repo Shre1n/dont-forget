@@ -33,7 +33,7 @@ func finish_transition() -> void:
 	anim_player.play(ending_animation_name)
 	
 	await anim_player.animation_finished
-	get_parent().queue_free()
+	self.queue_free()
 
 func report_midpoint() -> void:
 	transition_in_complete.emit()

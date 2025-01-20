@@ -46,8 +46,8 @@ func _ready():
 	max_pos.y += 10
 	chase_range = detection_area.scale.x*5
 	# Connect detection area signals
-	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
-	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
+	#detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
+	#detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
 	animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
 	
 func load_stats():
