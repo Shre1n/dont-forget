@@ -10,14 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://tva2dh5gu8b0" path="res://ui/Controls.tscn" id="7_2l5kn"]
 [ext_resource type="AudioStream" uid="uid://blb0ga5ilsim8" path="res://Sounds/Objekte/leaves.mp3" id="10_ulh0n"]
 
-
 [sub_resource type="Curve" id="Curve_tf0c3"]
 min_value = -612.84
 max_value = 360.0
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.629139, -232.606), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_memy8"]
+[sub_resource type="CurveTexture" id="CurveTexture_2t6a5"]
 width = 1080
 curve = SubResource("Curve_tf0c3")
 
@@ -31,7 +30,7 @@ emission_shape = 1
 emission_sphere_radius = 1.0
 angle_min = -720.0
 angle_max = 689.0
-angle_curve = SubResource("CurveTexture_memy8")
+angle_curve = SubResource("CurveTexture_2t6a5")
 direction = Vector3(0.5, 0, 0)
 initial_velocity_max = 1000.0
 angular_velocity_min = -638.71

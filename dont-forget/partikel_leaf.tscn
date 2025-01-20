@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://bp5u4prb7gwrr"]
+
+[ext_resource type="Texture2D" uid="uid://ddeipc8fvbhe0" path="res://ui/background/leaf.png" id="1_lorwh"]
+
+[sub_resource type="Curve" id="Curve_lpat3"]
+min_value = -612.84
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.629139, -232.606), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_h3vet"]
+width = 1080
+curve = SubResource("Curve_lpat3")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8j87g"]
+lifetime_randomness = 0.45
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(50, 0, 0)
+emission_shape = 1
+emission_sphere_radius = 1.0
+angle_min = -720.0
+angle_max = 689.0
+angle_curve = SubResource("CurveTexture_h3vet")
+direction = Vector3(0.5, 0, 0)
+initial_velocity_max = 1000.0
+angular_velocity_min = -638.71
+angular_velocity_max = 534.19
+gravity = Vector3(800, 250, 0)
+tangential_accel_min = -100.0
+tangential_accel_max = -2.23517e-06
+damping_max = 100.0
+scale_min = 0.2
+scale_max = 0.2
+
+[node name="Partikel-Leaf" type="Node2D"]
+
+[node name="Leaf" type="GPUParticles2D" parent="."]
+position = Vector2(-38, 229)
+amount = 1000
+amount_ratio = 0.4905
+process_material = SubResource("ParticleProcessMaterial_8j87g")
+texture = ExtResource("1_lorwh")
+lifetime = 200.99
+speed_scale = 0.5
+randomness = 1.0
+fixed_fps = 200
