@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://clmlvrn0dq70s"]
 
 [ext_resource type="Script" path="res://map_board.gd" id="1_4s0by"]
-[ext_resource type="Texture2D" uid="uid://cvxsv7vursoh1" path="res://scenes/wegweiser/assets/Wegweiser.png" id="2_qopru"]
+[ext_resource type="Texture2D" uid="uid://bad2db322g7vj" path="res://scenes/Map_Board/Map.png" id="2_3iqka"]
 [ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="3_nctbr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qmjey"]
@@ -12,7 +12,7 @@ z_index = -1
 script = ExtResource("1_4s0by")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_qopru")
+texture = ExtResource("2_3iqka")
 
 [node name="InteractionArea" parent="." instance=ExtResource("3_nctbr")]
 action_name = "read"
