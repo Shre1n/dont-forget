@@ -69,7 +69,8 @@ func _ready():
 	
 	#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	#Zum Village zurück (braucht signal mit path)
-	current_character.connect("going_back", Callable(self, "scene_change"))
+	if current_character != null:
+		current_character.connect("going_back", Callable(self, "scene_change"))
 	get_node("Pause_Menu/UiManager").connect("give_user", Callable(self, "give_user"))
 	
 
@@ -234,10 +235,11 @@ func save_scene():
 	var user_save = save_User.load_save()
 	var current_scene = get_child(0).get_child(0).scene_file_path
 	user_save.scene_path = load(String(current_scene)) # Get the current scene's path
-	save_user.position_of_character = current_character.position
-	user_save.life = life.time_left
-	user_save.gold = gold.text
-	user_save.gold = current_character.coins
+	if current_character != null:
+		save_user.position_of_character = current_character.position
+		user_save.life = life.time_left
+		user_save.gold = gold.text
+		user_save.gold = current_character.coins
 	user_save.save()
 
 
@@ -247,9 +249,10 @@ func _on_level_loaded(level) -> void:
 		find_Itemholder(level)
 	#Signale zum Character neu verbinden nach einem Scene wechsel
 		current_character = find_character(current_level)
-		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
-		#Zum Menü zurück
-		current_character.connect("going_back", Callable(self, "scene_change"))
+		if !current_character == null:
+			current_character.connect("lifeChange", Callable(self, "life_timer_update"))
+			#Zum Menü zurück
+			current_character.connect("going_back", Callable(self, "scene_change"))
 		#Zum Village zurück (braucht signal mit path)
 		#current_character.connect("going_back", Callable(self, "scene_change"))
 		show_light()
