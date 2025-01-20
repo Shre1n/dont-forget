@@ -335,8 +335,9 @@ func move_in_direction():
 
 func die():
 	alive = false
-	emit_signal("boss_defeated")
 	animationPlayer.play("dead")
+	emit_signal("boss_defeated")
+
 	
 
 #func _on_detection_area_body_entered(body: Node2D) -> void:
@@ -402,6 +403,5 @@ func _on_playerhead_body_entered(body):
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "dead": 
-		
 		queue_free()
 	
