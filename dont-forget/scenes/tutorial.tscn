@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=38 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -10,6 +10,7 @@
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="8_h547o"]
 [ext_resource type="Script" path="res://scenes/labels.gd" id="8_xsnvv"]
 [ext_resource type="Script" path="res://scenes/sword_interact.gd" id="9_8mqe6"]
+[ext_resource type="FontFile" uid="uid://dm8youq5l6rka" path="res://ui/font/CourierPrime-Bold.ttf" id="9_nrj8w"]
 [ext_resource type="Texture2D" uid="uid://dqrs5p51f6oii" path="res://assets/Sword.png" id="10_e8qmx"]
 [ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="11_ye7re"]
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
@@ -17,7 +18,9 @@
 [ext_resource type="AudioStream" uid="uid://628vgq8qouqx" path="res://Sounds/MC/hit_sound.mp3" id="13_r2ddc"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
 [ext_resource type="Script" path="res://scenes/gegner.gd" id="15_xeiq5"]
+[ext_resource type="PackedScene" uid="uid://tumpceqn5cd1" path="res://assets/NPC/Oma/Oma_NPC.tscn" id="16_alb86"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
+[ext_resource type="Resource" uid="uid://cfyfc3tosgv7t" path="res://assets/NPC/Oma/dialogue.dialogue" id="17_x7ijp"]
 [ext_resource type="AudioStream" uid="uid://bfyfhx1jkhx38" path="res://Sounds/Musik/light_BG_Sound.mp3" id="18_jihcl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
@@ -1174,7 +1177,7 @@ offset_left = 568.0
 offset_top = 971.0
 offset_right = 1310.0
 offset_bottom = 1317.0
-theme_override_fonts/font = ExtResource("8_h547o")
+theme_override_fonts/font = ExtResource("9_nrj8w")
 theme_override_font_sizes/font_size = 41
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1184,7 +1187,7 @@ offset_left = 1685.0
 offset_top = 907.0
 offset_right = 2427.0
 offset_bottom = 1253.0
-theme_override_fonts/font = ExtResource("8_h547o")
+theme_override_fonts/font = ExtResource("9_nrj8w")
 theme_override_font_sizes/font_size = 41
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1195,7 +1198,7 @@ offset_left = 3705.0
 offset_top = 939.0
 offset_right = 4447.0
 offset_bottom = 1285.0
-theme_override_fonts/font = ExtResource("8_h547o")
+theme_override_fonts/font = ExtResource("9_nrj8w")
 theme_override_font_sizes/font_size = 41
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1205,7 +1208,7 @@ offset_left = 5541.0
 offset_top = 900.0
 offset_right = 6283.0
 offset_bottom = 1246.0
-theme_override_fonts/font = ExtResource("8_h547o")
+theme_override_fonts/font = ExtResource("9_nrj8w")
 theme_override_font_sizes/font_size = 41
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1322,6 +1325,12 @@ parameters/looping = true
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(3026.5, 83.5002)
 scale = Vector2(394.15, 126.85)
+
+[node name="OmaNpc" parent="." instance=ExtResource("16_alb86")]
+z_index = -1
+position = Vector2(1640, 1148)
+scale = Vector2(0.2, 0.2)
+dialog_resource = ExtResource("17_x7ijp")
 
 [connection signal="screen_entered" from="Sword_Visible" to="Sword_Interact" method="_on_visible_on_screen_notifier_2d_screen_entered"]
 [connection signal="screen_exited" from="Sword_Visible" to="Sword_Interact" method="_on_visible_on_screen_notifier_2d_screen_exited"]

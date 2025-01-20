@@ -564,6 +564,7 @@ func generate_translations_keys() -> void:
 		else:
 			text = l.substr(l.find(":") + 1)
 
+		lines[i] = line.replace(text, text + " [ID:%s]" % key)
 		text = text.replace("\n", "!NEWLINE!")
 		line = line.replace("\\n", "!NEWLINE!")
 
