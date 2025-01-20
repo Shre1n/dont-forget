@@ -10,8 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://tva2dh5gu8b0" path="res://ui/Controls.tscn" id="7_2l5kn"]
 [ext_resource type="AudioStream" uid="uid://blb0ga5ilsim8" path="res://Sounds/Objekte/leaves.mp3" id="10_ulh0n"]
 
-[ext_resource type="PackedScene" uid="uid://tva2dh5gu8b0" path="res://ui/Controls.tscn" id="7_2l5kn"]
-
 [sub_resource type="Curve" id="Curve_tf0c3"]
 min_value = -612.84
 max_value = 360.0

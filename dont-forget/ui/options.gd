@@ -42,9 +42,13 @@ func _on_mute_toggled(toggled_on):
 		volume_slider.editable = false
 		button_pressed_audio.play()
 		volume_slider.tooltip_text = "Stumm geschaltet"
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), true)  # Mute aktivieren
+
 	else:
 		volume_slider.editable = true
 		volume_slider.tooltip_text = "Verschiebe um die Gesamtlautstärke anzupassen"
+		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"), false)  # Mute deaktivieren
+
 	if user_prefs:
 		user_prefs.check_mute = toggled_on
 		user_prefs.save()
