@@ -5,6 +5,7 @@ signal transition_in_complete
 @onready var progress_bar: ProgressBar = %ProgressBar
 @onready var anim_player: AnimationPlayer = %AnimationPlayer
 @onready var timer: Timer = $Timer
+@export var not_block: bool = true
 
 var starting_animation_name:String
 
@@ -32,13 +33,15 @@ func finish_transition() -> void:
 	anim_player.play(ending_animation_name)
 	
 	await anim_player.animation_finished
-	get_parent().queue_free()
+	self.queue_free()
 
 func report_midpoint() -> void:
 	transition_in_complete.emit()
 
 func _on_timer_timeout() -> void:
-	progress_bar.visible = true
+	
+	if not_block:
+		progress_bar.visible = true
 
 func update_bar(val:float) -> void:
 	progress_bar.value = val

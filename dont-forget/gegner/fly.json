@@ -1,5 +1,4 @@
 {
-  "fly_enemy": {
 	"profiles": {
 	  "default": {
 		"min_stats": {
@@ -115,4 +114,3 @@
 	  }
 	}
   }
-}

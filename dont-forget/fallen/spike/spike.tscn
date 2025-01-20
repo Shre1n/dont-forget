@@ -7,8 +7,14 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vx1mn"]
 size = Vector2(116, 45)
 
-[node name="Spike" type="Node2D"]
+[node name="Spike" type="Node2D" node_paths=PackedStringArray("visible_notifier")]
 script = ExtResource("1_n81ty")
+visible_notifier = NodePath("VisibleOnScreenNotifier2D")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+rotation = -0.0174533
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("3_50hnd")
 
 [node name="Attack_Area" type="Area2D" parent="."]
 collision_layer = 2
@@ -23,7 +29,9 @@ knockback = 0
 position = Vector2(-1, 16.5)
 shape = SubResource("RectangleShape2D_vx1mn")
 
-[node name="Sprite" type="Sprite2D" parent="."]
-rotation = -0.0174533
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("3_50hnd")
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-1, -40)
+scale = Vector2(13.65, 7.85)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

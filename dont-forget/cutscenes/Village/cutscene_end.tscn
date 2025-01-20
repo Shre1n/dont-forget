@@ -1,0 +1,210 @@
+[gd_scene load_steps=19 format=3 uid="uid://b0qdjpw5krqeb"]
+
+[ext_resource type="Script" path="res://cutscenes/Village/cutscene_end.gd" id="1_7nw48"]
+[ext_resource type="Texture2D" uid="uid://c0gd6h2iq6nk0" path="res://assets/Bruder/kreuz_MC/1.png" id="1_e5oku"]
+[ext_resource type="Texture2D" uid="uid://rty41plxpja5" path="res://assets/Bruder/kreuz_MC/2.png" id="2_lefhh"]
+[ext_resource type="Texture2D" uid="uid://5khsohd0l6ox" path="res://assets/Bruder/sad/1.png" id="4_j3a4x"]
+[ext_resource type="Texture2D" uid="uid://fkvxcoxu7q2w" path="res://assets/Bruder/sad/2.png" id="5_rlbpp"]
+
+[sub_resource type="Animation" id="Animation_gxus8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Kreuz/Kreuz:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_g0epx"]
+resource_name = "kreuz_"
+length = 0.66667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Kreuz/Kreuz:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3vsjr"]
+_data = {
+"RESET": SubResource("Animation_gxus8"),
+"kreuz_": SubResource("Animation_g0epx")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8p1ts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e5oku")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lefhh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_f3rf8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bruder:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_oea2t"]
+resource_name = "idle"
+length = 0.833337
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Bruder:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kgbm0"]
+_data = {
+"RESET": SubResource("Animation_f3rf8"),
+"idle": SubResource("Animation_oea2t")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ws3pl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_j3a4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rlbpp")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_o3d78"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_77bv4"]
+resource_name = "anim"
+loop_mode = 1
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Kreuz/kreuz_MC")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("kreuz_"),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sad/Sad_brother")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("idle"),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c1unk"]
+_data = {
+"RESET": SubResource("Animation_o3d78"),
+"anim": SubResource("Animation_77bv4")
+}
+
+[sub_resource type="Animation" id="Animation_yvf2k"]
+resource_name = "zoom"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.4, 0.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3x453"]
+_data = {
+"zoom": SubResource("Animation_yvf2k")
+}
+
+[node name="Cutscene_End" type="Node2D" node_paths=PackedStringArray("anim_player", "camera_player")]
+script = ExtResource("1_7nw48")
+anim_player = NodePath("Animations2/AnimationPlayer")
+camera_player = NodePath("Camera_Player")
+
+[node name="Animations2" type="Node2D" parent="."]
+
+[node name="Kreuz" type="Node2D" parent="Animations2"]
+
+[node name="kreuz_MC" type="AnimationPlayer" parent="Animations2/Kreuz"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_3vsjr")
+}
+
+[node name="Kreuz" type="AnimatedSprite2D" parent="Animations2/Kreuz"]
+sprite_frames = SubResource("SpriteFrames_8p1ts")
+animation = &"idle"
+
+[node name="Sad" type="Node2D" parent="Animations2"]
+
+[node name="Sad_brother" type="AnimationPlayer" parent="Animations2/Sad"]
+libraries = {
+"": SubResource("AnimationLibrary_kgbm0")
+}
+
+[node name="Bruder" type="AnimatedSprite2D" parent="Animations2/Sad"]
+position = Vector2(-676, 121)
+sprite_frames = SubResource("SpriteFrames_ws3pl")
+animation = &"idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animations2"]
+libraries = {
+"": SubResource("AnimationLibrary_c1unk")
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-353, 99)
+scale = Vector2(1.78646, 0.836637)
+
+[node name="Camera_Player" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3x453")
+}

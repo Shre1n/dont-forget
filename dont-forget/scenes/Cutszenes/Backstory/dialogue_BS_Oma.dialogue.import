@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://cfr45u8n6ylab"
+path="res://.godot/imported/dialogue_BS_Oma.dialogue-3b5d2115b5c3bc4f8a9d05622f86f5e5.tres"
+
+[deps]
+
+source_file="res://scenes/Cutszenes/Backstory/dialogue_BS_Oma.dialogue"
+dest_files=["res://.godot/imported/dialogue_BS_Oma.dialogue-3b5d2115b5c3bc4f8a9d05622f86f5e5.tres"]
+
+[params]
+
+defaults=true

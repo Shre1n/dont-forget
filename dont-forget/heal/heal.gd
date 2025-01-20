@@ -5,6 +5,8 @@ extends Node2D
 @onready var character = $"../../Character"
 @onready var col = $InteractionArea/CollisionShape2D
 
+@onready var audio_on_pickup = $on_pickup
+
 @export_category("Einstellungen")
 @export var test = false
 @export var value = 150
@@ -15,14 +17,18 @@ extends Node2D
 var data: Dictionary
 var profiles_data: Dictionary
 
+
 func _ready():
+	print("KisteReadyStart")
 	load_stats_from_file()
 	apply_profile_data()
 	if !test:
 		update_start_stats()
 	interaction_area.interact = Callable(self, "on_pick_up")
-	
+	print("KisteReadyFinish")
+
 func on_pick_up():
+	audio_on_pickup.play()
 	character.get_time(value)
 	sprite.queue_free()
 	interaction_area.queue_free()
