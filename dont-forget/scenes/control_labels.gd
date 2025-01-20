@@ -27,7 +27,7 @@ func get_action_text(action_name: String) -> String:
 		var event = events[0]
 		if event is InputEventJoypadButton:
 			result.append(event.as_text())
-		if event is InputEventKey:
+		if event is InputEventKey || InputEventMouseButton:
 			result.append(event.as_text())
 	return ", ".join(result)
 	
@@ -35,7 +35,7 @@ func get_action_text(action_name: String) -> String:
 
 
 func update_keys():
-	move.text = "%s to move" % get_action_text("left")
+	move.text = "%s or %s to move" % [get_action_text("left"), get_action_text("right")]
 	jump.text = "%s to jump" % get_action_text("jump")
 	attack.text = "%s to attack" % get_action_text("attack")
-	stats_popup.text = "%s to discover or hide your stats" % get_action_text("inventory")
+	stats_popup.text = "%s to discover or hide your stats" % get_action_text("inventar")
