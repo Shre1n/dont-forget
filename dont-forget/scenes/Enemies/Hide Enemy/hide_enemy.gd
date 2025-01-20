@@ -4,12 +4,13 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 
 @export var stats_file: String = "res://gegner/hide.json"
 
-
 @onready var hit: AnimationPlayer = $HitFlashPlayer
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var detection_area: CollisionShape2D = $DetectionArea/CollisionShape2D
 @onready var damage_area: CollisionShape2D = $DamageArea/CollisionShape2D
 @onready var attack_area: Area2D =  $AttackArea
+@export_category("Visible")
+@export var visibleOnScreen: VisibleOnScreenEnabler2D
 
 var start_position: Vector2
 
@@ -19,6 +20,7 @@ var min_pos: Vector2
 var max_pos: Vector2
 
 func _ready():
+	print("HideReadyStart")
 	super._ready()
 	super.set_weapon(attack_area)
 	load_stats()
@@ -26,9 +28,10 @@ func _ready():
 	
 	animationPlayer.play("idle")
 	# Connect detection area signals
-	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
-	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
+	#detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
+	#detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
 	animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
+	print("HideReadyFinish")
 
 func _physics_process(delta: float) -> void:
 	if !alive:
@@ -98,3 +101,11 @@ func _on_detection_area_body_exited(body):
 		start_new_behavior()
 		player = null  # Stop chasing the player
 		velocity = Vector2.ZERO  # Stop moving when the player leaves the range
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	animationPlayer.play("idle")
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	self.visible = false

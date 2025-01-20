@@ -1,9 +1,10 @@
-[gd_scene load_steps=25 format=3 uid="uid://tva2dh5gu8b0"]
+[gd_scene load_steps=26 format=3 uid="uid://tva2dh5gu8b0"]
 
 [ext_resource type="Script" path="res://ui/controls.gd" id="1_v5aba"]
 [ext_resource type="Texture2D" uid="uid://c0ptm03l665qd" path="res://assets/Controls.png" id="2_qdwpu"]
 [ext_resource type="Script" path="res://ui/margin_container.gd" id="3_jmbnk"]
 [ext_resource type="FontFile" uid="uid://bhjgpy1dovmyq" path="res://addons/gut/fonts/CourierPrime-Bold.ttf" id="4_4aum3"]
+[ext_resource type="AudioStream" uid="uid://dymju3ui20qbi" path="res://Sounds/Objekte/Buttons_Sound.mp3" id="6_pnh8g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_he3xc"]
 bg_color = Color(0.137255, 0.14902, 0.188235, 1)
@@ -423,9 +424,11 @@ layout_mode = 2
 visible = false
 layout_mode = 2
 
+[node name="button_pressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pnh8g")
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Control/Panel/Close_btn" to="." method="_on_close_btn_pressed"]
 [connection signal="pressed" from="Control/Panel/Set_Controls" to="." method="_on_set_controls_pressed"]
 [connection signal="visibility_changed" from="Control/Panel_Set_Controls/MarginContainer" to="." method="_on_margin_container_visibility_changed"]
 [connection signal="pressed" from="Control/Panel_Set_Controls/MarginContainer/return_to_game" to="Control/Panel_Set_Controls/MarginContainer" method="_on_return_to_game_pressed"]
-[connection signal="item_selected" from="Control/Panel_Set_Controls/MarginContainer/ButtonVBoxContainer/SettingsGridContainer/InputTypeButton" to="." method="_on_input_type_button_item_selected"]
