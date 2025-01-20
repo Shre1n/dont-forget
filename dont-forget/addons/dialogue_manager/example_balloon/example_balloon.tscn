@@ -54,7 +54,8 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="Theme" id="Theme_qq3yp"]
 default_font = ExtResource("2_id8jr")
-default_font_size = 20
+default_font_size = 25
+Button/font_sizes/font_size = 23
 Button/fonts/font = ExtResource("2_id8jr")
 Button/styles/disabled = SubResource("StyleBoxFlat_spyqn")
 Button/styles/focus = SubResource("StyleBoxFlat_ri4m3")
