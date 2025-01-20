@@ -1,0 +1,109 @@
+[gd_scene load_steps=10 format=3 uid="uid://ishqh8px52v"]
+
+[ext_resource type="Texture2D" uid="uid://bql1s4ckbx2y3" path="res://assets/NPC/Mole/1.png" id="1_66yyu"]
+[ext_resource type="Script" path="res://scenes/NPCs/mole.gd" id="1_xyvug"]
+[ext_resource type="Texture2D" uid="uid://68lvlstwpn50" path="res://assets/NPC/Mole/2.png" id="2_ch2jd"]
+[ext_resource type="AudioStream" uid="uid://dq378voamnmhb" path="res://Sounds/NPC/Maulwurf_Sound.mp3" id="4_tmu65"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vemkf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_66yyu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ch2jd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d3jgv"]
+size = Vector2(301.065, 60.2233)
+
+[sub_resource type="Animation" id="Animation_431e2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_2swht"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("idle")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_tmu65")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iri80"]
+_data = {
+"RESET": SubResource("Animation_431e2"),
+"idle": SubResource("Animation_2swht")
+}
+
+[node name="Mole" type="Node2D" node_paths=PackedStringArray("visibility_enabler")]
+script = ExtResource("1_xyvug")
+visibility_enabler = NodePath("VisibleOnScreenEnabler2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_vemkf")
+animation = &"idle"
+frame = 1
+flip_h = true
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_mask = 33
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, -3)
+scale = Vector2(7.77242, -19.0043)
+shape = SubResource("RectangleShape2D_d3jgv")
+
+[node name="idle" type="AudioStreamPlayer2D" parent="."]
+attenuation = 3.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_iri80")
+}
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(1.49976, -264.5)
+scale = Vector2(529.15, 104.85)
+
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

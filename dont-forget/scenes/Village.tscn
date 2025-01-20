@@ -1,40 +1,28 @@
-[gd_scene load_steps=64 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=44 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
-[ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
 [ext_resource type="Texture2D" uid="uid://cuaxdf0m8gk3r" path="res://assets/Tilemap/Tilemap2.png" id="2_cj6i5"]
-[ext_resource type="Texture2D" uid="uid://bpb3wknawuamm" path="res://assets/Village/Home2/Home2_2.png" id="3_ds3mc"]
 [ext_resource type="Texture2D" uid="uid://d3wsk1iwq0e7q" path="res://assets/Tilemap/TilemapSteps.png" id="3_ff8qr"]
 [ext_resource type="Texture2D" uid="uid://ble1h840tgkst" path="res://assets/Tilemap/dirt.png" id="3_hfl55"]
 [ext_resource type="Texture2D" uid="uid://dbyietkipegb0" path="res://assets/deco/decoElements.png" id="4_lseo2"]
 [ext_resource type="Shader" path="res://shader/Tilemap/layer1.gdshader" id="5_cj87q"]
-[ext_resource type="Texture2D" uid="uid://cdhtbxqo3bjqg" path="res://assets/Village/Home/Home.png" id="6_hfce5"]
 [ext_resource type="Texture2D" uid="uid://bvsyg0uhfdf5" path="res://assets/Tilemap/Bg_2.png" id="6_w1pej"]
 [ext_resource type="Texture2D" uid="uid://bilqubflsidqs" path="res://assets/Village/Tor2.png" id="7_41fp3"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="7_jeyt0"]
 [ext_resource type="Texture2D" uid="uid://0tomy1ecexus" path="res://assets/Village/Tor.png" id="9_i6aox"]
-[ext_resource type="Texture2D" uid="uid://clqej7unp0x6p" path="res://assets/Village/Home/Home 2.png" id="9_krff3"]
-[ext_resource type="Texture2D" uid="uid://m1yuk7lujfbw" path="res://assets/Village/Home/Home 3.png" id="10_gacpo"]
+[ext_resource type="PackedScene" uid="uid://d3j8css7fqtys" path="res://scenes/Houses/house.tscn" id="11_ioqh1"]
 [ext_resource type="Texture2D" uid="uid://dn6pvuld1y4c7" path="res://assets/Village/Laterne_.png" id="13_ugjyp"]
-[ext_resource type="Script" path="res://scenes/home_1.gd" id="17_53bj1"]
 [ext_resource type="Script" path="res://scenes/laterne_5.gd" id="18_p0o2n"]
 [ext_resource type="Texture2D" uid="uid://fe05i2t7jalc" path="res://assets/Village/Well_1.png" id="19_lf8lf"]
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="20_igg15"]
-[ext_resource type="Script" path="res://scenes/bugs.gd" id="21_68u6s"]
 [ext_resource type="Script" path="res://door.gd" id="21_n45p4"]
-[ext_resource type="Texture2D" uid="uid://nhb6ni0fxa6p" path="res://assets/NPC/Käfer/1.png" id="22_1f42u"]
-[ext_resource type="Texture2D" uid="uid://1q5k2ynwbhox" path="res://assets/NPC/Käfer/2.png" id="23_ak0eo"]
-[ext_resource type="Script" path="res://scenes/owl_2.gd" id="24_h0mkm"]
-[ext_resource type="Texture2D" uid="uid://bql1s4ckbx2y3" path="res://assets/NPC/Mole/1.png" id="24_hh04x"]
-[ext_resource type="Texture2D" uid="uid://68lvlstwpn50" path="res://assets/NPC/Mole/2.png" id="25_ksxhc"]
-[ext_resource type="Texture2D" uid="uid://b5n44yfdxue7d" path="res://assets/NPC/Owl/1.png" id="26_cxjl8"]
-[ext_resource type="Script" path="res://scenes/mole.gd" id="27_4ojhx"]
-[ext_resource type="Texture2D" uid="uid://q7ikoiew26od" path="res://assets/NPC/Owl/2.png" id="27_wlgfp"]
+[ext_resource type="PackedScene" uid="uid://dqts7u5x5t2o3" path="res://scenes/NPCs/bugs.tscn" id="23_yva8d"]
+[ext_resource type="PackedScene" uid="uid://kkajxue5d771" path="res://scenes/NPCs/owl.tscn" id="25_32xh1"]
+[ext_resource type="PackedScene" uid="uid://ishqh8px52v" path="res://scenes/NPCs/mole.tscn" id="27_s4pgm"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="31_hehs4"]
 [ext_resource type="Script" path="res://scenes/no_attack_area.gd" id="32_l4m7q"]
 [ext_resource type="PackedScene" uid="uid://m2it2ky3jo3g" path="res://scenes/wegweiser/wegweiser.tscn" id="33_mqqcs"]
 [ext_resource type="Texture2D" uid="uid://pf06a58h0gk5" path="res://assets/Village/Well_front_.png" id="34_6igsi"]
-[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="35_8mgwi"]
 [ext_resource type="AudioStream" uid="uid://cop3uibsfrrwm" path="res://Sounds/Musik/BG_Musik.mp3" id="36_xb4qg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d2ado"]
@@ -406,58 +394,11 @@ sources/6 = SubResource("TileSetAtlasSource_hiuga")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_x1f4y"]
 shader = ExtResource("5_cj87q")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp78q"]
+size = Vector2(87.3242, 44.7793)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c043q"]
 size = Vector2(0.33718, 1.10777)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_7ntwp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_ds3mc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("1_t4q3b")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="Gradient" id="Gradient_g7vmw"]
-offsets = PackedFloat32Array(0.177778, 0.833333)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_g0s2c"]
-gradient = SubResource("Gradient_g7vmw")
-width = 20
-fill = 1
-fill_from = Vector2(0.5, 0.482906)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pu8m7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_hfce5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_krff3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_gacpo")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="Gradient" id="Gradient_p7sib"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_s3wgf"]
-gradient = SubResource("Gradient_p7sib")
-width = 20
-fill = 2
-fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Environment" id="Environment_nnj2g"]
 background_mode = 3
@@ -478,48 +419,6 @@ fill_to = Vector2(0.948718, 0.0641026)
 background_mode = 3
 glow_enabled = true
 glow_blend_mode = 1
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_0juon"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("22_1f42u")
-}, {
-"duration": 1.0,
-"texture": ExtResource("23_ak0eo")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 2.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_5fs7w"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("26_cxjl8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("27_wlgfp")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 1.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_v3tre"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("24_hh04x")
-}, {
-"duration": 1.0,
-"texture": ExtResource("25_ksxhc")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 1.0
-}]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bdhh3"]
 distance = -43.9025
@@ -542,8 +441,10 @@ size = Vector2(299, 1316)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfvmh"]
 size = Vector2(57, 93)
 
-[node name="Village" type="Node2D"]
+[node name="Village" type="Node2D" node_paths=PackedStringArray("visibleNotifier_")]
+visible = false
 script = ExtResource("1_5at0l")
+visibleNotifier_ = NodePath("VisibleOnScreenNotifier2D")
 level_nr = 2
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -698,6 +599,15 @@ z_index = 6
 tile_map_data = PackedByteArray("AAD0/xgACAAGAAgAAAD7/xkACAAIABEAAABWABoACAAGAAgAAABfABoACAAGAAgAAABmABkACAAGAAwAAABuABkACAAGAAgAAAACABgACAAGAAgAAAAQABgACAAGAAgAAAAaABgACAAGAAgAAAAhABcACAAGAAwAAAAIABgACAAIABEAAAAqABYACAAGAAwAAAAuABcACAAIABEAAAAlABcACAAIABEAAAA4ABgACAAGAAgAAAAwABgACAAGAAgAAAA=")
 tile_set = SubResource("TileSet_oiqi6")
 
+[node name="Sound_Off" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sound_Off"]
+position = Vector2(3840, 846)
+scale = Vector2(1.7071, 0.891335)
+shape = SubResource("RectangleShape2D_cp78q")
+
 [node name="Door Well" type="Area2D" parent="."]
 position = Vector2(3744, 770)
 rotation = 3.14159
@@ -743,79 +653,31 @@ position = Vector2(5696, 891)
 
 [node name="Homes" type="Node" parent="Environment"]
 
-[node name="Home 2" type="AnimatedSprite2D" parent="Environment/Homes"]
-z_index = -1
-position = Vector2(6971, 568)
-scale = Vector2(0.521, 0.5)
-sprite_frames = SubResource("SpriteFrames_7ntwp")
-frame_progress = 0.915234
-speed_scale = 0.7
-
-[node name="PointLight2D" type="PointLight2D" parent="Environment/Homes/Home 2"]
-position = Vector2(268.192, 171.397)
-scale = Vector2(6.83695, 4.69925)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_g0s2c")
-
-[node name="Home 1" type="AnimatedSprite2D" parent="Environment/Homes"]
-self_modulate = Color(0.815686, 0.862745, 0.682353, 1)
-z_index = -1
+[node name="Home" parent="Environment/Homes" instance=ExtResource("11_ioqh1")]
 position = Vector2(1300, 541)
-scale = Vector2(0.5, 0.552)
-sprite_frames = SubResource("SpriteFrames_pu8m7")
-speed_scale = 0.7
-script = ExtResource("17_53bj1")
 
-[node name="PointLight2D" type="PointLight2D" parent="Environment/Homes/Home 1"]
-position = Vector2(256, 163.043)
-scale = Vector2(6.57863, 3.81302)
-color = Color(0.845397, 0.946333, 0.725165, 1)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_s3wgf")
-
-[node name="Home 3" type="AnimatedSprite2D" parent="Environment/Homes"]
+[node name="Home2" parent="Environment/Homes" instance=ExtResource("11_ioqh1")]
 modulate = Color(1, 1, 0.384314, 1)
 self_modulate = Color(0.576471, 0.74902, 0.929412, 1)
-z_index = -1
-position = Vector2(739, 568)
-scale = Vector2(0.521, 0.5)
-sprite_frames = SubResource("SpriteFrames_7ntwp")
-frame_progress = 0.761755
-speed_scale = 0.7
+position = Vector2(752, 539)
 flip_h = true
 
-[node name="PointLight2D" type="PointLight2D" parent="Environment/Homes/Home 3"]
-position = Vector2(-243.762, 182)
-scale = Vector2(6.83695, 4.69925)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_g0s2c")
+[node name="Home3" parent="Environment/Homes" instance=ExtResource("11_ioqh1")]
+position = Vector2(6973, 544)
 
-[node name="Home 4" type="AnimatedSprite2D" parent="Environment/Homes"]
+[node name="Home4" parent="Environment/Homes" instance=ExtResource("11_ioqh1")]
 self_modulate = Color(1, 0.419608, 1, 1)
-z_index = -1
-position = Vector2(7793, 763)
-scale = Vector2(0.271441, 0.25)
-sprite_frames = SubResource("SpriteFrames_7ntwp")
-frame_progress = 0.98539
-speed_scale = 0.7
+position = Vector2(7788, 729)
+scale = Vector2(0.632735, 0.542402)
 
-[node name="Home 5" type="AnimatedSprite2D" parent="Environment/Homes"]
-self_modulate = Color(0.815686, 0.862745, 0.682353, 1)
-z_index = -1
-position = Vector2(1751, 731)
-scale = Vector2(0.303935, 0.304704)
-sprite_frames = SubResource("SpriteFrames_pu8m7")
-frame_progress = 0.277077
-speed_scale = 0.7
+[node name="Home5" parent="Environment/Homes" instance=ExtResource("11_ioqh1")]
+position = Vector2(1752, 714)
+scale = Vector2(0.633, 0.633)
 
-[node name="Home 6" type="AnimatedSprite2D" parent="Environment/Homes"]
+[node name="Home6" parent="Environment/Homes" instance=ExtResource("11_ioqh1")]
 self_modulate = Color(0.815686, 0.862745, 0.682353, 1)
-z_index = -1
-position = Vector2(2403, 794)
-scale = Vector2(0.207689, 0.168197)
-sprite_frames = SubResource("SpriteFrames_pu8m7")
-frame_progress = 0.133356
-speed_scale = 0.7
+position = Vector2(2403, 749)
+scale = Vector2(0.5, 0.5)
 
 [node name="Lanterns" type="Node" parent="Environment"]
 
@@ -936,54 +798,40 @@ scale = Vector2(0.522454, 0.509568)
 texture = ExtResource("9_i6aox")
 
 [node name="bugs" type="Node2D" parent="Environment"]
-script = ExtResource("21_68u6s")
-
-[node name="Bug" type="AnimatedSprite2D" parent="Environment/bugs"]
 z_index = -1
+
+[node name="Bugs" parent="Environment/bugs" instance=ExtResource("23_yva8d")]
 position = Vector2(144, 844)
-scale = Vector2(0.118005, 0.118056)
-sprite_frames = SubResource("SpriteFrames_0juon")
-animation = &"idle"
-frame_progress = 0.903874
+scale = Vector2(0.118, 0.118)
+max_distance_audio = 4000.0
 
-[node name="Bug2" type="AnimatedSprite2D" parent="Environment/bugs"]
-z_index = -1
+[node name="Bugs2" parent="Environment/bugs" instance=ExtResource("23_yva8d")]
 position = Vector2(123, 845)
-scale = Vector2(0.118005, 0.118056)
-sprite_frames = SubResource("SpriteFrames_0juon")
-animation = &"idle"
-frame_progress = 0.5688
+scale = Vector2(0.118, 0.118)
+max_distance_audio = 2500.0
 flip_h = true
+audio_on = false
 
 [node name="owl" type="Node2D" parent="Environment"]
-script = ExtResource("24_h0mkm")
+z_index = -1
 
-[node name="owl" type="AnimatedSprite2D" parent="Environment/owl"]
+[node name="Owl" parent="Environment/owl" instance=ExtResource("25_32xh1")]
 position = Vector2(3799, 405)
-scale = Vector2(0.156327, 0.156327)
-sprite_frames = SubResource("SpriteFrames_5fs7w")
-animation = &"idle"
-frame_progress = 0.724712
+scale = Vector2(0.156, 0.156)
+max_distance_audio = 500.0
 
 [node name="mole" type="Node2D" parent="Environment"]
-script = ExtResource("27_4ojhx")
 
-[node name="Mole" type="AnimatedSprite2D" parent="Environment/mole"]
+[node name="Mole" parent="Environment/mole" instance=ExtResource("27_s4pgm")]
 position = Vector2(1245, 807)
 scale = Vector2(0.175, 0.175)
-sprite_frames = SubResource("SpriteFrames_v3tre")
-animation = &"idle"
-frame_progress = 0.459487
-flip_h = true
+max_distance_audio = 2000.0
 
-[node name="Mole2" type="AnimatedSprite2D" parent="Environment/mole"]
+[node name="Mole3" parent="Environment/mole" instance=ExtResource("27_s4pgm")]
 z_index = -1
 position = Vector2(4584, 891)
-scale = Vector2(0.151775, 0.151775)
-sprite_frames = SubResource("SpriteFrames_v3tre")
-animation = &"idle"
-frame_progress = 0.387906
-flip_h = true
+scale = Vector2(0.152, 0.152)
+max_distance_audio = 1000.0
 
 [node name="Out_Door" type="Area2D" parent="."]
 position = Vector2(1358, 2031)
@@ -1102,13 +950,21 @@ position = Vector2(3481, 771)
 scale = Vector2(0.2, 0.2)
 hintText = "Start the adventure and jump into the Well"
 
-[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-3383, -187)
-max_distance = 14000.0
-script = ExtResource("35_8mgwi")
-bg_music = ExtResource("36_xb4qg")
+[node name="Background" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("36_xb4qg")
+parameters/looping = true
 
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(3039, 77)
+scale = Vector2(649.7, 87.7)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+
+[connection signal="body_entered" from="Sound_Off" to="." method="_on_sound_off_body_entered"]
 [connection signal="body_entered" from="Door Well" to="Door Well" method="_on_body_entered"]
 [connection signal="body_entered" from="Out_Door" to="Out_Door" method="_on_body_entered"]
 [connection signal="body_entered" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_entered"]
 [connection signal="body_exited" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered_"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout_"]

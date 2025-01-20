@@ -1,0 +1,7 @@
+~ start
+
+Elder Saphira: How can I help You?
+- Talk to Elder Saphira
+	Elder Saphira: [[ Sometimes, the right way is simply the right way. Trust your instincts! | There may be moments when you’ll need to take a leap — right through the middle. | Your powers are precious, but beware, overusing them might cost you dearly! | The place where you lost everything might hold the key to moving forward... | Crystals are more than just pretty objects, they can help you survive in unexpected ways. | Boxes aren’t just clutter — they might be essential for your journey! | Seek out Lucky Pete’s Shop. His knowledge of your powers could be the difference between success and failure! | I could listen to the Luminas sing all day. Their melodies are truly magical. | I still remember the first time I saw a Noctura. Such majestic creatures — they took my breath away. | Did you know Grumblings adore collecting strawberries? Odd little creatures, aren’t they? |People always call me old and wise. But between us, half the time I can’t even recall what I had for breakfast. ]] => start
+- Say Goodbye
+	Elder Saphira: Hurry Child, your Time is running out! => END

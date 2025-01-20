@@ -4,12 +4,13 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 
 @export var stats_file: String = "res://gegner/hide.json"
 
-
 @onready var hit: AnimationPlayer = $HitFlashPlayer
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
 @onready var detection_area: CollisionShape2D = $DetectionArea/CollisionShape2D
 @onready var damage_area: CollisionShape2D = $DamageArea/CollisionShape2D
 @onready var attack_area: Area2D =  $AttackArea
+@export_category("Visible")
+@export var visibleOnScreen: VisibleOnScreenEnabler2D
 
 var start_position: Vector2
 
@@ -19,25 +20,34 @@ var min_pos: Vector2
 var max_pos: Vector2
 
 func _ready():
+	print("HideReadyStart")
 	super._ready()
 	super.set_weapon(attack_area)
-	load_stats()
+	#load_stats()
+	#super.update_status()
+	
+	super.load_stats_from_file(stats_file)
+	super.apply_profile_data()
+	super.special_load()
+	super.update_start_stats()
 	super.update_status()
+	super.start_new_behavior()
 	
 	animationPlayer.play("idle")
 	# Connect detection area signals
-	detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
-	detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
+	#detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
+	#detection_area.connect("body_exited", Callable(self, "_on_detection_area_body_exited"))
 	animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"))
+	print("HideReadyFinish")
 
 func _physics_process(delta: float) -> void:
 	if !alive:
 		return
 	
-	
 	if player and !attacking:
 		var distance_to_player = global_position.distance_to(player.global_position)
-		if distance_to_player < damage_area.scale.x*300:
+		if distance_to_player < damage_area.scale.x*200:
+			flip_sprite(player)
 			start_attack()
 		else:
 			chase_player()
@@ -61,6 +71,7 @@ func chase_player():
 		flip_sprite(player)
 		animationPlayer.play("run")
 
+
 func load_stats():
 	super.load_stats_from_file(stats_file)
 	
@@ -71,6 +82,7 @@ func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	
 	if life <= 0:
 		alive = false
+		$AttackArea.monitorable = false
 		velocity = Vector2.ZERO
 		animationPlayer.play("dead")
 		animationPlayer.connect("animation_finished", Callable(self, "_on_dead_animation_finished"), CONNECT_ONE_SHOT)
@@ -94,7 +106,16 @@ func _on_detection_area_body_entered(body):
 
 func _on_detection_area_body_exited(body):
 	if body is Character and body == player and alive:
+		print("haha i am alive, hide")
 		animationPlayer.play_backwards("awake")
 		start_new_behavior()
 		player = null  # Stop chasing the player
 		velocity = Vector2.ZERO  # Stop moving when the player leaves the range
+
+
+func _on_visible_on_screen_enabler_2d_screen_entered() -> void:
+	animationPlayer.play("idle")
+
+
+func _on_visible_on_screen_enabler_2d_screen_exited() -> void:
+	self.visible = false

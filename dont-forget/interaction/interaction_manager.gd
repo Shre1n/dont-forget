@@ -3,7 +3,9 @@ extends Node2D
 @onready var player = get_tree().get_first_node_in_group("character")
 @onready var label = $Label
 
-const base_test = "Press E to "
+const base_text = "Press {key} to "
+
+var interaction_key = "E"
 
 var active_areas = []
 var can_interact = true
@@ -20,15 +22,24 @@ func unregister_area(area: InteractionArea):
 func _process(delta):
 	if active_areas.size() > 0 && can_interact:
 		active_areas.sort_custom(_sort_by_distance_to_player)
-		label.text = base_test + active_areas[0].action_name
+		label.text = base_text.format({"key":interaction_key}) + active_areas[0].action_name
 		label.global_position = active_areas[0].global_position
 		label.global_position.y -= 80
 		label.global_position.x -= label.size.x / 2
 		label.show()
 	else:
 		label.hide()
+	
+	update_interaction_key()
 		
-		
+
+func update_interaction_key():
+	if Input.get_connected_joypads().size() > 0:
+		interaction_key = "B"
+	else:
+		interaction_key = "E"
+
+
 func _sort_by_distance_to_player(area1, area2):
 
 	var area1_to_player = player.global_position.distance_to(area1.global_position)
