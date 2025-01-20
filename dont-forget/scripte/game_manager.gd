@@ -243,7 +243,6 @@ func save_scene():
 
 func _on_level_loaded(level) -> void:
 	if level is Level:
-		update_level_holder_visibility()
 		current_level = level
 		find_Itemholder(level)
 	#Signale zum Character neu verbinden nach einem Scene wechsel
@@ -255,6 +254,7 @@ func _on_level_loaded(level) -> void:
 		#current_character.connect("going_back", Callable(self, "scene_change"))
 		show_light()
 		save_scene()
+		update_level_holder_visibility()
 
 func new_Itemholder_Shout():
 	find_Itemholder(current_level)

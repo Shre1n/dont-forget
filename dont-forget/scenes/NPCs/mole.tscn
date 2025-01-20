@@ -74,8 +74,9 @@ _data = {
 "idle": SubResource("Animation_2swht")
 }
 
-[node name="Mole" type="Node2D"]
+[node name="Mole" type="Node2D" node_paths=PackedStringArray("visibility_enabler")]
 script = ExtResource("1_xyvug")
+visibility_enabler = NodePath("VisibleOnScreenEnabler2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vemkf")
@@ -99,3 +100,10 @@ attenuation = 3.0
 libraries = {
 "": SubResource("AnimationLibrary_iri80")
 }
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(1.49976, -264.5)
+scale = Vector2(529.15, 104.85)
+
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

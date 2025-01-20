@@ -5,8 +5,6 @@ var bag_scene = preload("res://assets/drops/bag_drop/bag.tscn")
 var save_user: save_User
 
 @onready var bg_music = $Background
-@onready var timer = $Timer
-@export var character: Character
 
 @export var visibleNotifier: VisibleOnScreenNotifier2D
 
@@ -41,11 +39,3 @@ func find_child_bag():
 
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	self.show()
-
-func _on_timer_timeout() -> void:
-	self.hide()
-	self.queue_free()
-
-
-func _on_door_area_entered(area: Area2D) -> void:
-	timer.start()

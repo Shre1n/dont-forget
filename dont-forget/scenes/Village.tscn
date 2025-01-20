@@ -1,22 +1,17 @@
-[gd_scene load_steps=55 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=44 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
-[ext_resource type="Texture2D" uid="uid://bp0vmchinpal2" path="res://assets/Village/Home2/Home2.png" id="1_t4q3b"]
 [ext_resource type="Texture2D" uid="uid://cuaxdf0m8gk3r" path="res://assets/Tilemap/Tilemap2.png" id="2_cj6i5"]
-[ext_resource type="Texture2D" uid="uid://bpb3wknawuamm" path="res://assets/Village/Home2/Home2_2.png" id="3_ds3mc"]
 [ext_resource type="Texture2D" uid="uid://d3wsk1iwq0e7q" path="res://assets/Tilemap/TilemapSteps.png" id="3_ff8qr"]
 [ext_resource type="Texture2D" uid="uid://ble1h840tgkst" path="res://assets/Tilemap/dirt.png" id="3_hfl55"]
 [ext_resource type="Texture2D" uid="uid://dbyietkipegb0" path="res://assets/deco/decoElements.png" id="4_lseo2"]
 [ext_resource type="Shader" path="res://shader/Tilemap/layer1.gdshader" id="5_cj87q"]
-[ext_resource type="Texture2D" uid="uid://cdhtbxqo3bjqg" path="res://assets/Village/Home/Home.png" id="6_hfce5"]
 [ext_resource type="Texture2D" uid="uid://bvsyg0uhfdf5" path="res://assets/Tilemap/Bg_2.png" id="6_w1pej"]
 [ext_resource type="Texture2D" uid="uid://bilqubflsidqs" path="res://assets/Village/Tor2.png" id="7_41fp3"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="7_jeyt0"]
 [ext_resource type="Texture2D" uid="uid://0tomy1ecexus" path="res://assets/Village/Tor.png" id="9_i6aox"]
-[ext_resource type="Texture2D" uid="uid://clqej7unp0x6p" path="res://assets/Village/Home/Home 2.png" id="9_krff3"]
-[ext_resource type="Texture2D" uid="uid://m1yuk7lujfbw" path="res://assets/Village/Home/Home 3.png" id="10_gacpo"]
+[ext_resource type="PackedScene" uid="uid://d3j8css7fqtys" path="res://scenes/Houses/house.tscn" id="11_ioqh1"]
 [ext_resource type="Texture2D" uid="uid://dn6pvuld1y4c7" path="res://assets/Village/Laterne_.png" id="13_ugjyp"]
-[ext_resource type="Script" path="res://scenes/home_1.gd" id="17_53bj1"]
 [ext_resource type="Script" path="res://scenes/laterne_5.gd" id="18_p0o2n"]
 [ext_resource type="Texture2D" uid="uid://fe05i2t7jalc" path="res://assets/Village/Well_1.png" id="19_lf8lf"]
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="20_igg15"]
@@ -405,56 +400,6 @@ size = Vector2(87.3242, 44.7793)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c043q"]
 size = Vector2(0.33718, 1.10777)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7ntwp"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_ds3mc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("1_t4q3b")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="Gradient" id="Gradient_g7vmw"]
-offsets = PackedFloat32Array(0.177778, 0.833333)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_g0s2c"]
-gradient = SubResource("Gradient_g7vmw")
-width = 20
-fill = 1
-fill_from = Vector2(0.5, 0.482906)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_pu8m7"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("6_hfce5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_krff3")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_gacpo")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="Gradient" id="Gradient_p7sib"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_s3wgf"]
-gradient = SubResource("Gradient_p7sib")
-width = 20
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-
 [sub_resource type="Environment" id="Environment_nnj2g"]
 background_mode = 3
 glow_enabled = true
@@ -497,7 +442,6 @@ size = Vector2(299, 1316)
 size = Vector2(57, 93)
 
 [node name="Village" type="Node2D" node_paths=PackedStringArray("visibleNotifier_")]
-visible = false
 script = ExtResource("1_5at0l")
 visibleNotifier_ = NodePath("VisibleOnScreenNotifier2D")
 level_nr = 2
@@ -708,79 +652,31 @@ position = Vector2(5696, 891)
 
 [node name="Homes" type="Node" parent="Environment"]
 
-[node name="Home 2" type="AnimatedSprite2D" parent="Environment/Homes"]
-z_index = -1
-position = Vector2(6971, 568)
-scale = Vector2(0.521, 0.5)
-sprite_frames = SubResource("SpriteFrames_7ntwp")
-frame_progress = 0.915234
-speed_scale = 0.7
-
-[node name="PointLight2D" type="PointLight2D" parent="Environment/Homes/Home 2"]
-position = Vector2(268.192, 171.397)
-scale = Vector2(6.83695, 4.69925)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_g0s2c")
-
-[node name="Home 1" type="AnimatedSprite2D" parent="Environment/Homes"]
-self_modulate = Color(0.815686, 0.862745, 0.682353, 1)
-z_index = -1
+[node name="Home" parent="Environment/Homes" instance=ExtResource("11_ioqh1")]
 position = Vector2(1300, 541)
-scale = Vector2(0.5, 0.552)
-sprite_frames = SubResource("SpriteFrames_pu8m7")
-speed_scale = 0.7
-script = ExtResource("17_53bj1")
 
-[node name="PointLight2D" type="PointLight2D" parent="Environment/Homes/Home 1"]
-position = Vector2(256, 163.043)
-scale = Vector2(6.57863, 3.81302)
-color = Color(0.845397, 0.946333, 0.725165, 1)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_s3wgf")
-
-[node name="Home 3" type="AnimatedSprite2D" parent="Environment/Homes"]
+[node name="Home2" parent="Environment/Homes" instance=ExtResource("11_ioqh1")]
 modulate = Color(1, 1, 0.384314, 1)
 self_modulate = Color(0.576471, 0.74902, 0.929412, 1)
-z_index = -1
-position = Vector2(739, 568)
-scale = Vector2(0.521, 0.5)
-sprite_frames = SubResource("SpriteFrames_7ntwp")
-frame_progress = 0.761755
-speed_scale = 0.7
+position = Vector2(752, 539)
 flip_h = true
 
-[node name="PointLight2D" type="PointLight2D" parent="Environment/Homes/Home 3"]
-position = Vector2(-243.762, 182)
-scale = Vector2(6.83695, 4.69925)
-shadow_enabled = true
-texture = SubResource("GradientTexture2D_g0s2c")
+[node name="Home3" parent="Environment/Homes" instance=ExtResource("11_ioqh1")]
+position = Vector2(6973, 544)
 
-[node name="Home 4" type="AnimatedSprite2D" parent="Environment/Homes"]
+[node name="Home4" parent="Environment/Homes" instance=ExtResource("11_ioqh1")]
 self_modulate = Color(1, 0.419608, 1, 1)
-z_index = -1
-position = Vector2(7793, 763)
-scale = Vector2(0.271441, 0.25)
-sprite_frames = SubResource("SpriteFrames_7ntwp")
-frame_progress = 0.98539
-speed_scale = 0.7
+position = Vector2(7788, 729)
+scale = Vector2(0.632735, 0.542402)
 
-[node name="Home 5" type="AnimatedSprite2D" parent="Environment/Homes"]
-self_modulate = Color(0.815686, 0.862745, 0.682353, 1)
-z_index = -1
-position = Vector2(1751, 731)
-scale = Vector2(0.303935, 0.304704)
-sprite_frames = SubResource("SpriteFrames_pu8m7")
-frame_progress = 0.277077
-speed_scale = 0.7
+[node name="Home5" parent="Environment/Homes" instance=ExtResource("11_ioqh1")]
+position = Vector2(1752, 714)
+scale = Vector2(0.633, 0.633)
 
-[node name="Home 6" type="AnimatedSprite2D" parent="Environment/Homes"]
+[node name="Home6" parent="Environment/Homes" instance=ExtResource("11_ioqh1")]
 self_modulate = Color(0.815686, 0.862745, 0.682353, 1)
-z_index = -1
-position = Vector2(2403, 794)
-scale = Vector2(0.207689, 0.168197)
-sprite_frames = SubResource("SpriteFrames_pu8m7")
-frame_progress = 0.133356
-speed_scale = 0.7
+position = Vector2(2403, 749)
+scale = Vector2(0.5, 0.5)
 
 [node name="Lanterns" type="Node" parent="Environment"]
 
@@ -1065,7 +961,6 @@ scale = Vector2(649.7, 87.7)
 wait_time = 20.0
 
 [connection signal="body_entered" from="Sound_Off" to="." method="_on_sound_off_body_entered"]
-[connection signal="area_entered" from="Door Well" to="." method="_on_door_well_area_entered"]
 [connection signal="body_entered" from="Door Well" to="Door Well" method="_on_body_entered"]
 [connection signal="body_entered" from="Out_Door" to="Out_Door" method="_on_body_entered"]
 [connection signal="body_entered" from="Village_Way/One_Way_Area/no_attack_area" to="Village_Way/One_Way_Area/no_attack_area" method="_on_body_entered"]
