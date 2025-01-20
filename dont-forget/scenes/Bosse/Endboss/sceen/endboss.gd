@@ -121,26 +121,26 @@ func _physics_process(delta):
 	#print("Health: ",current_health)
 	#print("player_head: ",player_head)
 	
-	
-	apply_gravity(delta)
-	#print("attacking: ",attacking)
-	if !attacking:
-		#print("test")
-		if is_knocked_back and !bomb:
-			handle_knockback(delta)
-		#elif is_on_floor() and bomb:
-			#bomb = false
-			#$Damage_Area.monitoring = true
-			#animationPlayer.play("idle")
-			#$Special_Attack_Timer.start()
-		elif bomb:
-			#print("bombe")
-			move_in_direction()
-		elif !contact:
-			#print("fangen")
-			chase_character()
-	move_and_slide()
-	update_animation()
+	if alive:
+		apply_gravity(delta)
+		#print("attacking: ",attacking)
+		if !attacking:
+			#print("test")
+			if is_knocked_back and !bomb:
+				handle_knockback(delta)
+			#elif is_on_floor() and bomb:
+				#bomb = false
+				#$Damage_Area.monitoring = true
+				#animationPlayer.play("idle")
+				#$Special_Attack_Timer.start()
+			elif bomb:
+				#print("bombe")
+				move_in_direction()
+			elif !contact:
+				#print("fangen")
+				chase_character()
+		move_and_slide()
+		update_animation()
 
 func handle_knockback(delta):
 	if knockback_timer > 0:
@@ -346,7 +346,7 @@ func die():
 		##character = body
 
 func chase_character():
-	if character:
+	if character and alive:
 		var direction_to_character = (character.global_position - global_position).normalized()
 		direction = direction_calcX(direction_to_character)
 		velocity.x = direction * speed
@@ -375,7 +375,7 @@ func _on_special_attack_timer_timeout():
 	perform_bomb_attack()
 
 func _on_i_will_hit_area_body_entered(body):
-	if body is Character:
+	if body is Character and alive:
 		#print("fuuuckkking goooo bitch")
 		#print("ist er schon drin")
 		contact = true
@@ -388,19 +388,20 @@ func _on_i_will_hit_area_body_exited(body):
 		$Attack_Timer.stop()
 
 func _on_attack_timer_timeout():
-	if !attacking and !bomb:
+	if !attacking and !bomb and alive:
 		#print("oh noooooooo im tooo stupid")
 		perform_attack()
-	if contact:
+	if contact and alive:
 		$Attack_Timer.start()
 
 func _on_playerhead_body_entered(body):
-	if body is Character:
+	if body is Character and alive:
 		player_head = true
 		perform_bomb_attack()
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "dead": 
+		
 		queue_free()
 	
