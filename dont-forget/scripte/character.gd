@@ -331,6 +331,8 @@ func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	var effective_damage = ceil((max(0, damage - resistenz) + pierce) * imunity)
 	var knockback_effect = knockback_power_in * knockback_res
 	if (knockback_effect) > weight:
+		Input.vibrate_handheld(100)
+		Input.start_joy_vibration(0, .5, .4, 1.0)
 		knockback(knockback_effect, damage_position)
 	if effective_damage > 0:
 		hit_flash_anim_player.play("hit_flash")

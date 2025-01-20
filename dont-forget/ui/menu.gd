@@ -6,6 +6,8 @@ class_name StartScreen extends Control
 
 @onready var button_pressed_audio = $button_pressed
 @onready var leaves_audio = $leaves
+@onready var start_button: Button = $Panel/Panel/VBoxContainer/Start_Button
+
 
 var user_save: save_User
 
@@ -27,6 +29,9 @@ func _ready():
 	else:
 		load_button.disabled = false
 		load_button.focus_mode = Control.FOCUS_ALL
+
+	start_button.grab_focus()
+
 
 func _process(delta):
 	pass

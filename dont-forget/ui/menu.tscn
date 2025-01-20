@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://tva2dh5gu8b0" path="res://ui/Controls.tscn" id="7_2l5kn"]
 [ext_resource type="AudioStream" uid="uid://blb0ga5ilsim8" path="res://Sounds/Objekte/leaves.mp3" id="10_ulh0n"]
 
+
 [sub_resource type="Curve" id="Curve_tf0c3"]
 min_value = -612.84
 max_value = 360.0
@@ -280,6 +281,8 @@ layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Start a new game
 "
+focus_neighbor_top = NodePath("../Quit_Button")
+focus_neighbor_bottom = NodePath("../Load_Button")
 theme = SubResource("Theme_ufe8x")
 theme_override_fonts/font = ExtResource("3_1jn53")
 theme_override_font_sizes/font_size = 30
@@ -289,6 +292,8 @@ text = "New Game"
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Load your last save"
+focus_neighbor_top = NodePath("../Start_Button")
+focus_neighbor_bottom = NodePath("../Controls")
 theme = SubResource("Theme_6byat")
 theme_override_fonts/font = ExtResource("3_1jn53")
 theme_override_font_sizes/font_size = 30
@@ -298,6 +303,8 @@ text = "Load the Game "
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Show Controls"
+focus_neighbor_top = NodePath("../Load_Button")
+focus_neighbor_bottom = NodePath("../Options_Button")
 theme = SubResource("Theme_6byat")
 theme_override_font_sizes/font_size = 30
 text = "Controls "
@@ -307,6 +314,8 @@ layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Open settings
 "
+focus_neighbor_top = NodePath("../Controls")
+focus_neighbor_bottom = NodePath("../Credits_Button")
 theme = SubResource("Theme_3xqs5")
 theme_override_fonts/font = ExtResource("3_1jn53")
 theme_override_font_sizes/font_size = 30
@@ -317,6 +326,8 @@ visible = false
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Shows the developers"
+focus_neighbor_top = NodePath("../Options_Button")
+focus_neighbor_bottom = NodePath("../Quit_Button")
 theme = SubResource("Theme_k1pgd")
 theme_override_fonts/font = ExtResource("3_1jn53")
 theme_override_font_sizes/font_size = 30
@@ -326,6 +337,8 @@ text = "Credits"
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Quit the game"
+focus_neighbor_top = NodePath("../Credits_Button")
+focus_neighbor_bottom = NodePath("../Start_Button")
 theme = SubResource("Theme_eydse")
 theme_override_fonts/font = ExtResource("3_1jn53")
 theme_override_font_sizes/font_size = 30
