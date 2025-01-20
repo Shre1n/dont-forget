@@ -5,17 +5,15 @@ extends Node2D
 @onready var sword = $Sword
 @onready var character = $"../Character"
 @onready var block = $"../Block/Block"
-@onready var attack_label = $"../Labels/Attack"
-@onready var pickup_label = $PickUp
 @onready var audio_on_sword_pickup = $on_pickup
 
 
 @export var visible_load: VisibleOnScreenNotifier2D
+
 @onready var attack_label = $"../Control Labels/Attack"
 @onready var pickup_label = $"../PickUp"
 
 func _ready():
-	visible = false
 	interaction_area.interact = Callable(self, "on_pick_up")
 	
 func on_pick_up():
