@@ -1,8 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://cspyht3ytgvhx"]
+[gd_scene load_steps=21 format=3 uid="uid://cspyht3ytgvhx"]
 
 [ext_resource type="Script" path="res://ui/options.gd" id="1_sxokr"]
+[ext_resource type="AudioStream" uid="uid://dymju3ui20qbi" path="res://Sounds/Objekte/Buttons_Sound.mp3" id="2_3pjbs"]
+[ext_resource type="Script" path="res://ui/volume_slider.gd" id="3_q8kpv"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ux76x"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_clsuc"]
 bg_color = Color(0.135851, 0.15073, 0.189834, 1)
 border_width_left = 5
 border_width_top = 5
@@ -14,35 +16,35 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="Theme" id="Theme_g4wqp"]
-Panel/styles/panel = SubResource("StyleBoxFlat_ux76x")
+Panel/styles/panel = SubResource("StyleBoxFlat_clsuc")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kd76n"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5hnx6"]
 bg_color = Color(0.770791, 0.511126, 0.614406, 1)
 
 [sub_resource type="Theme" id="Theme_p7iw0"]
-Panel/styles/panel = SubResource("StyleBoxFlat_kd76n")
+Panel/styles/panel = SubResource("StyleBoxFlat_5hnx6")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ebwff"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uwvlx"]
 bg_color = Color(0.288852, 0.262479, 0.331737, 1)
 draw_center = false
 
 [sub_resource type="Theme" id="Theme_ccqy4"]
-Label/styles/normal = SubResource("StyleBoxFlat_ebwff")
+Label/styles/normal = SubResource("StyleBoxFlat_uwvlx")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfebg"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_du5x8"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehqm5"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_awh32"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_112xp"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kuiyy"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 
 [sub_resource type="Theme" id="Theme_joij3"]
-Button/styles/normal = SubResource("StyleBoxFlat_dfebg")
-HSlider/styles/grabber_area = SubResource("StyleBoxFlat_ehqm5")
-HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_112xp")
+Button/styles/normal = SubResource("StyleBoxFlat_du5x8")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_awh32")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_kuiyy")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tstbd"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11t8t"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 border_width_left = 2
 border_width_top = 2
@@ -50,9 +52,9 @@ border_width_right = 2
 border_width_bottom = 2
 
 [sub_resource type="Theme" id="Theme_dmn8s"]
-CheckButton/styles/normal = SubResource("StyleBoxFlat_tstbd")
+CheckButton/styles/normal = SubResource("StyleBoxFlat_11t8t")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7cf1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ncavb"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 border_width_left = 2
 border_width_top = 2
@@ -65,11 +67,11 @@ corner_radius_bottom_left = 5
 shadow_size = 3
 
 [sub_resource type="Theme" id="Theme_bd22v"]
-Button/styles/normal = SubResource("StyleBoxFlat_d7cf1")
+Button/styles/normal = SubResource("StyleBoxFlat_ncavb")
 
 [sub_resource type="ImageTexture" id="ImageTexture_lgjsh"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1oktc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d62m4"]
 bg_color = Color(0.305882, 0.207843, 0.494118, 1)
 border_width_left = 2
 border_width_top = 2
@@ -82,7 +84,7 @@ corner_radius_bottom_left = 5
 shadow_size = 3
 
 [sub_resource type="Theme" id="Theme_42qfs"]
-Button/styles/normal = SubResource("StyleBoxFlat_1oktc")
+Button/styles/normal = SubResource("StyleBoxFlat_d62m4")
 
 [node name="Options" type="Control"]
 layout_mode = 3
@@ -160,7 +162,9 @@ tooltip_text = "Slide to adjust the overall volume
 focus_neighbor_right = NodePath("../../Mute")
 focus_neighbor_bottom = NodePath("../../../HSplitContainer3/Close_Btn")
 theme = SubResource("Theme_joij3")
-value = 100.0
+min_value = -20.0
+max_value = 0.0
+script = ExtResource("3_q8kpv")
 
 [node name="Mute" type="CheckButton" parent="Panel/Panel/VBoxContainer/HSplitContainer"]
 custom_minimum_size = Vector2(124, 0)
@@ -204,7 +208,10 @@ theme_override_font_sizes/font_size = 30
 keep_pressed_outside = true
 text = "Factory settings"
 
-[connection signal="value_changed" from="Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume" to="." method="_on_volume_value_changed"]
+[node name="button_pressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_3pjbs")
+
+[connection signal="drag_started" from="Panel/Panel/VBoxContainer/HSplitContainer/VSplitContainer/Volume" to="." method="_on_volume_drag_started"]
 [connection signal="toggled" from="Panel/Panel/VBoxContainer/HSplitContainer/Mute" to="." method="_on_mute_toggled"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/HSplitContainer3/Close_Btn" to="." method="_on_close_btn_pressed"]
 [connection signal="pressed" from="Panel/Panel/VBoxContainer/HSplitContainer3/Reset_Btn" to="." method="_on_reset_btn_pressed"]

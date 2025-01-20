@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=38 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -9,13 +9,20 @@
 [ext_resource type="Shader" path="res://shader/Tilemap/layer1.gdshader" id="7_iab1c"]
 [ext_resource type="Script" path="res://scenes/control_labels.gd" id="8_625dm"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="8_h547o"]
+[ext_resource type="Script" path="res://scenes/labels.gd" id="8_xsnvv"]
 [ext_resource type="Script" path="res://scenes/sword_interact.gd" id="9_8mqe6"]
+[ext_resource type="FontFile" uid="uid://dm8youq5l6rka" path="res://ui/font/CourierPrime-Bold.ttf" id="9_nrj8w"]
 [ext_resource type="Texture2D" uid="uid://dqrs5p51f6oii" path="res://assets/Sword.png" id="10_e8qmx"]
 [ext_resource type="PackedScene" uid="uid://bhvpyu1avs3r7" path="res://interaction/interaction area/interaction_area.tscn" id="11_ye7re"]
 [ext_resource type="PackedScene" uid="uid://byv0i0njmuony" path="res://scenes/dummie.tscn" id="12_aqci3"]
 [ext_resource type="PackedScene" uid="uid://cpux6dyqd1ukw" path="res://scenes/door.tscn" id="13_k13f7"]
+[ext_resource type="AudioStream" uid="uid://628vgq8qouqx" path="res://Sounds/MC/hit_sound.mp3" id="13_r2ddc"]
 [ext_resource type="PackedScene" uid="uid://dheorcfj6bf44" path="res://enemy.tscn" id="14_vrtbd"]
+[ext_resource type="Script" path="res://scenes/gegner.gd" id="15_xeiq5"]
+[ext_resource type="PackedScene" uid="uid://tumpceqn5cd1" path="res://assets/NPC/Oma/Oma_NPC.tscn" id="16_alb86"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
+[ext_resource type="Resource" uid="uid://cfyfc3tosgv7t" path="res://assets/NPC/Oma/dialogue.dialogue" id="17_x7ijp"]
+[ext_resource type="AudioStream" uid="uid://bfyfhx1jkhx38" path="res://Sounds/Musik/light_BG_Sound.mp3" id="18_jihcl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -1077,8 +1084,9 @@ size = Vector2(200, 1313)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q71vo"]
 size = Vector2(200, 1298)
 
-[node name="tutorial" type="Node2D"]
+[node name="tutorial" type="Node2D" node_paths=PackedStringArray("visibleNotifier")]
 script = ExtResource("1_howbq")
+visibleNotifier = NodePath("VisibleOnScreenNotifier2D")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(3247, 305)
@@ -1197,9 +1205,8 @@ offset_left = 568.0
 offset_top = 971.0
 offset_right = 1310.0
 offset_bottom = 1317.0
-theme_override_fonts/font = ExtResource("8_h547o")
+theme_override_fonts/font = ExtResource("9_nrj8w")
 theme_override_font_sizes/font_size = 41
-text = "Press A or D to move"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1208,9 +1215,9 @@ offset_left = 1685.0
 offset_top = 907.0
 offset_right = 2427.0
 offset_bottom = 1253.0
-theme_override_fonts/font = ExtResource("8_h547o")
+theme_override_fonts/font = ExtResource("9_nrj8w")
 theme_override_font_sizes/font_size = 41
-text = "Press W to jump"
+text = "Press Space to jump"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -1282,19 +1289,41 @@ position = Vector2(-4, -21)
 scale = Vector2(9.74282, 9.0481)
 shape = SubResource("CircleShape2D_3tx74")
 
+[node name="on_pickup" type="AudioStreamPlayer" parent="Sword_Interact"]
+stream = ExtResource("13_r2ddc")
+pitch_scale = 0.8
+
 [node name="Dummie" parent="." instance=ExtResource("12_aqci3")]
 position = Vector2(4030, 1336)
 
 [node name="Door" parent="." instance=ExtResource("13_k13f7")]
 position = Vector2(6961, 970)
 scale = Vector2(-37.5186, 96.0971)
-transition_type = "wipe_to_right"
+transition_type = "fade_to_black"
 path_to_new_scene = "res://scenes/Village.tscn"
 new_position = Vector2(-1839, 833)
 
 [node name="Itemholder" type="Node2D" parent="."]
 
-[node name="Gegner" type="Node2D" parent="."]
+[node name="Gegner" type="Node2D" parent="." node_paths=PackedStringArray("enemy_notifier")]
+script = ExtResource("15_xeiq5")
+enemy_notifier = NodePath("Enemy_visibility")
+
+[node name="Enemy_visibility" type="VisibleOnScreenNotifier2D" parent="Gegner"]
+position = Vector2(5091.1, 1138.5)
+scale = Vector2(53.29, 17.75)
+
+[node name="Hint" type="Label" parent="Gegner"]
+offset_left = 4463.0
+offset_top = 854.0
+offset_right = 5205.0
+offset_bottom = 1200.0
+theme_override_fonts/font = ExtResource("8_h547o")
+theme_override_font_sizes/font_size = 41
+text = "Face the enemy or
+ leap past—your call"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Slime" parent="Gegner" instance=ExtResource("14_vrtbd")]
 position = Vector2(5090, 1264)
@@ -1303,9 +1332,10 @@ tutorial = true
 
 [node name="box" parent="." instance=ExtResource("16_ten56")]
 position = Vector2(381, 1170)
-selected_profile = "simple_treasure_chest"
+scale = Vector2(1.5296, 1.03802)
 
 [node name="Block" type="Node2D" parent="."]
+visible = false
 
 [node name="Block" type="StaticBody2D" parent="Block"]
 position = Vector2(3615, 1041)
@@ -1322,3 +1352,28 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Block/Slime_Block"]
 position = Vector2(0, -549)
 shape = SubResource("RectangleShape2D_q71vo")
+
+[node name="box2" parent="." instance=ExtResource("16_ten56")]
+position = Vector2(531, 1225)
+selected_profile = "iron_treasure_chest"
+
+[node name="Background" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_jihcl")
+parameters/looping = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(3026.5, 83.5002)
+scale = Vector2(394.15, 126.85)
+
+[node name="OmaNpc" parent="." instance=ExtResource("16_alb86")]
+z_index = -1
+position = Vector2(1640, 1148)
+scale = Vector2(0.2, 0.2)
+dialog_resource = ExtResource("17_x7ijp")
+
+[connection signal="screen_entered" from="Sword_Visible" to="Sword_Interact" method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="Sword_Visible" to="Sword_Interact" method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="Door" to="." method="_on_door_area_entered"]
+[connection signal="screen_entered" from="Gegner/Enemy_visibility" to="Gegner" method="_on_enemy_visibility_screen_entered"]
+[connection signal="screen_exited" from="Gegner/Enemy_visibility" to="Gegner" method="_on_enemy_visibility_screen_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

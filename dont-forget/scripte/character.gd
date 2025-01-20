@@ -5,8 +5,20 @@ extends CharacterBody2D
 signal coinsChange(amount)
 signal lifeChange(amount)
 signal resetCoins
+signal getCoins
 signal add_bag(bag_instance)
 signal going_back(path)  # Zurück zum Dorf
+
+
+#@onready var audio: Audio_Stream = $Audio_Stream2
+
+@onready var dash_audio = $dash_audio
+@onready var is_hit = $mc_is_hit_sound
+@onready var jump_audio = $jump_sound
+@onready var walk_audio = $walk
+@onready var sword_audio = $sword_audio
+@onready var dead_audio = $dead
+@onready var popup_stat = $PopUp
 
 @export_category("Einstellungen")
 @export var test_on: bool = false
@@ -22,7 +34,7 @@ signal going_back(path)  # Zurück zum Dorf
 @export var imunity_stat = 0
 @export var attack_speed_stat = 250
 @export var extra_weight_stat = 0
-@export var cooldown_stat = 250
+@export var cooldown_stat = 100
 @export var pierce_stat = 0  # Durchschlagskraft (Prozent)
 @export var crit_stat = 0  # Kritische Trefferchance (0–1000 = 0–100%)
 @export var knockback_stat = 50  # Knockback-Stärke
@@ -46,7 +58,7 @@ signal going_back(path)  # Zurück zum Dorf
 @export_subgroup("Balancing")
 @export var dash_price: float = 30.0
 @export var dashtime: float = 0.2
-@export var cooldown_duration: float = 1.0
+@export var cooldown_duration: float = 0.7
 @export var dash_cooldown_duration: float = 5.0
 @export var dash_duration: float = 0.2
 @export var dash_cooldown_duration_base: float = 0.1
@@ -107,6 +119,8 @@ var open = false
 # --- Funktionen ---
 
 func _ready():
+	print("PlayerReadyStart")
+	#coins = Global.coins
 	new_spawn_position()
 	hit_flash_anim_player.play("RESET")
 	camera.limit_left = camera_limit_left
@@ -121,6 +135,7 @@ func _ready():
 		update_status()
 	else:
 		get_stats()
+	print("PlayerReadyFinish")
 
 func get_stats():
 	damage_stat = game_manager.damage_stat
@@ -239,6 +254,7 @@ func _process(delta):
 	elif Input.is_action_just_pressed("dash") && dash_cooldown <= 0 && Input.get_axis("left", "right"):
 		dash()
 	if Input.is_action_just_pressed("inventar"):
+		popup_stat.play()
 		open = !open
 		stats_popup.visible = open
 
@@ -326,9 +342,13 @@ func attack():
 	attacking = true
 	cooldown = cooldown_duration_base + cooldown_duration * cooldown_reduction
 	animation_player.speed_scale = attack_speed
-	animation_player.play("fight")
+	if Input.is_action_pressed("up"):
+		animation_player.play("attack_up")
+	else:
+		animation_player.play("fight")
 
 func dash():
+	dash_audio.play()
 	dashing = true
 	get_time(-dash_price)
 	dash_cooldown = dash_cooldown_duration_base + dash_cooldown_duration * dash_cooldown_reduction # +dashtime
@@ -341,8 +361,7 @@ func dash():
 	collision_layer = col3a
 	dash_timer.start()
 
-
-func _on_dash_timer_timeout():
+func _on_dash_timer_timeout():	
 	dashing = false
 	current_dash_speed = 1
 	var col1b = 1 + 8 + 16 +128
@@ -355,26 +374,29 @@ func _on_dash_timer_timeout():
 func update_animation():
 	if alive:
 		if !attacking:
-			if velocity.x != 0:
-				animation_player.play("walk")
+			if is_on_floor():
+				if velocity.x != 0:
+					animation_player.play("walk")
+				else:
+					animation_player.play("idle")
 			else:
-				animation_player.play("idle")
-
-			if velocity.y < 0:
-				animation_player.play("jump")
-			if velocity.y > 0:
-				animation_player.play("idle") #später fall
+				if velocity.y < 0:
+					animation_player.play("jump")
+				if velocity.y > 0:
+					animation_player.play("fall") #später fall
 
 func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func die():
+	dash_audio.play()
 	drop_bag()
 	velocity = Vector2.ZERO
 	alive = false
 	var col2a = 0
 	$CollisionShape2D2/Damage_Area.collision_mask = col2a
 	Global.price_multi = 1
+	#Global.coins = 0
 	animation_player.play("death")
 	#await (animation_player.animation_finished)
 

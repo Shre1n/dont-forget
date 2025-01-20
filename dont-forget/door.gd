@@ -2,7 +2,7 @@ class_name Door extends Area2D
 
 signal player_entered_door(door:Door,transition_type:String)
 
-@export_enum("fade_to_black","fade_to_white","wipe_to_right","no_transition") var transition_type:String ## transitoin we want to use when moving through the door
+@export_enum("fade_to_black","fade_to_white","wipe_to_right","no_transition", "fall_to_well") var transition_type:String ## transitoin we want to use when moving through the door
 @export var path_to_new_scene:String	## scene we want to load when touchign this door
 @export var new_position: Vector2
 @export var new_direction: float
@@ -11,6 +11,13 @@ signal player_entered_door(door:Door,transition_type:String)
 #@export var pathToVillage: bool = false
 #@export_enum("left", "right") var new_direction_word:string #auslesen und dann zu zahlen 1, 0, -1 umwandeln, 1 und -1 noch testen ob richtige richtung
 @export_enum("left", "right") var new_direction_word: String
+
+func _init() -> void:
+	print("Door")
+
+func _ready():
+	print("DoorReadyStart")
+	print("DoorReadyFinish")
 
 func evaluate_direction():
 	match new_direction_word:
@@ -34,6 +41,7 @@ func _on_body_entered(body: Node2D) -> void:
 		Global.new_position = new_position
 		evaluate_direction()
 		Global.new_direction = new_direction
+		#Global.coins = body.coins
 	
 		var gameplay_node:Game_Manager = get_tree().get_nodes_in_group("game_manager")[0] as Game_Manager
 		var unload:Node = gameplay_node.current_level	# we're now responsible for tracking this 

@@ -25,6 +25,7 @@ config/windows_native_icon="res://assets/idle/1.png"
 SceneManager="*res://autoload/scene_manager.gd"
 InteractionManager="*res://interaction/InteractionManager.tscn"
 Global="*res://autoload/Global.gd"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]
 
@@ -35,7 +36,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [global_group]
 
@@ -140,6 +141,10 @@ inventar={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":9,"pressure":0.0,"pressed":true,"script":null)
 ]
 }
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://assets/NPC/Oma/dialogue.dialogue", "res://scenes/Cutszenes/Backstory/dialogue_BS_Oma.dialogue")
 
 [layer_names]
 
