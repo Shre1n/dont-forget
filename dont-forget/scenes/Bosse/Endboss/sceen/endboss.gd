@@ -12,6 +12,9 @@ extends CharacterBody2D
 @export var damaged: bool = false
 @export var attack_range: float = 150.0  # Angriffsreichweite
 
+@onready var Bg_Musik = $BG_Musik
+@onready var scream = $Drexus_Sound
+
 var knockback_speed: float = 300.0
 @export var knockback_duration: float = 0.2
 var is_knocked_back: bool = false
@@ -70,6 +73,7 @@ var player_head = false
 @export var phase2Test = false
 
 func _ready():
+	Bg_Musik.play()
 	update_status()
 	animationPlayer.play("idle")
 	$"Detection Area".monitoring = true
@@ -333,7 +337,7 @@ func die():
 	#alive = false
 	emit_signal("boss_defeated")
 	animationPlayer.play("dead")
-	queue_free()
+	
 
 #func _on_detection_area_body_entered(body: Node2D) -> void:
 	#if body is Character:
@@ -394,3 +398,9 @@ func _on_playerhead_body_entered(body):
 	if body is Character:
 		player_head = true
 		perform_bomb_attack()
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if anim_name == "dead": 
+		queue_free()
+	

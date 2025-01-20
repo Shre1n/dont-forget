@@ -6,7 +6,7 @@ extends Node2D
 
 func _ready():
 	if	flip_h:
-		sprite.flip_h = true
+		self.flip_h = true
 
 func flicker_light():
 	light.energy = randf_range(1.2,3)

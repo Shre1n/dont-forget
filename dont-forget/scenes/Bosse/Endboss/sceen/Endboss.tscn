@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bbtj81n70c8tm"]
+[gd_scene load_steps=45 format=3 uid="uid://bbtj81n70c8tm"]
 
 [ext_resource type="Script" path="res://scenes/Bosse/Endboss/sceen/endboss.gd" id="1_4st5j"]
 [ext_resource type="Texture2D" uid="uid://dulu8n0ybuoow" path="res://assets/Boss/attack/1.png" id="3_5wx5q"]
@@ -18,8 +18,14 @@
 [ext_resource type="Texture2D" uid="uid://bvwx7xes7rbxb" path="res://assets/Boss/run/1.png" id="16_8b3u6"]
 [ext_resource type="Texture2D" uid="uid://ttekde0wbt12" path="res://assets/Boss/run/2.png" id="17_mu1m6"]
 [ext_resource type="Texture2D" uid="uid://cfm5kq3bus6jy" path="res://assets/Boss/run/3.png" id="18_rvt6r"]
+[ext_resource type="AudioStream" uid="uid://b5e7duulhneh" path="res://Sounds/Enemy/Drexus/Rüstung_Sound.mp3" id="19_akau8"]
 [ext_resource type="PackedScene" uid="uid://dnu6va4x16qlb" path="res://scenes/damage_area.tscn" id="19_pc17t"]
+[ext_resource type="AudioStream" uid="uid://rna37pas00i8" path="res://Sounds/Enemy/Drexus/Drexus_jump_Sound.mp3" id="20_hqkr7"]
 [ext_resource type="Script" path="res://scripte/attack_area.gd" id="20_kw2np"]
+[ext_resource type="AudioStream" uid="uid://473kcqkv8hq5" path="res://Sounds/Enemy/Drexus/Drexus_scream_Sound.mp3" id="21_njlw5"]
+[ext_resource type="AudioStream" uid="uid://b6ojx727fx1oe" path="res://Sounds/Enemy/Drexus/Drexus_Step_Sound.mp3" id="22_6xb1r"]
+[ext_resource type="AudioStream" uid="uid://bfxovhoeeh631" path="res://Sounds/Enemy/Drexus/Drexsus_Hit_Sound.mp3" id="25_vsp34"]
+[ext_resource type="AudioStream" uid="uid://cb7u3s1sep0w3" path="res://Sounds/Musik/Cave_BG_Sound.mp3" id="26_4vrbb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_q2p7g"]
 shader = ExtResource("3_arqil")
@@ -464,6 +470,21 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(0.1, 0.1), Vector2(0.1, 0.1), Vector2(6.93033, 1.8338), Vector2(6.93033, 1.8338)]
 }
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Drexus_Sound")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.202714,
+"start_offset": 0.137589,
+"stream": ExtResource("19_akau8")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/11/use_blend = true
 
 [sub_resource type="Animation" id="Animation_dyts3"]
 resource_name = "bombe"
@@ -612,6 +633,21 @@ tracks/11/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/12/type = "audio"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("Drexus_Sound")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"clips": [{
+"end_offset": 1.00898,
+"start_offset": 0.291688,
+"stream": ExtResource("20_hqkr7")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/12/use_blend = true
 
 [sub_resource type="Animation" id="Animation_u5yrv"]
 resource_name = "dead"
@@ -723,6 +759,21 @@ tracks/8/keys = {
 "update": 0,
 "values": [Vector2(1.66394, 1.02635)]
 }
+tracks/9/type = "audio"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Drexus_Sound")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"clips": [{
+"end_offset": 0.701702,
+"start_offset": 0.311868,
+"stream": ExtResource("21_njlw5")
+}],
+"times": PackedFloat32Array(-0.311868)
+}
+tracks/9/use_blend = true
 
 [sub_resource type="Animation" id="Animation_x6nsy"]
 resource_name = "idle"
@@ -859,6 +910,21 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector2(37.2891, 4.67506)]
 }
+tracks/11/type = "audio"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Drexus_Sound")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"clips": [{
+"end_offset": 0.704454,
+"start_offset": 0.303612,
+"stream": ExtResource("21_njlw5")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/11/use_blend = true
 
 [sub_resource type="Animation" id="Animation_5o5i0"]
 resource_name = "run"
@@ -983,6 +1049,21 @@ tracks/9/keys = {
 "update": 0,
 "values": [Vector2(1.66394, 1.02635)]
 }
+tracks/10/type = "audio"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Drexus_Sound")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"clips": [{
+"end_offset": 1.22087,
+"start_offset": 0.220142,
+"stream": ExtResource("22_6xb1r")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/10/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5fjp1"]
 _data = {
@@ -1050,6 +1131,21 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Drexus_Sound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.579707,
+"start_offset": 0.296274,
+"stream": ExtResource("25_vsp34")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_x63fv"]
 _data = {
@@ -1071,7 +1167,6 @@ scale = Vector2(5.73895, 20.1067)
 collision_layer = 8
 collision_mask = 57
 script = ExtResource("1_4st5j")
-phase2Test = true
 
 [node name="Boss" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_q2p7g")
@@ -1161,6 +1256,12 @@ position = Vector2(37.2019, 46.303)
 scale = Vector2(0.999999, 1)
 shape = SubResource("RectangleShape2D_ea8dy")
 
+[node name="Drexus_Sound" type="AudioStreamPlayer" parent="."]
+
+[node name="BG_Musik" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_4vrbb")
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="Detection Area" to="." method="_on_detection_area_body_entered"]
 [connection signal="timeout" from="ComboTimer" to="." method="_on_combo_timer_timeout"]
 [connection signal="body_entered" from="i_will_hit_area" to="." method="_on_i_will_hit_area_body_entered"]
