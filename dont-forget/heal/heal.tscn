@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dhx18cj8fwfgg"]
+[gd_scene load_steps=8 format=3 uid="uid://dhx18cj8fwfgg"]
 
 [ext_resource type="Script" path="res://heal/heal.gd" id="1_13lt1"]
 [ext_resource type="Script" path="res://interaction/interaction area/interaction_area.gd" id="2_7br43"]
 [ext_resource type="Texture2D" uid="uid://c5d88wy8ra02e" path="res://heal/assets/Idle-Kristall.png" id="3_nx1ii"]
+[ext_resource type="AudioStream" uid="uid://i77hnk8afqjx" path="res://Sounds/Objekte/Kristalle_Sound.mp3" id="5_oqevo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qcmv8"]
 radius = 117.068
@@ -39,6 +40,9 @@ color = Color(0.841163, 0.721841, 0.826023, 1)
 energy = 3.17
 shadow_enabled = true
 texture = SubResource("GradientTexture2D_op6sf")
+
+[node name="on_pickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_oqevo")
 
 [connection signal="body_entered" from="InteractionArea" to="InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractionArea" to="InteractionArea" method="_on_body_exited"]

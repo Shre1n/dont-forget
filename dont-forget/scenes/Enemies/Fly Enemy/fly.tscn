@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://0qutpmchax1b"]
+[gd_scene load_steps=32 format=3 uid="uid://0qutpmchax1b"]
 
 [ext_resource type="PackedScene" uid="uid://drwrxl4akk264" path="res://Templates/Enemy_Template/Enemy_Template.tscn" id="1_s8poh"]
 [ext_resource type="Script" path="res://scenes/Enemies/Fly Enemy/fly.gd" id="2_4o5g4"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://diammteb7s2w3" path="res://assets/enemy/fly/Idle/4.png" id="9_f7ni5"]
 [ext_resource type="Script" path="res://scenes/damage_area.gd" id="11_c182f"]
 [ext_resource type="Script" path="res://scripte/attack_area.gd" id="12_8qs1o"]
+[ext_resource type="AudioStream" uid="uid://co2hvu8x5g8kb" path="res://Sounds/Enemy/FLy/fly_hit_Sound.mp3" id="13_er8rr"]
+[ext_resource type="AudioStream" uid="uid://dqm46lrr5gm71" path="res://Sounds/Enemy/FLy/Fly_Sound.mp3" id="14_r3a87"]
 
 [sub_resource type="Animation" id="Animation_7560b"]
 length = 0.001
@@ -86,6 +88,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("idle_audio:bus")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
 }
 
 [sub_resource type="Animation" id="Animation_rscsi"]
@@ -239,6 +253,33 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1, 1)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("idle_audio:bus")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("idle_audio")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.381033,
+"start_offset": 0.0,
+"stream": ExtResource("14_r3a87")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/7/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dcxf7"]
 _data = {
@@ -324,10 +365,10 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_wc2ka"]
-radius = 417.011
+radius = 231.175
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nkbdt"]
-radius = 452.028
+radius = 254.031
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ojkmh"]
 radius = 12.6021
@@ -386,9 +427,9 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r850h"]
-radius = 41.1779
+radius = 23.5432
 
-[node name="Fly_Enemy" instance=ExtResource("1_s8poh")]
+[node name="Fly_Enemy" node_paths=PackedStringArray("visibleOnScreen") instance=ExtResource("1_s8poh")]
 script = ExtResource("2_4o5g4")
 fly_radius_x = 100.0
 fly_radius_y = 100.0
@@ -399,6 +440,7 @@ fly_range = 200.0
 hit_flash_time = 0.2
 chase_range = 0.0
 stats_file = "res://gegner/fly.json"
+visibleOnScreen = NodePath("VisibleOnScreenEnabler2D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
 libraries = {
@@ -420,7 +462,7 @@ libraries = {
 script = ExtResource("11_c182f")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" index="0"]
-position = Vector2(-338, -100)
+position = Vector2(-352, -46)
 shape = SubResource("CircleShape2D_wc2ka")
 
 [node name="AttackArea" type="Area2D" parent="." index="5"]
@@ -429,7 +471,7 @@ collision_mask = 121
 script = ExtResource("12_8qs1o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" index="0"]
-position = Vector2(-331, -93)
+position = Vector2(-349, -47)
 shape = SubResource("CircleShape2D_nkbdt")
 
 [node name="DetectionArea" type="Area2D" parent="." index="6"]
@@ -448,12 +490,25 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="8"]
-position = Vector2(-333, -96)
+position = Vector2(-351, -46)
 scale = Vector2(10.1754, 9.82616)
 shape = SubResource("CircleShape2D_r850h")
+
+[node name="idle_audio" type="AudioStreamPlayer2D" parent="." index="9"]
+max_distance = 2100.0
+attenuation = 3.0
+
+[node name="Hit" type="AudioStreamPlayer" parent="." index="10"]
+stream = ExtResource("13_er8rr")
+
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="." index="11"]
+position = Vector2(-332, -46.0001)
+scale = Vector2(136.05, 110.35)
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_detection_area_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

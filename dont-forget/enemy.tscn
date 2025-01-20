@@ -1,6 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://dheorcfj6bf44"]
+[gd_scene load_steps=32 format=3 uid="uid://dheorcfj6bf44"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_kt7s3"]
+[ext_resource type="AudioStream" uid="uid://d3kwcowsq5o3x" path="res://Sounds/Enemy/Slime/Slime_Move_Sound.mp3" id="2_2i4of"]
 [ext_resource type="Texture2D" uid="uid://bvqqkjm70mf4g" path="res://assets/Slime/dead/1.png" id="2_by64i"]
 [ext_resource type="Texture2D" uid="uid://c1p04djugyv16" path="res://assets/Slime/dead/2.png" id="3_f3q62"]
 [ext_resource type="Texture2D" uid="uid://dm4cau6f66ka" path="res://assets/Slime/dead/3.png" id="4_mo2hc"]
@@ -17,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://wgibmyjqxcw5" path="res://assets/Slime/walk/6.png" id="16_0gyc0"]
 [ext_resource type="PackedScene" uid="uid://dnu6va4x16qlb" path="res://scenes/damage_area.tscn" id="16_olr1l"]
 [ext_resource type="PackedScene" uid="uid://cmgf1s540hgqi" path="res://scenes/attack_area.tscn" id="17_fxlaf"]
+[ext_resource type="AudioStream" uid="uid://dj1ds6tg1ucjb" path="res://Sounds/Enemy/Slime/Slime_Death_Sound.mp3" id="19_j653h"]
 
 [sub_resource type="Animation" id="Animation_i7tg6"]
 length = 0.001
@@ -128,6 +130,18 @@ tracks/8/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Move:bus")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
+}
 
 [sub_resource type="Animation" id="Animation_nj4be"]
 resource_name = "death"
@@ -144,6 +158,33 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [&"dead"]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Death")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("19_j653h")
+}],
+"times": PackedFloat32Array(0.75)
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Move:bus")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
 }
 
 [sub_resource type="Animation" id="Animation_02olc"]
@@ -350,6 +391,33 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [PackedVector2Array(-437, 281, -442, 238, -424, 147, -388, 58, -320, -29, -251, -76, -170, -105, -86, -117, -7, -102, 64, -78, 129, -33, 166, 15, 212, 82, 240, 154, 260, 214, 264, 278, 248, 299, 189, 301, 77, 299, -27, 298, -143, 302, -242, 302, -336, 301, -402, 293), PackedVector2Array(-408, 266, -399, 220, -378, 173, -325, 118, -240, 60, -174, 14, -120, -21, -54, -52, 9, -65, 77, -61, 145, -35, 198, 13, 237, 73, 262, 135, 277, 211, 267, 275, 256, 301, 189, 301, 77, 299, -27, 298, -143, 302, -242, 302, -336, 301, -402, 293), PackedVector2Array(-340, 217, -297, 189, -258, 153, -214, 107, -161, 64, -126, 39, -77, -1.00002, -35, -30, 10, -50, 65, -61, 133, -40, 196, 11, 253, 83, 281, 151, 285, 207, 274, 266, 253, 298, 206, 298, 149, 299, 69, 299, -58, 298, -206, 297, -310, 298, -378, 298, -409, 290, -381, 258), PackedVector2Array(-157, 202, -129, 169, -99, 115, -42, 28, -1.00002, -5, 24, -32, 54, -45, 94, -53, 134, -52, 196, -26, 244, 26, 274, 80, 293, 149, 292, 217, 274, 270, 254, 299, 152, 299, 61, 297, -21, 297, -157, 298, -314, 297, -309, 274, -278, 257, -235, 247, -194, 223), PackedVector2Array(-340, 217, -297, 189, -258, 153, -214, 107, -161, 64, -126, 39, -77, -1.00002, -35, -30, 10, -50, 65, -61, 133, -40, 196, 11, 253, 83, 281, 151, 285, 207, 274, 266, 253, 298, 206, 298, 149, 299, 69, 299, -58, 298, -206, 297, -310, 298, -378, 298, -409, 290, -381, 258), PackedVector2Array(-393, 203, -362, 154, -324, 115, -270, 78, -215, 38, -166, -1.52588e-05, -102, -37, -25, -62, 45, -68, 112, -54, 158, -20, 213, 32, 249, 94, 266, 163, 273, 217, 269, 263, 256, 298, 205, 298, 144, 299, 81, 299, -3, 299, -145, 297, -278, 299, -380, 291, -412, 279, -408, 242), PackedVector2Array(-437, 281, -442, 238, -424, 147, -388, 58, -320, -29, -251, -76, -170, -105, -86, -117, -7, -102, 64, -78, 129, -33, 166, 15, 212, 82, 240, 154, 260, 214, 264, 278, 248, 299, 189, 301, 77, 299, -27, 298, -143, 302, -242, 302, -336, 301, -402, 293)]
+}
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Move")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("2_2i4of")
+}],
+"times": PackedFloat32Array(0.25)
+}
+tracks/6/use_blend = true
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Move:bus")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Master"]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1mwsa"]
@@ -644,10 +712,11 @@ _data = {
 "lost": SubResource("Animation_tndgn")
 }
 
-[node name="Slime" type="CharacterBody2D"]
+[node name="Slime" type="CharacterBody2D" node_paths=PackedStringArray("visibleEnabler")]
 collision_layer = 8
 collision_mask = 121
 script = ExtResource("1_kt7s3")
+visibleEnabler = NodePath("VisibleOnScreenEnabler2D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -697,7 +766,19 @@ position = Vector2(-16, -191)
 rotation = -1.56524
 shape = SubResource("CapsuleShape2D_v4vrp")
 
+[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+position = Vector2(-3.05176e-05, -356)
+scale = Vector2(245, 101)
+
+[node name="Death" type="AudioStreamPlayer" parent="."]
+
+[node name="Move" type="AudioStreamPlayer2D" parent="."]
+max_distance = 3000.0
+attenuation = 3.0
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Direction_Timer" to="." method="_on_direction_timer_timeout"]
 [connection signal="body_entered" from="Detection_Area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Detection_Area" to="." method="_on_detection_area_body_exited"]
+[connection signal="screen_entered" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenEnabler2D" to="." method="_on_visible_on_screen_enabler_2d_screen_exited"]

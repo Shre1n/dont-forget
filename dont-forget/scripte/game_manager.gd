@@ -15,6 +15,8 @@ signal back_to_village
 @export var life_time:float = 10.0
 @export var max_time: float = 300.0
 
+@export var audio: AudioStreamPlayer2D
+
 @onready var canvaslayer = $Pause_Menu
 
 var tutorial = preload("res://scenes/tutorial.tscn")
@@ -40,12 +42,12 @@ var speed_stat = 250
 var jump_stat = 250
 var imunity_stat = 0
 var attack_speed_stat = 250
-var cooldown_stat = 0
+var cooldown_stat = 250
 var pierce_stat = 0
 var crit_stat = 0
 var knockback_stat = 50
 var knockback_res_stat = 0
-var dash_cooldown_stat = 0
+var dash_cooldown_stat = 250
 var dash_speed_stat = 0
 var extra_weight_stat = 0
 
@@ -60,10 +62,41 @@ func _ready():
 	SceneManager.load_complete.connect(_on_level_loaded)
 	SceneManager.load_start.connect(_on_load_start)
 	SceneManager.scene_added.connect(_on_level_added)
+	level_holder.connect("child_entered_tree", Callable(self, "_on_child_added_to_level_holder"))
+	level_holder.connect("tree_exited", Callable(self, "_on_child_removed_from_level_holder"))
+	update_level_holder_visibility()
+	
+	
 	#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	#Zum Village zurück (braucht signal mit path)
 	current_character.connect("going_back", Callable(self, "scene_change"))
 	get_node("Pause_Menu/UiManager").connect("give_user", Callable(self, "give_user"))
+	
+
+
+func _on_child_added_to_level_holder(child):
+	update_level_holder_visibility()
+
+# Methode, die aufgerufen wird, wenn ein Kind entfernt wird
+func _on_child_removed_from_level_holder():
+	update_level_holder_visibility()
+
+# Methode zur Aktualisierung der Sichtbarkeit basierend auf der Anzahl der Kinder
+func update_level_holder_visibility():
+	if level_holder.get_child_count() > 0:
+		level_holder.show()
+		var child: Level = level_holder.get_child(0)
+		child.show()
+	else:
+		level_holder.hide()
+
+
+
+
+
+func play_bg_music_Village():
+	var sound = preload("res://Sounds/Musik/BG_Musik.mp3")
+	
 
 func give_user():
 	emit_signal("current_user", current_character)
@@ -100,7 +133,7 @@ func load_saved_scene():
 
 	#Entfernt alle alten Level-Inhalte
 	for child in level_holder.get_children():
-			child.queue_free()
+		child.queue_free()
 	
 	# Loads save or Fallback
 	if saved_scene_path != null:
@@ -221,6 +254,10 @@ func _on_level_loaded(level) -> void:
 		#current_character.connect("going_back", Callable(self, "scene_change"))
 		show_light()
 		save_scene()
+		update_level_holder_visibility()
+
+func new_Itemholder_Shout():
+	find_Itemholder(current_level)
 
 func _on_level_added(_level,_loading_screen) -> void:
 	if _loading_screen != null:
