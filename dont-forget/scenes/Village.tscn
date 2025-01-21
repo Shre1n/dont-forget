@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=4 uid="uid://b7qcdf4te61ks"]
+[gd_scene load_steps=45 format=4 uid="uid://b7qcdf4te61ks"]
 
 [ext_resource type="Script" path="res://scenes/village.gd" id="1_5at0l"]
 [ext_resource type="Texture2D" uid="uid://cuaxdf0m8gk3r" path="res://assets/Tilemap/Tilemap2.png" id="2_cj6i5"]
@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://dqts7u5x5t2o3" path="res://scenes/NPCs/bugs.tscn" id="23_yva8d"]
 [ext_resource type="PackedScene" uid="uid://kkajxue5d771" path="res://scenes/NPCs/owl.tscn" id="25_32xh1"]
 [ext_resource type="PackedScene" uid="uid://tumpceqn5cd1" path="res://assets/NPC/Oma/Oma_NPC.tscn" id="25_ftq5f"]
-[ext_resource type="Resource" uid="uid://cfyfc3tosgv7t" path="res://assets/NPC/Oma/dialogue.dialogue" id="26_2bgcl"]
 [ext_resource type="PackedScene" uid="uid://ishqh8px52v" path="res://scenes/NPCs/mole.tscn" id="27_s4pgm"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="31_hehs4"]
 [ext_resource type="Script" path="res://scenes/no_attack_area.gd" id="32_l4m7q"]
@@ -964,9 +963,8 @@ wait_time = 20.0
 
 [node name="OmaNpc" parent="." node_paths=PackedStringArray("player") instance=ExtResource("25_ftq5f")]
 z_index = -1
-position = Vector2(-1623, 732)
+position = Vector2(-1599, 747)
 scale = Vector2(0.2, 0.2)
-dialog_resource = ExtResource("26_2bgcl")
 throwbackdream = true
 transition_type = "wipe_to_right"
 path_to_new_scene = "res://scenes/Cutszenes/Backstory/cutscene_backystory.tscn"
@@ -976,7 +974,6 @@ player = NodePath("../Character")
 z_index = -1
 position = Vector2(3216, 723)
 scale = Vector2(0.2, 0.2)
-dialog_resource = ExtResource("26_2bgcl")
 
 [connection signal="body_entered" from="Sound_Off" to="." method="_on_sound_off_body_entered"]
 [connection signal="body_entered" from="Door Well" to="Door Well" method="_on_body_entered"]

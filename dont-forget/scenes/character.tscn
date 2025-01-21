@@ -38,7 +38,7 @@
 [ext_resource type="Texture2D" uid="uid://o5pa0o30ep1k" path="res://assets/run/7.png" id="15_js2sq"]
 [ext_resource type="PackedScene" uid="uid://dnu6va4x16qlb" path="res://scenes/damage_area.tscn" id="24_i5vbm"]
 [ext_resource type="PackedScene" uid="uid://cmgf1s540hgqi" path="res://scenes/attack_area.tscn" id="24_u5kue"]
-[ext_resource type="PackedScene" path="res://stats_popup.tscn" id="30_pbvn4"]
+[ext_resource type="PackedScene" uid="uid://byy056hrby4p5" path="res://stats_popup.tscn" id="30_pbvn4"]
 [ext_resource type="Texture2D" uid="uid://bgpmxtn8wl05i" path="res://scenes/2d_lights_and_shadows_neutral_point_light.png" id="31_d44a5"]
 [ext_resource type="AudioStream" uid="uid://8v3pyhdw6pvm" path="res://Sounds/MC/Dash_Sound.mp3" id="41_4ug0t"]
 [ext_resource type="AudioStream" uid="uid://col48xmby65t6" path="res://Sounds/Objekte/Pop_Up_Sound.mp3" id="42_qtcob"]
