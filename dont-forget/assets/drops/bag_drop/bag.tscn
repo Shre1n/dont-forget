@@ -184,9 +184,8 @@ radius = 250.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g3lle"]
 size = Vector2(173.637, 386.966)
 
-[node name="Bag" type="Node2D" node_paths=PackedStringArray("audio_bag")]
+[node name="Bag" type="Node2D"]
 script = ExtResource("1_jg1gs")
-audio_bag = NodePath("")
 
 [node name="RigidBody2D" type="RigidBody2D" parent="."]
 collision_layer = 0

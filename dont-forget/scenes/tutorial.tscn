@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://cfl30cd1m27l0"]
+[gd_scene load_steps=39 format=4 uid="uid://cfl30cd1m27l0"]
 
 [ext_resource type="Script" path="res://scripte/level.gd" id="1_howbq"]
 [ext_resource type="PackedScene" uid="uid://diqm35oue5hsl" path="res://scenes/character.tscn" id="3_gty3g"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bp5u4prb7gwrr" path="res://partikel_leaf.tscn" id="16_dtlgh"]
 [ext_resource type="PackedScene" uid="uid://4v3mtijto1jp" path="res://scenes/box.tscn" id="16_ten56"]
 [ext_resource type="AudioStream" uid="uid://bfyfhx1jkhx38" path="res://Sounds/Musik/light_BG_Sound.mp3" id="18_jihcl"]
+[ext_resource type="PackedScene" uid="uid://tumpceqn5cd1" path="res://assets/NPC/Oma/Oma_NPC.tscn" id="22_uj6wg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x17dd"]
 animations = []
@@ -1361,6 +1362,15 @@ parameters/looping = true
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(3026.5, 83.5002)
 scale = Vector2(394.15, 126.85)
+
+[node name="OmaNpc" parent="." node_paths=PackedStringArray("player") instance=ExtResource("22_uj6wg")]
+z_index = -1
+position = Vector2(1293, 1158)
+scale = Vector2(0.2, 0.2)
+throwbackdream = true
+transition_type = "wipe_to_right"
+path_to_new_scene = "res://scenes/Cutszenes/Backstory/cutscene_backystory.tscn"
+player = NodePath("../Character")
 
 [connection signal="area_entered" from="Door" to="." method="_on_door_area_entered"]
 [connection signal="screen_entered" from="Gegner/Enemy_visibility" to="Gegner" method="_on_enemy_visibility_screen_entered"]

@@ -4,14 +4,15 @@ extends Level
 @export var dialog : DialogueResource
 @export var dialog_resource : DialogueResource
 var _position = Vector2(100,100)
+@onready var dia = $DialogueLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$"../../Pause_Menu/UI".hide()
+	DialogueManager.show_example_dialogue_balloon(dialog, "start_BS")
 	Global.cutscene = true
 	Global.lastCutsceneNr = 1
 	ani_player.play("backstory")
-	DialogueManager.show_example_dialogue_balloon(dialog, "start_BS")
 	#DialogueManager.show_example_dialogue_balloon(dialog_resource, "start")
 	#get_tree().root.print_tree_pretty()
 
@@ -60,3 +61,10 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 		var gameplay_node:Game_Manager = get_tree().get_nodes_in_group("game_manager")[0] as Game_Manager
 		var unload:Node = gameplay_node.current_level
 		SceneManager.swap_scenes("res://scenes/Village.tscn",gameplay_node.level_holder,unload,"wipe_to_right")
+
+
+func _on_animation_player_animation_started(anim_name: StringName) -> void:
+	if anim_name == "backstory":
+		print("Animation gestartet: backstory")
+		print("Dialog wird angezeigt:", dialog.raw_text)
+		DialogueManager.show_example_dialogue_balloon(dialog, "start_BS")

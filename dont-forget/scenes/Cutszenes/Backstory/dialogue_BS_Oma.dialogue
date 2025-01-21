@@ -12,3 +12,10 @@ Elder Saphira: And now your brother is held captive within the cave. [wait=1.5]L
 Elder Saphira: Your magic, your connection to time, makes you special. [wait=1]It mirrors the powers Drexus once wielded before his fall. [wait=0.5]You must understand and learn how to harness them. [wait=2]In the cave, time behaves differently. [wait=1]It will confuse you, try to mislead you. Yet, if you are wise, [wait=0.5]it can also be your ally. Your mission is clear you must find your brother and bring him back. 
 Elder Saphira: Learn all you can, but do not waste time. Stay vigilant – not everything is as it seems. [wait=1]You are our hope, [wait=0.5]not just for your brother, [wait=0.5]but for the balance of the world. [wait=1.5]I can offer guidance if you lose your way, but this path is yours to walk alone. [wait=0.3]Hurry, my child. [wait=1]Time is running out. 
 => END
+
+~ start
+Elder Saphira: How can I help You?
+- Talk to Elder Saphira
+	Elder Saphira: [[ Sometimes, the right way is simply the right way. Trust your instincts! | There may be moments when you’ll need to take a leap — right through the middle. | Your powers are precious, but beware, overusing them might cost you dearly! | The place where you lost everything might hold the key to moving forward... | Crystals are more than just pretty objects, they can help you survive in unexpected ways. | Boxes aren’t just clutter — they might be essential for your journey! | Seek out Lucky Pete’s Shop. His knowledge of your powers could be the difference between success and failure! | I could listen to the Luminas sing all day. Their melodies are truly magical. | I still remember the first time I saw a Noctura. Such majestic creatures — they took my breath away. | Did you know Grumblings adore collecting strawberries? Odd little creatures, aren’t they? |People always call me old and wise. But between us, half the time I can’t even recall what I had for breakfast. ]] => start
+- Say Goodbye
+	Elder Saphira: Hurry Child, your Time is running out! => END
