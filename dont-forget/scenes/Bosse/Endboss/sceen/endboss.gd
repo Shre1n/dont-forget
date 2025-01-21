@@ -160,18 +160,19 @@ func handle_knockback(delta):
 		is_knocked_back = false
 
 func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
-	var effective_damage = ceil((max(1, damage - resistenz) + pierce) * imunity)
-	var knockback_effect = knockback_power_in * knockback_res
-	current_health -= effective_damage
-	damaged = true
-	hitFlashPlayer.play("hit_flash")
-	#print("life: ",current_health)
-	if current_health <= max_health / 2 and phase == 1:
-		start_phase_2()
-	if current_health <= 0:
-		die()
-	if (knockback_effect) > weight:
-		knockback(knockback_effect, damage_position)
+	if alive:
+		var effective_damage = ceil((max(1, damage - resistenz) + pierce) * imunity)
+		var knockback_effect = knockback_power_in * knockback_res
+		current_health -= effective_damage
+		damaged = true
+		hitFlashPlayer.play("hit_flash")
+		#print("life: ",current_health)
+		if current_health <= max_health / 2 and phase == 1:
+			start_phase_2()
+		if current_health <= 0:
+			die()
+		if (knockback_effect) > weight:
+			knockback(knockback_effect, damage_position)
 
 func knockback(knockback, damage_position):
 	if character:
@@ -246,9 +247,10 @@ func attack():
 		perform_phase_2_attack()
 
 func perform_attack():
-	flip_sprite(character)
-	attacking = true
-	animationPlayer.play("attack")
+	if alive:
+		flip_sprite(character)
+		attacking = true
+		animationPlayer.play("attack")
 
 func perform_phase_2_attack():
 	if is_on_floor() and combo_phase == 0:
@@ -261,6 +263,8 @@ func perform_phase_2_attack():
 			perform_combo2_attack()
 
 func perform_combo_attack():
+	if !alive:
+		return
 	#combo_phase = 0
 	if combo_phase == 0:
 		#print("Boss starts combo attack (left-right-left).")
@@ -278,6 +282,8 @@ func perform_combo_attack():
 	combo_timer.start()
 
 func perform_combo2_attack():
+	if !alive:
+		return
 	#combo_phase = 0
 	if combo_phase == 0:
 		combo2_attack = true
@@ -312,6 +318,8 @@ func perform_combo2_attack():
 
 
 func perform_bomb_attack():
+	if !alive:
+		return
 	bomb = true
 	attacking = false
 	player_head = false
@@ -327,6 +335,8 @@ func perform_bomb_attack():
 
 
 func move_in_direction():
+	if !alive:
+		return
 	if abs(global_position.x - direction_to_character.x) < 1:
 		velocity.x = 0
 		return
@@ -334,6 +344,8 @@ func move_in_direction():
 	velocity.x = direction * speed * 2 #oder höher looooool
 
 func die():
+	if !alive:
+		return
 	alive = false
 	animationPlayer.play("dead")
 	emit_signal("boss_defeated")
@@ -403,5 +415,8 @@ func _on_playerhead_body_entered(body):
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "dead": 
-		queue_free()
+		var gameplay_node:Game_Manager = get_tree().get_nodes_in_group("game_manager")[0] as Game_Manager
+		var unload:Node = gameplay_node.current_level
+		SceneManager.swap_scenes("res://cutscenes/cutscene_Endboss_versiegelt.tscn",gameplay_node.level_holder,unload,"fade_to_white")
+		#queue_free()
 	

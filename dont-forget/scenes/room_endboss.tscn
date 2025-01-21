@@ -4629,6 +4629,10 @@ tile_map_data = PackedByteArray("AAA7ACwAAAA0AFsAAAA7AC0AAAA0AFwAAAA7AC4AAAA0AF0
 tile_set = SubResource("TileSet_jxrc6")
 
 [node name="Character" parent="." instance=ExtResource("3_qk2tt")]
+test_on = true
+damage_stat = 1000
+speed_stat = 750
+imunity_stat = 3500
 camera_limit_left = -1300
 camera_limit_top = -1000
 camera_limit_right = 1220

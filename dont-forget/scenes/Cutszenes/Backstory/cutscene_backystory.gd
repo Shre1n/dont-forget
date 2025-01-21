@@ -13,8 +13,14 @@ func _ready() -> void:
 	ani_player.play("backstory")
 	DialogueManager.show_example_dialogue_balloon(dialog, "start_BS")
 	#DialogueManager.show_example_dialogue_balloon(dialog_resource, "start")
-	get_tree().root.print_tree_pretty()
+	#get_tree().root.print_tree_pretty()
 
+func _process(delta):
+	if Input.is_action_just_pressed("inventar"):
+		$"../../Pause_Menu/UI".show()
+		var gameplay_node:Game_Manager = get_tree().get_nodes_in_group("game_manager")[0] as Game_Manager
+		var unload:Node = gameplay_node.current_level
+		SceneManager.swap_scenes("res://scenes/Village.tscn",gameplay_node.level_holder,unload,"wipe_to_right")
 
 func simulate_button_pressed():
 	var event = InputEventMouseButton.new()
