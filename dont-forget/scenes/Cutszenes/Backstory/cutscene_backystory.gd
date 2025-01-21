@@ -65,6 +65,4 @@ func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 
 func _on_animation_player_animation_started(anim_name: StringName) -> void:
 	if anim_name == "backstory":
-		print("Animation gestartet: backstory")
-		print("Dialog wird angezeigt:", dialog.raw_text)
 		DialogueManager.show_example_dialogue_balloon(dialog, "start_BS")
