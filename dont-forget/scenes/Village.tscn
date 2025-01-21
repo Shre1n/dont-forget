@@ -444,7 +444,6 @@ size = Vector2(299, 1316)
 size = Vector2(57, 93)
 
 [node name="Village" type="Node2D" node_paths=PackedStringArray("visibleNotifier_")]
-visible = false
 script = ExtResource("1_5at0l")
 visibleNotifier_ = NodePath("VisibleOnScreenNotifier2D")
 level_nr = 2
@@ -964,7 +963,8 @@ scale = Vector2(649.7, 87.7)
 wait_time = 20.0
 
 [node name="OmaNpc" parent="." node_paths=PackedStringArray("player") instance=ExtResource("25_ftq5f")]
-position = Vector2(3469, 744)
+z_index = -1
+position = Vector2(-1623, 732)
 scale = Vector2(0.2, 0.2)
 dialog_resource = ExtResource("26_2bgcl")
 throwbackdream = true
@@ -974,7 +974,7 @@ player = NodePath("../Character")
 
 [node name="OmaNpc2" parent="." instance=ExtResource("25_ftq5f")]
 z_index = -1
-position = Vector2(-1352, 716)
+position = Vector2(3216, 723)
 scale = Vector2(0.2, 0.2)
 dialog_resource = ExtResource("26_2bgcl")
 
