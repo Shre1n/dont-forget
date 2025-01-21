@@ -13,8 +13,11 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _process(delta):
+	if Input.is_action_just_pressed("inventar"):
+		var game_manager = find_game_manager()
+		SceneManager.swap_scenes("res://ui/menu.tscn",get_tree().root,game_manager,"fade_to_black")
+
 
 
 func _on_animation_player_animation_finished(anim_name):
