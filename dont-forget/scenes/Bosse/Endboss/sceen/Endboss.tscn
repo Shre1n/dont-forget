@@ -771,7 +771,7 @@ tracks/9/keys = {
 "start_offset": 0.311868,
 "stream": ExtResource("21_njlw5")
 }],
-"times": PackedFloat32Array(-0.311868)
+"times": PackedFloat32Array(0)
 }
 tracks/9/use_blend = true
 

@@ -36,7 +36,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_dge2d"]
 resource_name = "happy"
-length = 0.16667
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -71,8 +71,13 @@ position = Vector2(1021, 731)
 sprite_frames = SubResource("SpriteFrames_rf2ws")
 animation = &"happy"
 autoplay = "happy"
+frame_progress = 0.998785
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Animation"]
+reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_n5aml")
 }
+autoplay = "happy"
+
+[connection signal="animation_finished" from="Animation/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

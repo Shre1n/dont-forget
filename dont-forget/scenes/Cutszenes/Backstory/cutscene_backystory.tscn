@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://m8hhscyfvuea"]
+[gd_scene load_steps=22 format=3 uid="uid://m8hhscyfvuea"]
 
 [ext_resource type="AudioStream" uid="uid://s5q6lq0l3ctw" path="res://Sounds/BS_Oma.mp3" id="1_1onok"]
 [ext_resource type="Script" path="res://scenes/Cutszenes/Backstory/cutscene_backystory.gd" id="1_8w53f"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://by076axjjc7ci" path="res://Backstory/2_Höhle.png" id="2_1vn8x"]
 [ext_resource type="Resource" uid="uid://cfr45u8n6ylab" path="res://scenes/Cutszenes/Backstory/dialogue_BS_Oma.dialogue" id="2_d3208"]
 [ext_resource type="AudioStream" uid="uid://mm0dw4k8np0h" path="res://Sounds/Objekte/Cutscene_Book_Sound.mp3" id="2_y50ny"]
+[ext_resource type="Resource" uid="uid://cfyfc3tosgv7t" path="res://assets/NPC/Oma/dialogue.dialogue" id="3_6j8fj"]
 [ext_resource type="Texture2D" uid="uid://wik3t37kud3s" path="res://Backstory/3_Geschichten.png" id="3_swew1"]
 [ext_resource type="Texture2D" uid="uid://b3k577nyp70jr" path="res://Backstory/4_Drexus.png" id="4_nu3tl"]
 [ext_resource type="Texture2D" uid="uid://b0qurf3tvm2ey" path="res://Backstory/5_Drexus_Hüter_Der_Balance.png" id="5_dbxqh"]
@@ -265,8 +266,10 @@ animations = [{
 }]
 
 [node name="cutscene_Backystory" type="Node2D"]
+z_index = -4096
 script = ExtResource("1_8w53f")
 dialog = ExtResource("2_d3208")
+dialog_resource = ExtResource("3_6j8fj")
 
 [node name="Bilder" type="Node2D" parent="."]
 
