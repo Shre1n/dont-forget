@@ -23,6 +23,7 @@ extends "res://Templates/Enemy_Template/enemy_template.gd"
 
 @export_category("Visible")
 @export var visibleOnScreen: VisibleOnScreenEnabler2D
+@export var numberSpace = 200
 
 var angle: float = 0.0
 var start_position: Vector2
@@ -49,10 +50,10 @@ func _ready():
 	start_position = position
 	min_pos = start_position
 	max_pos = start_position
-	min_pos.x -= 10
-	max_pos.x += 10
-	min_pos.y -= 10
-	max_pos.y += 10
+	min_pos.x -= numberSpace
+	max_pos.x += numberSpace
+	min_pos.y -= numberSpace
+	max_pos.y += numberSpace
 	chase_range = detection_area.scale.x*5
 	# Connect detection area signals
 	#detection_area.connect("body_entered", Callable(self, "_on_detection_area_body_entered"))
@@ -109,8 +110,9 @@ func chase_player():
 func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	# Custom damage logic (for example, hit flash effect or other special behavior)
 	# Call the parent's take_damage method to handle the core damage logic
-	super.take_damage(damage, pierce, knockback_power_in, damage_position, falle)
+	damaged = true
 	hit.play("hit_flash")
+	super.take_damage(damage, pierce, knockback_power_in, damage_position, falle)
 	
 	hit_audio.play()
 

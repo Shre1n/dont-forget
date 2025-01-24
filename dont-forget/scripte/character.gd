@@ -248,16 +248,15 @@ func _process(delta):
 		cooldown -= delta
 	if dash_cooldown > 0:
 		dash_cooldown -= delta
-	if Input.is_action_just_pressed("attack") && sword && cooldown <= 0:
+	if Input.is_action_just_pressed("attack") && sword && cooldown <= 0 and alive:
 		attack()
 		update_animation()
-	elif Input.is_action_just_pressed("dash") && dash_cooldown <= 0 && Input.get_axis("left", "right"):
+	elif Input.is_action_just_pressed("dash") && dash_cooldown <= 0 && Input.get_axis("left", "right") and alive:
 		dash()
 	if Input.is_action_just_pressed("inventar"):
 		popup_stat.play()
 		open = !open
 		stats_popup.visible = open
-
 func _physics_process(delta):
 	if alive:
 		if !attacking:
@@ -389,10 +388,10 @@ func _on_jump_timer_timeout():
 	JumpAvailability = false
 
 func die():
+	alive = false
 	dash_audio.play()
 	drop_bag()
 	velocity = Vector2.ZERO
-	alive = false
 	var col2a = 0
 	$CollisionShape2D2/Damage_Area.collision_mask = col2a
 	Global.price_multi = 1
@@ -411,8 +410,6 @@ func _add_new_bag(bag_scene):
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "death" and !alive:
-		alive = false
-
 		#Zum Village zurück
 		emit_signal("going_back")
 		#Zum Village zurück
