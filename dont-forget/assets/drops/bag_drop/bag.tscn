@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://2nkmel7nksqk"]
+[gd_scene load_steps=13 format=3 uid="uid://2nkmel7nksqk"]
 
 [ext_resource type="Texture2D" uid="uid://bulumj4pfo73a" path="res://assets/drops/bag_drop/Bag_1.png" id="1_223x5"]
 [ext_resource type="Script" path="res://assets/drops/bag_drop/bag.gd" id="1_jg1gs"]
 [ext_resource type="Texture2D" uid="uid://bvj85a55ax4eo" path="res://assets/drops/bag_drop/Bag_2.png" id="2_ji4ah"]
 [ext_resource type="Script" path="res://interaction/interaction area/interaction_area.gd" id="3_rcmpb"]
+[ext_resource type="Script" path="res://audio_stream_player_2d.gd" id="5_1boj5"]
+[ext_resource type="AudioStream" uid="uid://dt17cjkpg1j3b" path="res://Sounds/Objekte/Bag_Sounds.mp3" id="5_eyacd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_k8wf2"]
 animations = [{
@@ -215,6 +217,10 @@ shape = SubResource("CircleShape2D_gdf0f")
 position = Vector2(-8.13641, 25)
 scale = Vector2(0.381674, 0.328699)
 shape = SubResource("RectangleShape2D_g3lle")
+
+[node name="Audio_Stream" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("5_1boj5")
+bag_sound = ExtResource("5_eyacd")
 
 [connection signal="body_entered" from="RigidBody2D/InteractionArea" to="RigidBody2D/InteractionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="RigidBody2D/InteractionArea" to="RigidBody2D/InteractionArea" method="_on_body_exited"]

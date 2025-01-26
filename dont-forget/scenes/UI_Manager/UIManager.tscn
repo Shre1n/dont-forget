@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bos25twpmtbll"]
+[gd_scene load_steps=12 format=3 uid="uid://bos25twpmtbll"]
 
 [ext_resource type="Script" path="res://scenes/UI_Manager/ui_manager.gd" id="1_v3nap"]
 [ext_resource type="FontFile" uid="uid://bxoxm76xic81f" path="res://ui/font/LatunnerRegular-RpYZo.otf" id="2_1ejbi"]
 [ext_resource type="Texture2D" uid="uid://bk62c81llp5aq" path="res://scenes/UI_Manager/Shop_assets/Shopranke.png" id="2_7ww5b"]
 [ext_resource type="Texture2D" uid="uid://h6any8wuwqdl" path="res://scenes/UI_Manager/Shop_assets/Shopranke_klein.png" id="3_mwk8y"]
+[ext_resource type="AudioStream" uid="uid://col48xmby65t6" path="res://Sounds/Objekte/Pop_Up_Sound.mp3" id="6_kiahn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i2grv"]
 bg_color = Color(0.646232, 0.451203, 0.326315, 1)
@@ -111,4 +112,8 @@ rotation = 1.52237
 scale = Vector2(1.06317, 1.05129)
 texture = ExtResource("3_mwk8y")
 
+[node name="on_interact" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_kiahn")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Panel/CloseButton" to="." method="_on_close_button_pressed"]

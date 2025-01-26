@@ -7,6 +7,8 @@ var bag_coins = 0
 @onready var animationPlayer: AnimationPlayer = $RigidBody2D/AnimationPlayer
 @onready var anim_Sprite: AnimatedSprite2D =$RigidBody2D/AnimatedSprite2D
 
+#@export var audio_bag: Audio_Stream
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	interaction_area.interact = Callable(self, "on_pick_up")
@@ -21,6 +23,7 @@ func on_pick_up():
 	$RigidBody2D.freeze = false
 	character = interaction_area.body_of_character
 	character.get_coins(bag_coins)
+	#audio_bag.stream
 	queue_free()
 
 func show_interaction(hide: bool):

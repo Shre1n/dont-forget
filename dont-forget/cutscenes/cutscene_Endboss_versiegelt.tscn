@@ -1,0 +1,192 @@
+[gd_scene load_steps=19 format=3 uid="uid://dmnq81t5by2jg"]
+
+[ext_resource type="Script" path="res://cutscenes/cutscene_endboss_versiegelt.gd" id="1_g4u1m"]
+[ext_resource type="Texture2D" uid="uid://bhj85xnjsg58c" path="res://cutscenes/versiegelung_assets/Drexus_versiegelung/2.png" id="2_70inh"]
+[ext_resource type="Texture2D" uid="uid://c86lnxx7pyfu5" path="res://assets/Tilemap/cave/Cave_BG 2.png" id="2_178cs"]
+[ext_resource type="Texture2D" uid="uid://clu244io8gaos" path="res://cutscenes/versiegelung_assets/Drexus_versiegelung/1.png" id="3_cmka7"]
+[ext_resource type="Texture2D" uid="uid://dlox7wae6qcal" path="res://cutscenes/versiegelung_assets/mc_versiegelung/1.png" id="4_bjy8m"]
+[ext_resource type="Texture2D" uid="uid://04w4dofecl5n" path="res://cutscenes/versiegelung_assets/mc_versiegelung/2.png" id="5_uryc0"]
+[ext_resource type="Texture2D" uid="uid://y4tswgt0enjc" path="res://cutscenes/versiegelung_assets/mc_versiegelung/3.png" id="6_5pnwq"]
+[ext_resource type="Texture2D" uid="uid://b57r3u3raubfb" path="res://cutscenes/versiegelung_assets/mc_versiegelung/4.png" id="7_webv6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_osp6m"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("2_70inh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cmka7")
+}],
+"loop": true,
+"name": &"drexus_versiegelung",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_gkpms"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 1.26667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_rl4ln"]
+resource_name = "drexus"
+length = 1.53334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.466667, 1.13333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yymeq"]
+_data = {
+"RESET": SubResource("Animation_gkpms"),
+"drexus": SubResource("Animation_rl4ln")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_caxdx"]
+animations = [{
+"frames": [{
+"duration": 1.5,
+"texture": ExtResource("4_bjy8m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uryc0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5pnwq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_webv6")
+}],
+"loop": true,
+"name": &"MC_versiegelung",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_r0arv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.06667, 2.13333, 3.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_50ok3"]
+resource_name = "mc"
+length = 1.66667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 0.633333, 1.06667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xdgd0"]
+_data = {
+"RESET": SubResource("Animation_r0arv"),
+"mc": SubResource("Animation_50ok3")
+}
+
+[sub_resource type="Animation" id="Animation_mx06v"]
+resource_name = "ani"
+length = 1.66667
+tracks/0/type = "animation"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("drexus/drexus")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"clips": PackedStringArray("drexus"),
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/1/type = "animation"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MC/Mc")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": PackedStringArray("mc"),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mix58"]
+_data = {
+"ani": SubResource("Animation_mx06v")
+}
+
+[node name="CutsceneEndbossVersiegelt" type="Node2D"]
+script = ExtResource("1_g4u1m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1020, 276)
+texture = ExtResource("2_178cs")
+
+[node name="Animation" type="Node2D" parent="."]
+position = Vector2(916, 552)
+
+[node name="drexus" type="Node2D" parent="Animation"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animation/drexus"]
+scale = Vector2(0.562037, 0.576543)
+sprite_frames = SubResource("SpriteFrames_osp6m")
+animation = &"drexus_versiegelung"
+autoplay = "drexus_versiegelung"
+frame = 1
+
+[node name="drexus" type="AnimationPlayer" parent="Animation/drexus"]
+libraries = {
+"": SubResource("AnimationLibrary_yymeq")
+}
+
+[node name="MC" type="Node2D" parent="Animation"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Animation/MC"]
+scale = Vector2(0.612963, 0.585185)
+sprite_frames = SubResource("SpriteFrames_caxdx")
+animation = &"MC_versiegelung"
+
+[node name="Mc" type="AnimationPlayer" parent="Animation/MC"]
+libraries = {
+"": SubResource("AnimationLibrary_xdgd0")
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animation"]
+libraries = {
+"": SubResource("AnimationLibrary_mix58")
+}
+autoplay = "ani"
+speed_scale = 0.5
+
+[connection signal="animation_finished" from="Animation/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

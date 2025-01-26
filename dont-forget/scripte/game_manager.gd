@@ -15,6 +15,8 @@ signal back_to_village
 @export var life_time:float = 10.0
 @export var max_time: float = 300.0
 
+@export var audio: AudioStreamPlayer2D
+
 @onready var canvaslayer = $Pause_Menu
 
 var tutorial = preload("res://scenes/tutorial.tscn")
@@ -40,12 +42,12 @@ var speed_stat = 250
 var jump_stat = 250
 var imunity_stat = 0
 var attack_speed_stat = 250
-var cooldown_stat = 0
+var cooldown_stat = 250
 var pierce_stat = 0
 var crit_stat = 0
 var knockback_stat = 50
 var knockback_res_stat = 0
-var dash_cooldown_stat = 0
+var dash_cooldown_stat = 250
 var dash_speed_stat = 0
 var extra_weight_stat = 0
 
@@ -60,12 +62,49 @@ func _ready():
 	SceneManager.load_complete.connect(_on_level_loaded)
 	SceneManager.load_start.connect(_on_load_start)
 	SceneManager.scene_added.connect(_on_level_added)
+	level_holder.connect("child_entered_tree", Callable(self, "_on_child_added_to_level_holder"))
+	level_holder.connect("tree_exited", Callable(self, "_on_child_removed_from_level_holder"))
+	update_level_holder_visibility()
+	
+	
+	#Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	#Zum Village zurück (braucht signal mit path)
-	current_character.connect("going_back", Callable(self, "scene_change"))
+	if current_character != null:
+		current_character.connect("going_back", Callable(self, "scene_change"))
 	get_node("Pause_Menu/UiManager").connect("give_user", Callable(self, "give_user"))
+	
+
+
+func _on_child_added_to_level_holder(child):
+	update_level_holder_visibility()
+
+# Methode, die aufgerufen wird, wenn ein Kind entfernt wird
+func _on_child_removed_from_level_holder():
+	update_level_holder_visibility()
+
+# Methode zur Aktualisierung der Sichtbarkeit basierend auf der Anzahl der Kinder
+func update_level_holder_visibility():
+	if level_holder.get_child_count() > 0:
+		level_holder.show()
+		var child: Level = level_holder.get_child(0)
+		child.show()
+	else:
+		level_holder.hide()
+
+
+
+
+
+func play_bg_music_Village():
+	var sound = preload("res://Sounds/Musik/BG_Musik.mp3")
+	
 
 func give_user():
 	emit_signal("current_user", current_character)
+	
+func show_light():
+	if current_level.level_nr == 2 and current_character and current_level.name != "Village":
+		current_character.get_node("Light").show()
 
 func get_all_stats() -> Dictionary:
 	var all_stats_in_dict = {
@@ -95,7 +134,7 @@ func load_saved_scene():
 
 	#Entfernt alle alten Level-Inhalte
 	for child in level_holder.get_children():
-			child.queue_free()
+		child.queue_free()
 	
 	# Loads save or Fallback
 	if saved_scene_path != null:
@@ -130,6 +169,8 @@ func load_saved_scene():
 			await get_tree().process_frame
 			life.start(save_user.life)
 			all_stats_in_dict = user_save.stats
+	
+	show_light()
 
 
 	# Renew Bag
@@ -194,10 +235,11 @@ func save_scene():
 	var user_save = save_User.load_save()
 	var current_scene = get_child(0).get_child(0).scene_file_path
 	user_save.scene_path = load(String(current_scene)) # Get the current scene's path
-	save_user.position_of_character = current_character.position
-	user_save.life = life.time_left
-	user_save.gold = gold.text
-	user_save.gold = current_character.coins
+	if current_character != null:
+		save_user.position_of_character = current_character.position
+		user_save.life = life.time_left
+		user_save.gold = gold.text
+		user_save.gold = current_character.coins
 	user_save.save()
 
 
@@ -207,12 +249,18 @@ func _on_level_loaded(level) -> void:
 		find_Itemholder(level)
 	#Signale zum Character neu verbinden nach einem Scene wechsel
 		current_character = find_character(current_level)
-		current_character.connect("lifeChange", Callable(self, "life_timer_update"))
-		#Zum Menü zurück
-		current_character.connect("going_back", Callable(self, "scene_change"))
+		if !current_character == null:
+			current_character.connect("lifeChange", Callable(self, "life_timer_update"))
+			#Zum Menü zurück
+			current_character.connect("going_back", Callable(self, "scene_change"))
 		#Zum Village zurück (braucht signal mit path)
 		#current_character.connect("going_back", Callable(self, "scene_change"))
+		show_light()
 		save_scene()
+		update_level_holder_visibility()
+
+func new_Itemholder_Shout():
+	find_Itemholder(current_level)
 
 func _on_level_added(_level,_loading_screen) -> void:
 	if _loading_screen != null:

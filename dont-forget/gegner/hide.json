@@ -1,5 +1,4 @@
 {
-  "hide_enemy": {
 	"profiles": {
 	  "default": {
 		"min_stats": {
@@ -21,7 +20,7 @@
 		  "fear_stat": 10
 		},
 		"max_stats": {
-		  "life_stat": 20,
+		  "life_stat": 15,
 		  "damage_stat": 3,
 		  "crit_dmg_stat": 25,
 		  "res_stat": 1,
@@ -44,7 +43,7 @@
 		},
 		"max_drops": {
 		  "gold": 2,
-		  "time": 3
+		  "time": 2
 		},
 		"special_type": {
 		  "elite": false,
@@ -59,7 +58,7 @@
 	  },
 	  "strong_enemy": {
 		"min_stats": {
-		  "life_stat": 10,
+		  "life_stat": 5,
 		  "damage_stat": 5,
 		  "crit_dmg_stat": 50,
 		  "res_stat": 2,
@@ -77,7 +76,7 @@
 		  "fear_stat": 15
 		},
 		"max_stats": {
-		  "life_stat": 50,
+		  "life_stat": 20,
 		  "damage_stat": 10,
 		  "crit_dmg_stat": 100,
 		  "res_stat": 5,
@@ -95,11 +94,11 @@
 		  "fear_stat": 40
 		},
 		"min_drops": {
-		  "gold": 1,
+		  "gold": 10,
 		  "time": 2
 		},
 		"max_drops": {
-		  "gold": 4,
+		  "gold": 40,
 		  "time": 5
 		},
 		"special_type": {
@@ -115,4 +114,3 @@
 	  }
 	}
   }
-}

@@ -15,3 +15,7 @@ var new_direction
 
 var coins: int
 var price_multi: float = 1
+
+var cutscene: bool = false
+var lastCutsceneNr: int = 0
+#var talkpos: Vector2 = Vector2(0,0)

@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://cfyfc3tosgv7t"
+path="res://.godot/imported/dialogue.dialogue-f3ff6128ac3ed95a3b742a73e453f4c5.tres"
+
+[deps]
+
+source_file="res://assets/NPC/Oma/dialogue.dialogue"
+dest_files=["res://.godot/imported/dialogue.dialogue-f3ff6128ac3ed95a3b742a73e453f4c5.tres"]
+
+[params]
+
+defaults=true

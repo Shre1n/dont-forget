@@ -23,7 +23,6 @@ func _ready():
 	set_time_bar_full()
 	
 	amount_label.text = str(coins)
-	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -33,7 +32,8 @@ func save_user_location(path):
 	current_player = path
 	current_player.connect("coinsChange", Callable(self, "coin_update"))
 	current_player.connect("resetCoins", Callable(self,"coin_reset"))
-	
+	current_player.coins = coins
+
 func coin_update(amount):
 	var sum = coins + amount
 	if sum >= 0:
@@ -57,7 +57,8 @@ func update_lifetime_display(time):
 func set_time_bar_full():
 	sand_display.value = sand_display.max_value
 
-
+func get_coins():
+	current_player.coins = coins
 
 func find_game_manager():
 	var root = get_tree().root  # Root-Node des Scene Trees

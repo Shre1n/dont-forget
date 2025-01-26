@@ -20,10 +20,10 @@
 				"fear_stat" : 0
 			},
 			"max_stats": {
-				"life_stat": 100,
-				"damage_stat": 25,
+				"life_stat": 25,
+				"damage_stat": 15,
 				"crit_dmg_stat": 400,
-				"res_stat": 8,
+				"res_stat": 4,
 				"speed_stat": 400,
 				"imunity_stat": 200,
 				"pierce_stat": 240,
@@ -43,7 +43,7 @@
 			},
 			"max_drops": {
 				"gold": 4,
-				"time": 5
+				"time": 2
 			},
 			"special_type": {
 				"elite": false,
@@ -54,12 +54,12 @@
 		},
 		"strong_enemy": {
 			"min_stats": {
-				"life_stat": 50,
+				"life_stat": 5,
 				"damage_stat": 10,
 				"crit_dmg_stat": 100,
 				"res_stat": 2,
 				"speed_stat": 50,
-				"imunity_stat": 10,
+				"imunity_stat": 50,
 				"pierce_stat": 20,
 				"crit_stat": 50,
 				"knockback_stat": 150,
@@ -72,12 +72,12 @@
 				"fear_stat" : 0
 			},
 			"max_stats": {
-				"life_stat": 300,
+				"life_stat": 20,
 				"damage_stat": 50,
 				"crit_dmg_stat": 500,
 				"res_stat": 15,
 				"speed_stat": 500,
-				"imunity_stat": 250,
+				"imunity_stat": 400,
 				"pierce_stat": 300,
 				"crit_stat": 500,
 				"knockback_stat": 300,
@@ -90,12 +90,12 @@
 				"fear_stat" : 0
 			},
 			"min_drops": {
-				"gold": 2,
-				"time": 3
+				"gold": 35,
+				"time": 5
 			},
 			"max_drops": {
-				"gold": 6,
-				"time": 8
+				"gold": 100,
+				"time": 10
 			},
 			"special_type": {
 				"elite": true,

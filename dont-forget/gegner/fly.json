@@ -1,116 +1,170 @@
 {
-  "fly_enemy": {
-	"profiles": {
-	  "default": {
-		"min_stats": {
-		  "life_stat": 5,
-		  "damage_stat": 1,
-		  "crit_dmg_stat": 0,
-		  "res_stat": 0,
-		  "speed_stat": 200,
-		  "imunity_stat": 0,
-		  "pierce_stat": 0,
-		  "crit_stat": 0,
-		  "knockback_stat": 50,
-		  "knockback_res_stat": 0,
-		  "jump_stat": 10,
-		  "attack_speed_stat": 100,
-		  "cooldown_stat": 0,
-		  "reaction_stat": 50,
-		  "deception_stat": 10,
-		  "fear_stat": 5
-		},
-		"max_stats": {
-		  "life_stat": 50,
-		  "damage_stat": 5,
-		  "crit_dmg_stat": 50,
-		  "res_stat": 2,
-		  "speed_stat": 400,
-		  "imunity_stat": 50,
-		  "pierce_stat": 100,
-		  "crit_stat": 50,
-		  "knockback_stat": 150,
-		  "knockback_res_stat": 50,
-		  "jump_stat": 20,
-		  "attack_speed_stat": 200,
-		  "cooldown_stat": 50,
-		  "reaction_stat": 150,
-		  "deception_stat": 50,
-		  "fear_stat": 20
-		},
-		"min_drops": {
-		  "gold": 1,
-		  "time": 1
-		},
-		"max_drops": {
-		  "gold": 3,
-		  "time": 4
-		},
-		"special_type": {
-		  "elite": false,
-		  "mini_boss": false
-		},
-		"extra_data": {
-		  "fly_behavior": {
-			"hover_speed": 100,
-			"attack_pattern": "zigzag"
-		  }
-		}
+  "profiles": {
+	"default": {
+	  "min_stats": {
+		"life_stat": 5,
+		"damage_stat": 1,
+		"crit_dmg_stat": 0,
+		"res_stat": 0,
+		"speed_stat": 200,
+		"imunity_stat": 0,
+		"pierce_stat": 0,
+		"crit_stat": 0,
+		"knockback_stat": 1500,
+		"knockback_res_stat": 0,
+		"jump_stat": 10,
+		"attack_speed_stat": 100,
+		"cooldown_stat": 0,
+		"reaction_stat": 50,
+		"deception_stat": 10,
+		"fear_stat": 5
 	  },
-	  "strong_enemy": {
-		"min_stats": {
-		  "life_stat": 30,
-		  "damage_stat": 10,
-		  "crit_dmg_stat": 100,
-		  "res_stat": 5,
-		  "speed_stat": 300,
-		  "imunity_stat": 25,
-		  "pierce_stat": 50,
-		  "crit_stat": 50,
-		  "knockback_stat": 100,
-		  "knockback_res_stat": 25,
-		  "jump_stat": 15,
-		  "attack_speed_stat": 150,
-		  "cooldown_stat": 20,
-		  "reaction_stat": 100,
-		  "deception_stat": 20,
-		  "fear_stat": 10
-		},
-		"max_stats": {
-		  "life_stat": 150,
-		  "damage_stat": 20,
-		  "crit_dmg_stat": 200,
-		  "res_stat": 10,
-		  "speed_stat": 400,
-		  "imunity_stat": 100,
-		  "pierce_stat": 150,
-		  "crit_stat": 100,
-		  "knockback_stat": 200,
-		  "knockback_res_stat": 100,
-		  "jump_stat": 25,
-		  "attack_speed_stat": 300,
-		  "cooldown_stat": 50,
-		  "reaction_stat": 200,
-		  "deception_stat": 50,
-		  "fear_stat": 20
-		},
-		"min_drops": {
-		  "gold": 3,
-		  "time": 2
-		},
-		"max_drops": {
-		  "gold": 5,
-		  "time": 6
-		},
-		"special_type": {
-		  "elite": true,
-		  "mini_boss": false
-		},
-		"extra_data": {
-		  "fly_behavior": {
-			"hover_speed": 150,
-			"attack_pattern": "dive_bomb"
-		  }
+	  "max_stats": {
+		"life_stat": 20,
+		"damage_stat": 5,
+		"crit_dmg_stat": 50,
+		"res_stat": 2,
+		"speed_stat": 400,
+		"imunity_stat": 50,
+		"pierce_stat": 100,
+		"crit_stat": 50,
+		"knockback_stat": 3000,
+		"knockback_res_stat": 50,
+		"jump_stat": 20,
+		"attack_speed_stat": 200,
+		"cooldown_stat": 50,
+		"reaction_stat": 150,
+		"deception_stat": 50,
+		"fear_stat": 20
+	  },
+	  "min_drops": {
+		"gold": 1,
+		"time": 1
+	  },
+	  "max_drops": {
+		"gold": 3,
+		"time": 2
+	  },
+	  "special_type": {
+		"elite": false,
+		"mini_boss": false
+	  },
+	  "extra_data": {
+		"fly_behavior": {
+		  "hover_speed": 100,
+		  "attack_pattern": "zigzag"
+		}
+	  }
+	},
+	"weak": {
+	  "min_stats": {
+		"life_stat": 1,
+		"damage_stat": 1,
+		"crit_dmg_stat": 0,
+		"res_stat": 0,
+		"speed_stat": 200,
+		"imunity_stat": 0,
+		"pierce_stat": 0,
+		"crit_stat": 0,
+		"knockback_stat": 150,
+		"knockback_res_stat": 0,
+		"jump_stat": 0,
+		"attack_speed_stat": 0,
+		"cooldown_stat": 0,
+		"reaction_stat": 50,
+		"deception_stat": 10,
+		"fear_stat": 5
+	  },
+	  "max_stats": {
+		"life_stat": 3,
+		"damage_stat": 5,
+		"crit_dmg_stat": 0,
+		"res_stat": 0,
+		"speed_stat": 400,
+		"imunity_stat": 50,
+		"pierce_stat": 0,
+		"crit_stat": 0,
+		"knockback_stat": 300,
+		"knockback_res_stat": 0,
+		"jump_stat": 0,
+		"attack_speed_stat": 0,
+		"cooldown_stat": 50,
+		"reaction_stat": 150,
+		"deception_stat": 50,
+		"fear_stat": 20
+	  },
+	  "min_drops": {
+		"gold": 1,
+		"time": 1
+	  },
+	  "max_drops": {
+		"gold": 2,
+		"time": 2
+	  },
+	  "special_type": {
+		"elite": false,
+		"mini_boss": false
+	  },
+	  "extra_data": {
+		"fly_behavior": {
+		  "hover_speed": 100,
+		  "attack_pattern": "zigzag"
+		}
+	  }
+	},
+	"strong_enemy": {
+	  "min_stats": {
+		"life_stat": 5,
+		"damage_stat": 15,
+		"crit_dmg_stat": 100,
+		"res_stat": 5,
+		"speed_stat": 300,
+		"imunity_stat": 25,
+		"pierce_stat": 50,
+		"crit_stat": 50,
+		"knockback_stat": 250,
+		"knockback_res_stat": 25,
+		"jump_stat": 15,
+		"attack_speed_stat": 150,
+		"cooldown_stat": 20,
+		"reaction_stat": 100,
+		"deception_stat": 20,
+		"fear_stat": 10
+	  },
+	  "max_stats": {
+		"life_stat": 30,
+		"damage_stat": 25,
+		"crit_dmg_stat": 200,
+		"res_stat": 10,
+		"speed_stat": 500,
+		"imunity_stat": 100,
+		"pierce_stat": 150,
+		"crit_stat": 100,
+		"knockback_stat": 500,
+		"knockback_res_stat": 100,
+		"jump_stat": 25,
+		"attack_speed_stat": 300,
+		"cooldown_stat": 50,
+		"reaction_stat": 200,
+		"deception_stat": 50,
+		"fear_stat": 20
+	  },
+	  "min_drops": {
+		"gold": 30,
+		"time": 2
+	  },
+	  "max_drops": {
+		"gold": 60,
+		"time": 6
+	  },
+	  "special_type": {
+		"elite": true,
+		"mini_boss": false
+	  },
+	  "extra_data": {
+		"fly_behavior": {
+		  "hover_speed": 150,
+		  "attack_pattern": "dive_bomb"
 		}
 	  }
 	}

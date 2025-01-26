@@ -79,10 +79,13 @@ var weight
 var elite = false
 var mini_boss = false
 
+#var spawner = false
+
 func _ready():
 	# Initialize references and start behavior
 	var gamemanager = find_game_manager()
-	current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
+	#current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
+	find_item_holder()
 	randomize()
 	load_stats_from_file(stats_file_path)
 	apply_profile_data()
@@ -126,9 +129,17 @@ func apply_profile_data():
 		extra_data = {}
 
 func special_load():
-	elite = special_type["elite"]
-	mini_boss = special_type["mini_boss"]
-	
+	#print("special_type contents: ", special_type)
+	if special_type.has("elite"):
+		elite = special_type["elite"]
+	else:
+		elite = false  # Standardwert, falls der Schlüssel fehlt
+		
+	if special_type.has("mini_boss"):
+		mini_boss = special_type["mini_boss"]
+	else:
+		mini_boss = false  # Standardwert, falls der Schlüssel fehlt
+
 func set_weapon(new_weapon: Node):
 	weapon = new_weapon
 	
@@ -175,7 +186,7 @@ func update_status():
 		weapon.crit_multi = max(1, crit_dmg_stat)
 		weapon.knockback = knockback_stat
 	#else:
-		#print("No weapon")
+		#print("No weapon enemy template")
 
 func calculate_stats_to_value(stat: int, span_start: float, span_end: float, min_value: float, max_value: float, divider: float = 1000.0) -> float:
 	var stat_factor = clamp(stat / divider, span_start, span_end)
@@ -280,10 +291,11 @@ func _on_detection_area_body_exited(body):
 func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
 	var effective_damage = ceil((max(1, damage - resistenz) + pierce) * imunity)
 	var knockback_effect = knockback_power_in * knockback_res
-	life -= damage
-	damaged = true
+	life -= effective_damage
+	#damaged = true
 	if life <= 0:
-		die()
+		#die()
+		pass
 	elif (knockback_effect) > weight:
 		knockback(knockback_effect, damage_position)
 
@@ -298,7 +310,7 @@ func knockback(knockback, damage_position):
 func die():
 	# Handle the death of the enemy
 	alive = false
-	add_new_drop(position)
+	add_new_drop(global_position)
 
 func _on_animation_player_animation_finished(anim_name: String):
 	# Check when the death animation is finished to drop items and remove the enemy
@@ -338,3 +350,6 @@ func instantiate_drop_items(drop_count, death_pos, is_time_item):
 func save_user_location(path):
 	# Save the location of the item holder (optional)
 	current_Itemholder = path
+
+func find_item_holder():
+	current_Itemholder = $"../../Itemholder"
