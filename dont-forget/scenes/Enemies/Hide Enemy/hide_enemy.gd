@@ -64,7 +64,7 @@ func start_new_behavior():
 	velocity = Vector2.ZERO
 
 func chase_player():
-	if player and !attacking:
+	if player and !attacking and alive:
 		var direction_to_character = (player.global_position - global_position).normalized()
 		direction = direction_calcX(direction_to_character)
 		move_in_direction()
@@ -77,8 +77,10 @@ func load_stats():
 	
 
 func take_damage(damage, pierce, knockback_power_in, damage_position, falle):
-	super.take_damage(damage, pierce, knockback_power_in, damage_position, falle)
+	damaged = true
 	hit.play("hit_flash")
+	super.take_damage(damage, pierce, knockback_power_in, damage_position, falle)
+	#hit.play("hit_flash")
 	
 	if life <= 0:
 		alive = false
@@ -92,13 +94,13 @@ func _on_animation_player_animation_finished(anim_name: String):
 		animationPlayer.disconnect("animation_finished", Callable(self, "_on_dead_animation_finished"))  # Disconnect the signal to avoid multiple calls
 		super.die()
 		queue_free()
-	if anim_name == "attack":
+	elif anim_name == "attack":
 		attacking = false
 		animationPlayer.play("idle")
 	
 
 func _on_detection_area_body_entered(body):
-	if body is Character:
+	if body is Character and alive:
 		super.flip_sprite(body)
 		animationPlayer.play("awake")
 		player = body  # Set player reference

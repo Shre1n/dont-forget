@@ -1,7 +1,6 @@
 on:
   push:
     branches:
-      - "feature/releases"
       - "main"
 
 jobs:
@@ -35,7 +34,7 @@ jobs:
     needs: import_project
     env:
       DEV-STEP: Alpha
-      VERSION: 1.0.0
+      VERSION: 1.0.1
     # Add permission for release creation. Can be made narrower according to your needs
     permissions: write-all
     # Job name, can be anything

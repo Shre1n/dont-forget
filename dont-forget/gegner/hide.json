@@ -20,7 +20,7 @@
 		  "fear_stat": 10
 		},
 		"max_stats": {
-		  "life_stat": 20,
+		  "life_stat": 15,
 		  "damage_stat": 3,
 		  "crit_dmg_stat": 25,
 		  "res_stat": 1,
@@ -58,7 +58,7 @@
 	  },
 	  "strong_enemy": {
 		"min_stats": {
-		  "life_stat": 10,
+		  "life_stat": 5,
 		  "damage_stat": 5,
 		  "crit_dmg_stat": 50,
 		  "res_stat": 2,
@@ -76,7 +76,7 @@
 		  "fear_stat": 15
 		},
 		"max_stats": {
-		  "life_stat": 50,
+		  "life_stat": 20,
 		  "damage_stat": 10,
 		  "crit_dmg_stat": 100,
 		  "res_stat": 5,

@@ -777,6 +777,7 @@ max_distance = 3000.0
 attenuation = 3.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="area_entered" from="CollisionPolygon2D/Damage_Area" to="CollisionPolygon2D/Damage_Area" method="_on_area_entered"]
 [connection signal="timeout" from="Direction_Timer" to="." method="_on_direction_timer_timeout"]
 [connection signal="body_entered" from="Detection_Area" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="Detection_Area" to="." method="_on_detection_area_body_exited"]
