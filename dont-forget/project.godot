@@ -26,6 +26,7 @@ SceneManager="*res://autoload/scene_manager.gd"
 InteractionManager="*res://interaction/InteractionManager.tscn"
 Global="*res://autoload/Global.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+ConfigManager="*res://autoload/ConfigManager.gd"
 
 [display]
 

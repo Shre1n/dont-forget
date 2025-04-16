@@ -4870,35 +4870,27 @@ scale = Vector2(0.2, 0.2)
 
 [node name="Fly_Enemy2" parent="Fly_enemies" instance=ExtResource("8_nip6k")]
 position = Vector2(11110, -10600)
-numberSpace = 200
 
 [node name="Fly_Enemy3" parent="Fly_enemies" instance=ExtResource("8_nip6k")]
 position = Vector2(26735, 1920)
-numberSpace = 200
 
 [node name="Fly_Enemy4" parent="Fly_enemies" instance=ExtResource("8_nip6k")]
 position = Vector2(51670, -10410)
-numberSpace = 200
 
 [node name="Fly_Enemy5" parent="Fly_enemies" instance=ExtResource("8_nip6k")]
 position = Vector2(67065, 2815)
-numberSpace = 200
 
 [node name="Fly_Enemy6" parent="Fly_enemies" instance=ExtResource("8_nip6k")]
 position = Vector2(62785, -22150)
-numberSpace = 200
 
 [node name="Fly_Enemy8" parent="Fly_enemies" instance=ExtResource("8_nip6k")]
 position = Vector2(35205, 445)
-numberSpace = 200
 
 [node name="Fly_Enemy9" parent="Fly_enemies" instance=ExtResource("8_nip6k")]
 position = Vector2(42315, 1455)
-numberSpace = 200
 
 [node name="Fly_Enemy" parent="Fly_enemies" instance=ExtResource("8_nip6k")]
 position = Vector2(11650, -6720)
-numberSpace = 200
 
 [node name="Hide_Enemies" type="Node2D" parent="."]
 

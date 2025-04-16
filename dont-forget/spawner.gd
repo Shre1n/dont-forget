@@ -23,6 +23,7 @@ var current_Itemholder
 
 var loner_spawned = false
 
+
 func _init() -> void:
 	print("Spawner")
 
@@ -32,14 +33,27 @@ func _ready():
 	var gamemanager = find_game_manager()
 	current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
 	respawn_timer.wait_time = respawn_delay
-	spawn_enemies()
-	print("SpawnerReadyFinish")
+
+	# Hole Gegner-Konfiguration aus ConfigManager
+	if ConfigManager.config_loaded and ConfigManager.enemy_types.size() > 0:
+		print("⚙️ Gegner-Config vom Server wird verwendet")
+		enemy_types = ConfigManager.enemy_types
+		spawn_enemies()
+	else:
+		print("⚠️ Keine Gegner-Config gefunden – verwende Standard-Konfiguration")
+		spawn_enemies()
+		ConfigManager.connect("config_ready", Callable(self, "_on_config_ready"))
+
 
 func get_enemy_limit() -> int:
 	var total = 0
 	for enemy_data in enemy_types:
 		total += enemy_data["max_count"]
 	return total
+
+func _on_config_ready():
+	enemy_types = ConfigManager.enemy_types
+	spawn_enemies()
 
 func spawn_enemies():
 	while get_child_count() < (max_limit + supportNodesCount) and !loner_spawned:
