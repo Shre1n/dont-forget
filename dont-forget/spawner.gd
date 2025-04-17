@@ -3,14 +3,14 @@ extends Node2D
 signal share_current_character
 
 @export var max_limit: int = 5
-# Gegner-Typen und maximale Anzahl mit Profil
+
+# Gegner-Typen und maximale Anzahl mit Profil (Standardwerte aus dem Editor)
 @export var enemy_types = [
 	{"path": "", "max_count": 3, "selected_profile": "default", "new_scale": 0.2, "loners": false},
 	{"path": "", "max_count": 2, "selected_profile": "default", "new_scale": 0.2, "loners": false},
 	{"path": "", "max_count": 1, "selected_profile": "default", "new_scale": 0.2, "loners": true}
 ]
 
-# Respawn-Timer
 @export var respawn_delay: float = 60.0
 @export var wait_time: float = 0.2
 @onready var respawn_timer = $Respawn_Timer
@@ -20,9 +20,7 @@ var current_Itemholder
 @onready var visible_ = $VisibleOnScreenNotifier2D
 
 @export var supportNodesCount = 3
-
 var loner_spawned = false
-
 
 func _init() -> void:
 	print("Spawner")
@@ -30,20 +28,28 @@ func _init() -> void:
 func _ready():
 	print("SpawnerReadyStart")
 	audio_player.stream = audio_
+
 	var gamemanager = find_game_manager()
 	current_Itemholder = gamemanager.connect("current_Itemholder", Callable(self, "save_user_location"))
 	respawn_timer.wait_time = respawn_delay
 
-	# Hole Gegner-Konfiguration aus ConfigManager
+	# ✅ Wenn Server-Config bereits geladen ist → überschreiben
 	if ConfigManager.config_loaded and ConfigManager.enemy_types.size() > 0:
 		print("⚙️ Gegner-Config vom Server wird verwendet")
 		enemy_types = ConfigManager.enemy_types
 		spawn_enemies()
 	else:
-		print("⚠️ Keine Gegner-Config gefunden – verwende Standard-Konfiguration")
-		spawn_enemies()
+		print("⏳ Server-Config noch nicht da – warte auf Signal")
 		ConfigManager.connect("config_ready", Callable(self, "_on_config_ready"))
 
+func _on_config_ready():
+	if ConfigManager.enemy_types.size() > 0:
+		print("🔄 Gegner-Config vom Server jetzt verfügbar – überschreibe Editor-Config")
+		enemy_types = ConfigManager.enemy_types
+	else:
+		print("⚠️ Server-Config ist leer – verwende Editor-Werte")
+
+	spawn_enemies()
 
 func get_enemy_limit() -> int:
 	var total = 0
@@ -51,11 +57,11 @@ func get_enemy_limit() -> int:
 		total += enemy_data["max_count"]
 	return total
 
-func _on_config_ready():
-	enemy_types = ConfigManager.enemy_types
-	spawn_enemies()
-
 func spawn_enemies():
+	if enemy_types.size() == 0:
+		print("⚠️ enemy_types ist leer – keine Gegner zum Spawnen")
+		return
+
 	while get_child_count() < (max_limit + supportNodesCount) and !loner_spawned:
 		var enemy_data = select_random_enemy_type()
 		if enemy_data != null:
@@ -65,9 +71,8 @@ func spawn_enemies():
 			for i in range(spawn_count):
 				if get_child_count() >= (max_limit + supportNodesCount):
 					break
-				if get_child_count() < max_limit + supportNodesCount:
-					await get_tree().create_timer(wait_time).timeout
-					spawn_enemy(enemy_data)
+				await get_tree().create_timer(wait_time).timeout
+				spawn_enemy(enemy_data)
 
 func select_random_enemy_type():
 	var valid_types = []
@@ -76,6 +81,7 @@ func select_random_enemy_type():
 			valid_types.append(enemy_data)
 	if valid_types.size() > 0:
 		return valid_types[randi() % valid_types.size()]
+	return null
 
 func spawn_enemy(enemy_data: Dictionary):
 	var path = enemy_data["path"]
@@ -83,11 +89,8 @@ func spawn_enemy(enemy_data: Dictionary):
 	enemy_scene.selected_profile = enemy_data["selected_profile"]
 	enemy_scene.scale.x = enemy_data["new_scale"]
 	enemy_scene.scale.y = enemy_data["new_scale"]
-	#enemy_scene.spawner = true
 	enemy_scene.current_Itemholder = current_Itemholder
-	
 	add_child(enemy_scene)
-	#print(get_children())
 
 func _on_child_exiting_tree(node):
 	if not respawn_timer.is_stopped():
@@ -97,12 +100,11 @@ func _on_child_exiting_tree(node):
 func _on_respawn_timer_timeout():
 	if get_child_count() == supportNodesCount:
 		loner_spawned = false
-	if get_child_count() < (max_limit+supportNodesCount) and !loner_spawned:
+	if get_child_count() < (max_limit + supportNodesCount) and !loner_spawned:
 		spawn_enemies()
-		#print("test")
 
 func find_game_manager():
-	var root = get_tree().root  # Root-Node des Scene Trees
+	var root = get_tree().root
 	for child in root.get_children():
 		if child.name == "Game_Manager":
 			return child
@@ -111,11 +113,9 @@ func find_game_manager():
 func save_user_location(path):
 	current_Itemholder = path
 
-
 func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
 	audio_player.play()
 	respawn_timer.start()
-
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	audio_player.stop()

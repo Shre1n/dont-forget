@@ -15,18 +15,27 @@ func _ready():
 	load_enemy_config()
 
 func load_enemy_config():
-	var url = BASE_URL + "/enemies"
+	var url = BASE_URL + "/active-enemies"
 	var headers = ["x-api-key: %s" % API_KEY]
 	http.request(url, headers)
 
 func _on_request_completed(result, response_code, headers, body):
 	if response_code == 200:
-		var parsed = JSON.parse_string(body.get_string_from_utf8())
+		var json_string = body.get_string_from_utf8()
+		print("📦 Antwort vom Server:")
+		print(json_string)
 
-		if parsed:
+		var parsed = JSON.parse_string(json_string)
+
+		if typeof(parsed) == TYPE_ARRAY:
 			enemy_types = parsed
 			config_loaded = true
-			print("✅ Enemy Config erfolgreich geladen!")
+
+			if enemy_types.size() > 0:
+				print("✅ Enemy Config erfolgreich geladen!")
+			else:
+				print("⚠️ Antwort war leer – keine Gegner aktiv")
+
 			print(enemy_types)
 			emit_signal("config_ready")
 		else:
