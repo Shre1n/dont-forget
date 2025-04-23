@@ -17,7 +17,10 @@ func _ready():
 func load_enemy_config():
 	var url = BASE_URL + "/active-enemies"
 	var headers = ["x-api-key: %s" % API_KEY]
-	http.request(url, headers)
+	var error = http.request(url, headers)
+
+	if error != OK:
+		print("❌ HTTP-Request konnte nicht gesendet werden: ", error)
 
 func _on_request_completed(result, response_code, headers, body):
 	if response_code == 200:
@@ -39,6 +42,6 @@ func _on_request_completed(result, response_code, headers, body):
 			print(enemy_types)
 			emit_signal("config_ready")
 		else:
-			print("❌ Fehler beim Parsen der JSON-Antwort.")
+			print("❌ Fehler beim Parsen der JSON-Antwort – ungültiges JSON.")
 	else:
 		print("❌ Server hat Fehler zurückgegeben: ", response_code)
