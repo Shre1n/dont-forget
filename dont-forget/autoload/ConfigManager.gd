@@ -20,12 +20,12 @@ func load_enemy_config():
 	var error = http.request(url, headers)
 
 	if error != OK:
-		print("❌ HTTP-Request konnte nicht gesendet werden: ", error)
+		print("HTTP-Request konnte nicht gesendet werden: ", error)
 
 func _on_request_completed(result, response_code, headers, body):
 	if response_code == 200:
 		var json_string = body.get_string_from_utf8()
-		print("📦 Antwort vom Server:")
+		print("Antwort vom Server:")
 		print(json_string)
 
 		var parsed = JSON.parse_string(json_string)
@@ -35,13 +35,13 @@ func _on_request_completed(result, response_code, headers, body):
 			config_loaded = true
 
 			if enemy_types.size() > 0:
-				print("✅ Enemy Config erfolgreich geladen!")
+				print("Enemy Config erfolgreich geladen!")
 			else:
 				print("⚠️ Antwort war leer – keine Gegner aktiv")
 
 			print(enemy_types)
 			emit_signal("config_ready")
 		else:
-			print("❌ Fehler beim Parsen der JSON-Antwort – ungültiges JSON.")
+			print("Fehler beim Parsen der JSON-Antwort – ungültiges JSON.")
 	else:
-		print("❌ Server hat Fehler zurückgegeben: ", response_code)
+		print("Server hat Fehler zurückgegeben: ", response_code)
