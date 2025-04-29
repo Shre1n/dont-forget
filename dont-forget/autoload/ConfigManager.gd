@@ -5,7 +5,7 @@ var config_loaded: bool = false
 signal config_ready
 
 const API_KEY = "37392788-5fa3-4aa3-aea9-608d7d1835e1"
-const BASE_URL = "http://localhost:3000/api/game-client"
+const BASE_URL = "http://localhost:3000/public/game-client"
 
 @onready var http := HTTPRequest.new()
 
