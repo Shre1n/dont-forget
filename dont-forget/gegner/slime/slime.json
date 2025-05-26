@@ -98,7 +98,7 @@
 				"time": 10
 			},
 			"special_type": {
-				"elite": true,
+				"elite": false,
 				"mini_boss": false
 			},
 			"extra_data": {

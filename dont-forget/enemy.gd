@@ -147,8 +147,8 @@ func apply_profile_data():
 		extra_data = {}
 
 func special_load():
-	elite = special_type["elite"]
-	mini_boss = special_type["mini_boss"]
+	elite = special_type.get("elite", false)
+	mini_boss = special_type.get("mini_boss", false)
 
 func update_start_stats():
 	# Verwende die Min/Max-Werte aus der geladenen JSON-Datei
