@@ -128,6 +128,16 @@ func apply_profile_data():
 		special_type = {}
 		extra_data = {}
 
+	# -- Fallback-Werte für fehlende Drops setzen --
+	if !min_drops.has("gold"):
+		min_drops["gold"] = 2
+	if !max_drops.has("gold"):
+		max_drops["gold"] = 2
+	if !min_drops.has("time"):
+		min_drops["time"] = 1
+	if !max_drops.has("time"):
+		max_drops["time"] = 1
+
 func special_load():
 	#print("special_type contents: ", special_type)
 	if special_type.has("elite"):
